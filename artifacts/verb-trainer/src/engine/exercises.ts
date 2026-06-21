@@ -86,7 +86,7 @@ export function generateExercise(type: ExerciseMode, difficulty: DifficultyLevel
   return {
     id: `gapfill:${gf.id}`,
     type: "gapfill",
-    question: { template: gf.template, hint: gf.hint },
+    question: { template: gf.template, hint: gf.hint, verb: gf.verb },
     answer: gf.alternateAnswers ? [gf.answer, ...gf.alternateAnswers] : gf.answer
   };
 }
