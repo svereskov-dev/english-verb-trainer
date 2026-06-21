@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "English Verb Trainer"
+version = "1.0.0"
+id = "artifacts/verb-trainer"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26017
+
+[services.development]
+run = "pnpm --filter @workspace/verb-trainer run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/verb-trainer", "run", "build" ]
+publicDir = "artifacts/verb-trainer/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26017"
+BASE_PATH = "/"

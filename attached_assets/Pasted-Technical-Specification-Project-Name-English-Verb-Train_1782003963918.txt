@@ -1,0 +1,382 @@
+Technical Specification
+Project Name
+
+English Verb Trainer
+
+A Progressive Web App (PWA) inspired by Conjugato for Spanish verbs, but focused on English verb forms, tenses, and usage in context.
+
+The application is designed primarily for self-study and deliberate practice of English verb forms.
+
+Main Goals
+
+The app should:
+
+work offline after installation
+be installable on iPhone and Android as a PWA
+have a clean, minimalist UI
+prioritize speed and repetition
+require minimal navigation
+focus on active recall rather than passive review
+
+The user should be able to answer hundreds of exercises in a short session.
+
+Technology Requirements
+React
+TypeScript
+Vite
+PWA support
+IndexedDB for local storage
+No backend required
+Entire app works locally
+Mobile-first design
+Learning Modes
+
+The app should support four exercise modes.
+
+Mode 1: Verb Form Production
+
+The app displays:
+
+Verb: write
+
+Tense: Past Perfect
+
+Subject: we
+
+The user types:
+
+we had written
+
+or
+
+had written
+
+(accept both options depending on settings)
+
+Examples
+
+Verb: go
+
+Tense: Present Perfect
+
+Subject: she
+
+Answer:
+
+she has gone
+
+Verb: work
+
+Tense: Future Simple
+
+Subject: they
+
+Answer:
+
+they will work
+
+Supported Tenses
+
+Present Simple
+
+Present Continuous
+
+Present Perfect
+
+Present Perfect Continuous
+
+Past Simple
+
+Past Continuous
+
+Past Perfect
+
+Past Perfect Continuous
+
+Future Simple
+
+Future Continuous
+
+Future Perfect
+
+Future Perfect Continuous
+
+Passive Voice forms
+
+Mode 2: Tense Recognition
+
+The app displays a complete sentence.
+
+Example:
+
+She has been working here since 2020.
+
+The user must identify:
+
+Present Perfect Continuous
+
+Example:
+
+The letter had been written before I arrived.
+
+Answer:
+
+Past Perfect Passive
+
+Goal
+
+Train recognition of English tense structures.
+
+Mode 3: Irregular Verb Trainer
+
+The app displays:
+
+write
+
+The user must enter:
+
+wrote
+
+written
+
+Alternative direction:
+
+written
+
+User answers:
+
+write
+
+wrote
+
+Alternative direction:
+
+wrote
+
+User answers:
+
+write
+
+written
+
+Settings
+
+Practice:
+
+infinitive → past
+infinitive → participle
+all forms
+random
+Mode 4: Context Gap Fill
+
+The app displays a sentence.
+
+Example:
+
+Yesterday I _____ to the store.
+
+(go)
+
+Answer:
+
+went
+
+Example:
+
+By the time she arrived, we _____ dinner.
+
+(finish)
+
+Answer:
+
+had finished
+
+Example:
+
+This house _____ in 1905.
+
+(build)
+
+Answer:
+
+was built
+
+Goal
+
+Practice grammar in context rather than isolated tables.
+
+Spaced Repetition System
+
+Every item should have:
+
+ease factor
+success count
+failure count
+last review date
+
+Use a simplified SRS similar to Anki.
+
+Items answered incorrectly should appear more frequently.
+
+Verb Database
+
+Include:
+
+Regular verbs
+
+At least 500 common verbs.
+
+Irregular verbs
+
+At least 200 irregular verbs.
+
+Store:
+
+{
+infinitive,
+past,
+pastParticiple,
+frequencyRank
+}
+
+Example:
+
+{
+"write",
+"wrote",
+"written",
+45
+}
+
+Difficulty Levels
+
+Beginner
+
+Intermediate
+
+Advanced
+
+Beginner
+
+Only:
+
+Present Simple
+Past Simple
+Future Simple
+Present Continuous
+Intermediate
+
+Add:
+
+Present Perfect
+Past Continuous
+Past Perfect
+Advanced
+
+All supported tenses.
+
+Statistics
+
+Dashboard should show:
+
+Total answers
+
+Correct answers
+
+Accuracy %
+
+Current streak
+
+Best streak
+
+Most difficult verbs
+
+Most difficult tenses
+
+Study time
+
+Reviews due today
+
+Mistake Review Mode
+
+The user can open:
+
+Review Mistakes
+
+and practice only items previously answered incorrectly.
+
+Daily Goal
+
+User can choose:
+
+10 exercises
+25 exercises
+50 exercises
+100 exercises
+
+Show progress bar.
+
+User Interface
+
+Inspired by:
+
+Conjugato
+Duolingo practice screens
+Anki mobile
+
+Requirements:
+
+one exercise per screen
+large text
+large answer field
+minimal distractions
+dark mode
+light mode
+Validation Rules
+
+Accept:
+
+capitalization differences
+
+Example:
+
+Had Written
+
+had written
+
+should both be accepted.
+
+Ignore:
+
+extra spaces
+
+leading/trailing spaces
+
+Offline Support
+
+The app must:
+
+work fully offline
+store all progress locally
+sync not required
+Future Architecture Requirements
+
+Design code structure so the app can later be wrapped with Capacitor and published to:
+
+Apple App Store
+Google Play
+
+without major refactoring.
+
+Stretch Goals (Optional)
+Audio pronunciation of verbs
+Custom verb lists
+British/American spelling support
+Export progress as JSON
+Import progress from JSON
+AI-generated context sentences
+Important Design Principle
+
+The app should optimize for repetition speed.
+
+A learner should be able to complete 100–200 exercises in a single session without unnecessary animations or delays.
