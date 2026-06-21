@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { isCorrect } from "../engine/validate";
 
 interface AnswerInputProps {
   onSubmit: (answer: string) => void;
-  expectedAnswer: string | string[];
+  onValueChange?: (value: string) => void;
   disabled?: boolean;
   feedback?: "correct" | "incorrect" | null;
   submittedValue?: string;
@@ -11,7 +10,7 @@ interface AnswerInputProps {
 
 export function AnswerInput({
   onSubmit,
-  expectedAnswer,
+  onValueChange,
   disabled,
   feedback,
   submittedValue,
@@ -31,35 +30,20 @@ export function AnswerInput({
     }
   };
 
-  // After submit: show the submitted value (colored by feedback from parent)
-  // While typing: live-validate and color in real time
-  const isPostSubmit = feedback !== null && feedback !== undefined;
-
+  const isPostSubmit = !!feedback;
   const displayValue = isPostSubmit ? (submittedValue ?? "") : value;
 
-  // Determine color state
-  let colorState: "correct" | "incorrect" | "neutral";
-  if (isPostSubmit) {
-    colorState = feedback as "correct" | "incorrect";
-  } else if (value.trim() === "") {
-    colorState = "neutral";
-  } else if (isCorrect(value, expectedAnswer)) {
-    colorState = "correct";
-  } else {
-    colorState = "incorrect";
-  }
-
   const borderClass =
-    colorState === "correct"
-      ? "border-green-500 focus-visible:ring-green-500"
-      : colorState === "incorrect"
-        ? "border-red-500 focus-visible:ring-red-500"
-        : "border-input focus-visible:ring-primary";
+    feedback === "correct"
+      ? "border-green-500"
+      : feedback === "incorrect"
+        ? "border-red-500"
+        : "border-input";
 
   const textClass =
-    colorState === "correct"
+    feedback === "correct"
       ? "text-green-400"
-      : colorState === "incorrect"
+      : feedback === "incorrect"
         ? "text-red-400"
         : "text-foreground";
 
@@ -68,16 +52,19 @@ export function AnswerInput({
       ref={inputRef}
       value={displayValue}
       onChange={(e) => {
-        if (!disabled) setValue(e.target.value);
+        if (!disabled) {
+          setValue(e.target.value);
+          onValueChange?.(e.target.value);
+        }
       }}
       onKeyDown={handleKeyDown}
       readOnly={isPostSubmit}
       className={[
         "text-2xl text-center h-16 w-full max-w-md mx-auto block",
         "rounded-md border-2 bg-background px-3 py-2",
-        "transition-colors duration-100",
+        "transition-colors duration-150",
         "placeholder:text-muted-foreground",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
         "font-semibold",
         borderClass,
         textClass,

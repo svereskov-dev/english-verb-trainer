@@ -64,13 +64,12 @@ export function generateExercise(type: ExerciseMode, difficulty: DifficultyLevel
   
   if (type === "irregular") {
     const verb = irregularVerbs[Math.floor(Math.random() * irregularVerbs.length)];
-    const forms = ["past", "pastParticiple", "both"];
+    const forms = ["past", "pastParticiple"];
     const askFor = forms[Math.floor(Math.random() * forms.length)];
-    
+
     let answer = "";
     if (askFor === "past") answer = verb.past;
-    else if (askFor === "pastParticiple") answer = verb.pastParticiple;
-    else answer = `${verb.past} ${verb.pastParticiple}`; // Simplified
+    else answer = verb.pastParticiple;
     
     return {
       id: `irregular:${verb.infinitive}:${askFor}`,
