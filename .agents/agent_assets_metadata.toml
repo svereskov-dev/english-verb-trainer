@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "IICYgP6Tinl3jeqln79qB"
+uri = "file://verb-trainer.zip"
+type = "unspecified"
+title = "English Verb Trainer — source code"
