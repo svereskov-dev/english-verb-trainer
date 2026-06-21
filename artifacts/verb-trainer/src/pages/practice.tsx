@@ -24,10 +24,10 @@ export default function Practice() {
     dailyGoal
   } = useExerciseSession(mode);
 
-  // Advance on Enter during feedback phase
+  // Advance on Enter only when answer was correct (incorrect requires manual Next click)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && feedback !== null) {
+      if (e.key === "Enter" && feedback === "correct") {
         nextExercise();
       }
     };

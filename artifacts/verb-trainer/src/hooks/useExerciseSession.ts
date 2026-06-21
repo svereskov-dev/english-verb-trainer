@@ -79,15 +79,17 @@ export function useExerciseSession(mode: ExerciseMode | 'mixed' = 'mixed') {
     record = updateSRS(record, correct);
     await saveProgress(record);
 
-    // Auto advance after 1.2s if not manually advanced
-    setTimeout(() => {
-      setFeedback(prev => {
-        if (prev !== null) {
-          nextExercise();
-        }
-        return null;
-      });
-    }, 1200);
+    // Only auto-advance on correct answers; incorrect waits for manual Next click
+    if (correct) {
+      setTimeout(() => {
+        setFeedback(prev => {
+          if (prev !== null) {
+            nextExercise();
+          }
+          return null;
+        });
+      }, 1200);
+    }
   };
 
   return {
