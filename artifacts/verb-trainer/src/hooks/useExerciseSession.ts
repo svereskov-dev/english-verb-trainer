@@ -20,7 +20,15 @@ export function useExerciseSession(mode: ExerciseMode | 'mixed' = 'mixed') {
     if (!settings) return;
     setFeedback(null);
     setShowAnswer(null);
-    const m = mode === 'mixed' ? ["verbform", "tenserecognition", "irregular", "gapfill"][Math.floor(Math.random() * 4)] as ExerciseMode : mode;
+    const m = mode === 'mixed' ? (["verbform", "irregular", "gapfill"] as ExerciseMode[])[Math.floor(Math.random() * 3)] : mode as ExerciseMode;
+    setCurrentExercise(generateExercise(m, settings.difficulty));
+  };
+
+  const skipExercise = () => {
+    if (!settings) return;
+    setFeedback(null);
+    setShowAnswer(null);
+    const m = mode === 'mixed' ? (["verbform", "irregular", "gapfill"] as ExerciseMode[])[Math.floor(Math.random() * 3)] : mode as ExerciseMode;
     setCurrentExercise(generateExercise(m, settings.difficulty));
   };
 
@@ -90,6 +98,7 @@ export function useExerciseSession(mode: ExerciseMode | 'mixed' = 'mixed') {
     showAnswer,
     submitAnswer,
     nextExercise,
+    skipExercise,
     dailyGoal: settings?.dailyGoal || 25
   };
 }

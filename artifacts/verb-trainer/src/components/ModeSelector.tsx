@@ -9,7 +9,6 @@ export function ModeSelector({ currentMode, onSelect }: ModeSelectorProps) {
   const modes = [
     { id: "mixed", label: "Mixed" },
     { id: "verbform", label: "Form" },
-    { id: "tenserecognition", label: "Recognize" },
     { id: "irregular", label: "Irregular" },
     { id: "gapfill", label: "Context" },
   ];

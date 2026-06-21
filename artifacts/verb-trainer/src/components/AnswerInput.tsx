@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { Input } from "./ui/input";
 
 interface AnswerInputProps {
   onSubmit: (answer: string) => void;
   disabled?: boolean;
+  feedback?: "correct" | "incorrect" | null;
+  submittedValue?: string;
 }
 
-export function AnswerInput({ onSubmit, disabled }: AnswerInputProps) {
+export function AnswerInput({ onSubmit, disabled, feedback, submittedValue }: AnswerInputProps) {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -17,25 +18,48 @@ export function AnswerInput({ onSubmit, disabled }: AnswerInputProps) {
   }, [disabled]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && value.trim()) {
+    if (e.key === "Enter" && value.trim() && !disabled) {
       onSubmit(value);
-      setValue("");
     }
   };
 
+  const displayValue = feedback ? (submittedValue ?? "") : value;
+
+  const borderClass = feedback === "correct"
+    ? "border-green-500 focus-visible:ring-green-500"
+    : feedback === "incorrect"
+    ? "border-red-500 focus-visible:ring-red-500"
+    : "focus-visible:ring-primary";
+
+  const textClass = feedback === "correct"
+    ? "text-green-400"
+    : feedback === "incorrect"
+    ? "text-red-400"
+    : "";
+
   return (
-    <Input
+    <input
       ref={inputRef}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={displayValue}
+      onChange={(e) => { if (!disabled) setValue(e.target.value); }}
       onKeyDown={handleKeyDown}
-      disabled={disabled}
-      className="text-2xl text-center h-16 w-full max-w-md mx-auto focus-visible:ring-primary"
+      readOnly={!!disabled}
+      className={[
+        "text-2xl text-center h-16 w-full max-w-md mx-auto block",
+        "rounded-md border bg-background px-3 py-2",
+        "transition-colors duration-150",
+        "placeholder:text-muted-foreground",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        "disabled:cursor-not-allowed disabled:opacity-50",
+        "font-semibold",
+        borderClass,
+        textClass,
+      ].join(" ")}
       placeholder="Type your answer..."
       autoComplete="off"
       autoCorrect="off"
       autoCapitalize="off"
-      spellCheck="false"
+      spellCheck={false}
       data-testid="input-answer"
     />
   );
