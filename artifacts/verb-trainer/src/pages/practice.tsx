@@ -73,6 +73,7 @@ export default function Practice() {
           <AnswerInput
             key={currentExercise.id}
             onSubmit={handleSubmit}
+            expectedAnswer={currentExercise.answer}
             disabled={feedback !== null}
             feedback={feedback}
             submittedValue={submittedValue}

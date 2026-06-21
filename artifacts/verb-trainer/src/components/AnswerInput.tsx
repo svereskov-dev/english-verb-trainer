@@ -1,13 +1,21 @@
 import { useState, useRef, useEffect } from "react";
+import { isCorrect } from "../engine/validate";
 
 interface AnswerInputProps {
   onSubmit: (answer: string) => void;
+  expectedAnswer: string | string[];
   disabled?: boolean;
   feedback?: "correct" | "incorrect" | null;
   submittedValue?: string;
 }
 
-export function AnswerInput({ onSubmit, disabled, feedback, submittedValue }: AnswerInputProps) {
+export function AnswerInput({
+  onSubmit,
+  expectedAnswer,
+  disabled,
+  feedback,
+  submittedValue,
+}: AnswerInputProps) {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -23,34 +31,53 @@ export function AnswerInput({ onSubmit, disabled, feedback, submittedValue }: An
     }
   };
 
-  const displayValue = feedback ? (submittedValue ?? "") : value;
+  // After submit: show the submitted value (colored by feedback from parent)
+  // While typing: live-validate and color in real time
+  const isPostSubmit = feedback !== null && feedback !== undefined;
 
-  const borderClass = feedback === "correct"
-    ? "border-green-500 focus-visible:ring-green-500"
-    : feedback === "incorrect"
-    ? "border-red-500 focus-visible:ring-red-500"
-    : "focus-visible:ring-primary";
+  const displayValue = isPostSubmit ? (submittedValue ?? "") : value;
 
-  const textClass = feedback === "correct"
-    ? "text-green-400"
-    : feedback === "incorrect"
-    ? "text-red-400"
-    : "";
+  // Determine color state
+  let colorState: "correct" | "incorrect" | "neutral";
+  if (isPostSubmit) {
+    colorState = feedback as "correct" | "incorrect";
+  } else if (value.trim() === "") {
+    colorState = "neutral";
+  } else if (isCorrect(value, expectedAnswer)) {
+    colorState = "correct";
+  } else {
+    colorState = "incorrect";
+  }
+
+  const borderClass =
+    colorState === "correct"
+      ? "border-green-500 focus-visible:ring-green-500"
+      : colorState === "incorrect"
+        ? "border-red-500 focus-visible:ring-red-500"
+        : "border-input focus-visible:ring-primary";
+
+  const textClass =
+    colorState === "correct"
+      ? "text-green-400"
+      : colorState === "incorrect"
+        ? "text-red-400"
+        : "text-foreground";
 
   return (
     <input
       ref={inputRef}
       value={displayValue}
-      onChange={(e) => { if (!disabled) setValue(e.target.value); }}
+      onChange={(e) => {
+        if (!disabled) setValue(e.target.value);
+      }}
       onKeyDown={handleKeyDown}
-      readOnly={!!disabled}
+      readOnly={isPostSubmit}
       className={[
         "text-2xl text-center h-16 w-full max-w-md mx-auto block",
-        "rounded-md border bg-background px-3 py-2",
-        "transition-colors duration-150",
+        "rounded-md border-2 bg-background px-3 py-2",
+        "transition-colors duration-100",
         "placeholder:text-muted-foreground",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-        "disabled:cursor-not-allowed disabled:opacity-50",
         "font-semibold",
         borderClass,
         textClass,
