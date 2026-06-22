@@ -1,19 +1,18 @@
 import { Verb } from "../data/verbs";
-import { Subject, Tense } from "../data/gapFillSentences";
+import { Subject, Tense } from "../data/grammar";
 
 export function getIngForm(verb: string): string {
   if (verb === "be") return "being";
   const v = verb.toLowerCase();
   if (v.endsWith("ie")) return v.slice(0, -2) + "ying";
   if (v.endsWith("e") && v !== "see" && v !== "flee" && v !== "agree") return v.slice(0, -1) + "ing";
-  
-  // Basic CVC check
+
   const vowels = "aeiou";
   if (v.length >= 3) {
     const c1 = v[v.length - 3];
     const v2 = v[v.length - 2];
     const c2 = v[v.length - 1];
-    if (!vowels.includes(c1) && vowels.includes(v2) && !vowels.includes(c2) && c2 !== 'w' && c2 !== 'x' && c2 !== 'y') {
+    if (!vowels.includes(c1) && vowels.includes(v2) && !vowels.includes(c2) && c2 !== "w" && c2 !== "x" && c2 !== "y") {
       return v + c2 + "ing";
     }
   }
@@ -37,10 +36,10 @@ export function getThirdPerson(verb: string): string {
 export function conjugate(verb: Verb, tense: Tense, subject: Subject): string {
   const isThirdPerson = subject === "he/she/it";
   const v = verb.infinitive;
-  
-  let bePresent = isThirdPerson ? "is" : (subject === "I" ? "am" : "are");
-  let bePast = (subject === "I" || isThirdPerson) ? "was" : "were";
-  let havePresent = isThirdPerson ? "has" : "have";
+
+  const bePresent  = isThirdPerson ? "is"  : subject === "I" ? "am"  : "are";
+  const bePast     = (subject === "I" || isThirdPerson) ? "was" : "were";
+  const havePresent = isThirdPerson ? "has" : "have";
 
   switch (tense) {
     case "presentSimple":
