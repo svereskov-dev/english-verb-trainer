@@ -1,10 +1,26 @@
-import { Verb, verbs, irregularVerbs } from "../data/verbs";
+import { Verb, verbs as allVerbs, irregularVerbs as allIrregularVerbs } from "../data/verbs";
 import { Subject, Tense } from "../data/grammar";
 import { conjugate } from "./conjugate";
 import { contextTemplates, ContextTemplate } from "../data/contextTemplates";
 
-export type ExerciseMode = "verbform" | "tenserecognition" | "irregular" | "gapfill";
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+export type ExerciseMode  = "verbform" | "tenserecognition" | "irregular" | "gapfill";
 export type DifficultyLevel = "beginner" | "intermediate" | "advanced";
+export type VerbPoolSpec  = "all" | "irregular" | number;
+export type IrregularForm = "past" | "pastParticiple" | "mixed";
+
+export interface SessionConfig {
+  id: string;
+  label: string;
+  groupLabel: string;
+  exerciseTypes: ("verbform" | "irregular")[];
+  verbPool: VerbPoolSpec;
+  tenses?: Tense[];
+  irregularForm?: IrregularForm;
+  mistakesOnly?: boolean;
+  contextEnabled: boolean;
+}
 
 export interface ExerciseItem {
   id: string;
@@ -13,9 +29,13 @@ export interface ExerciseItem {
   answer: string | string[];
 }
 
+// ─── Tense pools ──────────────────────────────────────────────────────────────
+
 const ALL_SUBJECTS: Subject[] = ["I", "you", "he/she/it", "we", "they"];
 
-const beginnerTenses: Tense[] = ["presentSimple", "pastSimple", "futureSimple", "presentContinuous"];
+const beginnerTenses: Tense[] = [
+  "presentSimple", "pastSimple", "futureSimple", "presentContinuous",
+];
 const intermediateTenses: Tense[] = [
   ...beginnerTenses,
   "presentPerfect", "pastContinuous", "pastPerfect", "presentPerfectContinuous",
@@ -27,7 +47,7 @@ const advancedTenses: Tense[] = [
   "pastPerfectPassive", "futureSimplePassive",
 ];
 
-function getTenses(difficulty: DifficultyLevel): Tense[] {
+export function getTenses(difficulty: DifficultyLevel): Tense[] {
   switch (difficulty) {
     case "beginner":     return beginnerTenses;
     case "intermediate": return intermediateTenses;
@@ -35,32 +55,26 @@ function getTenses(difficulty: DifficultyLevel): Tense[] {
   }
 }
 
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
 function pick<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// Render "{subject}" in a frame, handling capitalisation and he/she display.
 function renderFrame(frame: string, subject: Subject): string {
-  let display: string;
-  if (subject === "he/she/it") {
-    display = Math.random() < 0.5 ? "he" : "she";
-  } else {
-    display = subject;
-  }
+  const display =
+    subject === "he/she/it" ? (Math.random() < 0.5 ? "he" : "she") : subject;
   const rendered = frame.replace("{subject}", display);
-  // Always capitalise the first character (handles both {subject}-led and noun-led frames)
   return rendered.charAt(0).toUpperCase() + rendered.slice(1);
 }
 
-// ─── Exercise generators ──────────────────────────────────────────────────────
+// ─── Internal generators (accept explicit pool + tenses) ──────────────────────
 
-function generateVerbForm(difficulty: DifficultyLevel): ExerciseItem {
-  const tenses  = getTenses(difficulty);
-  const verb    = pick(verbs);
+function makeVerbForm(pool: Verb[], tenses: Tense[]): ExerciseItem {
+  const verb    = pick(pool);
   const tense   = pick(tenses);
   const subject = pick(ALL_SUBJECTS);
   const answer  = conjugate(verb, tense, subject);
-
   return {
     id: `verbform:${verb.infinitive}:${tense}:${subject}`,
     type: "verbform",
@@ -69,11 +83,14 @@ function generateVerbForm(difficulty: DifficultyLevel): ExerciseItem {
   };
 }
 
-function generateIrregular(): ExerciseItem {
-  const verb    = pick(irregularVerbs);
-  const askFor  = pick(["past", "pastParticiple"] as const);
-  const answer  = askFor === "past" ? verb.past : verb.pastParticiple;
-
+function makeIrregular(pool: Verb[], form: IrregularForm): ExerciseItem {
+  const irregPool = pool.filter(v => v.isIrregular);
+  const verb = pick(irregPool.length > 0 ? irregPool : allIrregularVerbs);
+  const askFor: "past" | "pastParticiple" =
+    form === "past"           ? "past" :
+    form === "pastParticiple" ? "pastParticiple" :
+    pick(["past", "pastParticiple"]);
+  const answer = askFor === "past" ? verb.past : verb.pastParticiple;
   return {
     id: `irregular:${verb.infinitive}:${askFor}`,
     type: "irregular",
@@ -82,54 +99,34 @@ function generateIrregular(): ExerciseItem {
   };
 }
 
-function generateGapFill(difficulty: DifficultyLevel): ExerciseItem {
-  const allowedTenses = getTenses(difficulty);
-
-  // 1. Templates whose tense list overlaps with the difficulty level
-  const eligibleTemplates = contextTemplates.filter(t =>
-    t.tenses.some(tense => allowedTenses.includes(tense))
+function makeGapFill(pool: Verb[], tenses: Tense[]): ExerciseItem {
+  const eligible = contextTemplates.filter(t =>
+    t.tenses.some(tense => tenses.includes(tense))
   );
-  const template: ContextTemplate = pick(eligibleTemplates);
+  const template: ContextTemplate = pick(eligible.length > 0 ? eligible : contextTemplates);
+  const shared   = template.tenses.filter(t => tenses.includes(t));
+  const tense    = pick(shared.length > 0 ? shared : template.tenses);
+  const subject  = pick(template.subjects ?? ALL_SUBJECTS);
 
-  // 2. Tense: intersection of template tenses and difficulty-allowed tenses
-  const sharedTenses = template.tenses.filter(t => allowedTenses.includes(t));
-  const tense = pick(sharedTenses);
-
-  // 3. Subject
-  const subjectPool: Subject[] = template.subjects ?? ALL_SUBJECTS;
-  const subject = pick(subjectPool);
-
-  // 4. Verb: filter by behavior → transitivity → domain
-  let pool: Verb[] = verbs.filter(v => template.allowedBehaviors.includes(v.behavior));
-
-  if (template.allowedTransitivity && template.allowedTransitivity.length > 0) {
-    const filtered = pool.filter(v => template.allowedTransitivity!.includes(v.transitivity));
-    if (filtered.length > 0) pool = filtered;
+  let verbPool = pool.filter(v => template.allowedBehaviors.includes(v.behavior));
+  if (template.allowedTransitivity?.length) {
+    const f = verbPool.filter(v => template.allowedTransitivity!.includes(v.transitivity));
+    if (f.length > 0) verbPool = f;
   }
-
-  if (template.allowedDomains && template.allowedDomains.length > 0) {
-    const filtered = pool.filter(v => v.domains.some(d => template.allowedDomains!.includes(d)));
-    if (filtered.length > 0) pool = filtered;
+  if (template.allowedDomains?.length) {
+    const f = verbPool.filter(v => v.domains.some(d => template.allowedDomains!.includes(d)));
+    if (f.length > 0) verbPool = f;
   }
+  if (verbPool.length === 0) verbPool = pool.filter(v => v.behavior === "dynamic");
+  if (verbPool.length === 0) verbPool = pool;
 
-  // Fallback: any dynamic verb (should never be needed with 91 templates)
-  if (pool.length === 0) {
-    pool = verbs.filter(v => v.behavior === "dynamic");
-  }
-
-  const verb = pick(pool);
-
-  // 5. Answer: always computed — never stored
+  const verb   = pick(verbPool);
   const answer = conjugate(verb, tense, subject);
-
-  // 6. Render the frame
-  const renderedFrame = renderFrame(template.frame, subject);
-
   return {
     id: `gapfill:${template.id}:${verb.infinitive}:${tense}`,
     type: "gapfill",
     question: {
-      template: renderedFrame,
+      template: renderFrame(template.frame, subject),
       hint: `(${verb.infinitive})`,
       verb: verb.infinitive,
     },
@@ -139,13 +136,49 @@ function generateGapFill(difficulty: DifficultyLevel): ExerciseItem {
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
+// Legacy — kept for any code that still calls the old signature
 export function generateExercise(type: ExerciseMode, difficulty: DifficultyLevel): ExerciseItem {
+  const tenses = getTenses(difficulty);
   switch (type) {
-    case "verbform":         return generateVerbForm(difficulty);
-    case "irregular":        return generateIrregular();
-    case "gapfill":          return generateGapFill(difficulty);
-    // tenserecognition kept for backwards-compat but not exposed in the UI
-    case "tenserecognition": return generateVerbForm(difficulty);
-    default:                 return generateVerbForm(difficulty);
+    case "verbform":         return makeVerbForm(allVerbs, tenses);
+    case "irregular":        return makeIrregular(allIrregularVerbs, "mixed");
+    case "gapfill":          return makeGapFill(allVerbs, tenses);
+    case "tenserecognition": return makeVerbForm(allVerbs, tenses);
+    default:                 return makeVerbForm(allVerbs, tenses);
+  }
+}
+
+export function generateExerciseFromConfig(
+  config: SessionConfig,
+  difficulty: DifficultyLevel,
+  mistakeVerbs?: string[],
+): ExerciseItem {
+  // 1. Resolve verb pool
+  let pool: Verb[] =
+    config.verbPool === "all"       ? allVerbs :
+    config.verbPool === "irregular" ? allIrregularVerbs :
+    allVerbs.filter(v => v.frequencyRank <= (config.verbPool as number));
+
+  // 2. Narrow to mistake verbs if applicable
+  if (config.mistakesOnly && mistakeVerbs && mistakeVerbs.length > 0) {
+    const narrowed = pool.filter(v => mistakeVerbs.includes(v.infinitive));
+    if (narrowed.length > 0) pool = narrowed;
+  }
+
+  // 3. Tenses
+  const tenses: Tense[] = config.tenses ?? getTenses(difficulty);
+
+  // 4. Effective exercise types (context adds gapfill)
+  const types: ExerciseMode[] = [
+    ...config.exerciseTypes,
+    ...(config.contextEnabled ? ["gapfill" as ExerciseMode] : []),
+  ];
+
+  // 5. Pick a type and generate
+  switch (pick(types)) {
+    case "verbform":  return makeVerbForm(pool, tenses);
+    case "irregular": return makeIrregular(pool, config.irregularForm ?? "mixed");
+    case "gapfill":   return makeGapFill(pool, tenses);
+    default:          return makeVerbForm(pool, tenses);
   }
 }
