@@ -48,6 +48,11 @@ const translations: Record<string, string> = {
   breed: "разводить", feed: "кормить", flee: "убегать", shed: "сбрасывать",
   bid: "предлагать цену", rid: "избавляться", quit: "бросать", thrust: "толкать",
   cast: "бросать", burst: "взрываться",
+  show: "показывать", die: "умирать", expect: "ожидать", kill: "убивать",
+  remain: "оставаться", raise: "поднимать", hope: "надеяться", cause: "вызывать",
+  place: "размещать", arrive: "прибывать", want: "хотеть", wish: "желать",
+  matter: "иметь значение", exist: "существовать", avoid: "избегать",
+  connect: "соединять", trust: "доверять", touch: "трогать", search: "искать",
   work: "работать", talk: "разговаривать", walk: "ходить", play: "играть",
   watch: "смотреть", listen: "слушать", open: "открывать", close: "закрывать",
   start: "начинать", stop: "останавливать", finish: "заканчивать",
@@ -121,6 +126,9 @@ const behaviorOverrides: Record<string, VerbBehavior> = {
   require: "stative", involve: "stative", enjoy: "stative",
   own: "stative", wonder: "stative", care: "stative",
   represent: "stative", intend: "stative",
+  // New stative additions
+  expect: "stative", hope: "stative", want: "stative", wish: "stative",
+  matter: "stative", exist: "stative", trust: "stative",
 };
 
 const transitivityOverrides: Record<string, VerbTransitivity> = {
@@ -142,6 +150,8 @@ const transitivityOverrides: Record<string, VerbTransitivity> = {
   succeed: "intransitive", agree: "intransitive", disagree: "intransitive",
   disappear: "intransitive", happen: "intransitive", arrive: "intransitive",
   subscribe: "intransitive", respond: "intransitive",
+  // New intransitive additions
+  die: "intransitive", remain: "intransitive", matter: "intransitive", exist: "intransitive",
 };
 
 const domainOverrides: Record<string, VerbDomain[]> = {
@@ -152,7 +162,7 @@ const domainOverrides: Record<string, VerbDomain[]> = {
   bring: ["motion"], send: ["motion"], creep: ["motion"], flee: ["motion"],
   sink: ["motion"], spring: ["motion"], slide: ["motion"], stride: ["motion"],
   speed: ["motion"], cross: ["motion"], reach: ["motion"], park: ["motion"],
-  escape: ["motion"], zoom: ["motion"], withdraw: ["motion"],
+  escape: ["motion"], zoom: ["motion"], withdraw: ["motion"], arrive: ["motion"],
   // Creation
   write: ["creation", "communication"], build: ["creation"], make: ["creation"],
   design: ["creation"], draw: ["creation"], cook: ["creation"],
@@ -166,6 +176,7 @@ const domainOverrides: Record<string, VerbDomain[]> = {
   answer: ["communication"], report: ["communication"], translate: ["communication"],
   discuss: ["communication"], introduce: ["communication"], name: ["communication"],
   post: ["communication"], respond: ["communication"], suggest: ["communication"],
+  show: ["communication"],
   // Mental
   know: ["mental"], think: ["mental"], understand: ["mental"],
   believe: ["mental"], remember: ["mental"], imagine: ["mental"],
@@ -175,6 +186,8 @@ const domainOverrides: Record<string, VerbDomain[]> = {
   identify: ["mental"], observe: ["mental"], notice: ["mental"],
   research: ["mental"], solve: ["mental"], guess: ["mental"],
   determine: ["mental"], review: ["mental"],
+  expect: ["mental"], hope: ["mental"], want: ["mental"], wish: ["mental"],
+  search: ["mental"],
   // Consumption
   eat: ["consumption"], drink: ["consumption"], buy: ["consumption"],
   use: ["consumption"], spend: ["consumption"], read: ["consumption"],
@@ -193,13 +206,13 @@ const domainOverrides: Record<string, VerbDomain[]> = {
   shoot: ["physical"], spin: ["physical"], hurt: ["physical"],
   fling: ["physical"], sting: ["physical"], thrust: ["physical"],
   cast: ["physical"], jump: ["physical"], kneel: ["physical"],
-  bleed: ["physical"],
+  bleed: ["physical"], kill: ["physical"], place: ["physical"], touch: ["physical"],
   // Social
   meet: ["social"], help: ["social"], visit: ["social"], join: ["social"],
   share: ["social"], play: ["social"], laugh: ["social"], sing: ["social"],
   teach: ["social"], give: ["social"], serve: ["social"], lend: ["social"],
   forgive: ["social"], forbid: ["social"], encourage: ["social"],
-  gather: ["social"], support: ["social"],
+  gather: ["social"], support: ["social"], trust: ["social"],
   // Change
   become: ["change"], grow: ["change"], improve: ["change"],
   increase: ["change"], decrease: ["change"], change: ["change"], reduce: ["change"],
@@ -216,7 +229,7 @@ const irregularList = [
   "find/found/found", "tell/told/told", "become/became/become", "leave/left/left",
   "feel/felt/felt", "put/put/put", "bring/brought/brought", "begin/began/begun",
   "keep/kept/kept", "hold/held/held", "write/wrote/written", "stand/stood/stood",
-  "hear/heard/heard", "let/let/let", "meet/met/met", "lead/led/led", "run/ran/run",
+  "hear/heard/heard", "show/showed/shown", "let/let/let", "meet/met/met", "lead/led/led", "run/ran/run",
   "set/set/set", "buy/bought/bought", "speak/spoke/spoken", "lose/lost/lost",
   "pay/paid/paid", "send/sent/sent", "build/built/built", "sit/sat/sat",
   "fall/fell/fallen", "cut/cut/cut", "read/read/read", "spend/spent/spent",
@@ -253,7 +266,11 @@ const regularList = [
   "explain", "try", "study", "practice", "cook", "clean", "wash", "call", "wait",
   "live", "love", "like", "hate", "need", "plan", "check", "change", "join",
   "jump", "kick", "laugh", "smile", "cry", "push", "pull", "save", "serve",
-  "share", "stay", "travel", "visit", "develop", "include", "allow", "consider",
+  "share", "stay",
+  "die", "want", "wish", "hope", "expect",
+  "kill", "remain", "raise", "cause", "place", "arrive",
+  "matter", "exist", "trust", "touch", "avoid", "connect", "search",
+  "travel", "visit", "develop", "include", "allow", "consider",
   "suggest", "accept", "report", "require", "receive", "provide", "create",
   "decide", "improve", "increase", "decrease", "manage", "measure", "reduce",
   "involve", "compare", "describe", "produce", "discuss", "continue", "realize",
