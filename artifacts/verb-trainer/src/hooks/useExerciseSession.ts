@@ -1,96 +1,135 @@
 import { useState, useEffect, useRef } from 'react';
-import { ExerciseMode, ExerciseItem, generateExercise } from '../engine/exercises';
+import { SessionConfig, ExerciseItem, generateExerciseFromConfig } from '../engine/exercises';
 import { useSettings } from './useSettings';
 import { useStats } from './useStats';
-import { getProgress, saveProgress, getDueProgress } from '../db/progress';
+import { getProgress, saveProgress, getAllProgress } from '../db/progress';
 import { updateSRS, ProgressRecord } from '../engine/srs';
 import { isCorrect } from '../engine/validate';
 
-export function useExerciseSession(mode: ExerciseMode | 'mixed' = 'mixed') {
+export function useExerciseSession(config: SessionConfig) {
   const { settings } = useSettings();
   const { stats, updateStats } = useStats();
-  
-  const [currentExercise, setCurrentExercise] = useState<ExerciseItem | null>(null);
-  const [sessionCount, setSessionCount] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(null);
-  const [showAnswer, setShowAnswer] = useState<string | null>(null);
 
+  const [currentExercise, setCurrentExercise] = useState<ExerciseItem | null>(null);
+  const [sessionCount, setSessionCount]       = useState(0);
+  const [streak, setStreak]                   = useState(0);
+  const [feedback, setFeedback]               = useState<"correct" | "incorrect" | null>(null);
+  const [showAnswer, setShowAnswer]           = useState<string | null>(null);
+  const [mistakeVerbs, setMistakeVerbs]       = useState<string[]>([]);
+  const [mistakesReady, setMistakesReady]     = useState(!config.mistakesOnly);
+
+  // Keep latest values in refs so nextExercise closure is never stale
+  const configRef       = useRef(config);
+  const mistakeVerbsRef = useRef(mistakeVerbs);
+  configRef.current       = config;
+  mistakeVerbsRef.current = mistakeVerbs;
+
+  // ── Load mistake verbs from IDB when in mistakes mode ──────────────────────
+  useEffect(() => {
+    if (!config.mistakesOnly) {
+      setMistakeVerbs([]);
+      setMistakesReady(true);
+      return;
+    }
+    setMistakesReady(false);
+    getAllProgress().then(records => {
+      const found = [
+        ...new Set(
+          records
+            .filter(r => r.failureCount > 0)
+            .map(r => r.verbInfinitive)
+            .filter(Boolean),
+        ),
+      ];
+      setMistakeVerbs(found);
+      setMistakesReady(true);
+    });
+  }, [config.mistakesOnly, config.id]);
+
+  // ── Generate first exercise whenever config or difficulty changes ───────────
+  useEffect(() => {
+    if (!settings || !mistakesReady) return;
+    setFeedback(null);
+    setShowAnswer(null);
+    setCurrentExercise(
+      generateExerciseFromConfig(
+        config,
+        settings.difficulty,
+        config.mistakesOnly ? mistakeVerbs : undefined,
+      ),
+    );
+    // mistakeVerbs intentionally read from state here (always fresh after
+    // mistakesReady flips); config.id + contextEnabled track config identity.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [config.id, config.contextEnabled, settings?.difficulty, mistakesReady]);
+
+  // ── Next / Skip ────────────────────────────────────────────────────────────
   const nextExercise = () => {
     if (!settings) return;
+    const cfg = configRef.current;
     setFeedback(null);
     setShowAnswer(null);
-    const m = mode === 'mixed' ? (["verbform", "irregular", "gapfill"] as ExerciseMode[])[Math.floor(Math.random() * 3)] : mode as ExerciseMode;
-    setCurrentExercise(generateExercise(m, settings.difficulty));
+    setCurrentExercise(
+      generateExerciseFromConfig(
+        cfg,
+        settings.difficulty,
+        cfg.mistakesOnly ? mistakeVerbsRef.current : undefined,
+      ),
+    );
   };
 
-  const skipExercise = () => {
-    if (!settings) return;
-    setFeedback(null);
-    setShowAnswer(null);
-    const m = mode === 'mixed' ? (["verbform", "irregular", "gapfill"] as ExerciseMode[])[Math.floor(Math.random() * 3)] : mode as ExerciseMode;
-    setCurrentExercise(generateExercise(m, settings.difficulty));
-  };
-
-  useEffect(() => {
-    if (settings && !currentExercise) {
-      nextExercise();
-    }
-  }, [settings, currentExercise]);
-
+  // ── Submit ─────────────────────────────────────────────────────────────────
   const submitAnswer = async (answer: string) => {
     if (!currentExercise || feedback || !settings || !stats) return;
-    
+
     const correct = isCorrect(answer, currentExercise.answer);
-    
     setFeedback(correct ? "correct" : "incorrect");
-    setShowAnswer(Array.isArray(currentExercise.answer) ? currentExercise.answer[0] : currentExercise.answer);
-    
-    const newStreak = correct ? streak + 1 : 0;
-    setStreak(newStreak);
-    
-    // Update stats
+    setShowAnswer(
+      Array.isArray(currentExercise.answer)
+        ? currentExercise.answer[0]
+        : currentExercise.answer,
+    );
+
+    setStreak(prev => (correct ? prev + 1 : 0));
+
     updateStats({
       sessionAnswers: stats.sessionAnswers + 1,
-      totalAnswers: stats.totalAnswers + 1,
-      totalCorrect: stats.totalCorrect + (correct ? 1 : 0),
-      currentStreak: correct ? stats.currentStreak + 1 : 0,
-      bestStreak: Math.max(stats.bestStreak, correct ? stats.currentStreak + 1 : 0),
+      totalAnswers:   stats.totalAnswers + 1,
+      totalCorrect:   stats.totalCorrect + (correct ? 1 : 0),
+      currentStreak:  correct ? stats.currentStreak + 1 : 0,
+      bestStreak:     Math.max(stats.bestStreak, correct ? stats.currentStreak + 1 : 0),
     });
-    
+
     setSessionCount(prev => prev + 1);
 
-    // Update SRS
-    let record = await getProgress(currentExercise.id);
-    if (!record) {
-      record = {
-        id: currentExercise.id,
-        type: currentExercise.type,
-        verbInfinitive: currentExercise.question.verb || "",
-        easeFactor: 2.5,
-        interval: 0,
-        dueDate: 0,
-        successCount: 0,
-        failureCount: 0,
-        lastReviewDate: 0
-      };
-    }
-    
+    // SRS update
+    let record: ProgressRecord = (await getProgress(currentExercise.id)) ?? {
+      id:             currentExercise.id,
+      type:           currentExercise.type,
+      verbInfinitive: currentExercise.question.verb || "",
+      easeFactor:     2.5,
+      interval:       0,
+      dueDate:        0,
+      successCount:   0,
+      failureCount:   0,
+      lastReviewDate: 0,
+    };
+
     record = updateSRS(record, correct);
     await saveProgress(record);
 
-    // Only auto-advance on correct answers; incorrect waits for manual Next click
     if (correct) {
       setTimeout(() => {
         setFeedback(prev => {
-          if (prev !== null) {
-            nextExercise();
-          }
+          if (prev !== null) nextExercise();
           return null;
         });
       }, 1200);
     }
   };
+
+  const noMistakes =
+    !!config.mistakesOnly && mistakesReady && mistakeVerbs.length === 0;
 
   return {
     currentExercise,
@@ -100,7 +139,8 @@ export function useExerciseSession(mode: ExerciseMode | 'mixed' = 'mixed') {
     showAnswer,
     submitAnswer,
     nextExercise,
-    skipExercise,
-    dailyGoal: settings?.dailyGoal || 25
+    skipExercise: nextExercise,
+    dailyGoal: settings?.dailyGoal || 25,
+    noMistakes,
   };
 }
