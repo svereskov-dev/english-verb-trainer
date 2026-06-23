@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useExerciseSession } from "../hooks/useExerciseSession";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { AnswerInput } from "../components/AnswerInput";
@@ -27,7 +27,31 @@ export default function Practice() {
     skipExercise,
     dailyGoal,
     noMistakes,
+    reviewExhausted,
+    onClearReview,
   } = useExerciseSession(config);
+
+  // ── Check for a Mistakes-review session on first load ───────────────────
+  useEffect(() => {
+    const raw = sessionStorage.getItem("mistakeReview");
+    if (!raw) return;
+    try {
+      const data = JSON.parse(raw) as { verbs: string[]; mode: string };
+      if (data.verbs && data.verbs.length > 0) {
+        setConfig({
+          id: "mistake-review",
+          label: "Review Mistakes",
+          groupLabel: "Mistakes Review",
+          exerciseTypes: ["verbform", "irregular"],
+          verbPool: "all",
+          reviewVerbs: data.verbs,
+          contextEnabled: false,
+        });
+      }
+    } catch {
+      sessionStorage.removeItem("mistakeReview");
+    }
+  }, []);
 
   const handleCheck = () => {
     if (!pendingAnswer.trim() || feedback !== null) return;
@@ -51,6 +75,8 @@ export default function Practice() {
     setSubmittedValue("");
     setPendingAnswer("");
     setConfig(next);
+    // If user manually picks a mode, clear the transient review session
+    onClearReview();
   };
 
   // ── Mistakes mode with nothing to review ───────────────────────────────────
@@ -63,6 +89,25 @@ export default function Practice() {
             <h2 className="text-xl font-bold mb-1">No mistakes to review</h2>
             <p className="text-muted-foreground text-sm">
               Keep practicing — items you miss will appear here.
+            </p>
+          </div>
+          <TrainingMenu current={config} onSelect={handleSelectConfig} />
+        </div>
+        <BottomNav />
+      </div>
+    );
+  }
+
+  // ── Review session finished (all verbs now correct) ───────────────────────
+  if (reviewExhausted) {
+    return (
+      <div className="min-h-[100dvh] bg-background flex flex-col">
+        <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center">
+          <div className="text-6xl">🎉</div>
+          <div>
+            <h2 className="text-xl font-bold mb-1">Review Complete</h2>
+            <p className="text-muted-foreground text-sm">
+              You answered correctly on all verbs from this review.
             </p>
           </div>
           <TrainingMenu current={config} onSelect={handleSelectConfig} />

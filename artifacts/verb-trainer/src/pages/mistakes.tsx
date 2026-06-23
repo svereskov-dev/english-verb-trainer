@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
-import { Link } from "wouter";
 import { getAllProgress } from "../db/progress";
 import { ProgressRecord } from "../engine/srs";
 import { verbs } from "../data/verbs";
@@ -15,11 +15,11 @@ function getTodayStart(): number {
 export default function Mistakes() {
   const [records, setRecords] = useState<ProgressRecord[]>([]);
   const [loading, setLoading] = useState(true);
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     const todayStart = getTodayStart();
     getAllProgress().then(all => {
-      // Only count mistakes that happened today (after midnight local time)
       const mistakes = all
         .filter(r => r.lastFailureDate >= todayStart)
         .sort((a, b) => b.failureCount - a.failureCount);
@@ -30,12 +30,20 @@ export default function Mistakes() {
 
   const uniqueVerbs = [...new Set(records.map(r => r.verbInfinitive))];
 
+  const handlePractice = () => {
+    sessionStorage.setItem(
+      "mistakeReview",
+      JSON.stringify({ verbs: uniqueVerbs, mode: "review" })
+    );
+    navigate("/practice");
+  };
+
   return (
     <div className="min-h-[100dvh] bg-background pb-24 flex flex-col">
       <div className="w-full max-w-md mx-auto p-6">
         <h1 className="text-2xl font-bold mb-1">Mistakes</h1>
         <p className="text-muted-foreground text-sm mb-6">
-          Items you've answered incorrectly, sorted by error count
+          Items you've answered incorrectly
         </p>
 
         {loading ? (
@@ -47,9 +55,9 @@ export default function Mistakes() {
             <p className="text-muted-foreground text-sm">
               Keep practicing — items you miss will appear here.
             </p>
-            <Link href="/practice">
-              <Button variant="outline" className="mt-4">Start Practice</Button>
-            </Link>
+            <Button variant="outline" className="mt-4" onClick={handlePractice}>
+              Start Practice
+            </Button>
           </div>
         ) : (
           <div className="space-y-4">
@@ -58,39 +66,24 @@ export default function Mistakes() {
               <div>
                 <p className="font-semibold">{uniqueVerbs.length} verb{uniqueVerbs.length !== 1 ? "s" : ""} to review</p>
               </div>
-              <Link href="/practice">
-                <Button size="sm">Practice →</Button>
-              </Link>
+              <Button size="sm" onClick={handlePractice}>Practice →</Button>
             </div>
 
-            {/* Mistake list */}
-            {records.slice(0, 60).map(r => {
-              const verb = verbs.find(v => v.infinitive === r.verbInfinitive);
-              const [exerciseType, , detail] = r.id.split(":");
-              const typeLabel =
-                exerciseType === "irregular" ? (detail === "past" ? "Past Simple" : "Past Participle") :
-                exerciseType === "gapfill"   ? "Gap-fill" :
-                detail?.replace(/([A-Z])/g, " $1").replace(/^./, s => s.toUpperCase()) ?? exerciseType;
-
+            {/* Mistake list — grouped by unique verb */}
+            {uniqueVerbs.map(inf => {
+              const verb = verbs.find(v => v.infinitive === inf);
               return (
                 <div
-                  key={r.id}
-                  className="flex items-center justify-between rounded-xl border border-border px-4 py-3 gap-3"
+                  key={inf}
+                  className="flex items-center rounded-xl border border-border px-4 py-3 gap-3"
                 >
-                  <div className="min-w-0">
-                    <div className="flex items-baseline gap-2 flex-wrap">
-                      <span className="font-semibold">{r.verbInfinitive}</span>
-                      {verb?.translation && (
-                        <span className="text-muted-foreground text-sm truncate">
-                          {verb.translation}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-0.5">{typeLabel}</p>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <span className="text-destructive font-bold">{r.failureCount}✗</span>
-                    <p className="text-xs text-muted-foreground">{r.successCount}✓</p>
+                  <div className="min-w-0 flex items-baseline gap-2 flex-wrap">
+                    <span className="font-semibold">{inf}</span>
+                    {verb?.translation && (
+                      <span className="text-muted-foreground text-sm truncate">
+                        {verb.translation}
+                      </span>
+                    )}
                   </div>
                 </div>
               );

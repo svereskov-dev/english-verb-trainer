@@ -1,0 +1,112 @@
+I would like to make several improvements to the Training Modes and Mistakes page.
+
+1. Remove "Frequency Training" Mode
+
+The Training Mode selector currently contains a mode called:
+
+Frequency Training
+
+This mode is no longer needed.
+
+Required change
+Remove Frequency Training from the Training Mode selector.
+Do not modify any other training modes.
+Do not change existing exercise logic.
+Do not remove any underlying data unless it is completely unused.
+
+This is a UI cleanup only.
+
+2. Make the Mistakes → Practice Button Functional
+
+Current behavior:
+
+The Practice button on the Mistakes page does not start a dedicated review session for mistake words.
+
+Required behavior
+
+When the user presses Practice on the Mistakes page:
+
+Open the Practice screen.
+Start a dedicated review session using ONLY verbs currently listed in Mistakes.
+Exercises should be generated only from those verbs until the review list is exhausted.
+After all mistake verbs have been reviewed, automatically continue normal training using the current Full Conjugation mode.
+Example
+
+Mistakes list:
+
+know
+answer
+write
+become
+
+Press Practice →
+
+User receives exercises generated only from:
+
+know
+answer
+write
+become
+
+After all four verbs have been reviewed:
+
+Automatically continue standard Full Conjugation training.
+
+Notes
+Reuse the existing exercise generation engine whenever possible.
+Do not create a separate exercise system.
+Treat Mistakes Practice as a temporary filtered training session.
+3. Simplify the Mistakes List UI
+
+Current behavior:
+
+Each verb shows an error counter on the right side.
+
+Example:
+
+know 1x
+answer 1x
+
+This information is not needed.
+
+Required change
+
+Remove the error counter completely.
+
+The right side of each row should be empty.
+
+Display only:
+
+English verb
+Russian translation
+
+Example:
+
+know знать
+
+answer отвечать
+
+write писать
+
+No error counts.
+No "1x", "2x", etc.
+
+4. Update Mistakes Page Description
+
+Current text:
+
+Mistakes
+
+Items you've answered incorrectly, sorted by error count
+
+Replace with
+
+Mistakes
+
+Items you've answered incorrectly
+
+Remove the phrase:
+
+"sorted by error count"
+
+because error counts are no longer displayed.

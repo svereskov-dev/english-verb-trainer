@@ -17,6 +17,19 @@ export function useExerciseSession(config: SessionConfig) {
   const [showAnswer, setShowAnswer]           = useState<string | null>(null);
   const [mistakeVerbs, setMistakeVerbs]       = useState<string[]>([]);
   const [mistakesReady, setMistakesReady]     = useState(!config.mistakesOnly);
+  const [reviewExhausted, setReviewExhausted] = useState(false);
+
+  // Track which review verbs have been answered correctly in this session
+  const reviewVerbsCorrectRef = useRef(new Set<string>());
+  const reviewVerbsKeyRef = useRef<string>("");
+  if (config.reviewVerbs) {
+    // Reset tracking whenever reviewVerbs list changes
+    const key = config.reviewVerbs.join(",");
+    if (key !== reviewVerbsKeyRef.current) {
+      reviewVerbsCorrectRef.current = new Set<string>();
+      reviewVerbsKeyRef.current = key;
+    }
+  }
 
   // Keep latest values in refs so nextExercise closure is never stale
   const configRef       = useRef(config);
@@ -124,6 +137,15 @@ export function useExerciseSession(config: SessionConfig) {
     await saveProgress(record);
 
     if (correct) {
+      const verb = currentExercise.question.verb;
+      if (verb && config.reviewVerbs) {
+        reviewVerbsCorrectRef.current.add(verb);
+        const allCorrect = config.reviewVerbs.every(v => reviewVerbsCorrectRef.current.has(v));
+        if (allCorrect) {
+          setReviewExhausted(true);
+          return;
+        }
+      }
       setTimeout(() => {
         setFeedback(prev => {
           if (prev !== null) nextExercise();
@@ -135,6 +157,11 @@ export function useExerciseSession(config: SessionConfig) {
 
   const noMistakes =
     !!config.mistakesOnly && mistakesReady && mistakeVerbs.length === 0;
+
+  const onClearReview = () => {
+    setReviewExhausted(false);
+    sessionStorage.removeItem("mistakeReview");
+  };
 
   return {
     currentExercise,
@@ -149,5 +176,7 @@ export function useExerciseSession(config: SessionConfig) {
     skipExercise: nextExercise,
     dailyGoal: settings?.dailyGoal || 25,
     noMistakes,
+    reviewExhausted,
+    onClearReview,
   };
 }

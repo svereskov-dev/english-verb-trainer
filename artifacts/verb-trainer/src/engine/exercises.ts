@@ -19,6 +19,7 @@ export interface SessionConfig {
   tenses?: Tense[];
   irregularForm?: IrregularForm;
   mistakesOnly?: boolean;
+  reviewVerbs?: string[];  // temporary filtered list from Mistakes page
   contextEnabled: boolean;
 }
 
@@ -165,16 +166,22 @@ export function generateExerciseFromConfig(
     if (narrowed.length > 0) pool = narrowed;
   }
 
-  // 3. Tenses
+  // 3. Narrow to review verbs from Mistakes page
+  if (config.reviewVerbs && config.reviewVerbs.length > 0) {
+    const narrowed = pool.filter(v => config.reviewVerbs!.includes(v.infinitive));
+    if (narrowed.length > 0) pool = narrowed;
+  }
+
+  // 5. Tenses
   const tenses: Tense[] = config.tenses ?? getTenses(difficulty);
 
-  // 4. Effective exercise types (context adds gapfill)
+  // 6. Effective exercise types (context adds gapfill)
   const types: ExerciseMode[] = [
     ...config.exerciseTypes,
     ...(config.contextEnabled ? ["gapfill" as ExerciseMode] : []),
   ];
 
-  // 5. Pick a type and generate
+  // 7. Pick a type and generate
   switch (pick(types)) {
     case "verbform":  return makeVerbForm(pool, tenses);
     case "irregular": return makeIrregular(pool, config.irregularForm ?? "mixed");

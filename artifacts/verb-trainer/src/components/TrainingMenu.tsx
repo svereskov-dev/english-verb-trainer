@@ -7,7 +7,7 @@ import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "../lib/utils";
 import {
   ChevronDown, Zap, Clock, Activity, Star,
-  BookOpen, AlertCircle, TrendingUp,
+  BookOpen, AlertCircle,
 } from "lucide-react";
 import { SessionConfig, VerbPoolSpec, IrregularForm } from "../engine/exercises";
 import { Tense } from "../data/grammar";
@@ -86,18 +86,6 @@ const GROUPS: GroupDef[] = [
     Icon: AlertCircle,
     presets: [
       { id: "mistakes", label: "Review Mistakes", exerciseTypes: ["verbform", "irregular"], verbPool: "all", mistakesOnly: true },
-    ],
-  },
-  {
-    id: "frequency",
-    label: "Frequency Training",
-    Icon: TrendingUp,
-    presets: [
-      { id: "freq-25",  label: "Top 25",   exerciseTypes: ["verbform"], verbPool: 25 },
-      { id: "freq-50",  label: "Top 50",   exerciseTypes: ["verbform"], verbPool: 50 },
-      { id: "freq-100", label: "Top 100",  exerciseTypes: ["verbform"], verbPool: 100 },
-      { id: "freq-250", label: "Top 250",  exerciseTypes: ["verbform"], verbPool: 250 },
-      { id: "freq-all", label: "All",      exerciseTypes: ["verbform"], verbPool: "all" },
     ],
   },
 ];
