@@ -178,7 +178,23 @@ export function generateExerciseFromConfig(
   switch (pick(types)) {
     case "verbform":  return makeVerbForm(pool, tenses);
     case "irregular": return makeIrregular(pool, config.irregularForm ?? "mixed");
-    case "gapfill":   return makeGapFill(pool, tenses);
-    default:          return makeVerbForm(pool, tenses);
+    case "gapfill": {
+      // When an irregularForm is set, constrain gapfill tenses so the sentence
+      // structure matches the form being drilled:
+      //   past            → pastSimple  (She put it on the table.)
+      //   pastParticiple  → perfect tenses  (She has/had put it away.)
+      //   mixed           → pastSimple + all perfect tenses
+      let gapfillTenses = tenses;
+      if (config.irregularForm) {
+        const PAST_SIMPLE:  Tense[] = ["pastSimple"];
+        const PERFECT:      Tense[] = ["presentPerfect", "pastPerfect", "futurePerfect"];
+        gapfillTenses =
+          config.irregularForm === "past"           ? PAST_SIMPLE :
+          config.irregularForm === "pastParticiple" ? PERFECT :
+          /* mixed */                                 [...PAST_SIMPLE, ...PERFECT];
+      }
+      return makeGapFill(pool, gapfillTenses);
+    }
+    default: return makeVerbForm(pool, tenses);
   }
 }
