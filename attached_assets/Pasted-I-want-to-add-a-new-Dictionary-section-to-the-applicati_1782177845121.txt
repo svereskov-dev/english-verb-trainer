@@ -1,0 +1,116 @@
+I want to add a new Dictionary section to the application and remove the Stats section entirely.
+Navigation Changes
+Update the bottom navigation order to:
+Home
+Practice
+Mistakes
+Dictionary
+Settings
+Remove:
+•	Stats page
+•	Stats tab in bottom navigation
+•	Any navigation links pointing to Stats
+Do not replace Stats with any other feature.
+________________________________________
+Dictionary Page
+Create a new page:
+/dictionary
+Purpose:
+Allow users to browse and search all verbs available in the application.
+________________________________________
+Layout
+At the top of the page:
+Title:
+Dictionary
+Below the title:
+Search input
+Placeholder:
+Search verbs...
+Search should update results instantly while typing.
+________________________________________
+Search Behavior
+The search should work for:
+•	English infinitive
+•	Russian translation
+Examples:
+Search:
+go
+Result:
+go — идти
+Search:
+идти
+Result:
+go — идти
+Search:
+understand
+Result:
+understand — понимать
+Search:
+понимать
+Result:
+understand — понимать
+________________________________________
+Verb List
+Below the search field display all verbs from verbs.ts.
+Each row should contain:
+•	English infinitive
+•	Russian translation
+Examples:
+go — идти
+know — знать
+understand — понимать
+write — писать
+Requirements:
+•	Sort alphabetically by English infinitive
+•	Mobile-friendly layout
+•	Scrollable list
+•	Fast search performance
+________________________________________
+Verb Details Page
+When the user taps a verb, open a dedicated page:
+/dictionary/[verb]
+Example:
+/dictionary/go
+________________________________________
+Verb Detail Layout
+Display:
+English Verb
+GO
+Translation
+идти
+Type
+Regular
+or
+Irregular
+________________________________________
+Forms
+Base Form:
+go
+Past Simple:
+went
+Past Participle:
+gone
+________________________________________
+For regular verbs:
+Base Form:
+work
+Past Simple:
+worked
+Past Participle:
+worked
+
+
+Technical Requirements
+•	Reuse existing data from verbs.ts
+•	Do not duplicate the verb database
+•	Do not create a separate storage system
+•	Use client-side search
+•	No API calls
+•	Keep the implementation lightweight
+________________________________________
+Before Implementation
+Please first inspect:
+•	Current routing structure
+•	Bottom navigation component
+•	Existing verb interfaces in verbs.ts
+Then implement the feature using the current project architecture.

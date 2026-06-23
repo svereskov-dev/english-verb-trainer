@@ -7,9 +7,9 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Home from "@/pages/home";
 import Practice from "@/pages/practice";
 import Mistakes from "@/pages/mistakes";
-import Stats from "@/pages/stats";
 import Settings from "@/pages/settings";
-import Verbs from "@/pages/verbs";
+import Dictionary from "@/pages/dictionary";
+import DictionaryVerb from "@/pages/dictionary-verb";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -20,9 +20,9 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/practice" component={Practice} />
       <Route path="/mistakes" component={Mistakes} />
-      <Route path="/stats" component={Stats} />
       <Route path="/settings" component={Settings} />
-      <Route path="/verbs" component={Verbs} />
+      <Route path="/dictionary" component={Dictionary} />
+      <Route path="/dictionary/:verb" component={DictionaryVerb} />
       <Route component={NotFound} />
     </Switch>
   );

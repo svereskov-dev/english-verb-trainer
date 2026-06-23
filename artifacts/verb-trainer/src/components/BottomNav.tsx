@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Home, Dumbbell, AlertCircle, BarChart2, Settings } from "lucide-react";
+import { Home, Dumbbell, AlertCircle, BookOpen, Settings } from "lucide-react";
 
 export function BottomNav() {
   const [location] = useLocation();
@@ -8,7 +8,7 @@ export function BottomNav() {
     { href: "/", label: "Home", icon: Home },
     { href: "/practice", label: "Practice", icon: Dumbbell },
     { href: "/mistakes", label: "Mistakes", icon: AlertCircle },
-    { href: "/stats", label: "Stats", icon: BarChart2 },
+    { href: "/dictionary", label: "Dictionary", icon: BookOpen },
     { href: "/settings", label: "Settings", icon: Settings },
   ];
 
