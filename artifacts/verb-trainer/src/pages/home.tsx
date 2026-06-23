@@ -3,7 +3,7 @@ import { useStats } from "../hooks/useStats";
 import { useSettings } from "../hooks/useSettings";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { Flame, Target, Trophy, Clock } from "lucide-react";
+import { Flame, Target } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
         
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-foreground">English Verb Trainer</h1>
-          <p className="text-muted-foreground">Master forms. Build fluency. No fluff.</p>
+          <p className="text-muted-foreground">Go to your goal</p>
         </div>
 
         <Card className="border-border bg-card">
@@ -28,22 +28,22 @@ export default function Home() {
             <div className="flex justify-between items-center mb-2">
               <h2 className="font-semibold text-lg flex items-center gap-2">
                 <Target className="text-primary w-5 h-5" />
-                Daily Goal
+                Daily Progress
               </h2>
               <span className="text-muted-foreground text-sm font-medium">
                 {stats.sessionAnswers} / {settings.dailyGoal}
               </span>
             </div>
-            
+
             <div className="h-4 w-full bg-muted rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-primary transition-all duration-500 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            
+
             {progress >= 100 && (
-              <p className="text-sm text-primary font-medium text-center">Daily goal reached! Keep going!</p>
+              <p className="text-sm text-primary font-medium text-center">Great job! Keep going!</p>
             )}
           </CardContent>
         </Card>
@@ -51,17 +51,17 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-4">
           <Card className="bg-card">
             <CardContent className="p-4 flex flex-col items-center justify-center space-y-1">
-              <Flame className="w-6 h-6 text-orange-500 mb-1" />
-              <span className="text-2xl font-bold">{stats.currentStreak}</span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Current Streak</span>
+              <Flame className="w-6 h-6 text-green-500 mb-1" />
+              <span className="text-2xl font-bold">{stats.totalCorrect}</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Correct</span>
             </CardContent>
           </Card>
-          
+
           <Card className="bg-card">
             <CardContent className="p-4 flex flex-col items-center justify-center space-y-1">
-              <Trophy className="w-6 h-6 text-yellow-500 mb-1" />
-              <span className="text-2xl font-bold">{stats.totalAnswers}</span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Total Practiced</span>
+              <Flame className="w-6 h-6 text-red-500 mb-1" />
+              <span className="text-2xl font-bold">{stats.totalIncorrect}</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Incorrect</span>
             </CardContent>
           </Card>
         </div>

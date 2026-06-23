@@ -12,6 +12,8 @@ export function useExerciseSession(config: SessionConfig) {
 
   const [currentExercise, setCurrentExercise] = useState<ExerciseItem | null>(null);
   const [sessionCount, setSessionCount]       = useState(0);
+  const [sessionCorrect, setSessionCorrect]     = useState(0);
+  const [sessionIncorrect, setSessionIncorrect] = useState(0);
   const [streak, setStreak]                   = useState(0);
   const [feedback, setFeedback]               = useState<"correct" | "incorrect" | null>(null);
   const [showAnswer, setShowAnswer]           = useState<string | null>(null);
@@ -91,11 +93,14 @@ export function useExerciseSession(config: SessionConfig) {
     );
 
     setStreak(prev => (correct ? prev + 1 : 0));
+    setSessionCorrect(prev => (correct ? prev + 1 : prev));
+    setSessionIncorrect(prev => (correct ? prev : prev + 1));
 
     updateStats({
-      sessionAnswers: stats.sessionAnswers + 1,
-      totalAnswers:   stats.totalAnswers + 1,
-      totalCorrect:   stats.totalCorrect + (correct ? 1 : 0),
+      sessionAnswers:   stats.sessionAnswers + 1,
+      totalAnswers:     stats.totalAnswers + 1,
+      totalCorrect:     stats.totalCorrect + (correct ? 1 : 0),
+      totalIncorrect:   stats.totalIncorrect + (correct ? 0 : 1),
       currentStreak:  correct ? stats.currentStreak + 1 : 0,
       bestStreak:     Math.max(stats.bestStreak, correct ? stats.currentStreak + 1 : 0),
     });
@@ -110,9 +115,10 @@ export function useExerciseSession(config: SessionConfig) {
       easeFactor:     2.5,
       interval:       0,
       dueDate:        0,
-      successCount:   0,
-      failureCount:   0,
-      lastReviewDate: 0,
+      successCount:    0,
+      failureCount:    0,
+      lastReviewDate:  0,
+      lastFailureDate: 0,
     };
 
     record = updateSRS(record, correct);
@@ -134,6 +140,8 @@ export function useExerciseSession(config: SessionConfig) {
   return {
     currentExercise,
     sessionCount,
+    sessionCorrect,
+    sessionIncorrect,
     streak,
     feedback,
     showAnswer,

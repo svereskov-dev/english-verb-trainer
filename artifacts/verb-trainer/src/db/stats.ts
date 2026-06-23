@@ -4,6 +4,7 @@ export interface Stats {
   sessionAnswers: number;
   totalAnswers: number;
   totalCorrect: number;
+  totalIncorrect: number;
   currentStreak: number;
   bestStreak: number;
   totalStudySeconds: number;
@@ -14,6 +15,7 @@ const defaultStats: Stats = {
   sessionAnswers: 0,
   totalAnswers: 0,
   totalCorrect: 0,
+  totalIncorrect: 0,
   currentStreak: 0,
   bestStreak: 0,
   totalStudySeconds: 0,
@@ -22,7 +24,7 @@ const defaultStats: Stats = {
 
 export async function getStats(): Promise<Stats> {
   const db = await getDB();
-  const keys = ['sessionAnswers', 'totalAnswers', 'totalCorrect', 'currentStreak', 'bestStreak', 'totalStudySeconds', 'lastStudyDate'];
+  const keys = ['sessionAnswers', 'totalAnswers', 'totalCorrect', 'totalIncorrect', 'currentStreak', 'bestStreak', 'totalStudySeconds', 'lastStudyDate'];
   const stats: any = {};
   let empty = true;
   for (const key of keys) {
@@ -35,6 +37,10 @@ export async function getStats(): Promise<Stats> {
   if (empty) {
     await saveStats(defaultStats);
     return defaultStats;
+  }
+  // Backward compat: old installs may not have totalIncorrect
+  if (stats.totalIncorrect === undefined) {
+    stats.totalIncorrect = 0;
   }
   return stats as Stats;
 }

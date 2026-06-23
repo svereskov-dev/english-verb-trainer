@@ -1,13 +1,14 @@
 export interface ProgressRecord {
-  id: string;           
+  id: string;
   type: "verbform" | "tenserecognition" | "irregular" | "gapfill";
   verbInfinitive: string;
-  easeFactor: number;   
-  interval: number;     
-  dueDate: number;      
+  easeFactor: number;
+  interval: number;
+  dueDate: number;
   successCount: number;
   failureCount: number;
   lastReviewDate: number;
+  lastFailureDate: number;
 }
 
 export function updateSRS(record: ProgressRecord, correct: boolean): ProgressRecord {
@@ -19,6 +20,7 @@ export function updateSRS(record: ProgressRecord, correct: boolean): ProgressRec
     record.easeFactor = Math.max(1.3, record.easeFactor + 0.1);
   } else {
     record.failureCount++;
+    record.lastFailureDate = Date.now();
     record.interval = 1;
     record.easeFactor = Math.max(1.3, record.easeFactor - 0.2);
   }

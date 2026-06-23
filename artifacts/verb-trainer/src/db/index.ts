@@ -8,6 +8,7 @@ interface VerbTrainerDB extends DBSchema {
     indexes: {
       'by-due-date': number;
       'by-type': string;
+      'by-failure-date': number;
     };
   };
   settings: {
@@ -24,12 +25,18 @@ let dbPromise: Promise<IDBPDatabase<VerbTrainerDB>> | null = null;
 
 export function getDB() {
   if (!dbPromise) {
-    dbPromise = openDB<VerbTrainerDB>('verb-trainer-db', 1, {
-      upgrade(db) {
+    dbPromise = openDB<VerbTrainerDB>('verb-trainer-db', 2, {
+      upgrade(db, oldVersion, newVersion, transaction) {
         if (!db.objectStoreNames.contains('progress')) {
-          const progressStore = db.createObjectStore('progress', { keyPath: 'id' });
-          progressStore.createIndex('by-due-date', 'dueDate');
-          progressStore.createIndex('by-type', 'type');
+          const store = db.createObjectStore('progress', { keyPath: 'id' });
+          store.createIndex('by-due-date', 'dueDate');
+          store.createIndex('by-type', 'type');
+          store.createIndex('by-failure-date', 'lastFailureDate');
+        } else if (oldVersion < 2) {
+          const store = transaction.objectStore('progress');
+          if (!store.indexNames.contains('by-failure-date')) {
+            store.createIndex('by-failure-date', 'lastFailureDate');
+          }
         }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings');

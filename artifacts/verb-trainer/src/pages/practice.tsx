@@ -5,7 +5,7 @@ import { AnswerInput } from "../components/AnswerInput";
 import { ProgressBar } from "../components/ProgressBar";
 import { TrainingMenu, DEFAULT_SESSION } from "../components/TrainingMenu";
 import { SessionConfig } from "../engine/exercises";
-import { Flame, SkipForward } from "lucide-react";
+import { Check, X, SkipForward } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 
@@ -17,6 +17,8 @@ export default function Practice() {
   const {
     currentExercise,
     sessionCount,
+    sessionCorrect,
+    sessionIncorrect,
     streak,
     feedback,
     showAnswer,
@@ -78,12 +80,18 @@ export default function Practice() {
     <div className="min-h-[100dvh] bg-background flex flex-col">
       <ProgressBar current={sessionCount} total={dailyGoal} />
 
-      {/* Header row: mode selector + streak */}
+      {/* Header row: mode selector + session counters */}
       <div className="p-4 flex justify-between items-center w-full max-w-3xl mx-auto">
         <TrainingMenu current={config} onSelect={handleSelectConfig} />
-        <div className="flex items-center gap-1 text-orange-500 shrink-0 ml-4">
-          <Flame size={20} className={streak > 2 ? "fill-current animate-pulse" : ""} />
-          <span className="font-bold">{streak}</span>
+        <div className="flex items-center gap-3 shrink-0 ml-4">
+          <div className="flex items-center gap-1 text-green-600">
+            <Check size={18} />
+            <span className="font-bold">{sessionCorrect}</span>
+          </div>
+          <div className="flex items-center gap-1 text-red-500">
+            <X size={18} />
+            <span className="font-bold">{sessionIncorrect}</span>
+          </div>
         </div>
       </div>
 

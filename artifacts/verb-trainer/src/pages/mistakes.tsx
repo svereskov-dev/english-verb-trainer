@@ -6,14 +6,22 @@ import { getAllProgress } from "../db/progress";
 import { ProgressRecord } from "../engine/srs";
 import { verbs } from "../data/verbs";
 
+function getTodayStart(): number {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+  return start.getTime();
+}
+
 export default function Mistakes() {
   const [records, setRecords] = useState<ProgressRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const todayStart = getTodayStart();
     getAllProgress().then(all => {
+      // Only count mistakes that happened today (after midnight local time)
       const mistakes = all
-        .filter(r => r.failureCount > 0)
+        .filter(r => r.lastFailureDate >= todayStart)
         .sort((a, b) => b.failureCount - a.failureCount);
       setRecords(mistakes);
       setLoading(false);
@@ -49,7 +57,6 @@ export default function Mistakes() {
             <div className="rounded-xl border border-border p-4 flex items-center justify-between">
               <div>
                 <p className="font-semibold">{uniqueVerbs.length} verb{uniqueVerbs.length !== 1 ? "s" : ""} to review</p>
-                <p className="text-muted-foreground text-sm">{records.length} total incorrect answer{records.length !== 1 ? "s" : ""}</p>
               </div>
               <Link href="/practice">
                 <Button size="sm">Practice →</Button>
