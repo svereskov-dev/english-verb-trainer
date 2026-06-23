@@ -17,12 +17,25 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
   if (exercise.type === "verbform") {
     const translation = getTranslation(exercise.question.verb);
     return (
-      <div className="text-center space-y-3">
+      <div className="text-center space-y-4">
         <h2 className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
           {formatTenseName(exercise.question.tense)}
         </h2>
-        <div className="text-5xl md:text-7xl font-bold tracking-tight">
-          {exercise.question.subject} <span className="text-primary">{exercise.question.verb}</span>
+        <div className="space-y-1">
+          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+            Subject
+          </p>
+          <p className="text-4xl md:text-6xl font-bold tracking-tight">
+            {exercise.question.subject}
+          </p>
+        </div>
+        <div className="space-y-1">
+          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+            Verb
+          </p>
+          <p className="text-5xl md:text-7xl font-bold tracking-tight text-primary">
+            {exercise.question.verb}
+          </p>
         </div>
         {translation && (
           <p className="text-muted-foreground text-lg font-normal">{translation}</p>
@@ -42,8 +55,13 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
         <h2 className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
           Irregular Form: {askForMap[exercise.question.askFor]}
         </h2>
-        <div className="text-5xl md:text-7xl font-bold tracking-tight">
-          {exercise.question.verb}
+        <div className="space-y-1">
+          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+            Verb
+          </p>
+          <p className="text-5xl md:text-7xl font-bold tracking-tight text-primary">
+            {exercise.question.verb}
+          </p>
         </div>
         {translation && (
           <p className="text-muted-foreground text-lg font-normal">{translation}</p>

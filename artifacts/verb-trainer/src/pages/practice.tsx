@@ -17,8 +17,8 @@ export default function Practice() {
   const {
     currentExercise,
     sessionCount,
-    sessionCorrect,
-    sessionIncorrect,
+    dailyCorrect,
+    dailyIncorrect,
     streak,
     feedback,
     showAnswer,
@@ -80,17 +80,17 @@ export default function Practice() {
     <div className="min-h-[100dvh] bg-background flex flex-col">
       <ProgressBar current={sessionCount} total={dailyGoal} />
 
-      {/* Header row: mode selector + session counters */}
+      {/* Header row: mode selector + daily counters */}
       <div className="p-4 flex justify-between items-center w-full max-w-3xl mx-auto">
         <TrainingMenu current={config} onSelect={handleSelectConfig} />
         <div className="flex items-center gap-3 shrink-0 ml-4">
           <div className="flex items-center gap-1 text-green-600">
             <Check size={18} />
-            <span className="font-bold">{sessionCorrect}</span>
+            <span className="font-bold">{dailyCorrect}</span>
           </div>
           <div className="flex items-center gap-1 text-red-500">
             <X size={18} />
-            <span className="font-bold">{sessionIncorrect}</span>
+            <span className="font-bold">{dailyIncorrect}</span>
           </div>
         </div>
       </div>

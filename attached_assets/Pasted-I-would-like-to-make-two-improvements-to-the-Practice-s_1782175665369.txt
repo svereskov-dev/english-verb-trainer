@@ -1,0 +1,88 @@
+I would like to make two improvements to the Practice screen.
+
+1. Correct / Incorrect Counters Must Persist Across Navigation
+
+Current behavior:
+
+The green Correct counter and red Incorrect counter in the top-right corner reset whenever the user leaves the Practice page and opens another tab (for example Statistics, Home, Mistakes, or Settings).
+
+This should not happen.
+
+Required behavior
+Correct and Incorrect counters must persist across the entire day.
+Navigating between pages must not reset them.
+Reloading the application must not reset them.
+The counters should represent the user's daily performance.
+Reset behavior
+
+The counters should reset only when:
+
+The day changes (00:00 local device time), OR
+The user manually resets statistics using the existing Settings option.
+
+No changes are needed to the Settings page because the reset option already exists there.
+
+Example
+
+User answers:
+
+✓ 18 correct
+✗ 4 incorrect
+
+Then:
+
+opens Statistics
+opens Mistakes
+closes and reopens the app
+
+The counters should still display:
+
+✓ 18
+✗ 4
+
+until midnight or manual reset.
+
+2. Improve Layout for Non-Context Exercises
+
+Current behavior:
+
+In non-context training modes (for example Full Conjugation, Present Simple, Present Continuous, etc.), the subject pronoun appears on the same line as the verb.
+
+Example:
+
+I dig
+
+This visually looks like a sentence, even though it is not a sentence.
+
+The pronoun is actually part of the task instruction and indicates how the verb should be conjugated.
+
+Required behavior
+
+For all non-context exercise modes:
+
+Display the subject pronoun separately ABOVE the verb.
+
+Example:
+
+Subject
+
+I
+
+Verb
+
+dig
+
+Translation
+
+копать
+
+or any visually similar layout where:
+
+the pronoun is clearly separated from the verb;
+users immediately understand that the pronoun is an instruction;
+the verb remains the main focus of the exercise.
+Important
+
+This change should apply ONLY to non-context exercises.
+
+Context exercises should remain unchanged because the pronoun is already naturally embedded in the sentence.

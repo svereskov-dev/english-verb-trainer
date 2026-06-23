@@ -5,6 +5,8 @@ export interface Stats {
   totalAnswers: number;
   totalCorrect: number;
   totalIncorrect: number;
+  dailyCorrect: number;
+  dailyIncorrect: number;
   currentStreak: number;
   bestStreak: number;
   totalStudySeconds: number;
@@ -16,6 +18,8 @@ const defaultStats: Stats = {
   totalAnswers: 0,
   totalCorrect: 0,
   totalIncorrect: 0,
+  dailyCorrect: 0,
+  dailyIncorrect: 0,
   currentStreak: 0,
   bestStreak: 0,
   totalStudySeconds: 0,
@@ -24,7 +28,7 @@ const defaultStats: Stats = {
 
 export async function getStats(): Promise<Stats> {
   const db = await getDB();
-  const keys = ['sessionAnswers', 'totalAnswers', 'totalCorrect', 'totalIncorrect', 'currentStreak', 'bestStreak', 'totalStudySeconds', 'lastStudyDate'];
+  const keys = ['sessionAnswers', 'totalAnswers', 'totalCorrect', 'totalIncorrect', 'dailyCorrect', 'dailyIncorrect', 'currentStreak', 'bestStreak', 'totalStudySeconds', 'lastStudyDate'];
   const stats: any = {};
   let empty = true;
   for (const key of keys) {
@@ -38,10 +42,23 @@ export async function getStats(): Promise<Stats> {
     await saveStats(defaultStats);
     return defaultStats;
   }
-  // Backward compat: old installs may not have totalIncorrect
-  if (stats.totalIncorrect === undefined) {
-    stats.totalIncorrect = 0;
+
+  // Backward compat
+  if (stats.totalIncorrect === undefined) stats.totalIncorrect = 0;
+  if (stats.dailyCorrect === undefined) stats.dailyCorrect = 0;
+  if (stats.dailyIncorrect === undefined) stats.dailyIncorrect = 0;
+
+  // Daily reset: if lastStudyDate is from a previous day, reset daily counters
+  const lastDate = stats.lastStudyDate ?? 0;
+  const today = new Date().setHours(0, 0, 0, 0);
+  if (lastDate > 0 && lastDate < today) {
+    stats.dailyCorrect = 0;
+    stats.dailyIncorrect = 0;
+    stats.sessionAnswers = 0;
+    stats.currentStreak = 0;
+    await saveStats(stats as Stats);
   }
+
   return stats as Stats;
 }
 
