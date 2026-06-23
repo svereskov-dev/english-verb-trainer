@@ -336,7 +336,9 @@ export const irregularVerbs: Verb[] = irregularList.map(item => {
   const parts = item.split("/");
   const infinitive = parts[0];
   let past = parts[1];
-  const pastParticiple = parts[2];
+  // "be" has 4 parts: be/was/were/been — parts[2] is "were" (past plural),
+  // parts[3] is the actual past participle "been".
+  const pastParticiple = infinitive === "be" ? parts[3] : parts[2];
   if (infinitive === "be") past = "was/were";
 
   return {
