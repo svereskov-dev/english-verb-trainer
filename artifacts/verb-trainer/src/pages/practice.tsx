@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useExerciseSession } from "../hooks/useExerciseSession";
+import { useStats } from "../hooks/useStats";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { AnswerInput } from "../components/AnswerInput";
 import { ProgressBar } from "../components/ProgressBar";
@@ -16,7 +17,6 @@ export default function Practice() {
 
   const {
     currentExercise,
-    sessionCount,
     dailyCorrect,
     dailyIncorrect,
     streak,
@@ -30,6 +30,8 @@ export default function Practice() {
     reviewExhausted,
     onClearReview,
   } = useExerciseSession(config);
+
+  const { stats } = useStats();
 
   // ── Check for a Mistakes-review session on first load ───────────────────
   useEffect(() => {
@@ -123,7 +125,7 @@ export default function Practice() {
 
   return (
     <div className="min-h-[100dvh] bg-background flex flex-col">
-      <ProgressBar current={sessionCount} total={dailyGoal} />
+      <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
       {/* Header row: mode selector + daily counters */}
       <div className="p-4 flex justify-between items-center w-full max-w-3xl mx-auto">

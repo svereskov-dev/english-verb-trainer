@@ -11,7 +11,6 @@ export function useExerciseSession(config: SessionConfig) {
   const { stats, updateStats } = useStats();
 
   const [currentExercise, setCurrentExercise] = useState<ExerciseItem | null>(null);
-  const [sessionCount, setSessionCount]       = useState(0);
   const [streak, setStreak]                   = useState(0);
   const [feedback, setFeedback]               = useState<"correct" | "incorrect" | null>(null);
   const [showAnswer, setShowAnswer]           = useState<string | null>(null);
@@ -117,8 +116,6 @@ export function useExerciseSession(config: SessionConfig) {
       lastStudyDate:   Date.now(),
     });
 
-    setSessionCount(prev => prev + 1);
-
     // SRS update
     let record: ProgressRecord = (await getProgress(currentExercise.id)) ?? {
       id:             currentExercise.id,
@@ -158,7 +155,6 @@ export function useExerciseSession(config: SessionConfig) {
 
   return {
     currentExercise,
-    sessionCount,
     dailyCorrect:      stats?.dailyCorrect ?? 0,
     dailyIncorrect:    stats?.dailyIncorrect ?? 0,
     streak,
