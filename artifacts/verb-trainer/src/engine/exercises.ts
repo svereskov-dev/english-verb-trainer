@@ -130,6 +130,7 @@ function makeGapFill(pool: Verb[], tenses: Tense[]): ExerciseItem {
       template: renderFrame(template.frame, subject),
       hint: `(${verb.infinitive})`,
       verb: verb.infinitive,
+      tense,
     },
     answer,
   };

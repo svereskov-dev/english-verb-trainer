@@ -1,0 +1,84 @@
+I want to improve Context Mode.
+
+Currently, Context exercises display only a generic label:
+
+FILL THE GAP
+
+This forces users to do two different tasks at once:
+
+1. Determine which tense the sentence requires.
+2. Recall the correct verb form.
+
+The primary purpose of this application is to train English verb forms, not tense recognition. Context mode should provide context for the verb, but the target tense should be explicit.
+
+Required change:
+
+Replace the generic "FILL THE GAP" label with the actual tense name used by the exercise.
+
+Examples:
+
+Current:
+
+FILL THE GAP
+
+At last, he _____ everything on the list.
+(pay)
+
+Desired:
+
+PAST PERFECT
+
+At last, he _____ everything on the list.
+(pay)
+
+Another example:
+
+Current:
+
+FILL THE GAP
+
+By the end of the month, you _____ everything at least once.
+(set)
+
+Desired:
+
+FUTURE PERFECT
+
+By the end of the month, you _____ everything at least once.
+(set)
+
+Implementation requirements:
+
+- Remove the generic "FILL THE GAP" heading.
+- Display the exercise tense instead.
+- Use the same visual style already used for tense labels in Full Conjugation mode.
+- The label should be generated directly from exercise.tense.
+- Convert internal tense keys into user-friendly labels:
+  
+  presentSimple → PRESENT SIMPLE
+  pastSimple → PAST SIMPLE
+  futureSimple → FUTURE SIMPLE
+  
+  presentContinuous → PRESENT CONTINUOUS
+  pastContinuous → PAST CONTINUOUS
+  futureContinuous → FUTURE CONTINUOUS
+  
+  presentPerfect → PRESENT PERFECT
+  pastPerfect → PAST PERFECT
+  futurePerfect → FUTURE PERFECT
+  
+  presentPerfectContinuous → PRESENT PERFECT CONTINUOUS
+  pastPerfectContinuous → PAST PERFECT CONTINUOUS
+  futurePerfectContinuous → FUTURE PERFECT CONTINUOUS
+  
+  presentSimplePassive → PRESENT SIMPLE PASSIVE
+  pastSimplePassive → PAST SIMPLE PASSIVE
+  presentPerfectPassive → PRESENT PERFECT PASSIVE
+  pastPerfectPassive → PAST PERFECT PASSIVE
+  futureSimplePassive → FUTURE SIMPLE PASSIVE
+
+- Keep the sentence, verb hint, Russian translation, answer field, validation logic, and all other UI elements unchanged.
+
+Goal:
+
+Context Mode should train verb forms within context, not the user's ability to guess the target tense. The required tense must always be visible to the learner.

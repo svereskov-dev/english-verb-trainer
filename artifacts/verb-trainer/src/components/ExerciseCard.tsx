@@ -75,7 +75,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
     return (
       <div className="text-center space-y-3">
         <h2 className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
-          Fill the gap
+          {formatTenseName(exercise.question.tense)}
         </h2>
         <div className="text-3xl md:text-5xl font-bold tracking-tight leading-relaxed">
           {exercise.question.template.replace("_____", "______")}
