@@ -17,29 +17,26 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
   if (exercise.type === "verbform") {
     const translation = getTranslation(exercise.question.verb);
     return (
-      <div className="text-center space-y-4">
-        <h2 className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+      <div className="flex flex-col items-center gap-4 w-full">
+        {/* Tense pill */}
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
           {formatTenseName(exercise.question.tense)}
-        </h2>
-        <div className="space-y-1">
-          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-            Subject
-          </p>
-          <p className="text-4xl md:text-6xl font-bold tracking-tight">
-            {exercise.question.subject}
-          </p>
+        </span>
+
+        {/* Subject card */}
+        <div className="w-full rounded-2xl bg-card border border-border p-5 flex flex-col items-center gap-1">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Subject</p>
+          <p className="text-4xl md:text-5xl font-bold tracking-tight">{exercise.question.subject}</p>
         </div>
-        <div className="space-y-1">
-          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-            Verb
-          </p>
-          <p className="text-5xl md:text-7xl font-bold tracking-tight text-primary">
-            {exercise.question.verb}
-          </p>
+
+        {/* Verb card */}
+        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-2">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
+          <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+          {translation && (
+            <p className="text-muted-foreground text-base mt-1">{translation}</p>
+          )}
         </div>
-        {translation && (
-          <p className="text-muted-foreground text-lg font-normal">{translation}</p>
-        )}
       </div>
     );
   }
@@ -51,21 +48,20 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
     };
     const translation = getTranslation(exercise.question.verb);
     return (
-      <div className="text-center space-y-3">
-        <h2 className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+      <div className="flex flex-col items-center gap-4 w-full">
+        {/* Form pill */}
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
           Irregular Form: {askForMap[exercise.question.askFor]}
-        </h2>
-        <div className="space-y-1">
-          <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-            Verb
-          </p>
-          <p className="text-5xl md:text-7xl font-bold tracking-tight text-primary">
-            {exercise.question.verb}
-          </p>
+        </span>
+
+        {/* Verb card */}
+        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-2">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
+          <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+          {translation && (
+            <p className="text-muted-foreground text-base mt-1">{translation}</p>
+          )}
         </div>
-        {translation && (
-          <p className="text-muted-foreground text-lg font-normal">{translation}</p>
-        )}
       </div>
     );
   }
@@ -73,19 +69,23 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
   if (exercise.type === "gapfill") {
     const translation = getTranslation(exercise.question.verb ?? "");
     return (
-      <div className="text-center space-y-3">
-        <h2 className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+      <div className="flex flex-col items-center gap-4 w-full">
+        {/* Tense pill */}
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
           {formatTenseName(exercise.question.tense)}
-        </h2>
-        <div className="text-3xl md:text-5xl font-bold tracking-tight leading-relaxed">
-          {exercise.question.template.replace("_____", "______")}
+        </span>
+
+        {/* Sentence card */}
+        <div className="w-full rounded-2xl bg-card border border-border p-5 flex flex-col items-center gap-3">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Sentence</p>
+          <p className="text-2xl md:text-3xl font-bold tracking-tight leading-relaxed text-center">
+            {exercise.question.template.replace("_____", "______")}
+          </p>
+          <p className="text-xl text-primary font-medium">{exercise.question.hint}</p>
+          {translation && (
+            <p className="text-muted-foreground text-base mt-1">{translation}</p>
+          )}
         </div>
-        <div className="text-xl text-primary font-medium">
-          {exercise.question.hint}
-        </div>
-        {translation && (
-          <p className="text-muted-foreground text-lg font-normal">{translation}</p>
-        )}
       </div>
     );
   }

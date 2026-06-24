@@ -38,7 +38,7 @@ export function AnswerInput({
       ? "border-green-500"
       : feedback === "incorrect"
         ? "border-red-500"
-        : "border-input";
+        : "border-transparent";
 
   const textClass =
     feedback === "correct"
@@ -48,33 +48,35 @@ export function AnswerInput({
         : "text-foreground";
 
   return (
-    <input
-      ref={inputRef}
-      value={displayValue}
-      onChange={(e) => {
-        if (!disabled) {
-          setValue(e.target.value);
-          onValueChange?.(e.target.value);
-        }
-      }}
-      onKeyDown={handleKeyDown}
-      readOnly={isPostSubmit}
-      className={[
-        "text-2xl text-center h-16 w-full max-w-md mx-auto block",
-        "rounded-md border-2 bg-background px-3 py-2",
-        "transition-colors duration-150",
-        "placeholder:text-muted-foreground",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-        "font-semibold",
-        borderClass,
-        textClass,
-      ].join(" ")}
-      placeholder="Type your answer..."
-      autoComplete="off"
-      autoCorrect="off"
-      autoCapitalize="off"
-      spellCheck={false}
-      data-testid="input-answer"
-    />
+    <div className="w-full rounded-2xl bg-card border border-border p-2 flex items-center">
+      <input
+        ref={inputRef}
+        value={displayValue}
+        onChange={(e) => {
+          if (!disabled) {
+            setValue(e.target.value);
+            onValueChange?.(e.target.value);
+          }
+        }}
+        onKeyDown={handleKeyDown}
+        readOnly={isPostSubmit}
+        className={[
+          "text-2xl text-center h-14 w-full mx-auto block",
+          "rounded-xl border-2 bg-background px-3 py-2",
+          "transition-colors duration-150",
+          "placeholder:text-muted-foreground",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+          "font-semibold",
+          borderClass,
+          textClass,
+        ].join(" ")}
+        placeholder="Type your answer..."
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        spellCheck={false}
+        data-testid="input-answer"
+      />
+    </div>
   );
 }

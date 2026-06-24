@@ -1,0 +1,111 @@
+Apply the "A — Card Stack" design shown in the mockup as the new default Practice screen layout.
+
+This is the preferred design direction and should replace the current Practice screen design.
+
+However, DO NOT remove any existing functionality.
+
+The new design must preserve all current controls and navigation.
+
+Requirements:
+
+1. Keep the training mode selector
+
+The dropdown currently used to choose training modes must remain available.
+
+Examples:
+- Full Conjugation
+- Context
+- Irregular Verbs
+- Past Simple
+- Past Participle
+- Continuous
+- Mixed
+- etc.
+
+Place it at the top of the screen in a visually appropriate position.
+
+Do not remove or simplify any mode-selection functionality.
+
+2. Keep the correct / incorrect counters
+
+The counters currently shown in the top-right corner must remain visible.
+
+Show:
+
+✓ Correct count (green)
+
+✕ Incorrect count (red)
+
+Use the same behavior and logic as the current implementation.
+
+Place them in the upper-right corner of the screen.
+
+3. Keep the bottom navigation bar
+
+The existing bottom navigation must remain unchanged.
+
+Required tabs:
+
+- Home
+- Practice
+- Mistakes
+- Dictionary
+- Settings
+
+Do not remove, redesign, or hide this navigation.
+
+4. Center everything properly
+
+The mockup should be adapted to the actual application layout.
+
+Make sure:
+- Cards are horizontally centered.
+- Content remains visually balanced on mobile devices.
+- Spacing is consistent.
+- No elements appear shifted left or right.
+
+5. Apply the card-stack structure
+
+Use the design language from the mockup:
+
+Metadata card(s):
+- Tense
+- Subject (when applicable)
+
+Exercise card:
+- Verb or sentence
+- Translation
+
+Then:
+- Answer input
+- Check / Next button
+
+The cards should use:
+- Rounded corners
+- Subtle borders
+- Dark theme
+- Consistent padding
+- Consistent spacing
+
+6. Preserve all current functionality
+
+Do not change:
+- Exercise generation
+- Scoring
+- SRS logic
+- Mistake tracking
+- Statistics
+- Validation
+- Dictionary
+- Navigation behavior
+
+This is a visual/UI redesign only.
+
+Goal:
+
+Use the "A — Card Stack" design as the new Practice screen while preserving every existing feature:
+- training mode selector,
+- correct/incorrect counters,
+- bottom navigation,
+- centered mobile layout,
+- and all current training functionality.

@@ -141,8 +141,8 @@ export default function Practice() {
       </div>
 
       {/* Exercise area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6 w-full max-w-3xl mx-auto">
-        <div className="w-full mb-8">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 w-full max-w-md mx-auto gap-4">
+        <div className="w-full">
           <ExerciseCard exercise={currentExercise} />
         </div>
 
