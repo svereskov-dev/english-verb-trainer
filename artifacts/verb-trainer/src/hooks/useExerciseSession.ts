@@ -143,15 +143,8 @@ export function useExerciseSession(config: SessionConfig) {
         const allCorrect = config.reviewVerbs.every(v => reviewVerbsCorrectRef.current.has(v));
         if (allCorrect) {
           setReviewExhausted(true);
-          return;
         }
       }
-      setTimeout(() => {
-        setFeedback(prev => {
-          if (prev !== null) nextExercise();
-          return null;
-        });
-      }, 1200);
     }
   };
 

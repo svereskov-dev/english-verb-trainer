@@ -179,17 +179,12 @@ export default function Practice() {
             </>
           ) : (
             <>
-              <div className="h-10 flex flex-col items-center justify-center">
-                {feedback === "incorrect" && showAnswer && (
+              <div className="flex flex-col items-center justify-center gap-1">
+                {showAnswer && (
                   <div className="text-center animate-in fade-in slide-in-from-bottom-2 duration-200">
                     <span className="text-muted-foreground text-sm">Correct: </span>
                     <span className="text-xl font-bold text-green-400">{showAnswer}</span>
                   </div>
-                )}
-                {feedback === "correct" && (
-                  <p className="text-green-500 font-semibold text-lg animate-in fade-in duration-150">
-                    Correct!
-                  </p>
                 )}
               </div>
               <Button
