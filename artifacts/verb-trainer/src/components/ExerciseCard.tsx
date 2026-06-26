@@ -43,7 +43,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
           <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
           {ipa && (
-            <p className="text-muted-foreground text-sm font-mono mt-0.5">{ipa}</p>
+            <p className="text-muted-foreground text-sm mt-0.5 tracking-wide">{ipa}</p>
           )}
           {translation && (
             <p className="text-muted-foreground text-base mt-1">{translation}</p>
@@ -72,7 +72,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
           <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
           {ipa && (
-            <p className="text-muted-foreground text-sm font-mono mt-0.5">{ipa}</p>
+            <p className="text-muted-foreground text-sm mt-0.5 tracking-wide">{ipa}</p>
           )}
           {translation && (
             <p className="text-muted-foreground text-base mt-1">{translation}</p>
@@ -100,7 +100,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
           </p>
           <p className="text-xl text-primary font-medium">{exercise.question.hint}</p>
           {ipa && (
-            <p className="text-muted-foreground text-sm font-mono">{ipa}</p>
+            <p className="text-muted-foreground text-sm tracking-wide">{ipa}</p>
           )}
           {translation && (
             <p className="text-muted-foreground text-base">{translation}</p>

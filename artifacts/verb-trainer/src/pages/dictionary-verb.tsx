@@ -70,7 +70,7 @@ export default function DictionaryVerb() {
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-semibold">{verb.infinitive}</span>
                   {verb.infinitiveIPA && (
-                    <span className="text-xs text-muted-foreground font-mono">{verb.infinitiveIPA}</span>
+                    <span className="text-sm text-muted-foreground/80 tracking-wide">{verb.infinitiveIPA}</span>
                   )}
                 </div>
               </div>
@@ -79,7 +79,7 @@ export default function DictionaryVerb() {
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-semibold">{verb.past}</span>
                   {verb.pastIPA && (
-                    <span className="text-xs text-muted-foreground font-mono">{verb.pastIPA}</span>
+                    <span className="text-sm text-muted-foreground/80 tracking-wide">{verb.pastIPA}</span>
                   )}
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function DictionaryVerb() {
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-semibold">{verb.pastParticiple}</span>
                   {verb.pastParticipleIPA && (
-                    <span className="text-xs text-muted-foreground font-mono">{verb.pastParticipleIPA}</span>
+                    <span className="text-sm text-muted-foreground/80 tracking-wide">{verb.pastParticipleIPA}</span>
                   )}
                 </div>
               </div>

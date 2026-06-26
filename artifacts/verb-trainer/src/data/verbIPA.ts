@@ -13,7 +13,7 @@ export interface RegularIPA {
 }
 
 export const irregularIPA: Record<string, IrregularIPA> = {
-  be:         { infinitiveIPA: "/biː/",          pastIPA: "/wɒz/wɜː/",       pastParticipleIPA: "/biːn/" },
+  be:         { infinitiveIPA: "/biː/",          pastIPA: "/wɒz/ /wɜː/",     pastParticipleIPA: "/biːn/" },
   have:       { infinitiveIPA: "/hæv/",          pastIPA: "/hæd/",            pastParticipleIPA: "/hæd/" },
   do:         { infinitiveIPA: "/duː/",           pastIPA: "/dɪd/",            pastParticipleIPA: "/dʌn/" },
   say:        { infinitiveIPA: "/seɪ/",           pastIPA: "/sɛd/",            pastParticipleIPA: "/sɛd/" },
