@@ -1,0 +1,72 @@
+Task: Improve Practice Mode State Persistence & Multi-Select Training Modes
+
+Please make two improvements to the Practice mode configuration.
+
+1. Persist the entire Practice configuration
+
+Currently, if the user changes any training settings (for example enables Context Mode, selects a training type, etc.) and then navigates to another page (Dictionary, Home, Mistakes, Settings...), the configuration is reset.
+
+This should not happen.
+
+The entire Practice configuration should remain exactly as the user left it until one of these events occurs:
+
+the daily reset at 00:00;
+the user manually clears all data in Settings.
+
+Everything else should preserve the current configuration.
+
+This includes:
+
+selected training mode(s);
+Context Mode ON/OFF;
+selected tense(s);
+irregular mode selection;
+Full Conjugation selection;
+any other Practice filters or options.
+
+In other words:
+
+Leaving the Practice screen must not reset the user's training session or training configuration.
+
+2. Allow selecting multiple training modes
+
+Currently only one training option can be selected at a time.
+
+Instead, make the training mode selector work as a multi-select list.
+
+Examples:
+
+✓ Present Simple + Past Perfect
+
+✓ Present Continuous + Present Perfect
+
+✓ Past Simple + Future Simple
+
+✓ Irregular Past + Present Perfect
+
+Any combination should be allowed unless it is logically impossible.
+
+The exercise generator should randomly choose between all selected modes.
+
+Example:
+
+User selects:
+
+Present Simple
+Past Perfect
+Future Simple
+
+Exercises should then be generated from all three categories in random order.
+
+Important compatibility requirements
+
+This change must not break any existing functionality:
+
+Context Mode must continue working.
+Gap-fill generation must continue working.
+Irregular verb modes must continue working.
+Mistakes practice must continue working.
+Daily reset must continue working.
+Exercise generation logic should remain unchanged except that it now uses multiple selected modes instead of only one.
+
+The goal is simply to make the Practice configuration persistent and allow users to combine multiple training modes for a more personalized practice session.

@@ -10,8 +10,53 @@ import { Check, X, SkipForward } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 
+const CONFIG_KEY = "practice_config";
+const CONFIG_DATE_KEY = "practice_config_date";
+
+function isNewDay(): boolean {
+  const saved = localStorage.getItem(CONFIG_DATE_KEY);
+  if (!saved) return true;
+  const savedDate = new Date(parseInt(saved, 10));
+  const now = new Date();
+  return (
+    savedDate.getFullYear() !== now.getFullYear() ||
+    savedDate.getMonth() !== now.getMonth() ||
+    savedDate.getDate() !== now.getDate()
+  );
+}
+
+function loadPersistedConfig(): SessionConfig | null {
+  if (isNewDay()) {
+    localStorage.removeItem(CONFIG_KEY);
+    return null;
+  }
+  try {
+    const raw = localStorage.getItem(CONFIG_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as SessionConfig;
+    // Backward compatibility: old configs without selectedIds
+    if (!parsed.selectedIds) {
+      parsed.selectedIds = [parsed.id];
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function savePersistedConfig(config: SessionConfig) {
+  try {
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+    localStorage.setItem(CONFIG_DATE_KEY, Date.now().toString());
+  } catch {
+    // ignore
+  }
+}
+
 export default function Practice() {
-  const [config, setConfig]               = useState<SessionConfig>(DEFAULT_SESSION);
+  const [config, setConfig]               = useState<SessionConfig>(
+    loadPersistedConfig() ?? DEFAULT_SESSION
+  );
   const [submittedValue, setSubmittedValue] = useState("");
   const [pendingAnswer, setPendingAnswer]   = useState("");
 
@@ -44,6 +89,7 @@ export default function Practice() {
           id: "mistake-review",
           label: "Review Mistakes",
           groupLabel: "Mistakes Review",
+          selectedIds: ["mistakes"],
           exerciseTypes: ["verbform", "irregular"],
           verbPool: "all",
           reviewVerbs: data.verbs,
@@ -54,6 +100,11 @@ export default function Practice() {
       sessionStorage.removeItem("mistakeReview");
     }
   }, []);
+
+  // ── Persist config changes to localStorage ──────────────────────────────
+  useEffect(() => {
+    savePersistedConfig(config);
+  }, [config]);
 
   const handleCheck = () => {
     if (!pendingAnswer.trim() || feedback !== null) return;

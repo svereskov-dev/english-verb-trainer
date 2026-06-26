@@ -14,6 +14,7 @@ export interface SessionConfig {
   id: string;
   label: string;
   groupLabel: string;
+  selectedIds: string[];
   exerciseTypes: ("verbform" | "irregular")[];
   verbPool: VerbPoolSpec;
   tenses?: Tense[];

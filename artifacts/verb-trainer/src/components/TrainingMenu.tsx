@@ -93,19 +93,58 @@ const GROUPS: GroupDef[] = [
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function buildConfig(
-  preset: PresetDef,
-  group: GroupDef,
+  selectedIds: string[],
   contextEnabled: boolean,
 ): SessionConfig {
+  const presets = selectedIds.map(id => findGroupAndPreset(id)).filter(Boolean);
+  if (presets.length === 0) {
+    const fallback = findGroupAndPreset("full-all")!;
+    return {
+      id: "full-all",
+      label: fallback.preset.label,
+      groupLabel: fallback.group.label,
+      selectedIds: ["full-all"],
+      exerciseTypes: fallback.preset.exerciseTypes,
+      verbPool: fallback.preset.verbPool,
+      tenses: fallback.preset.tenses,
+      contextEnabled,
+    };
+  }
+
+  // Merge all selected presets
+  const allTenses = new Set<Tense>();
+  const allTypes = new Set<("verbform" | "irregular")>();
+  const allIrregularForms = new Set<IrregularForm>();
+  const allMistakesOnly = new Set<boolean>();
+  let verbPool: VerbPoolSpec = "all";
+
+  for (const p of presets) {
+    p!.preset.tenses?.forEach(t => allTenses.add(t));
+    p!.preset.exerciseTypes.forEach(t => allTypes.add(t));
+    if (p!.preset.irregularForm) allIrregularForms.add(p!.preset.irregularForm);
+    if (p!.preset.mistakesOnly) allMistakesOnly.add(true);
+    if (p!.preset.verbPool !== "all") verbPool = p!.preset.verbPool;
+  }
+
+  // Pick a representative label and groupLabel
+  const first = presets[0]!;
+  const label = selectedIds.length === 1
+    ? first.preset.label
+    : `${first.group.label} (×${selectedIds.length})`;
+  const groupLabel = selectedIds.length === 1
+    ? first.group.label
+    : "Mixed";
+
   return {
-    id:            preset.id,
-    label:         preset.label,
-    groupLabel:    group.label,
-    exerciseTypes: preset.exerciseTypes,
-    verbPool:      preset.verbPool,
-    tenses:        preset.tenses,
-    irregularForm: preset.irregularForm,
-    mistakesOnly:  preset.mistakesOnly,
+    id: selectedIds.join("+"),
+    label,
+    groupLabel,
+    selectedIds: [...selectedIds],
+    exerciseTypes: [...allTypes],
+    verbPool,
+    tenses: allTenses.size > 0 ? [...allTenses] : undefined,
+    irregularForm: allIrregularForms.size === 1 ? [...allIrregularForms][0] : undefined,
+    mistakesOnly: allMistakesOnly.size > 0,
     contextEnabled,
   };
 }
@@ -121,8 +160,7 @@ function findGroupAndPreset(id: string) {
 // ─── Default session ──────────────────────────────────────────────────────────
 
 export const DEFAULT_SESSION: SessionConfig = buildConfig(
-  GROUPS[4].presets[0], // Full Conjugation → All Tenses
-  GROUPS[4],
+  ["full-all"], // Full Conjugation → All Tenses
   false,
 );
 
@@ -135,21 +173,28 @@ interface TrainingMenuProps {
 
 export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
   const [open, setOpen]             = useState(false);
-  const [selectedId, setSelectedId] = useState(current.id);
+  const [selectedIds, setSelectedIds] = useState<string[]>(current.selectedIds);
   const [contextOn, setContextOn]   = useState(current.contextEnabled);
 
   const handleOpen = (o: boolean) => {
     if (o) {
-      setSelectedId(current.id);
+      setSelectedIds(current.selectedIds);
       setContextOn(current.contextEnabled);
     }
     setOpen(o);
   };
 
   const handleStart = () => {
-    const found = findGroupAndPreset(selectedId);
-    if (found) onSelect(buildConfig(found.preset, found.group, contextOn));
+    onSelect(buildConfig(selectedIds, contextOn));
     setOpen(false);
+  };
+
+  const togglePreset = (id: string) => {
+    setSelectedIds(prev =>
+      prev.includes(id)
+        ? prev.filter(p => p !== id)
+        : [...prev, id]
+    );
   };
 
   const contextLabel = current.contextEnabled ? " · Context" : "";
@@ -177,14 +222,14 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
           <div className="px-4 py-4 space-y-3">
             {GROUPS.map(group => {
               const { Icon } = group;
-              const isActive = group.presets.some(p => p.id === selectedId);
+              const hasActive = group.presets.some(p => selectedIds.includes(p.id));
 
               return (
                 <div
                   key={group.id}
                   className={cn(
                     "rounded-xl border p-4 space-y-3 transition-colors",
-                    isActive
+                    hasActive
                       ? "border-primary/50 bg-primary/5"
                       : "border-border",
                   )}
@@ -195,13 +240,13 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
                       size={15}
                       className={cn(
                         "shrink-0",
-                        isActive ? "text-primary" : "text-muted-foreground",
+                        hasActive ? "text-primary" : "text-muted-foreground",
                       )}
                     />
                     <span
                       className={cn(
                         "text-sm font-semibold",
-                        isActive ? "text-foreground" : "text-muted-foreground",
+                        hasActive ? "text-foreground" : "text-muted-foreground",
                       )}
                     >
                       {group.label}
@@ -211,11 +256,11 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
                   {/* Preset chips */}
                   <div className="flex flex-wrap gap-2">
                     {group.presets.map(preset => {
-                      const chosen = selectedId === preset.id;
+                      const chosen = selectedIds.includes(preset.id);
                       return (
                         <button
                           key={preset.id}
-                          onClick={() => setSelectedId(preset.id)}
+                          onClick={() => togglePreset(preset.id)}
                           className={cn(
                             "text-sm px-3 py-1.5 rounded-full border transition-colors font-medium",
                             chosen
@@ -250,8 +295,12 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
               className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
             />
           </div>
-          <Button className="w-full h-12 text-base font-semibold" onClick={handleStart}>
-            Start Training
+          <Button
+            className="w-full h-12 text-base font-semibold"
+            onClick={handleStart}
+            disabled={selectedIds.length === 0}
+          >
+            {selectedIds.length === 0 ? "Select at least one mode" : "Start Training"}
           </Button>
         </div>
       </SheetContent>
