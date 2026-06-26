@@ -146,6 +146,7 @@ function buildConfig(
     irregularForm: allIrregularForms.size === 1 ? [...allIrregularForms][0] : undefined,
     mistakesOnly: allMistakesOnly.size > 0,
     contextEnabled,
+    userCustomized: true,
   };
 }
 
@@ -159,10 +160,15 @@ function findGroupAndPreset(id: string) {
 
 // ─── Default session ──────────────────────────────────────────────────────────
 
-export const DEFAULT_SESSION: SessionConfig = buildConfig(
+const _DEFAULT_SESSION: SessionConfig = buildConfig(
   ["full-all"], // Full Conjugation → All Tenses
   false,
 );
+
+export const DEFAULT_SESSION: SessionConfig = {
+  ..._DEFAULT_SESSION,
+  userCustomized: false,
+};
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -198,7 +204,9 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
   };
 
   const contextLabel = current.contextEnabled ? " · Context" : "";
-  const buttonLabel  = `${current.groupLabel}${contextLabel}`;
+  const buttonLabel = current.userCustomized
+    ? `${current.groupLabel}${contextLabel}`
+    : "Training Mode";
 
   return (
     <Sheet open={open} onOpenChange={handleOpen}>

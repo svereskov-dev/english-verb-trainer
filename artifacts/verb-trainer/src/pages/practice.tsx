@@ -38,6 +38,10 @@ function loadPersistedConfig(): SessionConfig | null {
     if (!parsed.selectedIds) {
       parsed.selectedIds = [parsed.id];
     }
+    // Backward compatibility: old configs without userCustomized
+    if (parsed.userCustomized === undefined) {
+      parsed.userCustomized = true;
+    }
     return parsed;
   } catch {
     return null;
@@ -94,6 +98,7 @@ export default function Practice() {
           verbPool: "all",
           reviewVerbs: data.verbs,
           contextEnabled: false,
+          userCustomized: true,
         });
       }
     } catch {

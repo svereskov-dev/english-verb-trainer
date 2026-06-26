@@ -22,6 +22,7 @@ export interface SessionConfig {
   mistakesOnly?: boolean;
   reviewVerbs?: string[];  // temporary filtered list from Mistakes page
   contextEnabled: boolean;
+  userCustomized?: boolean;  // true after first manual selection
 }
 
 export interface ExerciseItem {
