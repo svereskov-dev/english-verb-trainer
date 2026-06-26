@@ -17,6 +17,12 @@ export default function Settings() {
       await tx.objectStore('progress').clear();
       await tx.objectStore('stats').clear();
       await tx.done;
+      // Clear persisted practice configuration
+      localStorage.removeItem("practice_config");
+      localStorage.removeItem("practice_config_date");
+      // Clear any in-progress exercise session
+      sessionStorage.removeItem("exercise_session");
+      sessionStorage.removeItem("mistakeReview");
       window.location.reload();
     }
   };
