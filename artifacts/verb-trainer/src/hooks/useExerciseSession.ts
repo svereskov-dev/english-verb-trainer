@@ -6,6 +6,47 @@ import { getProgress, saveProgress, getAllProgress } from '../db/progress';
 import { updateSRS, ProgressRecord } from '../engine/srs';
 import { isCorrect } from '../engine/validate';
 
+const SESSION_KEY = 'exercise_session';
+
+interface SessionState {
+  config: SessionConfig;
+  exercise: ExerciseItem;
+  feedback: "correct" | "incorrect" | null;
+  showAnswer: string | null;
+  pendingAnswer: string;
+  submittedValue: string;
+}
+
+function saveSession(state: SessionState) {
+  try {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(state));
+  } catch {
+    // ignore
+  }
+}
+
+function loadSession(): SessionState | null {
+  try {
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function clearSession() {
+  sessionStorage.removeItem(SESSION_KEY);
+}
+
+function configsMatch(a: SessionConfig, b: SessionConfig): boolean {
+  if (a.id !== b.id) return false;
+  if (a.contextEnabled !== b.contextEnabled) return false;
+  if (a.mistakesOnly !== b.mistakesOnly) return false;
+  if (JSON.stringify(a.reviewVerbs) !== JSON.stringify(b.reviewVerbs)) return false;
+  return true;
+}
+
 export function useExerciseSession(config: SessionConfig) {
   const { settings } = useSettings();
   const { stats, updateStats } = useStats();
@@ -14,6 +55,8 @@ export function useExerciseSession(config: SessionConfig) {
   const [streak, setStreak]                   = useState(0);
   const [feedback, setFeedback]               = useState<"correct" | "incorrect" | null>(null);
   const [showAnswer, setShowAnswer]           = useState<string | null>(null);
+  const [pendingAnswer, setPendingAnswer]     = useState("");
+  const [submittedValue, setSubmittedValue]   = useState("");
   const [mistakeVerbs, setMistakeVerbs]       = useState<string[]>([]);
   const [mistakesReady, setMistakesReady]     = useState(!config.mistakesOnly);
   const [reviewExhausted, setReviewExhausted] = useState(false);
@@ -58,9 +101,20 @@ export function useExerciseSession(config: SessionConfig) {
     });
   }, [config.mistakesOnly, config.id]);
 
-  // ── Generate first exercise whenever config or difficulty changes ───────────
+  // ── Generate or restore exercise on mount/config change ────────────────────
   useEffect(() => {
     if (!settings || !mistakesReady) return;
+
+    const stored = loadSession();
+    if (stored && configsMatch(stored.config, config)) {
+      setCurrentExercise(stored.exercise);
+      setFeedback(stored.feedback);
+      setShowAnswer(stored.showAnswer);
+      setPendingAnswer(stored.pendingAnswer ?? "");
+      setSubmittedValue(stored.submittedValue ?? "");
+      return;
+    }
+
     setFeedback(null);
     setShowAnswer(null);
     setCurrentExercise(
@@ -75,12 +129,27 @@ export function useExerciseSession(config: SessionConfig) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config.id, config.contextEnabled, settings?.difficulty, mistakesReady]);
 
+  // ── Save session state whenever exercise or feedback changes ─────────────────
+  useEffect(() => {
+    if (!currentExercise) return;
+    saveSession({
+      config,
+      exercise: currentExercise,
+      feedback,
+      showAnswer,
+      pendingAnswer,
+      submittedValue,
+    });
+  }, [currentExercise, feedback, showAnswer, pendingAnswer, submittedValue]);
+
   // ── Next / Skip ────────────────────────────────────────────────────────────
   const nextExercise = () => {
     if (!settings) return;
     const cfg = configRef.current;
     setFeedback(null);
     setShowAnswer(null);
+    setPendingAnswer("");
+    setSubmittedValue("");
     setCurrentExercise(
       generateExerciseFromConfig(
         cfg,
@@ -89,6 +158,9 @@ export function useExerciseSession(config: SessionConfig) {
       ),
     );
   };
+
+  const setPendingAnswerValue = (value: string) => setPendingAnswer(value);
+  const setSubmittedValueValue = (value: string) => setSubmittedValue(value);
 
   // ── Submit ─────────────────────────────────────────────────────────────────
   const submitAnswer = async (answer: string) => {
