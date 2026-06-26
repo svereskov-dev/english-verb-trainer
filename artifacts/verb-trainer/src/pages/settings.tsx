@@ -1,7 +1,5 @@
 import { useSettings } from "../hooks/useSettings";
 import { BottomNav } from "../components/BottomNav";
-import { Card, CardContent } from "../components/ui/card";
-import { Switch } from "../components/ui/switch";
 import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Button } from "../components/ui/button";
@@ -29,23 +27,6 @@ export default function Settings() {
         <h1 className="text-3xl font-bold">Settings</h1>
         
         <div className="space-y-4">
-          <div className="space-y-2">
-            <Label>Difficulty Level</Label>
-            <Select 
-              value={settings.difficulty} 
-              onValueChange={(val: any) => updateSettings({ difficulty: val })}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select difficulty" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="beginner">Beginner (Basic Tenses)</SelectItem>
-                <SelectItem value="intermediate">Intermediate (Perfect & Continuous)</SelectItem>
-                <SelectItem value="advanced">Advanced (All including Passives)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
           <div className="space-y-2">
             <Label>Daily Goal</Label>
             <Select 
@@ -81,17 +62,9 @@ export default function Settings() {
             </Select>
           </div>
 
-          <Card className="mt-8 border-destructive/20">
-            <CardContent className="p-4 space-y-4">
-              <div className="space-y-1">
-                <Label className="text-destructive font-bold">Danger Zone</Label>
-                <p className="text-sm text-muted-foreground">Reset all progress and start fresh.</p>
-              </div>
-              <Button variant="destructive" className="w-full" onClick={handleClearData}>
-                Clear All Data
-              </Button>
-            </CardContent>
-          </Card>
+          <Button className="w-full" onClick={handleClearData}>
+            Clear All Data
+          </Button>
         </div>
       </div>
       <BottomNav />
