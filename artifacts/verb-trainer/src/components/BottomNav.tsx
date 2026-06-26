@@ -13,7 +13,7 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 w-full bg-card border-t border-border flex justify-around items-center h-16 px-2 z-50">
+    <nav className="fixed bottom-0 w-full bg-card border-t border-border flex justify-around items-center h-16 px-2 z-50">
       {navItems.map((item) => {
         const isActive = location === item.href || (item.href !== "/" && location.startsWith(item.href));
         return (

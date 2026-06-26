@@ -12,7 +12,7 @@ export default function Stats() {
     : 0;
 
   return (
-    <div className="min-h-[100dvh] bg-background pb-20 md:pb-0">
+    <div className="min-h-[100dvh] bg-background pb-20">
       <div className="w-full max-w-md mx-auto p-6 space-y-6">
         <h1 className="text-3xl font-bold">Statistics</h1>
         
