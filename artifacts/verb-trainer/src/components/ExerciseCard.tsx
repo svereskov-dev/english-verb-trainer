@@ -9,13 +9,22 @@ const formatTenseName = (tense: string) => {
   return tense.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
 };
 
+function getVerbData(infinitive: string) {
+  return verbs.find(v => v.infinitive === infinitive);
+}
+
 function getTranslation(infinitive: string): string {
-  return verbs.find(v => v.infinitive === infinitive)?.translation ?? "";
+  return getVerbData(infinitive)?.translation ?? "";
+}
+
+function getIPA(infinitive: string): string {
+  return getVerbData(infinitive)?.infinitiveIPA ?? "";
 }
 
 export function ExerciseCard({ exercise }: ExerciseCardProps) {
   if (exercise.type === "verbform") {
     const translation = getTranslation(exercise.question.verb);
+    const ipa = getIPA(exercise.question.verb);
     return (
       <div className="flex flex-col items-center gap-4 w-full">
         {/* Tense pill */}
@@ -30,9 +39,12 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
         </div>
 
         {/* Verb card */}
-        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-2">
+        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-1">
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
           <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+          {ipa && (
+            <p className="text-muted-foreground text-sm font-mono mt-0.5">{ipa}</p>
+          )}
           {translation && (
             <p className="text-muted-foreground text-base mt-1">{translation}</p>
           )}
@@ -47,6 +59,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
       pastParticiple: "Past Participle",
     };
     const translation = getTranslation(exercise.question.verb);
+    const ipa = getIPA(exercise.question.verb);
     return (
       <div className="flex flex-col items-center gap-4 w-full">
         {/* Form pill */}
@@ -55,9 +68,12 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
         </span>
 
         {/* Verb card */}
-        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-2">
+        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-1">
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
           <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+          {ipa && (
+            <p className="text-muted-foreground text-sm font-mono mt-0.5">{ipa}</p>
+          )}
           {translation && (
             <p className="text-muted-foreground text-base mt-1">{translation}</p>
           )}
@@ -68,6 +84,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
 
   if (exercise.type === "gapfill") {
     const translation = getTranslation(exercise.question.verb ?? "");
+    const ipa = getIPA(exercise.question.verb ?? "");
     return (
       <div className="flex flex-col items-center gap-4 w-full">
         {/* Tense pill */}
@@ -82,8 +99,11 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
             {exercise.question.template.replace("_____", "______")}
           </p>
           <p className="text-xl text-primary font-medium">{exercise.question.hint}</p>
+          {ipa && (
+            <p className="text-muted-foreground text-sm font-mono">{ipa}</p>
+          )}
           {translation && (
-            <p className="text-muted-foreground text-base mt-1">{translation}</p>
+            <p className="text-muted-foreground text-base">{translation}</p>
           )}
         </div>
       </div>

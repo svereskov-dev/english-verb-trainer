@@ -60,22 +60,37 @@ export default function DictionaryVerb() {
           </div>
 
           {/* Forms */}
-          <div className="rounded-xl border border-border px-5 py-4 space-y-3">
+          <div className="rounded-xl border border-border px-5 py-4 space-y-4">
             <p className="text-xs uppercase tracking-widest text-muted-foreground">
               Forms
             </p>
-            <div className="grid grid-cols-1 gap-2">
-              <div className="flex justify-between items-baseline">
-                <span className="text-sm text-muted-foreground">Base Form</span>
-                <span className="font-semibold">{verb.infinitive}</span>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="flex justify-between items-start">
+                <span className="text-sm text-muted-foreground pt-0.5">Base Form</span>
+                <div className="flex flex-col items-end gap-0.5">
+                  <span className="font-semibold">{verb.infinitive}</span>
+                  {verb.infinitiveIPA && (
+                    <span className="text-xs text-muted-foreground font-mono">{verb.infinitiveIPA}</span>
+                  )}
+                </div>
               </div>
-              <div className="flex justify-between items-baseline">
-                <span className="text-sm text-muted-foreground">Past Simple</span>
-                <span className="font-semibold">{verb.past}</span>
+              <div className="flex justify-between items-start">
+                <span className="text-sm text-muted-foreground pt-0.5">Past Simple</span>
+                <div className="flex flex-col items-end gap-0.5">
+                  <span className="font-semibold">{verb.past}</span>
+                  {verb.pastIPA && (
+                    <span className="text-xs text-muted-foreground font-mono">{verb.pastIPA}</span>
+                  )}
+                </div>
               </div>
-              <div className="flex justify-between items-baseline">
-                <span className="text-sm text-muted-foreground">Past Participle</span>
-                <span className="font-semibold">{verb.pastParticiple}</span>
+              <div className="flex justify-between items-start">
+                <span className="text-sm text-muted-foreground pt-0.5">Past Participle</span>
+                <div className="flex flex-col items-end gap-0.5">
+                  <span className="font-semibold">{verb.pastParticiple}</span>
+                  {verb.pastParticipleIPA && (
+                    <span className="text-xs text-muted-foreground font-mono">{verb.pastParticipleIPA}</span>
+                  )}
+                </div>
               </div>
             </div>
           </div>

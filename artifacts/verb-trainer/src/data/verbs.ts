@@ -1,9 +1,13 @@
 import { VerbBehavior, VerbTransitivity, VerbDomain } from "./grammar";
+import { irregularIPA, regularIPA } from "./verbIPA";
 
 export interface Verb {
   infinitive: string;
   past: string;
   pastParticiple: string;
+  infinitiveIPA: string;
+  pastIPA: string;
+  pastParticipleIPA: string;
   frequencyRank: number;
   isIrregular: boolean;
   translation: string;
@@ -341,10 +345,15 @@ export const irregularVerbs: Verb[] = irregularList.map(item => {
   const pastParticiple = infinitive === "be" ? parts[3] : parts[2];
   if (infinitive === "be") past = "was/were";
 
+  const ipa = irregularIPA[infinitive];
+
   return {
     infinitive,
     past,
     pastParticiple,
+    infinitiveIPA: ipa?.infinitiveIPA ?? "",
+    pastIPA: ipa?.pastIPA ?? "",
+    pastParticipleIPA: ipa?.pastParticipleIPA ?? "",
     frequencyRank: currentRank++,
     isIrregular: true,
     translation: translations[infinitive] ?? "",
@@ -354,10 +363,15 @@ export const irregularVerbs: Verb[] = irregularList.map(item => {
 
 export const regularVerbs: Verb[] = regularList.map(infinitive => {
   const past = getRegularPast(infinitive);
+  const ipa = regularIPA[infinitive];
+
   return {
     infinitive,
     past,
     pastParticiple: past,
+    infinitiveIPA: ipa?.infinitiveIPA ?? "",
+    pastIPA: ipa?.pastIPA ?? "",
+    pastParticipleIPA: ipa?.pastIPA ?? "",
     frequencyRank: currentRank++,
     isIrregular: false,
     translation: translations[infinitive] ?? "",

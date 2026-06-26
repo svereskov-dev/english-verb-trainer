@@ -1,0 +1,146 @@
+# Task: Add IPA Pronunciation to the App
+
+I want to add IPA (International Phonetic Alphabet) pronunciation to every verb in the application.
+
+The goal is to help users learn not only the verb forms, but also their correct pronunciation.
+
+---
+
+## 1. Extend the verb database
+
+Update the `Verb` interface in `verbs.ts`.
+
+Each verb should include IPA pronunciation for all three forms:
+
+```ts
+interface Verb {
+  infinitive: string;
+  past: string;
+  pastParticiple: string;
+
+  infinitiveIPA: string;
+  pastIPA: string;
+  pastParticipleIPA: string;
+
+  ...
+}
+```
+
+For example:
+
+```ts
+{
+  infinitive: "go",
+  infinitiveIPA: "/ɡəʊ/",
+
+  past: "went",
+  pastIPA: "/went/",
+
+  pastParticiple: "gone",
+  pastParticipleIPA: "/ɡɒn/",
+
+  ...
+}
+```
+
+Please use standard IPA transcription (British English is preferred for consistency throughout the app).
+
+---
+
+## 2. Practice Screen
+
+Display the pronunciation directly beneath the verb.
+
+Example:
+
+```
+Verb
+
+GO
+/ɡəʊ/
+```
+
+Requirements:
+
+* smaller font than the verb
+* muted secondary color
+* centered
+* should not compete visually with the main exercise
+
+The IPA is informational only.
+
+It should never become part of the exercise or the answer checking.
+
+---
+
+## 3. Dictionary List
+
+Keep the dictionary list clean.
+
+Display only:
+
+* English verb
+* Russian translation
+* irregular badge (existing)
+
+Do NOT add IPA to the list page.
+
+Otherwise the list becomes visually crowded.
+
+---
+
+## 4. Verb Detail Page
+
+Add IPA beneath every verb form.
+
+Example:
+
+```
+GO
+
+Translation
+идти
+
+Base Form
+go
+/ɡəʊ/
+
+Past Simple
+went
+/went/
+
+Past Participle
+gone
+/ɡɒn/
+```
+
+The pronunciation should use the same muted secondary style throughout the page.
+
+---
+
+## 5. Layout
+
+IPA should be:
+
+* centered
+* slightly smaller than the word itself
+* easy to read
+* consistent across the application
+
+---
+
+## 6. Important
+
+Do NOT generate IPA automatically at runtime.
+
+Store the IPA together with each verb in the database.
+
+This guarantees consistent pronunciation and avoids incorrect transcriptions for irregular verbs.
+
+---
+
+## 7. Data Quality
+
+Before implementation, generate a report listing every verb that does not yet have IPA transcription.
+
+Only after all verbs have IPA values should the feature be considered complete.
