@@ -247,6 +247,7 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
               id="ctx-toggle"
               checked={contextOn}
               onCheckedChange={setContextOn}
+              className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
             />
           </div>
           <Button className="w-full h-12 text-base font-semibold" onClick={handleStart}>
