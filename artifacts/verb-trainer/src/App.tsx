@@ -10,6 +10,7 @@ import Mistakes from "@/pages/mistakes";
 import Settings from "@/pages/settings";
 import Dictionary from "@/pages/dictionary";
 import DictionaryVerb from "@/pages/dictionary-verb";
+import Tenses from "@/pages/tenses";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/settings" component={Settings} />
       <Route path="/dictionary" component={Dictionary} />
       <Route path="/dictionary/:verb" component={DictionaryVerb} />
+      <Route path="/tenses" component={Tenses} />
       <Route component={NotFound} />
     </Switch>
   );

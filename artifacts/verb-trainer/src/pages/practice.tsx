@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { useExerciseSession } from "../hooks/useExerciseSession";
 import { useStats } from "../hooks/useStats";
 import { ExerciseCard } from "../components/ExerciseCard";
@@ -6,7 +7,7 @@ import { AnswerInput } from "../components/AnswerInput";
 import { ProgressBar } from "../components/ProgressBar";
 import { TrainingMenu, DEFAULT_SESSION } from "../components/TrainingMenu";
 import { SessionConfig } from "../engine/exercises";
-import { Check, X, SkipForward } from "lucide-react";
+import { Check, X, SkipForward, BookOpenText } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 
@@ -58,6 +59,7 @@ function savePersistedConfig(config: SessionConfig) {
 }
 
 export default function Practice() {
+  const [, navigate] = useLocation();
   const [config, setConfig]               = useState<SessionConfig>(
     loadPersistedConfig() ?? DEFAULT_SESSION
   );
@@ -137,6 +139,19 @@ export default function Practice() {
     onClearReview();
   };
 
+  const handleOpenTenses = () => {
+    // Pass the single tense being practiced as context, if applicable
+    const singleTense = config.tenses?.length === 1 ? config.tenses[0] : null;
+    try {
+      if (singleTense) {
+        sessionStorage.setItem("tensesContext", JSON.stringify({ tenseId: singleTense }));
+      } else {
+        sessionStorage.removeItem("tensesContext");
+      }
+    } catch { /* ignore */ }
+    navigate("/tenses");
+  };
+
   // ── Mistakes mode with nothing to review ───────────────────────────────────
   if (noMistakes) {
     return (
@@ -183,10 +198,18 @@ export default function Practice() {
     <div className="min-h-[100dvh] bg-background pb-20 flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
-      {/* Header row: mode selector + daily counters */}
-      <div className="p-4 flex justify-between items-center w-full max-w-3xl mx-auto">
+      {/* Header row: mode selector + tenses reference + daily counters */}
+      <div className="p-4 flex justify-between items-center w-full max-w-3xl mx-auto gap-2">
         <TrainingMenu current={config} onSelect={handleSelectConfig} />
-        <div className="flex items-center gap-3 shrink-0 ml-4">
+        <button
+          onClick={handleOpenTenses}
+          className="shrink-0 flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-2.5 py-1.5 rounded-full hover:bg-muted"
+          aria-label="English Tenses reference"
+        >
+          <BookOpenText size={13} />
+          <span>English Tenses</span>
+        </button>
+        <div className="flex items-center gap-3 shrink-0">
           <div className="flex items-center gap-1 text-green-600">
             <Check size={18} />
             <span className="font-bold">{dailyCorrect}</span>

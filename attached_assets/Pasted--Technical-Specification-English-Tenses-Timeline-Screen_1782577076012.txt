@@ -1,0 +1,310 @@
+# Technical Specification: "English Tenses Timeline" Screen
+
+## Overview
+
+Create a new screen called **"English Tenses"**.
+
+The purpose of this screen is **not** to teach grammar in detail or replace a grammar textbook. Instead, it should serve as a **visual map of the entire English tense system** that users can quickly consult while practicing.
+
+The screen should function as a **reference tool**, allowing users to refresh their memory in 10–15 seconds without reading long explanations.
+
+The overall philosophy is:
+
+> **Minimal text. Maximum visual clarity.**
+
+---
+
+# Navigation
+
+Add a new button labeled:
+
+**English Tenses**
+
+Place this button on the **Verb Training** screen.
+
+---
+
+# Core Concept
+
+Instead of a traditional grammar table, create an **interactive horizontal timeline**.
+
+The timeline is divided into **three swipeable screens**.
+
+```
+← Past
+
+Present
+
+Future →
+```
+
+The **Present** screen should be opened by default.
+
+Users can swipe left or right between the three sections.
+
+---
+
+# Timeline Structure
+
+Each section represents one time period:
+
+* Past
+* Present
+* Future
+
+A large horizontal timeline runs through the center of every screen.
+
+Although there are three screens, the timeline should visually feel like **one continuous line** extending across all three sections.
+
+The user should feel as if they are simply moving along one large timeline.
+
+---
+
+# Timeline Markers
+
+Each tense is represented by a timeline marker (a dot or a small vertical tick).
+
+### Past
+
+* Past Simple
+* Past Continuous
+* Past Perfect
+* Past Perfect Continuous
+
+### Present
+
+* Present Simple
+* Present Continuous
+* Present Perfect
+* Present Perfect Continuous
+
+### Future
+
+* Future Simple
+* Future Continuous
+* Future Perfect
+* Future Perfect Continuous
+
+Each marker has two information bubbles.
+
+---
+
+# Upper Bubble (Russian)
+
+Above each timeline marker, display a small rounded bubble containing a **very short explanation in Russian**.
+
+The explanation should answer the core question that this tense expresses.
+
+Examples:
+
+### Present Simple
+
+> Что происходит обычно?
+
+### Present Continuous
+
+> Что происходит прямо сейчас?
+
+### Present Perfect
+
+> Какой результат есть сейчас?
+
+### Present Perfect Continuous
+
+> Что продолжается до настоящего момента?
+
+### Past Simple
+
+> Что произошло тогда?
+
+### Past Continuous
+
+> Что происходило в определенный момент?
+
+### Past Perfect
+
+> Что произошло раньше другого события?
+
+### Past Perfect Continuous
+
+> Что длилось до другого события?
+
+### Future Simple
+
+> Что произойдет?
+
+### Future Continuous
+
+> Что будет происходить в определенный момент?
+
+### Future Perfect
+
+> Что завершится к определенному моменту?
+
+### Future Perfect Continuous
+
+> Что будет длиться к определенному моменту?
+
+Requirements:
+
+* Maximum two short lines.
+* No grammar rules.
+* No long explanations.
+
+---
+
+# Lower Bubble (English)
+
+Below each timeline marker, display another rounded bubble.
+
+Each bubble must contain three elements:
+
+## 1. Tense Name
+
+Example:
+
+```
+Present Perfect
+```
+
+---
+
+## 2. Structure
+
+Examples:
+
+```
+Subject + have/has + V3
+```
+
+```
+Subject + was/were + V-ing
+```
+
+```
+Subject + will have been + V-ing
+```
+
+---
+
+## 3. Example Sentence
+
+**Important requirement:**
+
+Every tense should use **the same base sentence** so that users can instantly recognize how only the tense changes.
+
+Use the verb **work** throughout the timeline.
+
+Examples:
+
+### Present
+
+```
+I work.
+I am working.
+I have worked.
+I have been working.
+```
+
+### Past
+
+```
+I worked.
+I was working.
+I had worked.
+I had been working.
+```
+
+### Future
+
+```
+I will work.
+I will be working.
+I will have worked.
+I will have been working.
+```
+
+The meaning should remain as consistent as possible across all examples.
+
+---
+
+# Visual Design
+
+The design should feel modern, clean, and lightweight.
+
+Requirements:
+
+* Light background
+* Minimalistic appearance
+* Plenty of white space
+* Large horizontal timeline
+* Small elegant timeline markers
+* Rounded information bubbles
+* Use the application's existing color palette
+* Avoid large tables
+* Avoid dense blocks of text
+
+The screen should feel like an infographic rather than a grammar page.
+
+---
+
+# Animations
+
+Transitions should be subtle.
+
+Recommended behavior:
+
+* Smooth horizontal swipe between Past / Present / Future
+* Timeline visually continues across screens
+* Information bubbles fade in softly
+* No heavy animations
+
+---
+
+# Responsive Layout
+
+The screen must work correctly on:
+
+* Phones
+* Tablets
+
+---
+
+# User Experience
+
+Typical workflow:
+
+1. User is practicing verb tenses.
+2. They forget the difference between two tenses.
+3. They tap **English Tenses**.
+4. Within 10–15 seconds they:
+
+   * locate the tense,
+   * read the short Russian reminder,
+   * see the English structure,
+   * see one example sentence.
+5. They return to practice.
+
+The page should feel like a quick visual reference, not a lesson.
+
+---
+
+# Recommended Enhancement (Optional but Strongly Recommended)
+
+Integrate the timeline with the training system.
+
+If the user opens the timeline while practicing a specific tense:
+
+* Automatically open the corresponding section (Past, Present, or Future).
+* Automatically highlight the currently practiced tense.
+* Smoothly animate the timeline to that marker.
+
+Example:
+
+If the user is practicing **Past Perfect**, opening the timeline should immediately display:
+
+* the **Past** section,
+* **Past Perfect** highlighted,
+* the timeline gently scrolling or focusing on that marker.
+
+This creates a much stronger connection between practice and reference and makes the feature feel integrated into the learning experience rather than being just a static grammar reference page.
