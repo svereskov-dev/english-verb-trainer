@@ -1,0 +1,131 @@
+# Fix Timeline Geometry (Past / Present / Future)
+
+The previous alignment update is **not complete**.
+
+The timeline still looks inconsistent because elements are positioned manually instead of using a common layout.
+
+This must be rebuilt using a strict grid.
+
+---
+
+## 1. All timeline dots must share the same Y coordinate
+
+The colored dots are currently at slightly different heights.
+
+This should never happen.
+
+Every timeline dot on the page must sit on **exactly the same horizontal line**.
+
+Imagine drawing one horizontal guide across the screen:
+
+●────────●────────●
+
+Every dot must touch that guide.
+
+No manual offsets.
+
+---
+
+## 2. All question bubbles must share the same Y coordinate
+
+The Russian question bubbles should also be perfectly aligned.
+
+Currently one is higher, another is lower.
+
+Instead:
+
+┌────────────┐
+┌────────────┐
+┌────────────┐
+
+Their top edges should all begin at exactly the same height.
+
+Do **not** vertically center them individually.
+
+---
+
+## 3. All tense cards must share the same Y coordinate
+
+Likewise, the tense cards below the timeline should form one clean row.
+
+Currently some cards begin higher than others.
+
+Instead:
+
+┌────────────┐
+┌────────────┐
+┌────────────┐
+
+All cards should start at exactly the same height.
+
+---
+
+## 4. Connector lines
+
+Because all three rows are aligned, the connector lines automatically become identical.
+
+Every item should have:
+
+Question Bubble
+
+↓
+
+same connector length
+
+↓
+
+Timeline Dot
+
+↓
+
+same connector length
+
+↓
+
+Tense Card
+
+Every connector should be exactly the same length.
+
+---
+
+## 5. Use CSS Grid (or Flex) instead of manual positioning
+
+Please stop positioning each timeline item independently.
+
+Instead:
+
+* create one row for the question bubbles;
+* one row for the timeline;
+* one row for the tense cards.
+
+Every timeline item should occupy one identical column.
+
+The timeline should behave like a proper grid.
+
+---
+
+## 6. Future Simple card
+
+Future Simple should remain centered above the timeline exactly as it is now.
+
+Do not move it.
+
+Only align the three timeline items below it.
+
+---
+
+## Goal
+
+The finished result should look like a professionally designed infographic.
+
+If I draw three horizontal guide lines across the page:
+
+──────────────────  (question bubbles)
+
+──────────────────  (timeline dots)
+
+──────────────────  (tense cards)
+
+every corresponding element should sit exactly on its guide.
+
+There should be **zero manual vertical offsets** between items.

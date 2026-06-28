@@ -166,7 +166,7 @@ function TimelineSection({
   const highlightRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Scroll highlighted tense into center view when section becomes visible
+  // Scroll highlighted column into center view when section becomes visible
   useEffect(() => {
     if (!visible) return;
     if (!highlightRef.current || !scrollRef.current) return;
@@ -178,6 +178,7 @@ function TimelineSection({
 
   const card = period.standaloneCard;
   const cardHighlighted = card ? highlightId === card.id : false;
+  const n = period.tenses.length;
 
   return (
     <>
@@ -216,43 +217,51 @@ function TimelineSection({
 
       <div
         ref={scrollRef}
-        className="w-full overflow-x-auto overscroll-x-contain pb-2"
+        className="w-full overflow-x-auto overscroll-x-contain relative"
         style={{ scrollbarWidth: "none" }}
       >
-      {/* Inner strip: wider than screen so content is scrollable */}
-      <div className="relative inline-flex items-stretch min-w-full px-6" style={{ minWidth: "max(100%, 672px)" }}>
-
-        {/* ── Continuous timeline line ── */}
+        {/* ── CSS Grid: 1 column per tense, 5 explicit rows ── */}
         <div
-          className="absolute left-0 right-0 bg-border"
-          style={{ top: "calc(50% - 1px)", height: "2px" }}
-        />
+          className="grid gap-x-4 px-6 py-2 relative z-0"
+          style={{
+            minWidth: `max(100%, ${n * 196 + (n - 1) * 16 + 48}px)`,
+            gridTemplateColumns: `repeat(${n}, minmax(180px, 1fr))`,
+            gridTemplateRows: "auto 16px 28px 16px auto",
+            alignItems: "start",
+          }}
+        >
+          {/* Horizontal timeline line runs through the dot row (row 3) */}
+          <div
+            className="bg-border z-0"
+            style={{
+              gridColumn: `1 / span ${n}`,
+              gridRow: 3,
+              alignSelf: "center",
+              height: "2px",
+            }}
+          />
 
-        {/* Left continuation gradient */}
-        <div
-          className="absolute left-0 w-6 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none"
-          style={{ top: "0", bottom: "0" }}
-        />
-        {/* Right continuation gradient */}
-        <div
-          className="absolute right-0 w-6 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none"
-          style={{ top: "0", bottom: "0" }}
-        />
+          {/* Left fade */}
+          <div
+            className="absolute left-0 w-6 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none"
+            style={{ top: 0, bottom: 0 }}
+          />
+          {/* Right fade */}
+          <div
+            className="absolute right-0 w-6 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none"
+            style={{ top: 0, bottom: 0 }}
+          />
 
-        {/* ── Markers ── */}
-        {period.tenses.map((tense) => {
-          const isHighlighted = tense.id === highlightId;
-          return (
-            <div
-              key={tense.id}
-              ref={isHighlighted ? highlightRef : undefined}
-              className={cn(
-                "flex-1 flex flex-col items-center transition-all duration-300",
-                "min-w-[160px]",
-              )}
-            >
-              {/* ── Upper bubble (Russian) ── */}
-              <div className="flex-1 flex items-end justify-center px-2 pt-5 pb-2 w-full">
+          {/* ── Row 1: Russian question bubbles ── */}
+          {period.tenses.map((tense, idx) => {
+            const isHighlighted = tense.id === highlightId;
+            return (
+              <div
+                key={`${tense.id}-q`}
+                ref={isHighlighted ? highlightRef : undefined}
+                className="flex justify-center px-2 pt-5"
+                style={{ gridColumn: idx + 1, gridRow: 1 }}
+              >
                 <div
                   className={cn(
                     "rounded-2xl px-3 py-2 text-center max-w-[148px] w-full",
@@ -270,12 +279,38 @@ function TimelineSection({
                   </p>
                 </div>
               </div>
+            );
+          })}
 
-              {/* ── Upper connector ── */}
-              <div className={cn("w-px h-4", isHighlighted ? "bg-primary/40" : "bg-border")} />
+          {/* ── Row 2: Upper connectors ── */}
+          {period.tenses.map((tense, idx) => {
+            const isHighlighted = tense.id === highlightId;
+            return (
+              <div
+                key={`${tense.id}-uc`}
+                className="flex justify-center"
+                style={{ gridColumn: idx + 1, gridRow: 2 }}
+              >
+                <div
+                  className={cn(
+                    "w-px",
+                    isHighlighted ? "bg-primary/40" : "bg-border",
+                  )}
+                  style={{ height: "100%" }}
+                />
+              </div>
+            );
+          })}
 
-              {/* ── Timeline dot ── */}
-              <div className="h-6 flex items-center justify-center w-full">
+          {/* ── Row 3: Timeline dots ── */}
+          {period.tenses.map((tense, idx) => {
+            const isHighlighted = tense.id === highlightId;
+            return (
+              <div
+                key={`${tense.id}-dot`}
+                className="flex items-center justify-center"
+                style={{ gridColumn: idx + 1, gridRow: 3, position: "relative", zIndex: 1 }}
+              >
                 <div
                   className={cn(
                     "rounded-full border-2 border-background transition-all duration-300",
@@ -286,12 +321,38 @@ function TimelineSection({
                   )}
                 />
               </div>
+            );
+          })}
 
-              {/* ── Lower connector ── */}
-              <div className={cn("w-px h-4", isHighlighted ? "bg-primary/40" : "bg-border")} />
+          {/* ── Row 4: Lower connectors ── */}
+          {period.tenses.map((tense, idx) => {
+            const isHighlighted = tense.id === highlightId;
+            return (
+              <div
+                key={`${tense.id}-lc`}
+                className="flex justify-center"
+                style={{ gridColumn: idx + 1, gridRow: 4 }}
+              >
+                <div
+                  className={cn(
+                    "w-px",
+                    isHighlighted ? "bg-primary/40" : "bg-border",
+                  )}
+                  style={{ height: "100%" }}
+                />
+              </div>
+            );
+          })}
 
-              {/* ── Lower bubble (English) ── */}
-              <div className="flex-1 flex items-start justify-center px-2 pt-2 pb-5 w-full">
+          {/* ── Row 5: English tense cards ── */}
+          {period.tenses.map((tense, idx) => {
+            const isHighlighted = tense.id === highlightId;
+            return (
+              <div
+                key={`${tense.id}-card`}
+                className="flex justify-center px-2 pb-5"
+                style={{ gridColumn: idx + 1, gridRow: 5 }}
+              >
                 <div
                   className={cn(
                     "rounded-2xl px-3 py-3 text-center max-w-[148px] w-full",
@@ -315,12 +376,12 @@ function TimelineSection({
                   </p>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </>);
+    </>
+  );
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
