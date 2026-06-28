@@ -5,10 +5,7 @@ import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
 import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "../lib/utils";
-import {
-  ChevronDown, Zap, Clock, Activity, Star,
-  BookOpen, AlertCircle,
-} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { SessionConfig, VerbPoolSpec, IrregularForm } from "../engine/exercises";
 import { Tense } from "../data/grammar";
 
@@ -27,7 +24,6 @@ interface PresetDef {
 interface GroupDef {
   id: string;
   label: string;
-  Icon: React.ComponentType<{ size?: number; className?: string }>;
   presets: PresetDef[];
 }
 
@@ -35,7 +31,6 @@ const GROUPS: GroupDef[] = [
   {
     id: "irregular",
     label: "Irregular Verbs",
-    Icon: Zap,
     presets: [
       { id: "irr-past",  label: "Past Simple",      exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "past" },
       { id: "irr-pp",    label: "Past Participle",   exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "pastParticiple" },
@@ -45,7 +40,6 @@ const GROUPS: GroupDef[] = [
   {
     id: "present-simple",
     label: "Present Simple",
-    Icon: Clock,
     presets: [
       { id: "ps-all", label: "All Subjects", exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentSimple"] },
     ],
@@ -53,7 +47,6 @@ const GROUPS: GroupDef[] = [
   {
     id: "continuous",
     label: "Continuous Forms",
-    Icon: Activity,
     presets: [
       { id: "cont-pres",  label: "Present",  exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentContinuous"] },
       { id: "cont-past",  label: "Past",     exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastContinuous"] },
@@ -64,7 +57,6 @@ const GROUPS: GroupDef[] = [
   {
     id: "perfect",
     label: "Perfect Forms",
-    Icon: Star,
     presets: [
       { id: "perf-pres",  label: "Present", exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentPerfect"] },
       { id: "perf-past",  label: "Past",    exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastPerfect"] },
@@ -75,7 +67,6 @@ const GROUPS: GroupDef[] = [
   {
     id: "full",
     label: "Full Conjugation",
-    Icon: BookOpen,
     presets: [
       { id: "full-all", label: "All Tenses", exerciseTypes: ["verbform"], verbPool: "all" },
     ],
@@ -83,7 +74,6 @@ const GROUPS: GroupDef[] = [
   {
     id: "mistakes",
     label: "Mistakes Review",
-    Icon: AlertCircle,
     presets: [
       { id: "mistakes", label: "Review Mistakes", exerciseTypes: ["verbform", "irregular"], verbPool: "all", mistakesOnly: true },
     ],
@@ -229,7 +219,6 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
         <ScrollArea className="flex-1 min-h-0">
           <div className="px-4 py-4 space-y-3">
             {GROUPS.map(group => {
-              const { Icon } = group;
               const hasActive = group.presets.some(p => selectedIds.includes(p.id));
 
               return (
@@ -243,23 +232,14 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
                   )}
                 >
                   {/* Group header */}
-                  <div className="flex items-center gap-2">
-                    <Icon
-                      size={15}
-                      className={cn(
-                        "shrink-0",
-                        hasActive ? "text-primary" : "text-muted-foreground",
-                      )}
-                    />
-                    <span
-                      className={cn(
-                        "text-sm font-semibold",
-                        hasActive ? "text-foreground" : "text-muted-foreground",
-                      )}
-                    >
-                      {group.label}
-                    </span>
-                  </div>
+                  <span
+                    className={cn(
+                      "text-sm font-semibold",
+                      hasActive ? "text-foreground" : "text-muted-foreground",
+                    )}
+                  >
+                    {group.label}
+                  </span>
 
                   {/* Preset chips */}
                   <div className="flex flex-wrap gap-2">
