@@ -225,7 +225,7 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
                 <div
                   key={group.id}
                   className={cn(
-                    "rounded-xl border p-4 space-y-3 transition-colors",
+                    "rounded-xl border p-4 space-y-5 transition-colors",
                     hasActive
                       ? "border-primary/50 bg-primary/5"
                       : "border-border",
