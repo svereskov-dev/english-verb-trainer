@@ -17,6 +17,7 @@ interface Period {
   id: "past" | "present" | "future";
   label: string;
   tenses: TenseDef[];
+  standaloneCard?: TenseDef;   // e.g. Past Simple sits above the timeline
   accentClass: string;
   accentBg: string;
   dotBg: string;
@@ -31,20 +32,21 @@ const PERIODS: Period[] = [
     accentBg: "bg-sky-600 dark:bg-sky-400",
     dotBg: "bg-sky-500 dark:bg-sky-400",
     ringClass: "ring-sky-400/50",
+    standaloneCard: {
+      id: "pastSimple",
+      name: "Past Simple",
+      russian: "Что произошло?",
+      structure: "Subject + V2",
+      example: "I worked.",
+    },
     tenses: [
+      // Chronological order: earliest (left) → latest (right)
       {
-        id: "pastSimple",
-        name: "Past Simple",
-        russian: "Что произошло тогда?",
-        structure: "Subject + V2",
-        example: "I worked.",
-      },
-      {
-        id: "pastContinuous",
-        name: "Past Continuous",
-        russian: "Что происходило в определённый момент?",
-        structure: "Subject + was/were + V-ing",
-        example: "I was working.",
+        id: "pastPerfectContinuous",
+        name: "Past Perfect Continuous",
+        russian: "Что происходило до другого события?",
+        structure: "Subject + had been + V-ing",
+        example: "I had been working.",
       },
       {
         id: "pastPerfect",
@@ -54,11 +56,11 @@ const PERIODS: Period[] = [
         example: "I had worked.",
       },
       {
-        id: "pastPerfectContinuous",
-        name: "Past Perfect Continuous",
-        russian: "Что длилось до другого события?",
-        structure: "Subject + had been + V-ing",
-        example: "I had been working.",
+        id: "pastContinuous",
+        name: "Past Continuous",
+        russian: "Что происходило в определённый момент?",
+        structure: "Subject + was/were + V-ing",
+        example: "I was working.",
       },
     ],
   },
@@ -172,12 +174,49 @@ function TimelineSection({
     container.scrollTo({ left: Math.max(0, offset), behavior: "smooth" });
   }, [visible, highlightId]);
 
+  const card = period.standaloneCard;
+  const cardHighlighted = card ? highlightId === card.id : false;
+
   return (
-    <div
-      ref={scrollRef}
-      className="w-full overflow-x-auto overscroll-x-contain pb-2"
-      style={{ scrollbarWidth: "none" }}
-    >
+    <>
+      {/* ── Standalone card (e.g. Past Simple above timeline) ── */}
+      {card && (
+        <div className="flex justify-center px-4 pt-4 pb-2">
+          <div
+            className={cn(
+              "rounded-2xl px-5 py-3 text-center max-w-[240px] w-full border transition-all duration-300",
+              cardHighlighted
+                ? "border-primary/40 bg-primary/10 shadow-sm"
+                : "border-border bg-card",
+            )}
+          >
+            <p className={cn(
+              "text-sm font-semibold mb-1.5 leading-tight",
+              cardHighlighted ? period.accentClass : "text-foreground",
+            )}>
+              {card.name}
+            </p>
+            <p className={cn(
+              "text-xs leading-tight mb-2",
+              cardHighlighted ? "text-foreground font-medium" : "text-muted-foreground",
+            )}>
+              {card.russian}
+            </p>
+            <p className="text-[11px] text-muted-foreground font-mono leading-tight mb-1.5">
+              {card.structure}
+            </p>
+            <p className="text-xs font-medium text-foreground italic leading-tight">
+              {card.example}
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div
+        ref={scrollRef}
+        className="w-full overflow-x-auto overscroll-x-contain pb-2"
+        style={{ scrollbarWidth: "none" }}
+      >
       {/* Inner strip: wider than screen so content is scrollable */}
       <div className="relative inline-flex items-stretch min-w-full px-6" style={{ minWidth: "max(100%, 672px)" }}>
 
@@ -277,7 +316,7 @@ function TimelineSection({
         })}
       </div>
     </div>
-  );
+  </>);
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

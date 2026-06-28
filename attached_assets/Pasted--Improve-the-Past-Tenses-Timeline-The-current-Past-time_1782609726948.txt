@@ -1,0 +1,134 @@
+# Improve the "Past Tenses" Timeline
+
+The current **Past** timeline needs a structural correction.
+
+## Goal
+
+The timeline should visually represent the chronological order of events from **earliest (left)** to **latest (right)**.
+
+At the moment the tenses are arranged incorrectly.
+
+---
+
+## 1. Move Past Simple out of the timeline
+
+Past Simple is the default past tense and should not be part of the timeline.
+
+Instead, display it directly below the **Past** heading as a separate card.
+
+Display:
+
+### Past Simple
+
+**Question**
+
+> Что произошло?
+
+**Formula**
+
+> Subject + V2
+
+**Example**
+
+> I worked.
+
+This card should appear **above** the timeline.
+
+---
+
+## 2. Reorder the timeline
+
+After removing Past Simple, the timeline should contain only three tenses.
+
+Arrange them from **left to right** in this order:
+
+### 1. Past Perfect Continuous
+
+**Question**
+
+> Что происходило до другого события?
+
+**Formula**
+
+> Subject + had been + V-ing
+
+**Example**
+
+> I had been working.
+
+---
+
+### 2. Past Perfect
+
+**Question**
+
+> Что произошло раньше другого события?
+
+**Formula**
+
+> Subject + had + V3
+
+**Example**
+
+> I had worked.
+
+---
+
+### 3. Past Continuous
+
+**Question**
+
+> Что происходило в определенный момент?
+
+**Formula**
+
+> Subject + was/were + V-ing
+
+**Example**
+
+> I was working.
+
+---
+
+## 3. Timeline logic
+
+The educational idea is simple:
+
+* **Left** = earlier in time.
+* **Right** = later in time.
+
+Past Perfect Continuous represents the earliest action (a process that had already been happening).
+
+Past Perfect represents an action completed before another past event.
+
+Past Continuous represents an action in progress at a particular moment in the past.
+
+The visual order should help learners understand the relationship between the tenses.
+
+---
+
+## 4. Keep the current design
+
+Do **not** redesign the page.
+
+Keep:
+
+* current colors;
+* cards;
+* typography;
+* spacing;
+* animations;
+* navigation.
+
+Only change the layout and ordering.
+
+---
+
+## 5. Verify all content
+
+While making these changes, verify that:
+
+* all English example sentences are grammatically correct;
+* all Russian guiding questions accurately describe each tense;
+* all formulas are correct;
+* the timeline follows the chronological order from earliest to latest.
