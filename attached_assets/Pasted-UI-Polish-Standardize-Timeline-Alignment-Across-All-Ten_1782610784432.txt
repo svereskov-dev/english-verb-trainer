@@ -1,0 +1,96 @@
+UI Polish — Standardize Timeline Alignment Across All Tenses Pages
+
+The Past, Present and Future timeline pages are functionally correct, but the visual alignment is inconsistent.
+
+Currently:
+
+the colored timeline dots are not positioned at the same vertical level;
+the vertical connector lines above and below the dots have different lengths;
+some dots sit slightly higher or lower than others;
+the result is that each page looks slightly different even though they represent the same component.
+Goal
+
+Create one consistent layout system and apply it to all three pages:
+
+Past
+Present
+Future
+Requirements
+1. Timeline dots
+
+All colored dots must be positioned on exactly the same horizontal axis.
+
+Every dot should have:
+
+identical size;
+identical vertical position;
+identical spacing from the timeline.
+
+No dot should appear even 1–2 px higher or lower than another.
+
+2. Vertical connector lines
+
+The connector lines should be standardized.
+
+For every timeline item:
+
+the upper connector line (bubble → dot) must have the same length;
+the lower connector line (dot → card) must have the same length;
+line thickness must be identical everywhere.
+
+No manual positioning for individual items.
+
+3. Timeline spacing
+
+Each timeline item should use the same vertical spacing:
+
+Question bubble
+
+↓
+
+connector
+
+↓
+
+colored dot
+
+↓
+
+connector
+
+↓
+
+tense card
+
+This spacing should be identical for every tense on every page.
+
+4. Use one shared layout
+
+Instead of positioning elements separately for Past, Present and Future, create one reusable layout/grid so every timeline page is rendered using the same measurements.
+
+The only things that should differ between pages are:
+
+labels;
+colors;
+formulas;
+examples;
+order of the tense cards.
+
+Everything else should remain identical.
+
+5. Preserve the current design
+
+This is a visual consistency update only.
+
+Do not redesign:
+
+colors;
+typography;
+cards;
+bubbles;
+animations;
+navigation.
+
+Simply make the timeline geometry perfectly aligned across all three sections.
+
+The goal is for the Past, Present and Future pages to look like three versions of the same polished component.

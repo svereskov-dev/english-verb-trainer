@@ -247,12 +247,12 @@ function TimelineSection({
               key={tense.id}
               ref={isHighlighted ? highlightRef : undefined}
               className={cn(
-                "flex-1 flex flex-col items-center gap-0 transition-all duration-300",
-                "min-w-[160px]"
+                "flex-1 flex flex-col items-center transition-all duration-300",
+                "min-w-[160px]",
               )}
             >
               {/* ── Upper bubble (Russian) ── */}
-              <div className="flex-1 flex flex-col items-center justify-end pb-4 pt-6 px-2">
+              <div className="flex-1 flex items-end justify-center px-2 pt-5 pb-2 w-full">
                 <div
                   className={cn(
                     "rounded-2xl px-3 py-2 text-center max-w-[148px] w-full",
@@ -269,12 +269,13 @@ function TimelineSection({
                     {tense.russian}
                   </p>
                 </div>
-                {/* Stem from bubble down to line */}
-                <div className={cn("w-px h-4 mt-2", isHighlighted ? "bg-primary/40" : "bg-border")} />
               </div>
 
+              {/* ── Upper connector ── */}
+              <div className={cn("w-px h-4", isHighlighted ? "bg-primary/40" : "bg-border")} />
+
               {/* ── Timeline dot ── */}
-              <div className="relative z-10 flex items-center justify-center">
+              <div className="h-6 flex items-center justify-center w-full">
                 <div
                   className={cn(
                     "rounded-full border-2 border-background transition-all duration-300",
@@ -286,10 +287,11 @@ function TimelineSection({
                 />
               </div>
 
+              {/* ── Lower connector ── */}
+              <div className={cn("w-px h-4", isHighlighted ? "bg-primary/40" : "bg-border")} />
+
               {/* ── Lower bubble (English) ── */}
-              <div className="flex-1 flex flex-col items-center justify-start pt-4 pb-6 px-2">
-                {/* Stem from line down to bubble */}
-                <div className={cn("w-px h-4 mb-2", isHighlighted ? "bg-primary/40" : "bg-border")} />
+              <div className="flex-1 flex items-start justify-center px-2 pt-2 pb-5 w-full">
                 <div
                   className={cn(
                     "rounded-2xl px-3 py-3 text-center max-w-[148px] w-full",
