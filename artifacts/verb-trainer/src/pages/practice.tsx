@@ -7,7 +7,7 @@ import { AnswerInput } from "../components/AnswerInput";
 import { ProgressBar } from "../components/ProgressBar";
 import { TrainingMenu, DEFAULT_SESSION } from "../components/TrainingMenu";
 import { SessionConfig } from "../engine/exercises";
-import { Check, X, SkipForward, BookOpenText } from "lucide-react";
+import { Check, X, SkipForward, Sparkles, ChevronRight } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 
@@ -198,18 +198,26 @@ export default function Practice() {
     <div className="min-h-[100dvh] bg-background pb-20 flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
-      {/* Header row: mode selector + tenses reference + daily counters */}
-      <div className="p-4 flex justify-between items-center w-full max-w-3xl mx-auto gap-2">
-        <TrainingMenu current={config} onSelect={handleSelectConfig} />
+      {/* Header: 3-column grid — mode selector | centered tenses shortcut | counters */}
+      <div className="p-4 grid grid-cols-[1fr_auto_1fr] items-center w-full max-w-3xl mx-auto gap-2">
+        {/* Left: Training Mode */}
+        <div className="flex justify-start">
+          <TrainingMenu current={config} onSelect={handleSelectConfig} />
+        </div>
+
+        {/* Center: English Tenses shortcut (always centered, never shifts) */}
         <button
           onClick={handleOpenTenses}
-          className="shrink-0 flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-2.5 py-1.5 rounded-full hover:bg-muted"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground transition-all duration-200 active:scale-95 px-3 py-1.5 rounded-full border border-border/80 bg-card/80 hover:bg-card hover:border-primary/30 hover:shadow-sm shadow-sm backdrop-blur-sm"
           aria-label="English Tenses reference"
         >
-          <BookOpenText size={13} />
+          <Sparkles size={13} className="text-primary" />
           <span>English Tenses</span>
+          <ChevronRight size={13} className="text-muted-foreground -ml-0.5" />
         </button>
-        <div className="flex items-center gap-3 shrink-0">
+
+        {/* Right: Daily counters */}
+        <div className="flex justify-end items-center gap-3">
           <div className="flex items-center gap-1 text-green-600">
             <Check size={18} />
             <span className="font-bold">{dailyCorrect}</span>

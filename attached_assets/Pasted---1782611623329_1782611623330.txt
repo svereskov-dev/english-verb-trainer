@@ -1,0 +1,115 @@
+Мне нравится сама идея. Я бы даже немного усилил ее.
+
+Сейчас кнопка выглядит как обычный текст, а ведь это одна из самых полезных функций приложения. Если пользователь ее не замечает, значит интерфейс не выполняет свою задачу.
+
+Я бы предложил сделать ее похожей на небольшую "магическую" кнопку-подсказку, а не ссылку на учебник.
+
+Например:
+
+✨ English Tenses →
+
+или
+
+⭐ English Tenses →
+
+или
+
+📖✨ English Tenses →
+
+Так она воспринимается как дополнительная полезная возможность, а не как раздел с теорией, который "надо учить".
+
+Вот как я бы оформил ТЗ.
+
+# Improve the "English Tenses" Shortcut on the Practice Screen
+
+The current shortcut to the **English Tenses** page is difficult to notice and its position changes depending on the width of the Training Mode selector.
+
+This makes the interface feel unstable and reduces discoverability.
+
+The goal of this update is to make the shortcut visually consistent, clearly clickable, and always easy to find.
+
+---
+
+## 1. Fix the position
+
+The **English Tenses** button must always remain horizontally centered at the top of the Practice screen.
+
+Its position must **never shift** depending on:
+
+* the selected Training Mode;
+* the length of the Training Mode label;
+* screen width;
+* any other UI element.
+
+The Training Mode selector may expand or shrink, but the English Tenses shortcut should stay perfectly centered.
+
+---
+
+## 2. Make it obvious that it is clickable
+
+At the moment, the shortcut looks like plain text.
+
+It should clearly look like an interactive navigation element.
+
+---
+
+## 3. Replace the current icon
+
+Remove the current "book" icon.
+
+Instead, use a friendlier and more engaging icon, for example:
+
+* ✨
+* ⭐
+* ✨⭐
+* another subtle "magic" or "sparkle" icon from the existing icon library.
+
+The goal is to make the feature feel helpful and engaging rather than like opening a textbook.
+
+---
+
+## 4. Add a navigation indicator
+
+Add a small right arrow after the text.
+
+Example:
+
+✨ English Tenses →
+
+This immediately communicates that tapping the element opens another page.
+
+---
+
+## 5. Improve visual affordance
+
+The shortcut should have some visual styling so it stands out from ordinary text.
+
+Possible approaches:
+
+* a subtle rounded pill background;
+* a soft outline;
+* a light accent background;
+* a hover/tap animation consistent with the rest of the app.
+
+Use the existing design language of the application.
+
+Do **not** introduce a new visual style.
+
+---
+
+## 6. Preserve the current layout
+
+Do not redesign the Practice screen.
+
+Only improve the English Tenses shortcut by:
+
+* keeping it permanently centered;
+* replacing the icon;
+* adding a navigation arrow;
+* giving it a clearer interactive appearance.
+
+The goal is that users immediately understand:
+
+* this element can be tapped;
+* it opens another screen;
+* it contains useful learning material.
