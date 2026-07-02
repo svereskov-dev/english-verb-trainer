@@ -1,0 +1,85 @@
+Improvements to the English Tenses pages
+
+Several usability improvements are needed for the English Tenses section (Past / Present / Future).
+
+1. Disable swipe navigation between tense pages
+
+Currently, the user can switch between Past, Present, and Future simply by swiping horizontally.
+
+This creates a usability problem.
+
+Each timeline is wider than the screen, so users naturally try to scroll horizontally to see the rest of the timeline. Instead, the app switches to another tense page.
+
+This behavior should be changed.
+
+Required behavior
+
+Remove horizontal swipe navigation between the three tense pages.
+
+Users should be able to switch between:
+
+Past
+Present
+Future
+
+only by:
+
+tapping the tabs at the top, or
+tapping the left/right navigation arrows.
+
+Horizontal dragging should only move the current timeline left and right.
+
+Do not change any other navigation behavior.
+
+2. Slightly increase font sizes
+
+The text on the Tenses pages is a little too small on mobile devices.
+
+Please slightly increase the font sizes throughout the Past, Present, and Future pages.
+
+Increase only enough to improve readability.
+
+This applies to:
+
+tense names
+Russian guiding questions
+grammar formulas
+example sentences
+
+Do not redesign the layout.
+
+Only improve readability.
+
+3. Allow pinch-to-zoom on the Tenses pages
+
+The timelines contain a lot of information.
+
+Users should be able to zoom in using the standard two-finger pinch gesture.
+
+Requirements
+
+Enable pinch-to-zoom only for the English Tenses pages:
+
+Past
+Present
+Future
+
+The user should be able to:
+
+zoom in
+zoom out
+pan around the zoomed content naturally
+
+This functionality must not affect any other page of the application.
+
+The rest of the app should continue behaving exactly as it does now.
+
+Expected result
+
+After these changes:
+
+users can freely scroll the timeline horizontally without accidentally switching tense pages;
+switching between Past / Present / Future happens only through the tabs or navigation arrows;
+all text is easier to read on mobile devices;
+users can zoom into the timelines when they want to study the information in more detail;
+all other application behavior remains unchanged.

@@ -194,21 +194,21 @@ function TimelineSection({
             )}
           >
             <p className={cn(
-              "text-sm font-semibold mb-1.5 leading-tight",
+              "text-base font-semibold mb-2 leading-tight",
               cardHighlighted ? period.accentClass : "text-foreground",
             )}>
               {card.name}
             </p>
             <p className={cn(
-              "text-xs leading-tight mb-2",
+              "text-sm leading-tight mb-2",
               cardHighlighted ? "text-foreground font-medium" : "text-muted-foreground",
             )}>
               {card.russian}
             </p>
-            <p className="text-[11px] text-muted-foreground font-mono leading-tight mb-1.5">
+            <p className="text-xs text-muted-foreground font-mono leading-tight mb-2">
               {card.structure}
             </p>
-            <p className="text-xs font-medium text-foreground italic leading-tight">
+            <p className="text-sm font-medium text-foreground italic leading-tight">
               {card.example}
             </p>
           </div>
@@ -272,7 +272,7 @@ function TimelineSection({
                   )}
                 >
                   <p className={cn(
-                    "text-xs leading-tight",
+                    "text-sm leading-tight",
                     isHighlighted ? "text-foreground font-medium" : "text-muted-foreground",
                   )}>
                     {tense.russian}
@@ -363,15 +363,15 @@ function TimelineSection({
                   )}
                 >
                   <p className={cn(
-                    "text-xs font-semibold mb-1.5 leading-tight",
+                    "text-sm font-semibold mb-2 leading-tight",
                     isHighlighted ? period.accentClass : "text-foreground",
                   )}>
                     {tense.name}
                   </p>
-                  <p className="text-[11px] text-muted-foreground font-mono leading-tight mb-2">
+                  <p className="text-xs text-muted-foreground font-mono leading-tight mb-2">
                     {tense.structure}
                   </p>
-                  <p className="text-xs font-medium text-foreground italic leading-tight">
+                  <p className="text-sm font-medium text-foreground italic leading-tight">
                     {tense.example}
                   </p>
                 </div>
@@ -412,30 +412,24 @@ export default function Tenses() {
     }
   });
 
-  // Touch / swipe handling
-  const touchStartX = useRef<number | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
-
   const goTo = useCallback((idx: number) => {
     if (idx < 0 || idx > 2) return;
-    setIsAnimating(true);
     setCurrentPeriod(idx);
-    setTimeout(() => setIsAnimating(false), 320);
   }, []);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const delta = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(delta) > 50) {
-      if (delta > 0) goTo(currentPeriod + 1);
-      else goTo(currentPeriod - 1);
-    }
-    touchStartX.current = null;
-  };
+  // Enable pinch-to-zoom on this page; restore on unmount
+  useEffect(() => {
+    const viewport = document.querySelector("meta[name=viewport]");
+    if (!viewport) return;
+    const original = viewport.getAttribute("content") ?? "";
+    viewport.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes",
+    );
+    return () => {
+      viewport.setAttribute("content", original);
+    };
+  }, []);
 
   const period = PERIODS[currentPeriod];
 
@@ -505,11 +499,9 @@ export default function Tenses() {
           </button>
         </div>
 
-        {/* Swipeable strip */}
+        {/* Period strip — navigation via tabs/arrows only, no swipe */}
         <div
           className="relative flex-1 overflow-hidden"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
         >
           <div
             className="flex h-full"
