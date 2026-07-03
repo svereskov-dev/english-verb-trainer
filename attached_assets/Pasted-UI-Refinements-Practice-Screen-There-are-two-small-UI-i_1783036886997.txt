@@ -1,0 +1,69 @@
+UI Refinements — Practice Screen
+
+There are two small UI improvements needed on the Practice screen.
+
+1. Increase spacing between the verb and its IPA transcription
+
+Currently, the IPA transcription is positioned too close to the verb.
+
+Example:
+
+break
+/breɪk/
+ломать
+
+This makes the content feel slightly cramped.
+
+Required change
+
+Increase the vertical spacing between:
+
+the verb;
+the IPA transcription.
+
+Only a small increase is needed (approximately 6–10 px).
+
+The spacing between the IPA transcription and the translation can remain unchanged.
+
+Do not modify typography, font sizes, or colors.
+
+The goal is simply to improve visual readability.
+
+2. Keep the "English Tenses" button perfectly centered
+
+On desktop the English Tenses button appears centered.
+
+However, on mobile devices it shifts left or right depending on the width of the neighboring controls (especially the Training Mode selector).
+
+This should never happen.
+
+Required behavior
+
+The English Tenses button must always remain perfectly centered horizontally within the screen, regardless of:
+
+the width of the Training Mode selector;
+localization or text length;
+screen size;
+orientation.
+
+The left Training Mode selector and the right Correct/Incorrect counters should not influence the button's position.
+
+The layout should behave like this:
+
+Left: Training Mode selector
+Center: English Tenses button (always mathematically centered)
+Right: Correct / Incorrect counters
+
+The center button must stay fixed in the center even if the elements on the left or right change their width.
+
+Use an appropriate layout solution (for example, absolute positioning or a three-column layout with an independent centered element) rather than relying on flexible spacing.
+
+Expected result
+
+The top bar should look balanced and consistent on every device:
+
+Training Mode selector aligned left;
+English Tenses button always perfectly centered;
+Correct/Incorrect counters aligned right.
+
+No element should push the center button away from the middle of the screen.

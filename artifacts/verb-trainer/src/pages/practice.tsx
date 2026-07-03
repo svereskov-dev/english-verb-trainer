@@ -198,26 +198,26 @@ export default function Practice() {
     <div className="min-h-[100dvh] bg-background pb-20 flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
-      {/* Header: 3-column grid — mode selector | centered tenses shortcut | counters */}
-      <div className="p-4 grid grid-cols-[1fr_auto_1fr] items-center w-full max-w-3xl mx-auto gap-2">
+      {/* Header: relative container — button is absolutely centred, sides are independent */}
+      <div className="relative flex items-center p-4 w-full max-w-3xl mx-auto" style={{ minHeight: "52px" }}>
         {/* Left: Training Mode */}
-        <div className="flex justify-start">
-          <TrainingMenu current={config} onSelect={handleSelectConfig} />
+        <TrainingMenu current={config} onSelect={handleSelectConfig} />
+
+        {/* Center: English Tenses shortcut — always at 50% of container regardless of side widths */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <button
+            onClick={handleOpenTenses}
+            className="pointer-events-auto inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground transition-all duration-200 active:scale-95 px-3 py-1.5 rounded-full border border-border/80 bg-card/80 hover:bg-card hover:border-primary/30 hover:shadow-sm shadow-sm backdrop-blur-sm"
+            aria-label="English Tenses reference"
+          >
+            <Sparkles size={13} className="text-primary" />
+            <span>English Tenses</span>
+            <ChevronRight size={13} className="text-muted-foreground -ml-0.5" />
+          </button>
         </div>
 
-        {/* Center: English Tenses shortcut (always centered, never shifts) */}
-        <button
-          onClick={handleOpenTenses}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground transition-all duration-200 active:scale-95 px-3 py-1.5 rounded-full border border-border/80 bg-card/80 hover:bg-card hover:border-primary/30 hover:shadow-sm shadow-sm backdrop-blur-sm"
-          aria-label="English Tenses reference"
-        >
-          <Sparkles size={13} className="text-primary" />
-          <span>English Tenses</span>
-          <ChevronRight size={13} className="text-muted-foreground -ml-0.5" />
-        </button>
-
         {/* Right: Daily counters */}
-        <div className="flex justify-end items-center gap-3">
+        <div className="ml-auto flex items-center gap-3">
           <div className="flex items-center gap-1 text-green-600">
             <Check size={18} />
             <span className="font-bold">{dailyCorrect}</span>
