@@ -20,7 +20,7 @@ export default function Home() {
         
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-foreground">English Verb Trainer</h1>
-          <p className="text-muted-foreground">Go to your goal</p>
+          <p className="text-muted-foreground">Go get your goal</p>
         </div>
 
         <Card className="border-border bg-card">

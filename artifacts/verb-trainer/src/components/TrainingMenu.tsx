@@ -186,11 +186,27 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
   };
 
   const togglePreset = (id: string) => {
-    setSelectedIds(prev =>
-      prev.includes(id)
-        ? prev.filter(p => p !== id)
-        : [...prev, id]
-    );
+    setSelectedIds(prev => {
+      const group = GROUPS.find(g => g.presets.some(p => p.id === id));
+      if (!group) return prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id];
+
+      const groupIds = group.presets.map(p => p.id);
+      const mixedId = group.presets.find(p => p.label === "Mixed")?.id;
+
+      if (prev.includes(id)) {
+        // Deselect
+        return prev.filter(p => p !== id);
+      }
+
+      if (id === mixedId) {
+        // Selecting Mixed: remove all other presets in this group, add Mixed
+        return [...prev.filter(p => !groupIds.includes(p)), id];
+      } else {
+        // Selecting individual: remove Mixed from this group if present, add individual
+        const withoutMixed = mixedId ? prev.filter(p => p !== mixedId) : prev;
+        return [...withoutMixed, id];
+      }
+    });
   };
 
   const contextLabel = current.contextEnabled ? " · Context" : "";
