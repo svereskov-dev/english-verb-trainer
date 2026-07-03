@@ -35,13 +35,13 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
         {/* Subject card */}
         <div className="w-full rounded-2xl bg-card border border-border p-5 flex flex-col items-center gap-1">
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Subject</p>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight">{exercise.question.subject}</p>
+          <p className="text-3xl md:text-4xl font-bold tracking-tight">{exercise.question.subject}</p>
         </div>
 
         {/* Verb card */}
         <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-1">
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
-          <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+          <p className="text-4xl md:text-5xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
           {ipa && (
             <p className="text-muted-foreground text-sm mt-3 tracking-wide">{ipa}</p>
           )}
@@ -70,7 +70,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
         {/* Verb card */}
         <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-1">
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
-          <p className="text-5xl md:text-6xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+          <p className="text-4xl md:text-5xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
           {ipa && (
             <p className="text-muted-foreground text-sm mt-3 tracking-wide">{ipa}</p>
           )}

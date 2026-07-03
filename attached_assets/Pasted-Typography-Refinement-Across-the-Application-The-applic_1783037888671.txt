@@ -1,0 +1,68 @@
+Typography Refinement Across the Application
+
+The application is now functionally complete, but the typography needs a final polish to create a more balanced and professional visual experience.
+
+Please perform a typography review across the entire application and improve the visual hierarchy of text.
+
+The goal is not to redesign the UI, but to make font sizes feel more balanced and consistent.
+
+General principles
+
+The interface should have a clear visual hierarchy:
+
+the user's primary focus should still be the exercise itself;
+secondary information should remain secondary;
+no single text element should feel disproportionately large or unusually small.
+
+Please review all major screens with this in mind.
+
+Specific adjustments
+Practice screen
+
+The verb itself is currently too large compared to the rest of the interface.
+
+Please reduce the verb font size slightly.
+
+The change should be subtle—just enough that the layout feels more balanced while keeping the verb as the primary focal point.
+
+Also slightly reduce the size of the placeholder text:
+
+Type your answer...
+
+It currently draws more attention than necessary.
+
+The IPA transcription and translation do not need to match the verb size—they should remain visually secondary.
+
+Dictionary list
+
+On the Dictionary search page, the verb names are currently a little too small.
+
+Please increase the font size slightly to improve readability while browsing.
+
+Only a small increase is needed.
+
+Dictionary verb detail page
+
+On the individual verb page, the large verb title at the top feels oversized.
+
+Please reduce it slightly so it remains prominent but feels more proportional to the rest of the page.
+
+Review other screens
+
+Please also review the typography on the remaining pages of the application.
+
+If there are other places where font sizes feel visually inconsistent or out of proportion, make small adjustments to improve overall balance.
+
+The objective is consistency—not redesign.
+
+Important
+Do not redesign layouts.
+Do not change colors.
+Do not change spacing unless necessary because of typography.
+Do not alter the application's functionality.
+
+The task is purely to improve the visual balance and consistency of typography throughout the application.
+
+Goal
+
+After this refinement, the application should feel more polished and cohesive. Users should immediately understand what deserves their attention first, second, and third, thanks to a consistent and well-balanced typography system.

@@ -50,7 +50,7 @@ export default function Dictionary() {
               <Link key={verb.infinitive} href={`/dictionary/${verb.infinitive}`}>
                 <div className="flex items-center justify-between rounded-xl px-4 py-3 hover:bg-muted transition-colors cursor-pointer">
                   <div className="flex items-baseline gap-2">
-                    <span className="font-semibold">{verb.infinitive}</span>
+                    <span className="text-lg font-semibold">{verb.infinitive}</span>
                     {verb.translation && (
                       <span className="text-muted-foreground text-sm">
                         {verb.translation}

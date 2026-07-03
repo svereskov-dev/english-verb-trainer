@@ -39,7 +39,7 @@ export default function DictionaryVerb() {
         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
           English Verb
         </p>
-        <h1 className="text-5xl font-black uppercase mb-6">{verb.infinitive}</h1>
+        <h1 className="text-3xl font-black uppercase mb-6">{verb.infinitive}</h1>
 
         {/* Info cards */}
         <div className="space-y-3">

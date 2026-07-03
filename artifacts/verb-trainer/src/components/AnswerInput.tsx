@@ -61,7 +61,7 @@ export function AnswerInput({
         onKeyDown={handleKeyDown}
         readOnly={isPostSubmit}
         className={[
-          "text-2xl text-center h-14 w-full mx-auto block",
+          "text-xl text-center h-14 w-full mx-auto block",
           "rounded-xl border-2 bg-background px-3 py-2",
           "transition-colors duration-150",
           "placeholder:text-muted-foreground",
