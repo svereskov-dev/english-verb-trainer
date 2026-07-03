@@ -1,16 +1,22 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useStats } from "../hooks/useStats";
 import { useSettings } from "../hooks/useSettings";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { Flame, Target } from "lucide-react";
+import { Flame, Target, SlidersHorizontal } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 
 export default function Home() {
+  const [, navigate] = useLocation();
   const { stats } = useStats();
   const { settings } = useSettings();
 
   if (!stats || !settings) return null;
+
+  const handleChooseMode = () => {
+    sessionStorage.setItem("openTrainingMenu", "true");
+    navigate("/practice");
+  };
 
   const progress = Math.min(100, Math.round((stats.sessionAnswers / settings.dailyGoal) * 100));
 
@@ -66,7 +72,18 @@ export default function Home() {
           </Card>
         </div>
 
-        <div className="pt-4">
+        <div className="space-y-3">
+          <Button
+            variant="outline"
+            size="lg"
+            className="w-full h-14 text-lg font-semibold rounded-xl"
+            onClick={handleChooseMode}
+            data-testid="btn-choose-mode"
+          >
+            <SlidersHorizontal size={18} className="mr-2" />
+            Choose Training Mode
+          </Button>
+
           <Link href="/practice" className="w-full">
             <Button size="lg" className="w-full h-14 text-lg font-bold rounded-xl" data-testid="btn-start-practice">
               Start Practice

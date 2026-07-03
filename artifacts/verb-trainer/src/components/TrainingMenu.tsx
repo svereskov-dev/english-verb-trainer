@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Switch } from "./ui/switch";
@@ -171,6 +171,14 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
   const [open, setOpen]             = useState(false);
   const [selectedIds, setSelectedIds] = useState<string[]>(current.selectedIds);
   const [contextOn, setContextOn]   = useState(current.contextEnabled);
+
+  // Auto-open when navigated from Home via "Choose Training Mode"
+  useEffect(() => {
+    if (sessionStorage.getItem("openTrainingMenu") === "true") {
+      sessionStorage.removeItem("openTrainingMenu");
+      setOpen(true);
+    }
+  }, []);
 
   const handleOpen = (o: boolean) => {
     if (o) {
