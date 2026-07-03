@@ -73,6 +73,12 @@ export default function Home() {
         </div>
 
         <div className="space-y-3">
+          <Link href="/practice" className="w-full">
+            <Button size="lg" className="w-full h-14 text-lg font-bold rounded-xl" data-testid="btn-start-practice">
+              Start Practice
+            </Button>
+          </Link>
+
           <Button
             variant="outline"
             size="lg"
@@ -83,12 +89,6 @@ export default function Home() {
             <SlidersHorizontal size={18} className="mr-2" />
             Choose Training Mode
           </Button>
-
-          <Link href="/practice" className="w-full">
-            <Button size="lg" className="w-full h-14 text-lg font-bold rounded-xl" data-testid="btn-start-practice">
-              Start Practice
-            </Button>
-          </Link>
         </div>
 
       </div>
