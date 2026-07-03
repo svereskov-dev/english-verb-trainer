@@ -66,7 +66,7 @@ export default function DictionaryVerb() {
             </p>
             <div className="grid grid-cols-1 gap-4">
               <div className="flex justify-between items-start">
-                <span className="text-sm text-muted-foreground pt-0.5">Base Form</span>
+                <span className="text-sm text-muted-foreground pt-0.5">Base Form (V1)</span>
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-semibold">{verb.infinitive}</span>
                   {verb.infinitiveIPA && (
@@ -75,7 +75,7 @@ export default function DictionaryVerb() {
                 </div>
               </div>
               <div className="flex justify-between items-start">
-                <span className="text-sm text-muted-foreground pt-0.5">Past Simple</span>
+                <span className="text-sm text-muted-foreground pt-0.5">Past Simple (V2)</span>
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-semibold">{verb.past}</span>
                   {verb.pastIPA && (
@@ -84,7 +84,7 @@ export default function DictionaryVerb() {
                 </div>
               </div>
               <div className="flex justify-between items-start">
-                <span className="text-sm text-muted-foreground pt-0.5">Past Participle</span>
+                <span className="text-sm text-muted-foreground pt-0.5">Past Participle (V3)</span>
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-semibold">{verb.pastParticiple}</span>
                   {verb.pastParticipleIPA && (
