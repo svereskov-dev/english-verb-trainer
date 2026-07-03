@@ -434,10 +434,10 @@ export default function Tenses() {
   const period = PERIODS[currentPeriod];
 
   return (
-    <div className="min-h-[100dvh] bg-background flex flex-col select-none">
+    <div className="min-h-[100dvh] bg-background flex flex-col select-none pt-safe">
 
       {/* ── Header ── */}
-      <div className="shrink-0 flex items-center gap-3 px-4 pt-safe pt-4 pb-3 border-b border-border">
+      <div className="shrink-0 flex items-center gap-3 px-4 pt-4 pb-3 border-b border-border">
         <button
           onClick={() => navigate("/practice")}
           className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"

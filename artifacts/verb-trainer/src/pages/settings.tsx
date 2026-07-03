@@ -28,7 +28,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-background pb-20">
+    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe">
       <div className="w-full max-w-md mx-auto p-6 space-y-6">
         <h1 className="text-3xl font-bold">Settings</h1>
         

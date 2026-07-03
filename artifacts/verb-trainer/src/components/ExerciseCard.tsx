@@ -26,7 +26,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
     const translation = getTranslation(exercise.question.verb);
     const ipa = getIPA(exercise.question.verb);
     return (
-      <div className="flex flex-col items-center gap-4 w-full">
+      <div className="flex flex-col items-center gap-3 w-full">
         {/* Tense pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
           {formatTenseName(exercise.question.tense)}
@@ -61,7 +61,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
     const translation = getTranslation(exercise.question.verb);
     const ipa = getIPA(exercise.question.verb);
     return (
-      <div className="flex flex-col items-center gap-4 w-full">
+      <div className="flex flex-col items-center gap-3 w-full">
         {/* Form pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
           Irregular Form: {askForMap[exercise.question.askFor]}
@@ -86,7 +86,7 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
     const translation = getTranslation(exercise.question.verb ?? "");
     const ipa = getIPA(exercise.question.verb ?? "");
     return (
-      <div className="flex flex-col items-center gap-4 w-full">
+      <div className="flex flex-col items-center gap-3 w-full">
         {/* Tense pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
           {formatTenseName(exercise.question.tense)}

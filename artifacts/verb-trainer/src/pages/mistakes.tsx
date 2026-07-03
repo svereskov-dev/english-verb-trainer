@@ -39,7 +39,7 @@ export default function Mistakes() {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-background pb-24 flex flex-col">
+    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
       <div className="w-full max-w-md mx-auto p-6">
         <h1 className="text-2xl font-bold mb-1">Mistakes</h1>
         <p className="text-muted-foreground text-sm mb-6">

@@ -1,0 +1,108 @@
+Responsive & Full-Screen Audit
+
+Before publishing the application, please perform a complete audit of the application's responsive behavior in installed PWA mode.
+
+At the moment I can only test the application inside a mobile browser.
+
+The application must also work perfectly when installed as a full-screen PWA.
+
+Primary requirement
+
+The Practice screen is the highest priority.
+
+It is critical that the entire exercise fits on exactly one screen on common mobile devices.
+
+The user should never have to scroll vertically during an exercise.
+
+Everything required for solving the exercise should always be visible:
+
+top controls;
+Training Mode selector;
+English Tenses button;
+correct / incorrect counters;
+tense label;
+subject (when applicable);
+verb card;
+answer field;
+Check button;
+Skip button;
+bottom navigation.
+
+All of this should fit within a single screen.
+
+No vertical scrolling should be necessary.
+
+This is a core UX requirement.
+
+Test common mobile viewport sizes
+
+Please verify the layout on common devices such as:
+
+iPhone SE
+iPhone 13 / 14 / 15
+iPhone Plus / Pro Max
+Google Pixel devices
+Samsung Galaxy devices
+other common Android screen sizes
+
+Test both:
+
+Portrait orientation
+Landscape orientation
+Installed PWA mode
+
+Please specifically verify the application in installed PWA mode.
+
+The layout should account for:
+
+hidden browser address bar;
+hidden browser toolbar;
+safe-area insets;
+different viewport heights;
+devices with display cutouts (notches, Dynamic Island, punch-hole cameras).
+Safe areas
+
+Ensure every page correctly respects:
+
+top safe area;
+bottom safe area.
+
+No interactive element should be clipped or positioned underneath the system UI.
+
+Responsive consistency
+
+Please review every screen and confirm that:
+
+nothing overlaps;
+buttons remain fully tappable;
+no text is clipped;
+no cards overflow;
+spacing remains visually balanced;
+typography remains readable on both small and large displays.
+If necessary
+
+If any screen requires scrolling because of excessive spacing, oversized typography, or inefficient layout, please make small adjustments to keep the interface compact.
+
+The goal is not to redesign the UI, but to ensure the application feels native and polished on all supported phones.
+
+Expected result
+
+After this audit:
+
+the Practice screen always fits entirely on one screen;
+the application works correctly in installed full-screen PWA mode;
+all pages display correctly across common mobile devices;
+no unnecessary scrolling is required;
+all layouts remain clean, balanced, and consistent regardless of screen size.
+Verification report (required)
+
+After completing the audit, please provide a brief verification report that includes:
+
+the viewport sizes and device categories tested;
+whether the tests were performed in both browser mode and installed PWA mode;
+confirmation that the Practice screen fits on a single screen without vertical scrolling;
+confirmation that all pages correctly respect safe-area insets;
+a summary of any layout or typography adjustments that were made;
+confirmation that no new responsive issues were introduced.
+
+The goal is to have confidence that the application is ready for testing and publication on real mobile devices, not just in the desktop preview.

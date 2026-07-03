@@ -155,7 +155,7 @@ export default function Practice() {
   // ── Mistakes mode with nothing to review ───────────────────────────────────
   if (noMistakes) {
     return (
-      <div className="min-h-[100dvh] bg-background pb-20 flex flex-col">
+      <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center">
           <div className="text-6xl">🎉</div>
           <div>
@@ -174,7 +174,7 @@ export default function Practice() {
   // ── Review session finished (all verbs now correct) ───────────────────────
   if (reviewExhausted) {
     return (
-      <div className="min-h-[100dvh] bg-background pb-20 flex flex-col">
+      <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center">
           <div className="text-6xl">🎉</div>
           <div>
@@ -195,11 +195,11 @@ export default function Practice() {
   const showingFeedback = feedback !== null;
 
   return (
-    <div className="min-h-[100dvh] bg-background pb-20 flex flex-col">
+    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
       {/* Header: relative container — button is absolutely centred, sides are independent */}
-      <div className="relative flex items-center p-4 w-full max-w-3xl mx-auto" style={{ minHeight: "52px" }}>
+      <div className="relative flex items-center px-4 py-2 w-full max-w-3xl mx-auto" style={{ minHeight: "44px" }}>
         {/* Left: Training Mode */}
         <TrainingMenu current={config} onSelect={handleSelectConfig} />
 
@@ -230,7 +230,7 @@ export default function Practice() {
       </div>
 
       {/* Exercise area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6 w-full max-w-md mx-auto gap-4">
+      <div className="flex-1 flex flex-col items-center justify-center p-4 w-full max-w-md mx-auto gap-3">
         <div className="w-full">
           <ExerciseCard exercise={currentExercise} />
         </div>

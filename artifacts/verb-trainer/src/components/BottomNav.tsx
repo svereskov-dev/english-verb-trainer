@@ -13,23 +13,26 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 w-full bg-card border-t border-border flex justify-around items-center h-16 px-2 z-50">
-      {navItems.map((item) => {
-        const isActive = location === item.href || (item.href !== "/" && location.startsWith(item.href));
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${
-              isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-            }`}
-            data-testid={`nav-${item.label.toLowerCase()}`}
-          >
-            <item.icon size={20} />
-            <span className="text-[10px] font-medium">{item.label}</span>
-          </Link>
-        );
-      })}
+    <nav className="fixed bottom-0 w-full bg-card border-t border-border z-50">
+      <div className="flex justify-around items-center h-16 px-2">
+        {navItems.map((item) => {
+          const isActive = location === item.href || (item.href !== "/" && location.startsWith(item.href));
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex flex-col items-center justify-center w-full h-full space-y-1 ${
+                isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+              }`}
+              data-testid={`nav-${item.label.toLowerCase()}`}
+            >
+              <item.icon size={20} />
+              <span className="text-[10px] font-medium">{item.label}</span>
+            </Link>
+          );
+        })}
+      </div>
+      <div className="pb-safe" />
     </nav>
   );
 }

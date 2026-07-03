@@ -15,7 +15,7 @@ export default function Home() {
   const progress = Math.min(100, Math.round((stats.sessionAnswers / settings.dailyGoal) * 100));
 
   return (
-    <div className="min-h-[100dvh] pb-20 bg-background flex flex-col items-center">
+    <div className="min-h-[100dvh] nav-safe-pad pt-safe bg-background flex flex-col items-center">
       <div className="w-full max-w-md p-6 space-y-8 mt-4">
         
         <div className="text-center space-y-2">

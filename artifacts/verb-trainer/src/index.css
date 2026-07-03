@@ -240,4 +240,14 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .nav-safe-pad {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
 }

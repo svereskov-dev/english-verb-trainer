@@ -9,7 +9,7 @@ export default function DictionaryVerb() {
 
   if (!verb) {
     return (
-      <div className="min-h-[100dvh] bg-background pb-24 flex flex-col">
+      <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 text-center gap-4">
           <p className="text-muted-foreground">Verb not found.</p>
           <Link href="/dictionary" className="text-primary underline text-sm">
