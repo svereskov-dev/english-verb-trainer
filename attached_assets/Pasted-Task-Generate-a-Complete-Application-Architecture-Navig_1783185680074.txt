@@ -1,0 +1,229 @@
+Task: Generate a Complete Application Architecture & Navigation Diagram
+
+Before continuing development, please generate a complete visual map of the application.
+
+The purpose is to document the current architecture of the app before moving to the next development phase.
+
+This is documentation only.
+
+Do not modify any application functionality.
+
+IMPORTANT
+
+Do not create this diagram manually if it can be generated automatically.
+
+Instead, inspect the application's routing, navigation structure, screens, components, and navigation logic to generate the document directly from the current codebase.
+
+The goal is for the documentation to reflect the actual application, not a manually recreated approximation.
+
+If some elements cannot be generated automatically, only those parts may be completed manually.
+
+Deliverables
+
+Please generate:
+
+SVG (primary format, scalable)
+PNG (high resolution, at least 3000 px wide)
+
+The SVG should remain editable.
+
+Screens to include
+
+Include every functional screen currently present in the application.
+
+At minimum:
+
+Home
+Practice
+Training Mode selector (overlay/menu)
+English Tenses
+Past Timeline
+Present Timeline
+Future Timeline
+Dictionary
+Verb Details
+Mistakes
+Settings
+
+If additional functional screens or modal windows exist, include them as well.
+
+Show navigation
+
+Display every navigation path.
+
+Examples:
+
+Home
+
+↓
+
+Practice
+
+↓
+
+English Tenses
+
+↓
+
+Past
+
+↓
+
+Present
+
+↓
+
+Future
+
+↓
+
+Back to Practice
+
+Dictionary
+
+↓
+
+Verb Details
+
+↓
+
+Back
+
+Settings
+
+↓
+
+Clear All Data
+
+etc.
+
+Every navigation path should be represented by arrows.
+
+Show overlays and modal windows
+
+Include important UI elements that are not full pages, including:
+
+Training Mode menu
+confirmation dialogs
+reset confirmation
+any modal windows
+bottom navigation
+other important overlays
+
+These should be visually distinguished from full screens.
+
+Do not duplicate repeated content
+
+Do not create 335 Dictionary pages.
+
+Instead:
+
+one representative Practice screen
+one Dictionary screen
+one Verb Details screen
+one Mistakes screen
+
+Only unique screens should appear.
+
+Visual style
+
+Each screen should appear as a simplified screenshot or wireframe using the application's current UI.
+
+Avoid simple text boxes whenever possible.
+
+The final document should visually resemble the real application.
+
+Include short descriptions
+
+Under every screen include a one-sentence explanation.
+
+Example:
+
+Practice
+
+Main exercise screen where the user completes verb exercises.
+
+Dictionary
+
+Browse and search all available verbs.
+
+Verb Details
+
+Displays translations, IPA transcription and verb forms.
+
+Descriptions should remain brief.
+
+Color coding
+
+Use different visual styles for:
+
+Full screens
+Modal windows
+Popups
+Overlay menus
+Navigation arrows
+
+This should make the architecture easy to understand at a glance.
+
+Automatic validation
+
+Before exporting the document, automatically verify:
+
+every route is represented;
+every screen is included;
+every navigation path is represented;
+no orphan screens exist;
+no dead-end navigation exists (unless intentional);
+every bottom navigation destination is documented.
+Include technical summary
+
+On a second page (or in a separate section), generate a concise architecture summary.
+
+Include:
+
+Screens
+
+Total number of unique screens.
+
+Modal windows
+
+List all modal dialogs and overlays.
+
+Navigation
+
+Describe how users move through the application.
+
+Shared UI
+
+List reusable components such as:
+
+Bottom Navigation
+Top Navigation
+Progress Bar
+Training Mode selector
+English Tenses button
+Score counters
+State persistence
+
+Briefly describe which user state is persisted between screens, for example:
+
+selected training modes
+current exercise
+daily progress
+statistics
+settings
+Storage
+
+Briefly describe where application state is stored (local storage, context, etc.).
+
+Goal
+
+The final result should serve as the application's architectural documentation.
+
+It should accurately represent the current implementation and remain suitable for future development, onboarding, debugging, and release preparation.
+
+Additional requirement
+
+If possible, also generate the architecture from the application's code (routes, navigation tree, and component structure) rather than drawing it manually.
+
+This makes the documentation easier to regenerate after future updates and greatly reduces the risk of inconsistencies between the diagram and the actual application.

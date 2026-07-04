@@ -6,3 +6,15 @@ id = "IICYgP6Tinl3jeqln79qB"
 uri = "file://verb-trainer.zip"
 type = "unspecified"
 title = "English Verb Trainer — source code"
+
+[[outputs]]
+id = "F18s-riXhxWRlI_XSyWTn"
+uri = "file://artifacts/verb-trainer/public/architecture/architecture.svg"
+type = "image"
+title = "Architecture Diagram (SVG - editable)"
+
+[[outputs]]
+id = "mrtv4ntWH5Kj8TTOd-zF3"
+uri = "file://artifacts/verb-trainer/public/architecture/architecture.png"
+type = "image"
+title = "Architecture Diagram (PNG - high resolution)"

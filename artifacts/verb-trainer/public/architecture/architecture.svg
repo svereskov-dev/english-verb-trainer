@@ -1,0 +1,511 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="5400" viewBox="0 0 3600 5400">
+  <defs>
+    <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0c1222"/>
+    </linearGradient>
+    <linearGradient id="overlayGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0c1222"/>
+    </linearGradient>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#0c1222"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Page 1 background -->
+  <rect x="0" y="0" width="3600" height="2600" fill="url(#pageBg)"/>
+  <line x1="0" y1="2600" x2="3600" y2="2600" stroke="#1e293b" stroke-width="2"/>
+  <rect x="0" y="2600" width="3600" height="2800" fill="url(#pageBg)"/>
+
+  <!-- ========================== PAGE 1: NAVIGATION MAP ========================== -->
+
+  <!-- Title -->
+  <text x="1800" y="80" fill="#e2e8f0" font-size="42" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">English Verb Trainer</text>
+  <text x="1800" y="120" fill="#94a3b8" font-size="18" text-anchor="middle" font-family="Inter,sans-serif">Application Architecture &amp; Navigation Map</text>
+
+  <!-- Legend -->
+  <rect x="150" y="40" width="260" height="110" rx="12" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="170" y="65" fill="#e2e8f0" font-size="12" font-weight="700" font-family="Inter,sans-serif">LEGEND</text>
+  <rect x="170" y="75" width="18" height="12" rx="3" fill="#3b82f6" fill-opacity="0.3" stroke="#3b82f6" stroke-width="1"/>
+  <text x="195" y="86" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Full Screen</text>
+  <rect x="170" y="95" width="18" height="12" rx="3" fill="#a855f7" fill-opacity="0.15" stroke="#a855f7" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="195" y="106" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Overlay / Modal</text>
+  <line x1="170" y1="118" x2="195" y2="118" stroke="#64748b" stroke-width="2"/>
+  <polygon points="195,118 190,115 190,121" fill="#64748b"/>
+  <text x="205" y="122" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Navigation</text>
+
+  <!-- ===== Screen: Home ===== -->
+  <rect x="300" y="200" width="520" height="340" rx="16" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <rect x="300" y="200" width="520" height="40" rx="16" fill="url(#screenGrad)"/>
+  <rect x="300" y="224" width="520" height="16" fill="url(#screenGrad)"/>
+  <text x="320" y="226" fill="#e2e8f0" font-size="18" font-weight="700" font-family="Inter,sans-serif">Home</text>
+  <rect x="700" y="210" width="80" height="20" rx="10" fill="#3b82f6" fill-opacity="0.15"/>
+  <text x="740" y="225" fill="#3b82f6" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">SCREEN</text>
+  <text x="320" y="270" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Dashboard with daily progress, stats,</text>
+  <text x="320" y="288" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">and Start / Choose Mode buttons</text>
+  <!-- Mini progress bar -->
+  <rect x="320" y="310" width="280" height="12" rx="6" fill="#1e293b"/>
+  <rect x="320" y="310" width="0" height="12" rx="6" fill="#6366f1"/>
+  <!-- Stats cards -->
+  <rect x="320" y="340" width="120" height="80" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="380" y="385" fill="#e2e8f0" font-size="28" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">0</text>
+  <text x="380" y="408" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">CORRECT</text>
+  <rect x="460" y="340" width="120" height="80" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="520" y="385" fill="#e2e8f0" font-size="28" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">0</text>
+  <text x="520" y="408" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">INCORRECT</text>
+  <!-- Buttons -->
+  <rect x="320" y="445" width="480" height="36" rx="10" fill="#6366f1"/>
+  <text x="560" y="468" fill="#fff" font-size="13" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">Start Practice</text>
+  <rect x="320" y="490" width="480" height="36" rx="10" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="560" y="513" fill="#94a3b8" font-size="13" font-weight="600" text-anchor="middle" font-family="Inter,sans-serif">Choose Training Mode</text>
+
+  <!-- ===== Screen: Practice ===== -->
+  <rect x="900" y="200" width="520" height="340" rx="16" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <rect x="900" y="200" width="520" height="40" rx="16" fill="url(#screenGrad)"/>
+  <rect x="900" y="224" width="520" height="16" fill="url(#screenGrad)"/>
+  <text x="920" y="226" fill="#e2e8f0" font-size="18" font-weight="700" font-family="Inter,sans-serif">Practice</text>
+  <rect x="1300" y="210" width="80" height="20" rx="10" fill="#3b82f6" fill-opacity="0.15"/>
+  <text x="1340" y="225" fill="#3b82f6" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">SCREEN</text>
+  <text x="920" y="270" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Main exercise: tense pill, subject,</text>
+  <text x="920" y="288" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">verb, input field, Check / Skip</text>
+  <!-- Mini practice UI -->
+  <rect x="920" y="310" width="120" height="24" rx="12" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-width="1"/>
+  <text x="980" y="326" fill="#818cf8" font-size="9" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">PRESENT SIMPLE</text>
+  <!-- Subject card -->
+  <rect x="920" y="345" width="480" height="40" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1160" y="370" fill="#e2e8f0" font-size="14" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">I</text>
+  <!-- Verb card -->
+  <rect x="920" y="395" width="480" height="60" rx="8" fill="#0c1222" stroke="#6366f1" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="1160" y="430" fill="#818cf8" font-size="20" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">belong</text>
+  <!-- Answer input -->
+  <rect x="920" y="470" width="480" height="36" rx="8" fill="#0c1222" stroke="#6366f1" stroke-width="2"/>
+  <text x="1160" y="493" fill="#94a3b8" font-size="12" text-anchor="middle" font-family="Inter,sans-serif">Type your answer...</text>
+
+  <!-- ===== Screen: English Tenses ===== -->
+  <rect x="1500" y="200" width="520" height="340" rx="16" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <rect x="1500" y="200" width="520" height="40" rx="16" fill="url(#screenGrad)"/>
+  <rect x="1500" y="224" width="520" height="16" fill="url(#screenGrad)"/>
+  <text x="1520" y="226" fill="#e2e8f0" font-size="18" font-weight="700" font-family="Inter,sans-serif">English Tenses</text>
+  <rect x="1900" y="210" width="80" height="20" rx="10" fill="#3b82f6" fill-opacity="0.15"/>
+  <text x="1940" y="225" fill="#3b82f6" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">SCREEN</text>
+  <text x="1520" y="270" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Timeline: Past / Present / Future tabs</text>
+  <!-- Tabs -->
+  <rect x="1520" y="300" width="156" height="32" rx="16" fill="#6366f1"/>
+  <text x="1598" y="320" fill="#fff" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter,sans-serif">Past</text>
+  <rect x="1682" y="300" width="156" height="32" rx="16" fill="#1e293b"/>
+  <text x="1760" y="320" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="Inter,sans-serif">Present</text>
+  <rect x="1844" y="300" width="156" height="32" rx="16" fill="#1e293b"/>
+  <text x="1922" y="320" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="Inter,sans-serif">Future</text>
+  <!-- Timeline dots row -->
+  <circle cx="1598" cy="360" r="8" fill="#6366f1"/>
+  <circle cx="1760" cy="360" r="8" fill="#1e293b"/>
+  <circle cx="1922" cy="360" r="8" fill="#1e293b"/>
+  <!-- Connector lines -->
+  <line x1="1606" y1="360" x2="1752" y2="360" stroke="#1e293b" stroke-width="2"/>
+  <line x1="1768" y1="360" x2="1914" y2="360" stroke="#1e293b" stroke-width="2"/>
+  <!-- Mini tense cards -->
+  <rect x="1520" y="385" width="156" height="70" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1598" y="415" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle" font-family="Inter,sans-serif">Past Simple</text>
+  <text x="1598" y="435" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">did V1</text>
+  <rect x="1682" y="385" width="156" height="70" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1760" y="415" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle" font-family="Inter,sans-serif">Present Simple</text>
+  <text x="1760" y="435" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">V1 / V1+s</text>
+  <rect x="1844" y="385" width="156" height="70" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1922" y="415" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle" font-family="Inter,sans-serif">Future Simple</text>
+  <text x="1922" y="435" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">will V1</text>
+
+  <!-- ===== Screen: Mistakes ===== -->
+  <rect x="300" y="700" width="520" height="240" rx="16" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <rect x="300" y="700" width="520" height="40" rx="16" fill="url(#screenGrad)"/>
+  <rect x="300" y="724" width="520" height="16" fill="url(#screenGrad)"/>
+  <text x="320" y="726" fill="#e2e8f0" font-size="18" font-weight="700" font-family="Inter,sans-serif">Mistakes</text>
+  <rect x="700" y="710" width="80" height="20" rx="10" fill="#3b82f6" fill-opacity="0.15"/>
+  <text x="740" y="725" fill="#3b82f6" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">SCREEN</text>
+  <text x="320" y="770" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Incorrectly answered verbs grouped by infinitive</text>
+  <!-- Mistake list items -->
+  <rect x="320" y="800" width="480" height="36" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="340" y="822" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">make</text>
+  <text x="400" y="822" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">made / made</text>
+  <rect x="320" y="844" width="480" height="36" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="340" y="866" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">take</text>
+  <text x="400" y="866" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">took / taken</text>
+  <rect x="320" y="888" width="480" height="36" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="340" y="910" fill="#6366f1" font-size="12" font-weight="600" font-family="Inter,sans-serif">Practice these verbs</text>
+
+  <!-- ===== Screen: Dictionary ===== -->
+  <rect x="300" y="1050" width="520" height="240" rx="16" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <rect x="300" y="1050" width="520" height="40" rx="16" fill="url(#screenGrad)"/>
+  <rect x="300" y="1074" width="520" height="16" fill="url(#screenGrad)"/>
+  <text x="320" y="1076" fill="#e2e8f0" font-size="18" font-weight="700" font-family="Inter,sans-serif">Dictionary</text>
+  <rect x="700" y="1060" width="80" height="20" rx="10" fill="#3b82f6" fill-opacity="0.15"/>
+  <text x="740" y="1075" fill="#3b82f6" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">SCREEN</text>
+  <text x="320" y="1120" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Searchable list of all 335+ verbs</text>
+  <!-- Search bar -->
+  <rect x="320" y="1145" width="480" height="32" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="340" y="1165" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Search verbs...</text>
+  <!-- List items -->
+  <rect x="320" y="1190" width="480" height="28" rx="6" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="335" y="1208" fill="#e2e8f0" font-size="11" font-weight="600" font-family="Inter,sans-serif">accept</text>
+  <text x="400" y="1208" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">принимать</text>
+  <rect x="320" y="1224" width="480" height="28" rx="6" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="335" y="1242" fill="#e2e8f0" font-size="11" font-weight="600" font-family="Inter,sans-serif">achieve</text>
+  <text x="410" y="1242" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">достигать</text>
+
+  <!-- ===== Screen: Verb Details ===== -->
+  <rect x="900" y="1050" width="520" height="280" rx="16" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <rect x="900" y="1050" width="520" height="40" rx="16" fill="url(#screenGrad)"/>
+  <rect x="900" y="1074" width="520" height="16" fill="url(#screenGrad)"/>
+  <text x="920" y="1076" fill="#e2e8f0" font-size="18" font-weight="700" font-family="Inter,sans-serif">Verb Details</text>
+  <rect x="1300" y="1060" width="80" height="20" rx="10" fill="#3b82f6" fill-opacity="0.15"/>
+  <text x="1340" y="1075" fill="#3b82f6" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">SCREEN</text>
+  <text x="920" y="1120" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">V1 / V2 / V3 forms + IPA transcription</text>
+  <!-- Forms table -->
+  <rect x="920" y="1145" width="480" height="40" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="935" y="1170" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">Base Form (V1)</text>
+  <text x="1220" y="1170" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">accept</text>
+  <text x="1270" y="1170" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">/əkˈsept/</text>
+  <rect x="920" y="1193" width="480" height="40" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="935" y="1218" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">Past Simple (V2)</text>
+  <text x="1205" y="1218" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">accepted</text>
+  <text x="1280" y="1218" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">/əkˈseptɪd/</text>
+  <rect x="920" y="1241" width="480" height="40" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="935" y="1266" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">Past Participle (V3)</text>
+  <text x="1205" y="1266" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">accepted</text>
+  <text x="1280" y="1266" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">/əkˈseptɪd/</text>
+
+  <!-- ===== Screen: Settings ===== -->
+  <rect x="300" y="1400" width="520" height="260" rx="16" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <rect x="300" y="1400" width="520" height="40" rx="16" fill="url(#screenGrad)"/>
+  <rect x="300" y="1424" width="520" height="16" fill="url(#screenGrad)"/>
+  <text x="320" y="1426" fill="#e2e8f0" font-size="18" font-weight="700" font-family="Inter,sans-serif">Settings</text>
+  <rect x="700" y="1410" width="80" height="20" rx="10" fill="#3b82f6" fill-opacity="0.15"/>
+  <text x="740" y="1425" fill="#3b82f6" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">SCREEN</text>
+  <text x="320" y="1470" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Daily goal, theme, clear data</text>
+  <!-- Selects -->
+  <rect x="320" y="1500" width="480" height="36" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="340" y="1523" fill="#e2e8f0" font-size="12" font-family="Inter,sans-serif">Daily Goal</text>
+  <text x="720" y="1523" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">25 Exercises</text>
+  <rect x="320" y="1546" width="480" height="36" rx="8" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="340" y="1569" fill="#e2e8f0" font-size="12" font-family="Inter,sans-serif">Theme</text>
+  <text x="710" y="1569" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Dark Mode</text>
+  <rect x="320" y="1592" width="480" height="36" rx="8" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="1"/>
+  <text x="560" y="1615" fill="#ef4444" font-size="12" font-weight="600" text-anchor="middle" font-family="Inter,sans-serif">Clear All Data</text>
+
+  <!-- ===== Overlay: Training Mode ===== -->
+  <rect x="1400" y="650" width="480" height="200" rx="16" fill="#0f172a" stroke="#4f46e5" stroke-width="2" stroke-dasharray="8 6"/>
+  <rect x="1400" y="650" width="480" height="40" rx="16" fill="url(#overlayGrad)"/>
+  <rect x="1400" y="674" width="480" height="16" fill="url(#overlayGrad)"/>
+  <text x="1420" y="676" fill="#a78bfa" font-size="18" font-weight="700" font-family="Inter,sans-serif">Training Mode</text>
+  <rect x="1760" y="660" width="80" height="20" rx="10" fill="#a855f7" fill-opacity="0.15"/>
+  <text x="1800" y="675" fill="#a855f7" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">OVERLAY</text>
+  <text x="1420" y="716" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">Bottom-sheet with 6 preset groups + Context toggle</text>
+  <!-- Chips -->
+  <rect x="1420" y="740" width="100" height="22" rx="11" fill="#6366f1"/>
+  <text x="1470" y="755" fill="#fff" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Past Simple</text>
+  <rect x="1530" y="740" width="80" height="22" rx="11" fill="#1e293b" stroke="#1e293b" stroke-width="1"/>
+  <text x="1570" y="755" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Present</text>
+  <rect x="1620" y="740" width="80" height="22" rx="11" fill="#1e293b" stroke="#1e293b" stroke-width="1"/>
+  <text x="1660" y="755" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Future</text>
+  <rect x="1710" y="740" width="80" height="22" rx="11" fill="#1e293b" stroke="#1e293b" stroke-width="1"/>
+  <text x="1750" y="755" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Mixed</text>
+  <rect x="1800" y="740" width="60" height="22" rx="11" fill="#1e293b" stroke="#1e293b" stroke-width="1"/>
+  <text x="1830" y="755" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">...</text>
+  <rect x="1420" y="775" width="440" height="30" rx="6" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1640" y="794" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle" font-family="Inter,sans-serif">Context sentences  (toggle)</text>
+  <rect x="1840" y="780" width="28" height="18" rx="9" fill="#6366f1"/>
+
+  <!-- ===== Overlay: Clear Data Confirm ===== -->
+  <rect x="300" y="1750" width="520" height="140" rx="16" fill="#0f172a" stroke="#4f46e5" stroke-width="2" stroke-dasharray="8 6"/>
+  <rect x="300" y="1750" width="520" height="40" rx="16" fill="url(#overlayGrad)"/>
+  <rect x="300" y="1774" width="520" height="16" fill="url(#overlayGrad)"/>
+  <text x="320" y="1776" fill="#a78bfa" font-size="18" font-weight="700" font-family="Inter,sans-serif">Clear Data Confirm</text>
+  <rect x="700" y="1760" width="80" height="20" rx="10" fill="#a855f7" fill-opacity="0.15"/>
+  <text x="740" y="1775" fill="#a855f7" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">MODAL</text>
+  <text x="320" y="1810" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">Native browser confirm() dialog</text>
+  <text x="320" y="1830" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">Wipes IndexedDB + localStorage config, then reloads</text>
+  <rect x="320" y="1855" width="100" height="28" rx="6" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="370" y="1873" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="Inter,sans-serif">OK</text>
+  <rect x="430" y="1855" width="100" height="28" rx="6" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="480" y="1873" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="Inter,sans-serif">Cancel</text>
+
+  <!-- ===== Shared: Bottom Navigation ===== -->
+  <rect x="900" y="700" width="520" height="100" rx="12" fill="#111827" stroke="#1e293b" stroke-width="2"/>
+  <text x="920" y="730" fill="#e2e8f0" font-size="16" font-weight="700" font-family="Inter,sans-serif">Bottom Navigation</text>
+  <text x="1350" y="730" fill="#6366f1" font-size="10" font-family="Inter,sans-serif">(visible on all screens)</text>
+  <g>
+    <circle cx="960" cy="765" r="6" fill="#94a3b8"/>
+    <text x="960" y="782" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Home</text>
+    <circle cx="1070" cy="765" r="6" fill="#6366f1"/>
+    <text x="1070" y="782" fill="#6366f1" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Practice</text>
+    <circle cx="1180" cy="765" r="6" fill="#94a3b8"/>
+    <text x="1180" y="782" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Mistakes</text>
+    <circle cx="1290" cy="765" r="6" fill="#94a3b8"/>
+    <text x="1290" y="782" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Dictionary</text>
+    <circle cx="1400" cy="765" r="6" fill="#94a3b8"/>
+    <text x="1400" y="782" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Settings</text>
+  </g>
+
+  <!-- ===== Shared: Exercise Types ===== -->
+  <rect x="900" y="600" width="460" height="140" rx="12" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="920" y="630" fill="#e2e8f0" font-size="14" font-weight="700" font-family="Inter,sans-serif">Exercise Types (ExerciseCard)</text>
+  <rect x="920" y="645" width="130" height="24" rx="6" fill="#6366f1" fill-opacity="0.15"/>
+  <text x="985" y="662" fill="#818cf8" font-size="10" text-anchor="middle" font-family="Inter,sans-serif">Verb Form</text>
+  <rect x="1060" y="645" width="130" height="24" rx="6" fill="#6366f1" fill-opacity="0.15"/>
+  <text x="1125" y="662" fill="#818cf8" font-size="10" text-anchor="middle" font-family="Inter,sans-serif">Irregular</text>
+  <rect x="1200" y="645" width="130" height="24" rx="6" fill="#6366f1" fill-opacity="0.15"/>
+  <text x="1265" y="662" fill="#818cf8" font-size="10" text-anchor="middle" font-family="Inter,sans-serif">Gap Fill</text>
+  <text x="920" y="695" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">Subject + Verb card | IPA + Translation shown</text>
+  <text x="920" y="715" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">AnswerInput with auto-check on Enter</text>
+
+  <!-- ===== Shared: Training Menu Detail ===== -->
+  <rect x="1400" y="900" width="480" height="240" rx="12" fill="#111827" stroke="#4f46e5" stroke-width="1" stroke-dasharray="6 4"/>
+  <text x="1420" y="930" fill="#a78bfa" font-size="14" font-weight="700" font-family="Inter,sans-serif">Training Mode Menu Details</text>
+  <rect x="1420" y="950" width="140" height="24" rx="12" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1490" y="967" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Irregular Verbs</text>
+  <rect x="1570" y="950" width="140" height="24" rx="12" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1640" y="967" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Present Simple</text>
+  <rect x="1720" y="950" width="140" height="24" rx="12" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1790" y="967" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Continuous</text>
+  <rect x="1420" y="982" width="140" height="24" rx="12" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1490" y="999" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Perfect</text>
+  <rect x="1570" y="982" width="140" height="24" rx="12" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1640" y="999" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Full Conjugation</text>
+  <rect x="1720" y="982" width="140" height="24" rx="12" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1790" y="999" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">Mistakes Review</text>
+  <text x="1420" y="1040" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">Each group has preset chips + Mixed option</text>
+  <text x="1420" y="1060" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">Context sentences toggle at bottom</text>
+  <text x="1420" y="1080" fill="#94a3b8" font-size="10" font-family="Inter,sans-serif">"Start Training" applies selection</text>
+
+  <!-- ===== Shared: State Persistence ===== -->
+  <rect x="2100" y="200" width="340" height="340" rx="12" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="2120" y="230" fill="#e2e8f0" font-size="14" font-weight="700" font-family="Inter,sans-serif">State Persistence</text>
+  <text x="2120" y="260" fill="#22c55e" font-size="11" font-family="Inter,sans-serif">IndexedDB: progress, stats, settings</text>
+  <text x="2120" y="280" fill="#3b82f6" font-size="11" font-family="Inter,sans-serif">localStorage: practice_config (daily)</text>
+  <text x="2120" y="300" fill="#f97316" font-size="11" font-family="Inter,sans-serif">sessionStorage: exercise, tenses, review</text>
+  <text x="2120" y="320" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">React Context: ThemeProvider</text>
+
+  <!-- ===== Shared: Tenses Sub-Navigation ===== -->
+  <rect x="2100" y="600" width="340" height="180" rx="12" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="2120" y="630" fill="#e2e8f0" font-size="14" font-weight="700" font-family="Inter,sans-serif">Tenses Sub-Navigation</text>
+  <text x="2120" y="655" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Tab-based timeline viewer</text>
+  <rect x="2120" y="670" width="300" height="30" rx="15" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <rect x="2120" y="670" width="100" height="30" rx="15" fill="#6366f1"/>
+  <text x="2170" y="690" fill="#fff" font-size="11" text-anchor="middle" font-family="Inter,sans-serif">Past</text>
+  <text x="2270" y="690" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="Inter,sans-serif">Present</text>
+  <text x="2370" y="690" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="Inter,sans-serif">Future</text>
+  <text x="2120" y="725" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Arrow buttons cycle periods</text>
+  <text x="2120" y="745" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Current tense highlighted via sessionStorage</text>
+
+  <!-- ============ ARROWS: NAVIGATION FLOWS ============ -->
+
+  <!-- Home -> Practice (button) -->
+  <path d="M820,480 L820,520 L900,520 L900,480" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="900,480 895,490 905,490" fill="#6366f1"/>
+  <rect x="840" y="494" width="40" height="18" rx="4" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="860" y="507" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">tap</text>
+
+  <!-- Home -> Practice (via bottom nav, via bottom nav implied by bottomNav card) -->
+  <!-- Mistakes -> Practice (review) -->
+  <path d="M560,820 L560,860 L900,860 L900,540" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="900,540 895,550 905,550" fill="#22c55e"/>
+  <rect x="650" y="852" width="50" height="18" rx="4" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="675" y="865" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">review</text>
+
+  <!-- Practice -> English Tenses -->
+  <path d="M1420,300 L1460,300" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="1460,300 1450,295 1450,305" fill="#6366f1"/>
+  <rect x="1428" y="284" width="50" height="18" rx="4" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1453" y="297" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">tap</text>
+
+  <!-- English Tenses -> Practice (back) -->
+  <path d="M1500,420 L1460,420" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="1460,420 1470,415 1470,425" fill="#64748b"/>
+  <rect x="1468" y="404" width="40" height="18" rx="4" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1488" y="417" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">back</text>
+
+  <!-- Practice -> TrainingMenu -->
+  <path d="M1160,540 L1160,600 L1400,600 L1400,650" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="1400,650 1395,640 1405,640" fill="#a855f7"/>
+  <rect x="1260" y="592" width="50" height="18" rx="4" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="1285" y="605" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">tap</text>
+
+  <!-- Dictionary -> Verb Detail -->
+  <path d="M820,1170 L900,1170" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="900,1170 890,1165 890,1175" fill="#6366f1"/>
+  <rect x="828" y="1154" width="50" height="18" rx="4" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="853" y="1167" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">tap</text>
+
+  <!-- Verb Detail -> Dictionary (back) -->
+  <path d="M900,1210 L820,1210" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="820,1210 830,1205 830,1215" fill="#64748b"/>
+  <rect x="838" y="1194" width="40" height="18" rx="4" fill="#0c1222" stroke="#1e293b" stroke-width="1"/>
+  <text x="858" y="1207" fill="#94a3b8" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">back</text>
+
+  <!-- BottomNav connections (from bottomNav card to all screens) -->
+  <path d="M960,800 L960,830 L300,830 L300,700" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1070,800 L1070,830 L900,830 L900,540" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1180,800 L1180,830 L560,830 L560,700" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1290,800 L1290,830 L300,830 L300,1050" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1400,800 L1400,830 L300,830 L300,1400" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Page 1 footer -->
+  <text x="1800" y="2550" fill="#94a3b8" font-size="14" text-anchor="middle" font-family="Inter,sans-serif">Page 1 of 2  —  Navigation Architecture</text>
+
+  <!-- ========================== PAGE 2: TECHNICAL SUMMARY ========================== -->
+
+  <text x="1800" y="2680" fill="#e2e8f0" font-size="36" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">Technical Architecture Summary</text>
+
+  <!-- Section: Screens -->
+  <rect x="150" y="2750" width="1600" height="420" rx="16" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="190" y="2790" fill="#e2e8f0" font-size="22" font-weight="700" font-family="Inter,sans-serif">Screens — 8 Unique Routes</text>
+  <!-- Header row -->
+  <line x1="190" y1="2810" x2="1450" y2="2810" stroke="#1e293b" stroke-width="1"/>
+  <text x="190" y="2828" fill="#94a3b8" font-size="12" font-weight="700" font-family="Inter,sans-serif">Route</text>
+  <text x="430" y="2828" fill="#94a3b8" font-size="12" font-weight="700" font-family="Inter,sans-serif">Name</text>
+  <text x="700" y="2828" fill="#94a3b8" font-size="12" font-weight="700" font-family="Inter,sans-serif">Description</text>
+  <!-- Data rows -->
+  <text x="190" y="2858" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">/</text>
+  <text x="430" y="2858" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">Home</text>
+  <text x="700" y="2858" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Dashboard with daily progress, stats, start buttons</text>
+
+  <text x="190" y="2884" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">/practice</text>
+  <text x="430" y="2884" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">Practice</text>
+  <text x="700" y="2884" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Main exercise: verb card, input, Check/Skip/Next</text>
+
+  <text x="190" y="2910" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">/mistakes</text>
+  <text x="430" y="2910" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">Mistakes</text>
+  <text x="700" y="2910" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Review list of incorrectly answered verbs</text>
+
+  <text x="190" y="2936" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">/dictionary</text>
+  <text x="430" y="2936" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">Dictionary</text>
+  <text x="700" y="2936" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Searchable list of all verbs</text>
+
+  <text x="190" y="2962" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">/dictionary/:verb</text>
+  <text x="430" y="2962" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">Verb Detail</text>
+  <text x="700" y="2962" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">V1/V2/V3 forms, IPA transcription, translation</text>
+
+  <text x="190" y="2988" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">/tenses</text>
+  <text x="430" y="2988" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">English Tenses</text>
+  <text x="700" y="2988" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Grammar timeline: Past / Present / Future tabs</text>
+
+  <text x="190" y="3014" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">/settings</text>
+  <text x="430" y="3014" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">Settings</text>
+  <text x="700" y="3014" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Daily goal, theme, clear data</text>
+
+  <text x="190" y="3040" fill="#3b82f6" font-size="12" font-weight="700" font-family="monospace">*</text>
+  <text x="430" y="3040" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">Not Found</text>
+  <text x="700" y="3040" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">404 fallback page</text>
+
+  <!-- Section: Overlays & Modals -->
+  <rect x="150" y="3210" width="1600" height="200" rx="16" fill="#111827" stroke="#4f46e5" stroke-width="1" stroke-dasharray="8 6"/>
+  <text x="190" y="3250" fill="#a855f7" font-size="22" font-weight="700" font-family="Inter,sans-serif">Overlays &amp; Modal Windows</text>
+  <rect x="190" y="3266" width="14" height="14" rx="3" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1" stroke-dasharray="2 2"/>
+  <text x="220" y="3278" fill="#e2e8f0" font-size="13" font-weight="600" font-family="Inter,sans-serif">Training Mode Menu</text>
+  <text x="220" y="3298" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Bottom-sheet with 6 preset groups, chips, Mixed exclusivity, Context toggle, Start Training button</text>
+  <rect x="190" y="3314" width="14" height="14" rx="3" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="1" stroke-dasharray="2 2"/>
+  <text x="220" y="3326" fill="#e2e8f0" font-size="13" font-weight="600" font-family="Inter,sans-serif">Clear Data Confirm</text>
+  <text x="220" y="3346" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Native browser confirm() dialog. Wipes IndexedDB + localStorage, then reloads page.</text>
+
+  <!-- Section: Navigation -->
+  <rect x="150" y="3450" width="1600" height="240" rx="16" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="190" y="3490" fill="#e2e8f0" font-size="22" font-weight="700" font-family="Inter,sans-serif">Navigation Model</text>
+  <text x="190" y="3535" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Home → Practice (Start Practice button or BottomNav)</text>
+  <text x="190" y="3567" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Home → Practice → Training Mode (auto-opened via Choose Training Mode)</text>
+  <text x="190" y="3599" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Practice → English Tenses (✨ button, passes tense context) → Back to Practice</text>
+  <text x="190" y="3631" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Mistakes → Practice (Practice button, injects mistakeReview into session)</text>
+  <text x="190" y="3663" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">Dictionary → Verb Detail (tap verb) → Back to Dictionary (breadcrumb link)</text>
+  <text x="190" y="3695" fill="#94a3b8" font-size="13" font-family="Inter,sans-serif">BottomNav: accessible from ALL screens — Home | Practice | Mistakes | Dictionary | Settings</text>
+
+  <!-- Section: Shared UI Components -->
+  <rect x="150" y="3730" width="1600" height="220" rx="16" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="190" y="3770" fill="#e2e8f0" font-size="22" font-weight="700" font-family="Inter,sans-serif">Shared UI Components</text>
+  <rect x="190" y="3802" width="10" height="10" rx="2" fill="#6366f1"/>
+  <text x="215" y="3812" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">BottomNav</text>
+  <text x="420" y="3812" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Fixed bottom bar, 5 destinations, active state via wouter</text>
+  <rect x="190" y="3830" width="10" height="10" rx="2" fill="#6366f1"/>
+  <text x="215" y="3840" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">ExerciseCard</text>
+  <text x="420" y="3840" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">3 exercise types: verbform, irregular, gapfill</text>
+  <rect x="190" y="3858" width="10" height="10" rx="2" fill="#6366f1"/>
+  <text x="215" y="3868" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">AnswerInput</text>
+  <text x="420" y="3868" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Centered input, auto-check on Enter, visual feedback border</text>
+  <rect x="190" y="3886" width="10" height="10" rx="2" fill="#6366f1"/>
+  <text x="215" y="3896" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">ProgressBar</text>
+  <text x="420" y="3896" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Thin top bar showing session progress toward daily goal</text>
+  <rect x="190" y="3914" width="10" height="10" rx="2" fill="#6366f1"/>
+  <text x="215" y="3924" fill="#e2e8f0" font-size="12" font-weight="600" font-family="Inter,sans-serif">TrainingMenu</text>
+  <text x="420" y="3924" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Bottom-sheet with 6 groups, chip multi-select, Mixed exclusivity</text>
+
+  <!-- Section: State Persistence -->
+  <rect x="150" y="3990" width="1600" height="280" rx="16" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="190" y="4030" fill="#e2e8f0" font-size="22" font-weight="700" font-family="Inter,sans-serif">State Persistence</text>
+  <line x1="190" y1="4055" x2="1450" y2="4055" stroke="#1e293b" stroke-width="1"/>
+  <text x="190" y="4068" fill="#94a3b8" font-size="12" font-weight="700" font-family="Inter,sans-serif">Storage</text>
+  <text x="430" y="4068" fill="#94a3b8" font-size="12" font-weight="700" font-family="Inter,sans-serif">Key</text>
+  <text x="700" y="4068" fill="#94a3b8" font-size="12" font-weight="700" font-family="Inter,sans-serif">Data</text>
+  <text x="1350" y="4068" fill="#94a3b8" font-size="12" font-weight="700" font-family="Inter,sans-serif">Lifespan</text>
+
+  <text x="190" y="4095" fill="#22c55e" font-size="11" font-family="monospace">IndexedDB</text>
+  <text x="430" y="4095" fill="#e2e8f0" font-size="11" font-family="monospace">progress</text>
+  <text x="700" y="4095" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">SRS records (due dates, failures, successes)</text>
+  <text x="1350" y="4095" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Persistent</text>
+
+  <text x="190" y="4121" fill="#22c55e" font-size="11" font-family="monospace">IndexedDB</text>
+  <text x="430" y="4121" fill="#e2e8f0" font-size="11" font-family="monospace">stats</text>
+  <text x="700" y="4121" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Total correct, incorrect, best streak, session answers</text>
+  <text x="1350" y="4121" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Persistent</text>
+
+  <text x="190" y="4147" fill="#22c55e" font-size="11" font-family="monospace">IndexedDB</text>
+  <text x="430" y="4147" fill="#e2e8f0" font-size="11" font-family="monospace">settings</text>
+  <text x="700" y="4147" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Daily goal, theme, difficulty</text>
+  <text x="1350" y="4147" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Persistent</text>
+
+  <text x="190" y="4173" fill="#3b82f6" font-size="11" font-family="monospace">localStorage</text>
+  <text x="430" y="4173" fill="#e2e8f0" font-size="11" font-family="monospace">practice_config</text>
+  <text x="700" y="4173" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Selected training mode preset IDs + context toggle</text>
+  <text x="1350" y="4173" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Daily (cleared each day)</text>
+
+  <text x="190" y="4199" fill="#3b82f6" font-size="11" font-family="monospace">localStorage</text>
+  <text x="430" y="4199" fill="#e2e8f0" font-size="11" font-family="monospace">practice_config_date</text>
+  <text x="700" y="4199" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Timestamp of last config save</text>
+  <text x="1350" y="4199" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Daily</text>
+
+  <text x="190" y="4225" fill="#f97316" font-size="11" font-family="monospace">sessionStorage</text>
+  <text x="430" y="4225" fill="#e2e8f0" font-size="11" font-family="monospace">exercise_session</text>
+  <text x="700" y="4225" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Current exercise state (config, exercise, feedback)</text>
+  <text x="1350" y="4225" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Session</text>
+
+  <text x="190" y="4251" fill="#f97316" font-size="11" font-family="monospace">sessionStorage</text>
+  <text x="430" y="4251" fill="#e2e8f0" font-size="11" font-family="monospace">tensesContext</text>
+  <text x="700" y="4251" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Current tense ID passed from Practice to Tenses</text>
+  <text x="1350" y="4251" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Session</text>
+
+  <text x="190" y="4277" fill="#f97316" font-size="11" font-family="monospace">sessionStorage</text>
+  <text x="430" y="4277" fill="#e2e8f0" font-size="11" font-family="monospace">mistakeReview</text>
+  <text x="700" y="4277" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Verb list for review session from Mistakes page</text>
+  <text x="1350" y="4277" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Session</text>
+
+  <!-- Section: Tech Stack -->
+  <rect x="150" y="4310" width="1600" height="120" rx="16" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <text x="190" y="4350" fill="#e2e8f0" font-size="22" font-weight="700" font-family="Inter,sans-serif">Technology Stack</text>
+  <text x="190" y="4385" fill="#818cf8" font-size="11" font-weight="600" font-family="Inter,sans-serif">Frontend</text>
+  <text x="340" y="4385" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">React 18 + Vite + TypeScript + Tailwind CSS v4 + shadcn/ui</text>
+  <text x="190" y="4407" fill="#818cf8" font-size="11" font-weight="600" font-family="Inter,sans-serif">Routing</text>
+  <text x="340" y="4407" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">wouter (lightweight React router)</text>
+  <text x="190" y="4429" fill="#818cf8" font-size="11" font-weight="600" font-family="Inter,sans-serif">State</text>
+  <text x="340" y="4429" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">React hooks + IndexedDB (idb) + localStorage + sessionStorage</text>
+
+  <!-- Section: Validation Checklist -->
+  <rect x="150" y="4480" width="1600" height="180" rx="16" fill="#111827" stroke="#22c55e" stroke-width="1"/>
+  <text x="190" y="4520" fill="#22c55e" font-size="22" font-weight="700" font-family="Inter,sans-serif">Validation Checklist</text>
+  <text x="190" y="4560" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">✅ All 8 routes documented in App.tsx</text>
+  <text x="190" y="4584" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">✅ All unique screens represented (stats.tsx &amp; verbs.tsx un-routed → dead code)</text>
+  <text x="190" y="4608" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">✅ All navigation paths mapped with arrows</text>
+  <text x="190" y="4632" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">✅ All 5 BottomNav destinations documented</text>
+  <text x="190" y="4656" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">✅ All overlays/modals identified (TrainingMenu, confirm dialog)</text>
+  <text x="190" y="4680" fill="#94a3b8" font-size="12" font-family="Inter,sans-serif">✅ State persistence fully inventoried (IndexedDB, localStorage, sessionStorage)</text>
+
+  <!-- Page 2 footer -->
+  <text x="1800" y="5350" fill="#94a3b8" font-size="14" text-anchor="middle" font-family="Inter,sans-serif">Page 2 of 2  —  Technical Architecture Summary</text>
+</svg>
