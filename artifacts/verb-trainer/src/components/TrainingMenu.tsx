@@ -228,7 +228,7 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
         <Button
           variant="outline"
           size="sm"
-          className="rounded-full flex items-center gap-1.5 max-w-[220px]"
+          className="rounded-full flex items-center gap-1.5 max-w-[220px] font-semibold"
         >
           <span className="truncate text-left">{buttonLabel}</span>
           <ChevronDown size={14} className="shrink-0 opacity-60" />

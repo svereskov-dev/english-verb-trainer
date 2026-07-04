@@ -203,15 +203,17 @@ export default function Practice() {
         {/* Row 1: Training Mode (left) | English Tenses (right) */}
         <div className="flex items-center justify-between gap-2">
           <TrainingMenu current={config} onSelect={handleSelectConfig} />
-          <button
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleOpenTenses}
-            className="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground transition-all duration-200 active:scale-95 px-3 py-1.5 rounded-full border border-border/80 bg-card/80 hover:bg-card hover:border-primary/30 hover:shadow-sm shadow-sm backdrop-blur-sm"
+            className="rounded-full shrink-0 gap-1.5 font-semibold border-primary/30 hover:border-primary/50 hover:bg-card hover:text-foreground shadow-sm"
             aria-label="English Tenses reference"
           >
             <Sparkles size={13} className="text-primary" />
             <span>English Tenses</span>
             <ChevronRight size={13} className="text-muted-foreground -ml-0.5" />
-          </button>
+          </Button>
         </div>
 
         {/* Row 2: Counters — right-aligned under English Tenses */}

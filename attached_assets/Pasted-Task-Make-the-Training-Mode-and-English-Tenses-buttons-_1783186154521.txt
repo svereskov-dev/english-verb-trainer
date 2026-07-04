@@ -1,0 +1,90 @@
+Task: Make the "Training Mode" and "English Tenses" buttons visually consistent
+Goal
+
+The two primary controls at the top of the Practice screen should feel like they belong to the same UI component family.
+
+Currently:
+
+Training Mode appears larger and more prominent.
+English Tenses looks smaller and visually weaker.
+
+This creates an unnecessary imbalance.
+
+Requirements
+1. Match typography
+
+Ensure both buttons use:
+
+the same font family;
+the same font size;
+the same font weight;
+the same vertical alignment.
+
+The text should have identical visual hierarchy.
+
+2. Match button proportions
+
+Make both controls visually similar in:
+
+height;
+border radius;
+internal horizontal padding;
+vertical padding.
+
+The goal is not to make them identical in width, but to make them look like members of the same component family.
+
+3. Increase the visual prominence of "English Tenses"
+
+The English Tenses button currently feels secondary.
+
+Please improve its appearance while keeping it elegant.
+
+Possible adjustments include:
+
+a brighter outline;
+slightly stronger border contrast;
+a subtle hover/pressed state (where applicable);
+slightly brighter text;
+improved spacing around the ✨ icon.
+
+Do not make it flashy.
+
+The button should feel interactive and inviting without drawing excessive attention.
+
+4. Keep the icon
+
+Retain the ✨ icon and the right arrow.
+
+These communicate that this is an interactive feature leading to another screen.
+
+5. Preserve compact size
+
+Do not make the button significantly wider or taller.
+
+Its footprint should remain approximately the same.
+
+Only improve its visual balance.
+
+QA checklist
+
+Verify that:
+
+both buttons appear to use the same typography;
+both buttons feel equally polished;
+neither button visually dominates the other;
+alignment remains correct on:
+small phones;
+large phones;
+tablets;
+desktop;
+installed PWA.
+Design goal
+
+The top row should look like two coordinated primary controls rather than two unrelated buttons.
+
+The user should immediately understand that:
+
+Training Mode configures the exercise.
+English Tenses opens the reference guide.
+
+Both actions are equally important and should therefore share the same visual language.
