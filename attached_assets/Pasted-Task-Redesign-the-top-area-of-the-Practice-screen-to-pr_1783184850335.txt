@@ -1,0 +1,83 @@
+Task: Redesign the top area of the Practice screen to prevent overlapping on all devices
+Problem
+
+On mobile devices with narrow screens, the top bar is overcrowded.
+
+Currently it contains:
+
+Training Mode selector (left)
+✨ English Tenses button (center)
+Correct / Incorrect counters (right)
+
+These elements overlap each other on smaller devices, making the interface look broken.
+
+New layout
+
+Redesign the top area as follows:
+
+First row
+
+Left:
+
+Training Mode selector
+
+Right:
+
+✨ English Tenses → button
+
+These should be the only two elements in the first row.
+
+The English Tenses button should be aligned to the top-right corner and remain there regardless of the width of the Training Mode selector.
+
+Use a layout that guarantees no overlap (flex with justify-between, grid, or absolute positioning if appropriate).
+
+Second row
+
+Move the score counters below the English Tenses button.
+
+Example:
+
+                 ✨ English Tenses →
+
+                 ✓ 12
+                 ✕ 3
+
+The counters should:
+
+remain right-aligned
+sit directly underneath the English Tenses button
+use the same colors as now (green/red)
+occupy minimal vertical space
+Visual goals
+
+The top of the Practice screen should now look approximately like:
+
+------------------------------------------------
+Training Mode          ✨ English Tenses →
+
+                       ✓ 12
+                       ✕ 3
+------------------------------------------------
+
+instead of trying to fit everything into one horizontal row.
+
+Requirements
+No overlapping on any screen width.
+Works on:
+small iPhones (SE)
+standard iPhones
+Android phones
+landscape orientation
+installed PWA
+Keep the English Tenses button compact.
+Do not increase its size.
+Keep all existing functionality unchanged.
+QA checklist
+
+Verify on multiple viewport widths that:
+
+Training Mode never overlaps English Tenses.
+English Tenses is always anchored to the top-right.
+Score counters appear directly below it.
+The Practice screen still fits within one viewport without introducing vertical scrolling.
+No regressions on tablet or desktop layouts.

@@ -198,16 +198,14 @@ export default function Practice() {
     <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
-      {/* Header: relative container — button is absolutely centred, sides are independent */}
-      <div className="relative flex items-center px-4 py-2 w-full max-w-3xl mx-auto" style={{ minHeight: "44px" }}>
-        {/* Left: Training Mode */}
-        <TrainingMenu current={config} onSelect={handleSelectConfig} />
-
-        {/* Center: English Tenses shortcut — always at 50% of container regardless of side widths */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      {/* Header: two rows — no overlap possible */}
+      <div className="px-4 pt-2 pb-1 w-full max-w-3xl mx-auto">
+        {/* Row 1: Training Mode (left) | English Tenses (right) */}
+        <div className="flex items-center justify-between gap-2">
+          <TrainingMenu current={config} onSelect={handleSelectConfig} />
           <button
             onClick={handleOpenTenses}
-            className="pointer-events-auto inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground transition-all duration-200 active:scale-95 px-3 py-1.5 rounded-full border border-border/80 bg-card/80 hover:bg-card hover:border-primary/30 hover:shadow-sm shadow-sm backdrop-blur-sm"
+            className="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground transition-all duration-200 active:scale-95 px-3 py-1.5 rounded-full border border-border/80 bg-card/80 hover:bg-card hover:border-primary/30 hover:shadow-sm shadow-sm backdrop-blur-sm"
             aria-label="English Tenses reference"
           >
             <Sparkles size={13} className="text-primary" />
@@ -216,15 +214,15 @@ export default function Practice() {
           </button>
         </div>
 
-        {/* Right: Daily counters */}
-        <div className="ml-auto flex items-center gap-3">
+        {/* Row 2: Counters — right-aligned under English Tenses */}
+        <div className="flex justify-end gap-3 mt-1">
           <div className="flex items-center gap-1 text-green-600">
-            <Check size={18} />
-            <span className="font-bold">{dailyCorrect}</span>
+            <Check size={15} />
+            <span className="font-bold text-sm">{dailyCorrect}</span>
           </div>
           <div className="flex items-center gap-1 text-red-500">
-            <X size={18} />
-            <span className="font-bold">{dailyIncorrect}</span>
+            <X size={15} />
+            <span className="font-bold text-sm">{dailyIncorrect}</span>
           </div>
         </div>
       </div>
