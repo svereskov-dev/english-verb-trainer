@@ -286,29 +286,15 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
                   <div className="flex flex-wrap gap-2">
                     {group.presets.map(preset => {
                       const chosen = selectedIds.includes(preset.id);
-                      // Disable rule: Full Conjugation is mutually exclusive with all verbform presets
-                      const isFullAll = preset.id === "full-all";
-                      const isVerbform = preset.exerciseTypes.includes("verbform");
-                      const fullAllSelected = selectedIds.includes("full-all");
-                      const anyVerbformSelected = selectedIds.some(id =>
-                        allVerbformIds.includes(id) && id !== "full-all"
-                      );
-                      const disabled =
-                        (!isFullAll && isVerbform && fullAllSelected) ||
-                        (isFullAll && anyVerbformSelected);
-
                       return (
                         <button
                           key={preset.id}
                           onClick={() => togglePreset(preset.id)}
-                          disabled={disabled}
                           className={cn(
                             "text-sm px-3 py-1.5 rounded-full border transition-colors font-medium",
                             chosen
                               ? "border-primary bg-primary text-primary-foreground"
-                              : disabled
-                                ? "border-border/40 text-muted-foreground/40 cursor-not-allowed"
-                                : "border-border text-foreground hover:border-primary/50 hover:bg-muted",
+                              : "border-border text-foreground hover:border-primary/50 hover:bg-muted",
                           )}
                         >
                           {preset.label}
