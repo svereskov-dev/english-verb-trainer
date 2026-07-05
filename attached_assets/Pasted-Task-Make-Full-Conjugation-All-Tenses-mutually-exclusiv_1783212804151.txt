@@ -1,0 +1,59 @@
+Task: Make "Full Conjugation – All Tenses" mutually exclusive with all other tense selections
+Goal
+
+The Full Conjugation – All Tenses option should behave as a master selection.
+
+Since it already includes every tense, it should not be possible to combine it with any other tense selection.
+
+This prevents contradictory or redundant training configurations and makes the UI more intuitive.
+
+Required behavior
+1. Selecting "Full Conjugation – All Tenses"
+
+When the user selects Full Conjugation – All Tenses:
+
+automatically clear any other tense selections within that training section (if any are selected);
+visually mark Full Conjugation – All Tenses as the only active option;
+disable (or make unselectable) every other tense option in that section while Full Conjugation remains selected.
+2. Selecting another tense
+
+If the user wants to choose individual tenses instead:
+
+tapping Full Conjugation – All Tenses again should deselect it;
+after it is deselected, all individual tense buttons become available again.
+3. Prevent invalid combinations
+
+The following combinations must never be possible:
+
+Full Conjugation + Present
+Full Conjugation + Past
+Full Conjugation + Future
+Full Conjugation + Present Perfect
+Full Conjugation + Mixed
+or any other combination within that same section.
+
+The rule is simple:
+
+Either Full Conjugation is selected, OR one or more individual modes are selected — never both.
+
+Consistency
+
+This behavior should mirror the logic already implemented for the Mixed option.
+
+Just as Mixed is mutually exclusive with the other options in its row, Full Conjugation – All Tenses should be mutually exclusive with every other tense option in its section.
+
+State persistence
+
+This logic must also work with the existing state persistence:
+
+if Full Conjugation is selected, reopening the Training Mode menu should restore that state correctly;
+after Clear All Data, the selection should reset to the default state as expected.
+QA checklist
+✅ Selecting Full Conjugation deselects every other option in the section.
+✅ While Full Conjugation is active, no other tense can be selected.
+✅ Deselecting Full Conjugation restores access to all individual tense options.
+✅ No invalid combinations can be created.
+✅ State is preserved correctly between screens.
+✅ "Clear All Data" resets everything correctly.
+
+This will make the selection logic consistent throughout the application and eliminate redundant combinations that don't provide any additional functionality.

@@ -193,6 +193,11 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
     setOpen(false);
   };
 
+  // All verbform preset IDs (for Full Conjugation exclusivity)
+  const allVerbformIds = GROUPS.flatMap(g =>
+    g.presets.filter(p => p.exerciseTypes.includes("verbform")).map(p => p.id)
+  );
+
   const togglePreset = (id: string) => {
     setSelectedIds(prev => {
       const group = GROUPS.find(g => g.presets.some(p => p.id === id));
@@ -201,19 +206,31 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
       const groupIds = group.presets.map(p => p.id);
       const mixedId = group.presets.find(p => p.label === "Mixed")?.id;
 
+      // 1. Deselect
       if (prev.includes(id)) {
-        // Deselect
         return prev.filter(p => p !== id);
       }
 
+      // 2. Selecting Mixed: remove all other presets in this group
       if (id === mixedId) {
-        // Selecting Mixed: remove all other presets in this group, add Mixed
         return [...prev.filter(p => !groupIds.includes(p)), id];
-      } else {
-        // Selecting individual: remove Mixed from this group if present, add individual
-        const withoutMixed = mixedId ? prev.filter(p => p !== mixedId) : prev;
+      }
+
+      // 3. Selecting Full Conjugation: remove all other verbform presets
+      if (id === "full-all") {
+        return [...prev.filter(p => !allVerbformIds.includes(p)), id];
+      }
+
+      // 4. Selecting a verbform preset while full-all is active: remove full-all
+      if (allVerbformIds.includes(id) && prev.includes("full-all")) {
+        const withoutFullAll = prev.filter(p => p !== "full-all");
+        const withoutMixed = mixedId ? withoutFullAll.filter(p => p !== mixedId) : withoutFullAll;
         return [...withoutMixed, id];
       }
+
+      // 5. Normal individual: remove Mixed from this group if present, add individual
+      const withoutMixed = mixedId ? prev.filter(p => p !== mixedId) : prev;
+      return [...withoutMixed, id];
     });
   };
 
@@ -269,15 +286,29 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
                   <div className="flex flex-wrap gap-2">
                     {group.presets.map(preset => {
                       const chosen = selectedIds.includes(preset.id);
+                      // Disable rule: Full Conjugation is mutually exclusive with all verbform presets
+                      const isFullAll = preset.id === "full-all";
+                      const isVerbform = preset.exerciseTypes.includes("verbform");
+                      const fullAllSelected = selectedIds.includes("full-all");
+                      const anyVerbformSelected = selectedIds.some(id =>
+                        allVerbformIds.includes(id) && id !== "full-all"
+                      );
+                      const disabled =
+                        (!isFullAll && isVerbform && fullAllSelected) ||
+                        (isFullAll && anyVerbformSelected);
+
                       return (
                         <button
                           key={preset.id}
                           onClick={() => togglePreset(preset.id)}
+                          disabled={disabled}
                           className={cn(
                             "text-sm px-3 py-1.5 rounded-full border transition-colors font-medium",
                             chosen
                               ? "border-primary bg-primary text-primary-foreground"
-                              : "border-border text-foreground hover:border-primary/50 hover:bg-muted",
+                              : disabled
+                                ? "border-border/40 text-muted-foreground/40 cursor-not-allowed"
+                                : "border-border text-foreground hover:border-primary/50 hover:bg-muted",
                           )}
                         >
                           {preset.label}
