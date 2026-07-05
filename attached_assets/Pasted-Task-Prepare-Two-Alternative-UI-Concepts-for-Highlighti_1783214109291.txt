@@ -1,0 +1,110 @@
+Task: Prepare Two Alternative UI Concepts for Highlighting the Practice Screen
+
+The application is approaching its final design stage.
+
+Before making any further visual changes, please prepare two design concepts for making the Practice screen feel like the central part of the application.
+
+Do not implement either design yet.
+
+At this stage, I only want to review mockups and compare the concepts.
+
+General requirements
+
+The current interface already feels clean and minimal.
+
+The goal is not to redesign it.
+
+Instead, we want to introduce a subtle visual cue that makes the Practice screen feel like the heart of the application.
+
+The effect should be elegant, modern, and restrained.
+
+Avoid anything that looks flashy, game-like, or distracting.
+
+Concept A — Ambient Screen Glow
+
+Create a mockup showing the Practice screen with a very subtle ambient glow around the edges of the screen.
+
+Requirements:
+
+use the existing accent color (purple);
+the glow should be extremely soft;
+opacity should be very low;
+no visible border line;
+no neon effect;
+no bright gradients.
+
+The intention is that users almost don't notice it consciously, but the Practice screen feels slightly more "alive" than the others.
+
+This glow should never reduce readability.
+
+Buttons, text and cards must remain perfectly legible.
+
+Concept B — Highlight the Verb Card
+
+Create another mockup where the verb card becomes the visual focal point.
+
+Do not change the layout.
+
+Instead, experiment with subtle emphasis such as:
+
+a very soft shadow;
+a gentle ambient glow;
+slightly improved depth;
+delicate contrast adjustments.
+
+The card should naturally attract the user's attention without becoming visually heavy.
+
+Everything else on the screen should remain unchanged.
+
+Important
+
+These are design explorations only.
+
+Do not modify:
+
+layouts;
+spacing;
+typography;
+functionality;
+animations.
+
+The only purpose is to evaluate two different visual directions.
+
+Deliverables
+
+Please prepare:
+
+Concept A
+
+A mockup of the Practice screen with the ambient screen glow.
+
+Concept B
+
+A mockup of the Practice screen with the highlighted verb card.
+
+Provide both concepts using the current UI so they can be compared side by side.
+
+Design notes
+
+Keep the application's current visual identity:
+
+clean;
+modern;
+minimal;
+focused on learning.
+
+Avoid introducing decorative effects that compete with the educational content.
+
+The interface should still feel calm and professional.
+
+Final comparison
+
+After preparing both concepts, include a short design review explaining:
+
+the advantages of each concept;
+possible drawbacks of each concept;
+which concept you would personally recommend for this application and why.
+
+Do not implement your preferred option automatically.
+
+Wait for approval before making any UI changes.
