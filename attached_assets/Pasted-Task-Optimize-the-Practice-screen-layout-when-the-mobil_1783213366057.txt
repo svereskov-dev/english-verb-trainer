@@ -1,0 +1,97 @@
+Task: Optimize the Practice screen layout when the mobile keyboard is open
+Goal
+
+Currently, when the on-screen keyboard opens on mobile devices, the Practice screen simply shifts upward.
+
+As a result:
+
+the tense label often disappears;
+the verb card is partially hidden;
+important information moves off-screen;
+the interface feels cramped and difficult to use.
+
+The Practice screen should instead switch into a keyboard-friendly compact layout, similar to apps like ConjuGato.
+
+Required behavior
+
+When the input field receives focus and the mobile keyboard opens:
+
+Keep the most important information visible
+
+The following elements should always remain visible without scrolling:
+
+current tense label;
+subject (if applicable);
+verb;
+IPA transcription;
+translation;
+answer input field.
+
+These are the pieces of information the user needs while typing.
+
+Compact the layout
+
+When the keyboard is open:
+
+reduce vertical spacing between cards;
+reduce top and bottom padding where possible;
+slightly reduce margins between UI blocks;
+avoid large empty spaces.
+
+The screen should become more compact automatically.
+
+Prevent important elements from disappearing
+
+The user should never lose sight of:
+
+the tense;
+the verb;
+the input field.
+
+These three elements are the core of the exercise and should stay visible during typing.
+
+Buttons
+
+If necessary:
+
+the Check button may move closer to the input;
+the Skip button may become less prominent or temporarily move lower.
+
+Priority should be given to keeping the learning content visible.
+
+No scrolling during typing
+
+The ideal behavior is:
+
+keyboard opens;
+layout compresses;
+user can see everything needed;
+no manual scrolling is required.
+Responsive behavior
+
+Please verify the behavior on:
+
+iPhone Safari (PWA)
+Android Chrome (PWA)
+installed mobile application (fullscreen mode)
+
+The keyboard behaves differently on iOS and Android, so ensure the layout works correctly on both platforms.
+
+Important
+
+Do not implement this as a browser-only workaround.
+
+The layout should respond to the actual visible viewport (using VisualViewport API or an equivalent responsive approach), so that it works correctly both:
+
+in the browser,
+and in the installed PWA/mobile app.
+QA checklist
+✅ Keyboard opens without hiding the verb.
+✅ Tense label remains visible.
+✅ Verb remains visible.
+✅ IPA remains visible.
+✅ Translation remains visible.
+✅ Input field remains visible.
+✅ No scrolling is required while typing.
+✅ Layout works correctly on iOS and Android.
+✅ Fullscreen (installed app) behaves correctly.

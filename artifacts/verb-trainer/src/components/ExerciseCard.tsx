@@ -1,5 +1,6 @@
 import { ExerciseItem } from "../engine/exercises";
 import { verbs } from "../data/verbs";
+import { cn } from "../lib/utils";
 
 interface ExerciseCardProps {
   exercise: ExerciseItem;
@@ -21,32 +22,56 @@ function getIPA(infinitive: string): string {
   return getVerbData(infinitive)?.infinitiveIPA ?? "";
 }
 
-export function ExerciseCard({ exercise }: ExerciseCardProps) {
+export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & { compact?: boolean }) {
   if (exercise.type === "verbform") {
     const translation = getTranslation(exercise.question.verb);
     const ipa = getIPA(exercise.question.verb);
     return (
-      <div className="flex flex-col items-center gap-3 w-full">
+      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
         {/* Tense pill */}
-        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30">
           {formatTenseName(exercise.question.tense)}
         </span>
 
         {/* Subject card */}
-        <div className="w-full rounded-2xl bg-card border border-border p-5 flex flex-col items-center gap-1">
-          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Subject</p>
-          <p className="text-3xl md:text-4xl font-bold tracking-tight">{exercise.question.subject}</p>
+        <div className={cn(
+          "w-full rounded-2xl bg-card border border-border flex flex-col items-center gap-0.5",
+          compact ? "p-2.5" : "p-5"
+        )}>
+          <p className={cn(
+            "uppercase tracking-widest text-muted-foreground font-semibold",
+            compact ? "text-[9px]" : "text-[10px]"
+          )}>Subject</p>
+          <p className={cn(
+            "font-bold tracking-tight",
+            compact ? "text-2xl" : "text-3xl md:text-4xl"
+          )}>{exercise.question.subject}</p>
         </div>
 
         {/* Verb card */}
-        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-1">
-          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
-          <p className="text-4xl md:text-5xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+        <div className={cn(
+          "w-full rounded-2xl bg-card border border-primary/20 flex flex-col items-center",
+          compact ? "p-2.5 gap-0.5" : "p-5 gap-1"
+        )}>
+          <p className={cn(
+            "uppercase tracking-widest text-muted-foreground font-semibold",
+            compact ? "text-[9px]" : "text-[10px]"
+          )}>Verb</p>
+          <p className={cn(
+            "font-black tracking-tight text-primary",
+            compact ? "text-2xl" : "text-4xl md:text-5xl"
+          )}>{exercise.question.verb}</p>
           {ipa && (
-            <p className="text-muted-foreground text-sm mt-3 tracking-wide">{ipa}</p>
+            <p className={cn(
+              "text-muted-foreground tracking-wide",
+              compact ? "text-xs mt-0.5" : "text-sm mt-3"
+            )}>{ipa}</p>
           )}
           {translation && (
-            <p className="text-muted-foreground text-base mt-1">{translation}</p>
+            <p className={cn(
+              "text-muted-foreground",
+              compact ? "text-xs mt-0" : "text-base mt-1"
+            )}>{translation}</p>
           )}
         </div>
       </div>
@@ -61,21 +86,36 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
     const translation = getTranslation(exercise.question.verb);
     const ipa = getIPA(exercise.question.verb);
     return (
-      <div className="flex flex-col items-center gap-3 w-full">
+      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
         {/* Form pill */}
-        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30">
           Irregular Form: {askForMap[exercise.question.askFor]}
         </span>
 
         {/* Verb card */}
-        <div className="w-full rounded-2xl bg-card border border-primary/20 p-5 flex flex-col items-center gap-1">
-          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Verb</p>
-          <p className="text-4xl md:text-5xl font-black tracking-tight text-primary">{exercise.question.verb}</p>
+        <div className={cn(
+          "w-full rounded-2xl bg-card border border-primary/20 flex flex-col items-center",
+          compact ? "p-2.5 gap-0.5" : "p-5 gap-1"
+        )}>
+          <p className={cn(
+            "uppercase tracking-widest text-muted-foreground font-semibold",
+            compact ? "text-[9px]" : "text-[10px]"
+          )}>Verb</p>
+          <p className={cn(
+            "font-black tracking-tight text-primary",
+            compact ? "text-2xl" : "text-4xl md:text-5xl"
+          )}>{exercise.question.verb}</p>
           {ipa && (
-            <p className="text-muted-foreground text-sm mt-3 tracking-wide">{ipa}</p>
+            <p className={cn(
+              "text-muted-foreground tracking-wide",
+              compact ? "text-xs mt-0.5" : "text-sm mt-3"
+            )}>{ipa}</p>
           )}
           {translation && (
-            <p className="text-muted-foreground text-base mt-1">{translation}</p>
+            <p className={cn(
+              "text-muted-foreground",
+              compact ? "text-xs mt-0" : "text-base mt-1"
+            )}>{translation}</p>
           )}
         </div>
       </div>
@@ -86,24 +126,42 @@ export function ExerciseCard({ exercise }: ExerciseCardProps) {
     const translation = getTranslation(exercise.question.verb ?? "");
     const ipa = getIPA(exercise.question.verb ?? "");
     return (
-      <div className="flex flex-col items-center gap-3 w-full">
+      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
         {/* Tense pill */}
-        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1.5 rounded-full border border-primary/30">
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30">
           {formatTenseName(exercise.question.tense)}
         </span>
 
         {/* Sentence card */}
-        <div className="w-full rounded-2xl bg-card border border-border p-5 flex flex-col items-center gap-3">
-          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Sentence</p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight leading-relaxed text-center">
+        <div className={cn(
+          "w-full rounded-2xl bg-card border border-border flex flex-col items-center",
+          compact ? "p-2.5 gap-1.5" : "p-5 gap-3"
+        )}>
+          <p className={cn(
+            "uppercase tracking-widest text-muted-foreground font-semibold",
+            compact ? "text-[9px]" : "text-[10px]"
+          )}>Sentence</p>
+          <p className={cn(
+            "font-bold tracking-tight leading-relaxed text-center",
+            compact ? "text-lg" : "text-2xl md:text-3xl"
+          )}>
             {exercise.question.template.replace("_____", "______")}
           </p>
-          <p className="text-xl text-primary font-medium">{exercise.question.hint}</p>
+          <p className={cn(
+            "text-primary font-medium",
+            compact ? "text-base" : "text-xl"
+          )}>{exercise.question.hint}</p>
           {ipa && (
-            <p className="text-muted-foreground text-sm tracking-wide">{ipa}</p>
+            <p className={cn(
+              "text-muted-foreground tracking-wide",
+              compact ? "text-xs" : "text-sm"
+            )}>{ipa}</p>
           )}
           {translation && (
-            <p className="text-muted-foreground text-base">{translation}</p>
+            <p className={cn(
+              "text-muted-foreground",
+              compact ? "text-xs" : "text-base"
+            )}>{translation}</p>
           )}
         </div>
       </div>

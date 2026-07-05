@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { cn } from "../lib/utils";
 
 interface AnswerInputProps {
   onSubmit: (answer: string) => void;
@@ -6,6 +7,7 @@ interface AnswerInputProps {
   disabled?: boolean;
   feedback?: "correct" | "incorrect" | null;
   submittedValue?: string;
+  compact?: boolean;
 }
 
 export function AnswerInput({
@@ -14,6 +16,7 @@ export function AnswerInput({
   disabled,
   feedback,
   submittedValue,
+  compact = false,
 }: AnswerInputProps) {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -48,7 +51,10 @@ export function AnswerInput({
         : "text-foreground";
 
   return (
-    <div className="w-full rounded-2xl bg-card border border-border p-2 flex items-center">
+    <div className={cn(
+      "w-full rounded-2xl bg-card border border-border flex items-center",
+      compact ? "p-1.5" : "p-2"
+    )}>
       <input
         ref={inputRef}
         value={displayValue}
@@ -60,16 +66,18 @@ export function AnswerInput({
         }}
         onKeyDown={handleKeyDown}
         readOnly={isPostSubmit}
-        className={[
-          "text-xl text-center h-14 w-full mx-auto block",
-          "rounded-xl border-2 bg-background px-3 py-2",
+        className={cn(
+          "w-full mx-auto block rounded-xl border-2 bg-background px-3 py-2",
           "transition-colors duration-150",
           "placeholder:text-muted-foreground",
           "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
           "font-semibold",
+          compact
+            ? "text-lg text-center h-10"
+            : "text-xl text-center h-14",
           borderClass,
           textClass,
-        ].join(" ")}
+        )}
         placeholder="Type your answer..."
         autoComplete="off"
         autoCorrect="off"

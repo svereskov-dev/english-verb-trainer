@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useExerciseSession } from "../hooks/useExerciseSession";
 import { useStats } from "../hooks/useStats";
+import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { AnswerInput } from "../components/AnswerInput";
 import { ProgressBar } from "../components/ProgressBar";
@@ -10,6 +11,7 @@ import { SessionConfig } from "../engine/exercises";
 import { Check, X, SkipForward, Sparkles, ChevronRight } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
+import { cn } from "../lib/utils";
 
 const CONFIG_KEY = "practice_config";
 const CONFIG_DATE_KEY = "practice_config_date";
@@ -65,6 +67,9 @@ export default function Practice() {
   );
   const [submittedValue, setSubmittedValue] = useState("");
   const [pendingAnswer, setPendingAnswer]   = useState("");
+
+  // Keyboard-aware compact layout
+  const keyboardVisible = useKeyboardVisible();
 
   const {
     currentExercise,
@@ -229,10 +234,15 @@ export default function Practice() {
         </div>
       </div>
 
-      {/* Exercise area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-4 w-full max-w-md mx-auto gap-3">
+      {/* Exercise area — compact when keyboard is open */}
+      <div className={cn(
+        "flex-1 flex flex-col items-center w-full max-w-md mx-auto",
+        keyboardVisible
+          ? "p-2 gap-2 justify-start pt-1"
+          : "p-4 gap-3 justify-center"
+      )}>
         <div className="w-full">
-          <ExerciseCard exercise={currentExercise} />
+          <ExerciseCard exercise={currentExercise} compact={keyboardVisible} />
         </div>
 
         <div className="w-full flex flex-col items-center gap-3">
@@ -243,6 +253,7 @@ export default function Practice() {
             disabled={showingFeedback}
             feedback={feedback}
             submittedValue={submittedValue}
+            compact={keyboardVisible}
           />
 
           {!showingFeedback ? (
@@ -250,21 +261,26 @@ export default function Practice() {
               <Button
                 onClick={handleCheck}
                 disabled={!pendingAnswer.trim()}
-                className="w-full max-w-md h-12 text-base font-semibold"
+                className={cn(
+                  "w-full max-w-md font-semibold",
+                  keyboardVisible ? "h-10 text-sm" : "h-12 text-base"
+                )}
                 data-testid="button-check"
               >
                 Check
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleSkip}
-                className="text-muted-foreground hover:text-foreground gap-1.5"
-                data-testid="button-skip"
-              >
-                <SkipForward size={14} />
-                Skip
-              </Button>
+              {!keyboardVisible && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleSkip}
+                  className="text-muted-foreground hover:text-foreground gap-1.5"
+                  data-testid="button-skip"
+                >
+                  <SkipForward size={14} />
+                  Skip
+                </Button>
+              )}
             </>
           ) : (
             <>
@@ -278,7 +294,10 @@ export default function Practice() {
               </div>
               <Button
                 onClick={handleNext}
-                className="w-full max-w-md h-12 text-base font-semibold"
+                className={cn(
+                  "w-full max-w-md font-semibold",
+                  keyboardVisible ? "h-10 text-sm" : "h-12 text-base"
+                )}
                 data-testid="button-next"
               >
                 Next →
