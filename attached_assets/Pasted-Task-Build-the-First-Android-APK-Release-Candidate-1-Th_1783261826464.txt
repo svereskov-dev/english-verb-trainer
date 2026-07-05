@@ -1,0 +1,141 @@
+Task: Build the First Android APK (Release Candidate 1)
+
+The application has reached a stable state and is ready for real-device testing.
+
+Please prepare the first Android APK build (Release Candidate 1) so it can be installed directly on Android devices without publishing it to Google Play.
+
+The purpose of this build is testing only.
+
+Do not introduce any new features or UI changes.
+
+Goal
+
+Generate an installable Android APK that behaves like a native application.
+
+The APK will be distributed manually to testers.
+
+No Google Play upload is required.
+
+Build requirements
+
+Please generate:
+
+Debug APK (preferred for the first round of testing)
+
+If possible, also generate:
+
+Release APK
+
+Both builds should be installable directly on Android devices.
+
+Packaging
+
+Use the most appropriate packaging method for the current project.
+
+If this is a React + PWA project, use the approach you consider most suitable (for example Capacitor or another modern solution).
+
+The objective is:
+
+native Android application
+fullscreen
+installable APK
+stable behavior
+
+Choose the implementation that requires the fewest changes to the existing codebase.
+
+Preserve current functionality
+
+The APK must preserve everything that already works:
+
+Practice
+Dictionary
+IPA
+English Tenses
+Mistakes
+Settings
+Bottom Navigation
+Training Mode
+State persistence
+Daily progress
+Local storage
+Reset Data
+
+No functionality should change.
+
+Native behavior
+
+Verify that the APK behaves like a normal Android application.
+
+Specifically check:
+
+launches fullscreen;
+no browser address bar;
+no browser navigation controls;
+proper app icon;
+proper application name;
+splash screen (if available);
+returns correctly after minimizing;
+restores state after reopening.
+Keyboard behavior
+
+Pay particular attention to the Practice screen.
+
+Verify that:
+
+the Android keyboard opens correctly;
+important content remains visible;
+no layout breaking occurs;
+no unexpected scrolling appears.
+Responsive verification
+
+Test on several Android viewport sizes (or emulators):
+
+small phone
+standard phone
+large phone
+
+Verify that:
+
+no clipped content;
+no overlapping controls;
+bottom navigation behaves correctly;
+safe area is respected.
+Persistence
+
+Verify that all persisted data still works inside the APK:
+
+selected training modes;
+current exercise;
+mistakes;
+daily progress;
+dictionary state;
+settings.
+
+Everything should behave exactly as it does in the browser version.
+
+Deliverables
+
+Please provide:
+
+installable APK file(s);
+brief build instructions (if needed);
+Android version used for testing;
+packaging method used (Capacitor, TWA, etc.).
+Testing report
+
+Along with the APK, provide a short report confirming:
+
+APK installs successfully.
+Application launches correctly.
+All screens open normally.
+Navigation works.
+Keyboard behaves correctly.
+State persistence works.
+Bottom navigation works.
+No critical issues were found during packaging.
+
+If any issues are discovered while preparing the APK, please fix them before delivering the build whenever possible.
+
+Goal
+
+The result should be a Release Candidate (RC1) suitable for installation on real Android devices and for several days of testing before publishing the application to Google Play.
