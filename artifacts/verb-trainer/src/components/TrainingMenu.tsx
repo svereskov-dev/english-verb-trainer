@@ -200,36 +200,44 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
 
   const togglePreset = (id: string) => {
     setSelectedIds(prev => {
+      // 0. Mistakes Review is mutually exclusive with ALL other options
+      if (id === "mistakes") {
+        return ["mistakes"];
+      }
+
       const group = GROUPS.find(g => g.presets.some(p => p.id === id));
       if (!group) return prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id];
 
       const groupIds = group.presets.map(p => p.id);
       const mixedId = group.presets.find(p => p.label === "Mixed")?.id;
 
+      // If Mistakes Review is active and user selects anything else, clear it first
+      const base = prev.includes("mistakes") ? prev.filter(p => p !== "mistakes") : prev;
+
       // 1. Deselect
-      if (prev.includes(id)) {
-        return prev.filter(p => p !== id);
+      if (base.includes(id)) {
+        return base.filter(p => p !== id);
       }
 
       // 2. Selecting Mixed: remove all other presets in this group
       if (id === mixedId) {
-        return [...prev.filter(p => !groupIds.includes(p)), id];
+        return [...base.filter(p => !groupIds.includes(p)), id];
       }
 
       // 3. Selecting Full Conjugation: remove all other verbform presets
       if (id === "full-all") {
-        return [...prev.filter(p => !allVerbformIds.includes(p)), id];
+        return [...base.filter(p => !allVerbformIds.includes(p)), id];
       }
 
       // 4. Selecting a verbform preset while full-all is active: remove full-all
-      if (allVerbformIds.includes(id) && prev.includes("full-all")) {
-        const withoutFullAll = prev.filter(p => p !== "full-all");
+      if (allVerbformIds.includes(id) && base.includes("full-all")) {
+        const withoutFullAll = base.filter(p => p !== "full-all");
         const withoutMixed = mixedId ? withoutFullAll.filter(p => p !== mixedId) : withoutFullAll;
         return [...withoutMixed, id];
       }
 
       // 5. Normal individual: remove Mixed from this group if present, add individual
-      const withoutMixed = mixedId ? prev.filter(p => p !== mixedId) : prev;
+      const withoutMixed = mixedId ? base.filter(p => p !== mixedId) : base;
       return [...withoutMixed, id];
     });
   };

@@ -1,0 +1,124 @@
+### Training Mode – Make "Mistakes Review" Mutually Exclusive
+
+The **Mistakes Review** option should behave exactly like **Full Conjugation → All Tenses**.
+
+At the moment, **Mistakes Review** can be combined with other training filters. This creates confusing selection logic.
+
+### Required behavior
+
+Treat **Mistakes Review** as a standalone training mode.
+
+It must **never** be active together with any other training options.
+
+---
+
+## Behavior
+
+### 1. Selecting Mistakes Review
+
+If the user clicks **Mistakes Review**:
+
+* automatically deselect every other selected training option;
+* activate **Mistakes Review** only.
+
+After this action, **Mistakes Review** is the only active selection.
+
+---
+
+### 2. Selecting any other option while Mistakes Review is active
+
+If **Mistakes Review** is already selected and the user clicks:
+
+* any tense,
+* Mixed,
+* Full Conjugation,
+* Regular/Irregular options,
+* any other training filter,
+
+then:
+
+* automatically deselect **Mistakes Review**;
+* activate the newly selected option(s) normally.
+
+The user should never have to manually turn off Mistakes Review first.
+
+---
+
+## Logic
+
+Mistakes Review is an independent training mode, not an additional filter.
+
+Therefore it must be **mutually exclusive** with every other training mode.
+
+It should behave exactly like **Full Conjugation**:
+
+* selecting it clears everything else;
+* selecting anything else automatically clears it.
+
+---
+
+## Examples
+
+### Example 1
+
+Current selection:
+
+* Present Simple
+* Past Perfect
+
+User clicks:
+
+**Mistakes Review**
+
+Result:
+
+✓ Mistakes Review
+
+Everything else is automatically deselected.
+
+---
+
+### Example 2
+
+Current selection:
+
+✓ Mistakes Review
+
+User clicks:
+
+Present Simple
+
+Result:
+
+✓ Present Simple
+
+Mistakes Review is automatically deselected.
+
+---
+
+### Example 3
+
+Current selection:
+
+✓ Mistakes Review
+
+User clicks:
+
+Full Conjugation
+
+Result:
+
+✓ Full Conjugation
+
+Mistakes Review is automatically deselected.
+
+---
+
+## Validation Checklist
+
+* Mistakes Review cannot remain active together with any other training option.
+* Selecting Mistakes Review clears all existing selections.
+* Selecting any other option automatically deselects Mistakes Review.
+* No additional click is required.
+* State persistence continues to work correctly.
+* Reset Data restores the default behavior correctly.
