@@ -18,3 +18,9 @@ id = "mrtv4ntWH5Kj8TTOd-zF3"
 uri = "file://artifacts/verb-trainer/public/architecture/architecture.png"
 type = "image"
 title = "Architecture Diagram (PNG - high resolution)"
+
+[[outputs]]
+id = "rX4IyqYewjKzEX9SS_yHf"
+uri = "file://verb-trainer-full.tar.gz"
+type = "unspecified"
+title = "English Verb Trainer — Full Workspace (8.7 MB)"
