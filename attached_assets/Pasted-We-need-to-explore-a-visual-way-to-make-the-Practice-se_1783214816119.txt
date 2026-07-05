@@ -1,0 +1,66 @@
+We need to explore a visual way to make the **Practice section feel like the central screen of the app**, without redesigning the Practice screen itself.
+
+This is a **design exploration only**. Do **not** implement any changes yet.
+
+### Important clarification
+
+The previous proposal misunderstood the task.
+
+I am **not** asking to redesign the Practice screen (verb card, input field, buttons, spacing, etc.).
+
+The layout of the Practice screen should remain exactly as it is.
+
+Instead, I want to visually emphasize that **Practice is the main destination of the application**, while all other screens are secondary.
+
+### Please prepare two design concepts.
+
+## Concept A — Navigation Focus
+
+Show how the **navigation itself** could communicate that Practice is the central section.
+
+Examples (feel free to suggest better ideas):
+
+* Practice icon slightly larger than the others.
+* A soft glow behind the Practice icon.
+* A subtle elevated or "floating" effect.
+* A slightly different active-state treatment.
+* Any elegant solution that naturally draws the eye toward Practice.
+
+The effect should be subtle and premium, not flashy.
+
+---
+
+## Concept B — Ambient Focus
+
+Instead of highlighting only the navigation icon, explore a more global visual treatment that makes the user subconsciously feel they are in the app's primary screen.
+
+Examples:
+
+* a very soft ambient glow behind the entire screen,
+* a subtle radial gradient,
+* delicate lighting around the safe content area,
+* any premium visual treatment that increases the feeling of importance without changing the content itself.
+
+Again:
+
+* do NOT change the cards,
+* do NOT change typography,
+* do NOT change spacing,
+* do NOT redesign buttons.
+
+The only purpose is to make Practice feel like the "heart" of the application.
+
+---
+
+### Deliverables
+
+Prepare two static mockups:
+
+1. Navigation Focus
+2. Ambient Focus
+
+Show the entire Practice screen in each concept.
+
+After I review them, we will choose one direction before implementing anything.
+
+The rest of the application should remain unchanged.
