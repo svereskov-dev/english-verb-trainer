@@ -1,0 +1,6 @@
+dist/
+node_modules/
+
+# Capacitor — generated locally, never commit
+android/
+ios/
