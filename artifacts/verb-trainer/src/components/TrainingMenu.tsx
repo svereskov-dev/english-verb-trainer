@@ -200,9 +200,12 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
 
   const togglePreset = (id: string) => {
     setSelectedIds(prev => {
-      // 0. Mistakes Review is mutually exclusive with ALL other options
+      // 0. Fully exclusive options: selecting them clears everything else
       if (id === "mistakes") {
         return ["mistakes"];
+      }
+      if (id === "full-all") {
+        return ["full-all"];
       }
 
       const group = GROUPS.find(g => g.presets.some(p => p.id === id));
@@ -211,8 +214,10 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
       const groupIds = group.presets.map(p => p.id);
       const mixedId = group.presets.find(p => p.label === "Mixed")?.id;
 
-      // If Mistakes Review is active and user selects anything else, clear it first
-      const base = prev.includes("mistakes") ? prev.filter(p => p !== "mistakes") : prev;
+      // Strip any fully-exclusive option if it was active
+      const base = prev.includes("mistakes") || prev.includes("full-all")
+        ? prev.filter(p => p !== "mistakes" && p !== "full-all")
+        : prev;
 
       // 1. Deselect
       if (base.includes(id)) {
@@ -224,19 +229,8 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
         return [...base.filter(p => !groupIds.includes(p)), id];
       }
 
-      // 3. Selecting Full Conjugation: remove all other verbform presets
-      if (id === "full-all") {
-        return [...base.filter(p => !allVerbformIds.includes(p)), id];
-      }
-
-      // 4. Selecting a verbform preset while full-all is active: remove full-all
-      if (allVerbformIds.includes(id) && base.includes("full-all")) {
-        const withoutFullAll = base.filter(p => p !== "full-all");
-        const withoutMixed = mixedId ? withoutFullAll.filter(p => p !== mixedId) : withoutFullAll;
-        return [...withoutMixed, id];
-      }
-
-      // 5. Normal individual: remove Mixed from this group if present, add individual
+      // 3. Selecting a verbform preset while full-all was active (already stripped above)
+      // — just apply normal logic: remove Mixed from this group, add individual
       const withoutMixed = mixedId ? base.filter(p => p !== mixedId) : base;
       return [...withoutMixed, id];
     });
