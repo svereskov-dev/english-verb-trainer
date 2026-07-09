@@ -6,14 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import com.getcapacitor.BridgeActivity;
 
 /**
  * MainActivity for English Verb Trainer.
  *
  * Extends BridgeActivity (Capacitor's standard base) and adds:
- * 1. Android 15 edge-to-edge opt-out via setDecorFitsSystemWindows
- * 2. Native re-application of system bar colors in onResume()
+ * 1. Force dark mode so the keyboard appears dark
+ * 2. Android 15 edge-to-edge opt-out via setDecorFitsSystemWindows
+ * 3. Native re-application of system bar colors in onResume()
  *
  * This guarantees solid #070B17 bars on every Android version (13–15+)
  * and survives lifecycle events (background, lock/unlock, theme change).
@@ -24,6 +26,11 @@ public class MainActivity extends BridgeActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    // Force the app to always report as dark-themed to Android.
+    // This tells the system keyboard (and any other system UI) to use
+    // its dark appearance whenever supported.
+    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
     super.onCreate(savedInstanceState);
 
     Window window = getWindow();

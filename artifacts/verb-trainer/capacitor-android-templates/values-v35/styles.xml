@@ -13,7 +13,7 @@
   bars, creating a gray/transparent flash regardless of styles.xml settings.
 -->
 <resources>
-  <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+  <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
     <item name="colorPrimary">@color/appBackground</item>
     <item name="colorPrimaryDark">@color/appBackground</item>
     <item name="colorAccent">@color/appBackground</item>

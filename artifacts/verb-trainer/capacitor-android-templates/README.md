@@ -53,6 +53,18 @@ cp capacitor-android-templates/MainActivity.java \
 | **Native Java** (`MainActivity.onResume`) | Every resume from background | OEM resets after lock/unlock/theme change |
 | **Capacitor JS** (`useSystemUI.ts`) | App startup + `appStateChange` resume | WebView-level edge cases |
 
+## Dark keyboard
+
+The app forces dark mode (`AppCompatDelegate.MODE_NIGHT_YES`) in `MainActivity.java`
+and uses `Theme.AppCompat.DayNight.NoActionBar` in both `styles.xml` files. This tells
+Android — and therefore the system keyboard — that the app is always dark-themed,
+so the keyboard should use its dark appearance whenever supported.
+
+> **OEM limitation:** Some manufacturer keyboards (e.g. older Samsung, Xiaomi, Huawei)
+> ignore the app theme and use their own color scheme. This is an OEM bug, not an
+> app bug — the app correctly reports itself as dark. Gboard and most stock Android
+> keyboards will honor the dark theme.
+
 ## Re-applying after `cap:sync`
 
 `npx cap sync` does **not** overwrite `android/app/src/main/res/values/`,
