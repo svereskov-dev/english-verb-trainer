@@ -1,7 +1,7 @@
 import { getDB } from './index';
 
 export type Difficulty = "beginner" | "intermediate" | "advanced";
-export type Theme = "dark" | "light" | "system";
+export type Theme = "dark" | "light";
 
 export interface Settings {
   difficulty: Difficulty;
@@ -24,11 +24,18 @@ export async function getSettings(): Promise<Settings> {
     await saveSettings(defaultSettings);
     return defaultSettings;
   }
+
+  const rawTheme = await db.get('settings', 'theme');
+  // Migrate legacy "system" and "light" themes to "dark" (the only supported theme)
+  const theme = rawTheme === "system" || rawTheme === "light"
+    ? "dark"
+    : (rawTheme || defaultSettings.theme);
+
   return {
     difficulty: (await db.get('settings', 'difficulty')) || defaultSettings.difficulty,
     dailyGoal: (await db.get('settings', 'dailyGoal')) || defaultSettings.dailyGoal,
     includeSubject: (await db.get('settings', 'includeSubject')) || defaultSettings.includeSubject,
-    theme: (await db.get('settings', 'theme')) || defaultSettings.theme,
+    theme,
   };
 }
 

@@ -53,17 +53,24 @@ export default function Settings() {
 
           <div className="space-y-2">
             <Label>Theme</Label>
-            <Select 
-              value={settings.theme} 
-              onValueChange={(val: any) => updateSettings({ theme: val })}
+            <Select
+              value={settings.theme}
+              onValueChange={(val: string) => {
+                // Only Dark Mode is active. Light Mode is coming soon.
+                if (val === "dark") {
+                  updateSettings({ theme: "dark" });
+                }
+                // Tapping "light" is ignored — the option is disabled in the UI.
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select theme" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="dark">Dark Mode</SelectItem>
-                <SelectItem value="light">Light Mode</SelectItem>
-                <SelectItem value="system">System Default</SelectItem>
+                <SelectItem value="light" disabled>
+                  Light Mode (Coming Soon)
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
