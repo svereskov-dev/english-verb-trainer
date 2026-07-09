@@ -1,39 +1,75 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Capacitor } from "@capacitor/core";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { SplashScreen } from "@capacitor/splash-screen";
+import { App } from "@capacitor/app";
 
 const APP_BACKGROUND = "#070B17";
 
 /**
  * Configures Android system bars to match the app theme.
  *
- * This is called once on app startup and stays consistent across
- * all screens. It only runs inside a native Capacitor build —
- * it does nothing in a browser.
+ * Runs once at startup (hides splash screen + sets initial colors) and
+ * re-applies the same settings every time the app returns from background.
  *
- * What it does:
- * — Status Bar: solid #070B17 background with light icons/text
- * — Navigation Bar: solid #070B17 background with light icons
- * — Hides the splash screen once React has mounted
+ * This ensures the Status Bar and Navigation Bar never revert to gray/white
+ * after device lock, theme change, or activity recreation.
+ *
+ * Only runs inside a native Capacitor build — does nothing in a browser.
  */
 export function useSystemUI() {
+  const splashHidden = useRef(false);
+
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
 
-    const setup = async () => {
+    /**
+     * Apply the full system UI configuration:
+     * — Status Bar: solid #070B17 background + light icons
+     * — Navigation Bar: solid #070B17 background + light icons
+     */
+    const applyBars = async () => {
       try {
-        // Status bar — solid dark background, light icons
         await StatusBar.setBackgroundColor({ color: APP_BACKGROUND });
         await StatusBar.setStyle({ style: Style.Dark });
-
-        // Hide splash screen with a smooth fade
-        await SplashScreen.hide({ fadeOutDuration: 500 });
-      } catch (e) {
+      } catch {
         // Plugins may not be available during web dev — silently ignore
       }
     };
 
-    setup();
+    /**
+     * First-time startup sequence:
+     * 1. Set bar colors immediately
+     * 2. Hide splash screen with a smooth fade once React is mounted
+     */
+    const startup = async () => {
+      await applyBars();
+      if (!splashHidden.current) {
+        try {
+          await SplashScreen.hide({ fadeOutDuration: 500 });
+          splashHidden.current = true;
+        } catch {
+          // Splash plugin may not be present during web dev
+        }
+      }
+    };
+
+    startup();
+
+    // Re-apply bar colors whenever the app returns from background.
+    // Some OEMs reset system UI on resume, lock/unlock, or theme changes.
+    let removeListener: (() => void) | undefined;
+
+    App.addListener("appStateChange", ({ isActive }) => {
+      if (isActive) {
+        applyBars();
+      }
+    }).then((listener) => {
+      removeListener = listener.remove;
+    });
+
+    return () => {
+      removeListener?.();
+    };
   }, []);
 }

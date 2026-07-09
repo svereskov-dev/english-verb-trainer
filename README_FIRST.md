@@ -103,11 +103,12 @@ You only need to do this once. On subsequent rebuilds, skip to Step 5.
 ### Step 4b — Configure system bars to match the app theme *(first time only)*
 
 Copy the pre-made Android theme files so the Status Bar and Navigation Bar
-match your app's dark background:
+match your app's dark background on all Android versions (13–15+):
 
 ```bash
 cd artifacts/verb-trainer
 
+# Base theme — all Android versions
 cp capacitor-android-templates/colors.xml \
    android/app/src/main/res/values/colors.xml
 
@@ -116,12 +117,24 @@ cp capacitor-android-templates/styles.xml \
 
 cp capacitor-android-templates/splash.xml \
    android/app/src/main/res/drawable/splash.xml
+
+# Android 15 edge-to-edge opt-out (critical — prevents transparent bars)
+mkdir -p android/app/src/main/res/values-v35
+cp capacitor-android-templates/values-v35/styles.xml \
+   android/app/src/main/res/values-v35/styles.xml
+
+# Custom MainActivity — re-applies bar colors on every resume
+# (prevents gray bars after lock/unlock or theme change)
+cp capacitor-android-templates/MainActivity.java \
+   android/app/src/main/java/com/verbtrainer/app/MainActivity.java
 ```
 
 What this does:
 - Status Bar → solid `#070B17` with light icons
-- Navigation Bar → solid `#070B17` with light icons  
+- Navigation Bar → solid `#070B17` with light icons
 - Splash screen → `#070B17` background matching the app
+- Android 15 edge-to-edge → explicitly disabled so bars stay solid
+- Lifecycle re-application → bar colors re-applied on every resume
 
 You only need to do this once. It survives every `cap:sync`.
 

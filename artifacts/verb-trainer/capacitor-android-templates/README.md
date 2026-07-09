@@ -1,37 +1,61 @@
 # Android System UI Templates
 
-These XML files configure the Android Status Bar and Navigation Bar to match
-your app’s dark theme (#070B17). They are applied at the native Android level,
-so they work automatically on every screen with no JavaScript code required.
+These files configure the Android Status Bar and Navigation Bar to match
+your app's dark theme (#070B17) and guarantee consistent behavior across
+Android 13, 14, and 15+.
 
 ## Where these files go
 
 After running `npx cap add android` (first-time setup), copy them into the
-generated `android/` directory:
+generated `android/` directory as shown below.
+
+> **Note:** `styles.xml` and `MainActivity.java` replace existing generated
+> files — overwrite them when prompted.
+
+### Base theme (all Android versions)
 
 ```bash
 cp capacitor-android-templates/colors.xml   android/app/src/main/res/values/
 cp capacitor-android-templates/styles.xml   android/app/src/main/res/values/
+cp capacitor-android-templates/splash.xml   android/app/src/main/res/drawable/
 ```
 
-> **Note:** `styles.xml` replaces the existing file — overwrite it when prompted.
+### Android 15 edge-to-edge opt-out
+
+```bash
+mkdir -p android/app/src/main/res/values-v35
+cp capacitor-android-templates/values-v35/styles.xml \
+   android/app/src/main/res/values-v35/styles.xml
+```
+
+### Custom MainActivity with lifecycle re-application
+
+```bash
+cp capacitor-android-templates/MainActivity.java \
+   android/app/src/main/java/com/verbtrainer/app/MainActivity.java
+```
 
 ## What each file does
 
 | File | Purpose |
 |------|---------|
-| `colors.xml` | Defines `appBackground` as `#070B17` — shared by both bars |
-| `styles.xml` | Sets Status Bar + Navigation Bar to that color with light icons |
+| `colors.xml` | Single source of truth — `appBackground` = `#070B17` |
+| `styles.xml` (values/) | Base theme: solid bars, light icons, all Android versions |
+| `styles.xml` (values-v35/) | Android 15 override: explicitly opts out of edge-to-edge |
+| `splash.xml` | Splash background drawable matching the app |
+| `MainActivity.java` | Native `onResume()` re-applies bar colors; `setDecorFitsSystemWindows` for Android 15 |
 
-## Why two layers?
+## Three-layer defence
 
-1. **Native Android XML** (these files) — sets the bars before the webview loads
-2. **Capacitor StatusBar plugin** (JavaScript) — reinforces the same colors after the webview is ready
-
-Together they guarantee zero flash of wrong colors during startup.
+| Layer | When it runs | What it protects against |
+|-------|-------------|-------------------------|
+| **Native XML** (`styles.xml`) | App process start (before WebView) | Wrong colors during cold boot |
+| **Native Java** (`MainActivity.onResume`) | Every resume from background | OEM resets after lock/unlock/theme change |
+| **Capacitor JS** (`useSystemUI.ts`) | App startup + `appStateChange` resume | WebView-level edge cases |
 
 ## Re-applying after `cap:sync`
 
 `npx cap sync` does **not** overwrite `android/app/src/main/res/values/`,
-so you only need to copy these files once. If you ever delete and regenerate
-the `android/` directory, copy them again.
+`values-v35/`, or `MainActivity.java`, so you only need to copy these files
+once. If you ever delete and regenerate the `android/` directory, copy them
+again.

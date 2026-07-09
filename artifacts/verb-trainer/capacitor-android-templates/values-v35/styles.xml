@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android 15 (API 35+) edge-to-edge opt-out.
+
+  Place this file at:
+    android/app/src/main/res/values-v35/styles.xml
+
+  This file ONLY applies on Android 15+ and explicitly opts out of the
+  platform's default edge-to-edge behavior, preventing the system from
+  automatically making the Status Bar and Navigation Bar transparent.
+
+  Without this override, Android 15 forces content to draw behind system
+  bars, creating a gray/transparent flash regardless of styles.xml settings.
+-->
+<resources>
+  <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+    <item name="colorPrimary">@color/appBackground</item>
+    <item name="colorPrimaryDark">@color/appBackground</item>
+    <item name="colorAccent">@color/appBackground</item>
+    <item name="android:windowBackground">@color/appBackground</item>
+
+    <!-- Status Bar — solid #070B17, light icons -->
+    <item name="android:statusBarColor">@color/appBackground</item>
+    <item name="android:windowLightStatusBar">false</item>
+
+    <!-- Navigation Bar — solid #070B17, light icons -->
+    <item name="android:navigationBarColor">@color/appBackground</item>
+    <item name="android:windowLightNavigationBar">false</item>
+
+    <!--
+      CRITICAL: Opt out of Android 15 edge-to-edge enforcement.
+      This prevents the platform from overriding our solid bar colors
+      with transparent/edge-to-edge mode.
+    -->
+    <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+  </style>
+</resources>
