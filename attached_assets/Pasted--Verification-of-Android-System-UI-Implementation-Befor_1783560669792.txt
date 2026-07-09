@@ -1,0 +1,74 @@
+# Verification of Android System UI Implementation
+
+Before we consider the Android System UI work complete, please verify that the implementation behaves exactly as intended.
+
+I do **not** want additional changes unless they are actually necessary. First, please perform the following checks and report the results.
+
+---
+
+# 1. Verify Status Bar Icon Style
+
+Please verify which Capacitor StatusBar style is actually being applied.
+
+The application background is:
+
+`#070B17`
+
+Since this is a very dark background, the Status Bar icons should be **white**.
+
+Please confirm that:
+
+* the final implementation uses the correct Capacitor style for a dark background;
+* the Status Bar icons are white;
+* no part of the implementation accidentally requests dark icons on a dark background.
+
+If any inconsistency exists between the implementation and the documentation, please correct it.
+
+---
+
+# 2. Verify Navigation Bar Icons
+
+Please verify that the Android Navigation Bar also displays light (white) navigation icons on the dark background.
+
+---
+
+# 3. Verify Real Device Behavior
+
+Please verify that all of the following scenarios preserve the correct colors:
+
+* cold application launch;
+* returning from background;
+* locking and unlocking the phone;
+* opening Recent Apps and returning;
+* switching between light and dark Android themes (if applicable).
+
+In every case:
+
+* Status Bar should remain `#070B17`;
+* Navigation Bar should remain `#070B17`;
+* system icons should remain white.
+
+---
+
+# 4. Verify Android Version Compatibility
+
+Please confirm that the implementation has been checked for:
+
+* Android 13
+* Android 14
+* Android 15+
+
+If there are any known differences between these versions, please document them.
+
+---
+
+# 5. Final Report
+
+Please provide a short technical summary confirming:
+
+* whether the implementation is fully correct;
+* whether any issue was found;
+* whether any code changes were required;
+* whether the application now behaves consistently across all supported Android versions.
+
+The goal is to verify the implementation rather than make unnecessary modifications.
