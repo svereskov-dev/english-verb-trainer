@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Splash screen background — a solid color fill.
+
+  Place this file at:
+    android/app/src/main/res/drawable/splash.xml
+
+  The Capacitor SplashScreen plugin references this via:
+    androidSplashResourceName: "splash"
+
+  in capacitor.config.ts.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:drawable="@color/appBackground" />
+</layer-list>

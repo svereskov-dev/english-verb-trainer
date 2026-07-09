@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { useSystemUI } from "@/hooks/useSystemUI";
 
 import Home from "@/pages/home";
 import Practice from "@/pages/practice";
@@ -32,6 +33,8 @@ function Router() {
 }
 
 function App() {
+  useSystemUI();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>

@@ -1,0 +1,89 @@
+# Task: Make Android System UI Match the App Theme
+
+The Android version of the app currently has inconsistent system UI colors.
+
+The application itself uses a dark theme, but:
+
+* the Status Bar (top system bar) is gray;
+* the Android Navigation Bar (bottom system bar with Back / Home / Recent buttons) is white.
+
+This makes the application look unfinished and not native.
+
+## Requirements
+
+### 1. Status Bar
+
+Configure the Android Status Bar so that:
+
+* Background color matches the application background.
+* Use the primary app background color:
+
+  * `#070B17`
+* Status bar icons and text should be **light (white)**.
+
+Apply this on application startup and keep it consistent across every screen.
+
+---
+
+### 2. Navigation Bar
+
+Configure the Android Navigation Bar so that:
+
+* Background color is also:
+
+  * `#070B17`
+* Navigation icons should be light (white).
+
+The Navigation Bar should remain dark on every page.
+
+---
+
+### 3. Apply Globally
+
+The system UI configuration must:
+
+* be applied automatically when the application launches;
+* remain active after navigation between screens;
+* not require page-specific code.
+
+---
+
+### 4. No Transparent System Bars
+
+Do **not** use transparent Status Bar or Navigation Bar.
+
+Both bars should have a solid color matching the application background.
+
+---
+
+### 5. Native Android Feel
+
+The final result should look like a native Android application.
+
+There should be no visible mismatch between:
+
+* application background,
+* Status Bar,
+* Navigation Bar.
+
+Everything should appear as one continuous dark interface.
+
+---
+
+### 6. Use Best Practices
+
+Use official Capacitor APIs and/or native Android APIs if necessary.
+
+Avoid hacks or CSS-only solutions.
+
+---
+
+## Bonus (if not already implemented)
+
+Please also configure the Splash Screen so it matches the application branding:
+
+* background: `#070B17`
+* centered app logo
+* smooth transition into the application
+
+The Splash Screen should visually match the Home screen so the app feels polished and professional.

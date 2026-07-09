@@ -75,6 +75,36 @@ You only need to run this once. After that, use `cap:sync` to update it.
 
 ---
 
+## Step 3b — Configure Android system bars *(first time only)*
+
+Copy the pre-made native Android theme files into the generated project so
+the Status Bar and Navigation Bar match your app's dark background:
+
+```bash
+cd artifacts/verb-trainer
+
+# Create the colors resource
+cp capacitor-android-templates/colors.xml \
+   android/app/src/main/res/values/colors.xml
+
+# Replace the generated theme with the app-matching one
+cp capacitor-android-templates/styles.xml \
+   android/app/src/main/res/values/styles.xml
+
+# Copy the splash background
+cp capacitor-android-templates/splash.xml \
+   android/app/src/main/res/drawable/splash.xml
+```
+
+What this does:
+- Status Bar → solid `#070B17` background with light icons
+- Navigation Bar → solid `#070B17` background with light icons
+- Splash screen → `#070B17` background matching the app
+
+You only need to do this once. `cap:sync` will never overwrite these files.
+
+---
+
 ## Step 4 — Sync web assets to Android
 
 ```bash
@@ -181,6 +211,9 @@ pnpm run cap:open
 | Web dir | `dist/public` |
 | Routing | Hash-based (`#/practice`, etc.) |
 | Storage | `localStorage` + IndexedDB (both work natively in Capacitor webview) |
+| Status Bar | `#070B17` background, light icons |
+| Navigation Bar | `#070B17` background, light icons |
+| Splash Screen | `#070B17` background, auto-hides on app mount |
 
 ---
 
@@ -200,6 +233,16 @@ Capacitor's webview persists `localStorage` across sessions by default. No extra
 
 **Keyboard pushes content off screen**
 The `useKeyboardVisible` hook in the app uses the VisualViewport API which works in Capacitor's webview on Android 5+.
+
+**Status Bar or Navigation Bar shows wrong color (gray/white)**
+You skipped Step 3b. Copy the XML files from `capacitor-android-templates/`
+into `android/app/src/main/res/values/` as shown in the guide, then rebuild
+the APK in Android Studio.
+
+**Splash screen is white / doesn't match the app**
+Same fix as above — the splash background is defined in `colors.xml` and
+`splash.xml` inside `capacitor-android-templates/`. Copy them to the
+Android project and rebuild.
 
 ---
 

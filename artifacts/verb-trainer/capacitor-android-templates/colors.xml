@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  App color definitions for Android system bars.
+
+  Place this file at:
+    android/app/src/main/res/values/colors.xml
+
+  after running `npx cap add android`.
+-->
+<resources>
+  <!--
+    EDIT THIS VALUE to change every system bar and splash screen color.
+    The value must match your web app’s background color.
+    Current value: #070B17 (dark navy used by the web app)
+  -->
+  <color name="appBackground">#070B17</color>
+
+  <!-- These three reference appBackground automatically — do not edit them -->
+  <color name="colorPrimary">@color/appBackground</color>
+  <color name="colorPrimaryDark">@color/appBackground</color>
+  <color name="colorAccent">@color/appBackground</color>
+</resources>

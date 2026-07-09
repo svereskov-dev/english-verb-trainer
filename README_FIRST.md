@@ -100,6 +100,31 @@ pnpm run cap:add:android
 This generates the `android/` Gradle project inside `artifacts/verb-trainer/`.
 You only need to do this once. On subsequent rebuilds, skip to Step 5.
 
+### Step 4b — Configure system bars to match the app theme *(first time only)*
+
+Copy the pre-made Android theme files so the Status Bar and Navigation Bar
+match your app's dark background:
+
+```bash
+cd artifacts/verb-trainer
+
+cp capacitor-android-templates/colors.xml \
+   android/app/src/main/res/values/colors.xml
+
+cp capacitor-android-templates/styles.xml \
+   android/app/src/main/res/values/styles.xml
+
+cp capacitor-android-templates/splash.xml \
+   android/app/src/main/res/drawable/splash.xml
+```
+
+What this does:
+- Status Bar → solid `#070B17` with light icons
+- Navigation Bar → solid `#070B17` with light icons  
+- Splash screen → `#070B17` background matching the app
+
+You only need to do this once. It survives every `cap:sync`.
+
 ### Step 5 — Sync web assets into the Android project
 
 ```bash
@@ -198,6 +223,9 @@ artifacts/verb-trainer/android/app/build/outputs/apk/release/app-release.apk
 | Web assets directory | `dist/public/` |
 | Routing mode | Hash-based (`#/practice`, `#/dictionary`, …) |
 | Storage | `localStorage` + IndexedDB — persists across sessions |
+| Status Bar | `#070B17` background, light icons |
+| Navigation Bar | `#070B17` background, light icons |
+| Splash Screen | `#070B17` background, auto-hides on app mount |
 
 ---
 
@@ -234,6 +262,16 @@ card/input/button area automatically. This requires Android WebView ≥ 61
 **"adb: command not found"**  
 `adb` lives in the Android SDK platform-tools folder. Ensure that folder is in
 your `PATH` (see the `ANDROID_HOME` setup above).
+
+**Status Bar or Navigation Bar shows gray / white instead of dark**  
+You skipped Step 4b. Copy the XML files from `capacitor-android-templates/`
+into `android/app/src/main/res/values/` as shown in the guide, then rebuild
+the APK in Android Studio.
+
+**Splash screen is white / doesn't match the app**  
+Same fix as above — the splash background is defined in `colors.xml` and
+`splash.xml` inside `capacitor-android-templates/`. Copy them to the
+Android project and rebuild.
 
 ---
 

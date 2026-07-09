@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android theme that makes system bars match the app background.
+
+  Place this file at:
+    android/app/src/main/res/values/styles.xml
+
+  after running `npx cap add android`, replacing the existing content.
+
+  What this does:
+  — Status Bar: solid #070B17 background with light icons
+  — Navigation Bar: solid #070B17 background with light icons
+  — No transparency — everything is one continuous dark surface
+-->
+<resources>
+  <!-- Base application theme — matches the app’s dark background -->
+  <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+    <item name="colorPrimary">@color/appBackground</item>
+    <item name="colorPrimaryDark">@color/appBackground</item>
+    <item name="colorAccent">@color/appBackground</item>
+    <item name="android:windowBackground">@color/appBackground</item>
+
+    <!-- Status Bar: solid background, light icons -->
+    <item name="android:statusBarColor">@color/appBackground</item>
+    <item name="android:windowLightStatusBar">false</item>
+
+    <!-- Navigation Bar: solid background, light icons -->
+    <item name="android:navigationBarColor">@color/appBackground</item>
+    <item name="android:windowLightNavigationBar">false</item>
+  </style>
+
+  <!-- Splash screen theme — shown before the webview loads -->
+  <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/appBackground</item>
+    <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+    <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+  </style>
+</resources>
