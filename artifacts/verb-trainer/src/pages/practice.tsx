@@ -203,40 +203,53 @@ export default function Practice() {
     <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
-      {/* Header: two rows — no overlap possible */}
-      <div className="px-4 pt-2 pb-1 w-full max-w-3xl mx-auto">
+      {/* Header — compact or hidden when keyboard is open */}
+      <div className={cn(
+        "w-full max-w-3xl mx-auto transition-all duration-200",
+        keyboardVisible
+          ? "px-3 pt-1 pb-0.5"
+          : "px-4 pt-2 pb-1"
+      )}>
         {/* Row 1: Training Mode (left) | English Tenses (right) */}
         <div className="flex items-center justify-between gap-2">
-          <TrainingMenu current={config} onSelect={handleSelectConfig} />
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleOpenTenses}
-            className="rounded-full shrink-0 gap-1.5 font-semibold border-primary/30 hover:border-primary/50 hover:bg-card hover:text-foreground shadow-sm"
-            aria-label="English Tenses reference"
-          >
-            <Sparkles size={13} className="text-primary" />
-            <span>English Tenses</span>
-            <ChevronRight size={13} className="text-muted-foreground -ml-0.5" />
-          </Button>
+          <TrainingMenu
+            current={config}
+            onSelect={handleSelectConfig}
+            compact={keyboardVisible}
+          />
+          {!keyboardVisible && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleOpenTenses}
+              className="rounded-full shrink-0 gap-1.5 font-semibold border-primary/30 hover:border-primary/50 hover:bg-card hover:text-foreground shadow-sm"
+              aria-label="English Tenses reference"
+            >
+              <Sparkles size={13} className="text-primary" />
+              <span>English Tenses</span>
+              <ChevronRight size={13} className="text-muted-foreground -ml-0.5" />
+            </Button>
+          )}
         </div>
 
-        {/* Row 2: Counters — right-aligned under English Tenses */}
-        <div className="flex justify-end gap-3 mt-1">
-          <div className="flex items-center gap-1 text-green-600">
-            <Check size={15} />
-            <span className="font-bold text-sm">{dailyCorrect}</span>
+        {/* Row 2: Counters — hidden when keyboard is open */}
+        {!keyboardVisible && (
+          <div className="flex justify-end gap-3 mt-1 transition-opacity duration-200">
+            <div className="flex items-center gap-1 text-green-600">
+              <Check size={15} />
+              <span className="font-bold text-sm">{dailyCorrect}</span>
+            </div>
+            <div className="flex items-center gap-1 text-red-500">
+              <X size={15} />
+              <span className="font-bold text-sm">{dailyIncorrect}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1 text-red-500">
-            <X size={15} />
-            <span className="font-bold text-sm">{dailyIncorrect}</span>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* Exercise area — compact when keyboard is open */}
       <div className={cn(
-        "flex-1 flex flex-col items-center w-full max-w-md mx-auto",
+        "flex-1 flex flex-col items-center w-full max-w-md mx-auto transition-all duration-200",
         keyboardVisible
           ? "p-2 gap-2 justify-start pt-1"
           : "p-4 gap-3 justify-center"
@@ -269,18 +282,19 @@ export default function Practice() {
               >
                 Check
               </Button>
-              {!keyboardVisible && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleSkip}
-                  className="text-muted-foreground hover:text-foreground gap-1.5"
-                  data-testid="button-skip"
-                >
-                  <SkipForward size={14} />
-                  Skip
-                </Button>
-              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleSkip}
+                className={cn(
+                  "text-muted-foreground hover:text-foreground gap-1.5",
+                  keyboardVisible && "text-xs h-8 px-2"
+                )}
+                data-testid="button-skip"
+              >
+                <SkipForward size={keyboardVisible ? 12 : 14} />
+                Skip
+              </Button>
             </>
           ) : (
             <>
@@ -307,7 +321,7 @@ export default function Practice() {
         </div>
       </div>
 
-      <BottomNav />
+      {!keyboardVisible && <BottomNav />}
     </div>
   );
 }

@@ -165,9 +165,10 @@ export const DEFAULT_SESSION: SessionConfig = {
 interface TrainingMenuProps {
   current: SessionConfig;
   onSelect: (config: SessionConfig) => void;
+  compact?: boolean;
 }
 
-export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
+export function TrainingMenu({ current, onSelect, compact = false }: TrainingMenuProps) {
   const [open, setOpen]             = useState(false);
   const [selectedIds, setSelectedIds] = useState<string[]>(current.selectedIds);
   const [contextOn, setContextOn]   = useState(current.contextEnabled);
@@ -247,10 +248,13 @@ export function TrainingMenu({ current, onSelect }: TrainingMenuProps) {
         <Button
           variant="outline"
           size="sm"
-          className="rounded-full flex items-center gap-1.5 max-w-[220px] font-semibold"
+          className={cn(
+            "rounded-full flex items-center gap-1.5 font-semibold",
+            compact ? "max-w-[180px] h-7 text-xs px-2" : "max-w-[220px]"
+          )}
         >
           <span className="truncate text-left">{buttonLabel}</span>
-          <ChevronDown size={14} className="shrink-0 opacity-60" />
+          <ChevronDown size={compact ? 12 : 14} className="shrink-0 opacity-60" />
         </Button>
       </SheetTrigger>
 
