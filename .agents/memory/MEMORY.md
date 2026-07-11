@@ -1,0 +1,1 @@
+- [Android edge-to-edge working config](android-edge-to-edge.md) — exact setup that makes transparent bars + dark nav bar work on ColorOS/Android 15. Do not change without testing on a real device.
