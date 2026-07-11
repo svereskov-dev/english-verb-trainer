@@ -1,0 +1,22 @@
+Android resource linking failed
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:344: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:345: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:346: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:347: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:351: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:344: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:345: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:346: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:347: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values/values.xml:351: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:4: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:5: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:6: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:7: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:11: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:4: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:5: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:6: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:7: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+com.verbtrainer.app-mergeDebugResources-26:/values-v35/values-v35.xml:11: error: resource color/appBackground (aka com.verbtrainer.app:color/appBackground) not found.
+
