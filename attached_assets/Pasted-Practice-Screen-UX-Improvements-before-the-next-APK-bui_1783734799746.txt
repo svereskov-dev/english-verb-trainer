@@ -1,0 +1,75 @@
+Practice Screen UX Improvements (before the next APK build)
+
+Before generating the next Android APK, we'd like to make a few usability improvements to the Practice screen.
+
+1. Use a compact Android keyboard (no number row)
+
+Currently, the Android keyboard displays an additional number row above the letters.
+
+Since users only type English verb forms, the number row is unnecessary and reduces the available screen space.
+
+Please configure the answer input so that Android opens the same compact keyboard layout that applications like Conjugato use.
+
+The keyboard should be optimized for entering English words only.
+
+Please determine the appropriate combination of input attributes (type, inputMode, autocapitalize, autocorrect, spellcheck, etc.) to achieve the standard compact Android keyboard.
+
+Expected result:
+
+no number row;
+compact keyboard layout;
+optimized for typing English verbs.
+2. Improve the layout when the keyboard is open
+
+Currently, when the keyboard appears, the entire page simply shifts upward.
+
+As a result, part of the exercise moves off-screen instead of adapting to the reduced viewport.
+
+We would like behavior similar to Conjugato (interaction only, not visual design).
+
+When the keyboard opens:
+
+the visible exercise area should adapt smoothly to the reduced viewport;
+the exercise should remain comfortably visible;
+the answer field should remain visible;
+the Check button should remain fully visible;
+vertical spacing and card height may be reduced if necessary;
+avoid simply translating the entire page upward.
+
+The goal is that the user can always see the complete exercise while typing.
+
+3. Do not open the keyboard automatically
+
+Currently, the Practice screen automatically focuses the answer field and immediately opens the keyboard.
+
+Please remove this behavior.
+
+Expected behavior:
+
+the Practice screen opens normally;
+the answer field is visible but not focused;
+the keyboard opens only after the user taps the answer field.
+
+Please remove any automatic focus (autoFocus, programmatic .focus(), or similar behavior).
+
+Reference
+
+We have attached screenshots comparing our application with Conjugato on the same Android 15 device.
+
+Important: We are not asking to copy Conjugato's design.
+
+We only want similar interaction behavior:
+
+compact keyboard;
+adaptive layout while typing;
+keyboard opens only after the user taps the input field.
+Verification
+
+After implementing these improvements, please provide screenshots (or a short screen recording) showing:
+
+Practice screen before tapping the answer field.
+Practice screen after the keyboard opens.
+The Android keyboard layout (confirming there is no number row).
+The layout while typing (confirming the exercise remains fully visible and the Check button is accessible).
+
+The goal is to make the Practice screen feel polished and comfortable to use on Android 15 devices before we generate the next APK for testing.

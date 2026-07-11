@@ -160,7 +160,7 @@ export default function Practice() {
   // ── Mistakes mode with nothing to review ───────────────────────────────────
   if (noMistakes) {
     return (
-      <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
+      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center">
           <div className="text-6xl">🎉</div>
           <div>
@@ -179,7 +179,7 @@ export default function Practice() {
   // ── Review session finished (all verbs now correct) ───────────────────────
   if (reviewExhausted) {
     return (
-      <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
+      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center">
           <div className="text-6xl">🎉</div>
           <div>
@@ -200,7 +200,7 @@ export default function Practice() {
   const showingFeedback = feedback !== null;
 
   return (
-    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
+    <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
       {/* Header — compact or hidden when keyboard is open */}

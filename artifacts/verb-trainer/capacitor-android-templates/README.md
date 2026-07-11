@@ -65,6 +65,31 @@ so the keyboard should use its dark appearance whenever supported.
 > app bug — the app correctly reports itself as dark. Gboard and most stock Android
 > keyboards will honor the dark theme.
 
+## Preventing the keyboard pan (important for Practice screen)
+
+By default Android pans the WebView up when a keyboard appears (`adjustPan`).
+This shifts the entire page before the CSS layout can react, creating a jarring transition.
+
+To get smooth, in-place keyboard adaptation, set `windowSoftInputMode` in
+`android/app/src/main/AndroidManifest.xml`:
+
+```xml
+<activity
+  android:name=".MainActivity"
+  android:windowSoftInputMode="adjustResize"
+  ...>
+```
+
+With `adjustResize`:
+- The WebView viewport height shrinks when the keyboard appears
+- `dvh` CSS units update immediately to the new height
+- The practice screen's `h-[100dvh]` container shrinks with it
+- `useKeyboardVisible` detects the change and activates the compact layout
+- No pan — content adapts smoothly in place
+
+> `adjustResize` does not conflict with edge-to-edge mode. The WebView still
+> draws behind system bars; only the area above the keyboard changes.
+
 ## Re-applying after `cap:sync`
 
 `npx cap sync` does **not** overwrite `android/app/src/main/res/values/`,

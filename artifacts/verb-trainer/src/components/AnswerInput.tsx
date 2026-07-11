@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { cn } from "../lib/utils";
 
 interface AnswerInputProps {
@@ -20,12 +20,6 @@ export function AnswerInput({
 }: AnswerInputProps) {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!disabled && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [disabled]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && value.trim() && !disabled) {
@@ -79,9 +73,12 @@ export function AnswerInput({
           textClass,
         )}
         placeholder="Type your answer..."
+        type="text"
+        inputMode="text"
+        enterKeyHint="done"
         autoComplete="off"
         autoCorrect="off"
-        autoCapitalize="off"
+        autoCapitalize="none"
         spellCheck={false}
         data-testid="input-answer"
       />
