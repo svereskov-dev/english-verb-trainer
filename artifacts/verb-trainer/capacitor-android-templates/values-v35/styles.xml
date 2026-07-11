@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Android 15 (API 35+) edge-to-edge opt-out.
+  Android 15 (API 35+) theme override.
 
   Place this file at:
     android/app/src/main/res/values-v35/styles.xml
 
-  This file ONLY applies on Android 15+ and explicitly opts out of the
-  platform's default edge-to-edge behavior, preventing the system from
-  automatically making the Status Bar and Navigation Bar transparent.
+  On Android 15, edge-to-edge is mandatory and cannot be opted out of
+  (windowOptOutEdgeToEdgeEnforcement was removed in API 35). Capacitor 8
+  already embraces edge-to-edge, so this file simply reinforces transparent
+  bars and white icons — identical to values/styles.xml.
 
-  Without this override, Android 15 forces content to draw behind system
-  bars, creating a gray/transparent flash regardless of styles.xml settings.
+  The app background (#070B17) is visible behind both bars because the
+  WebView fills the full screen in edge-to-edge mode. CSS env(safe-area-inset-*)
+  keeps content within the visible area above/below the bars.
 -->
 <resources>
   <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
@@ -19,19 +21,12 @@
     <item name="colorAccent">@color/appBackground</item>
     <item name="android:windowBackground">@color/appBackground</item>
 
-    <!-- Status Bar — solid #070B17, light icons -->
-    <item name="android:statusBarColor">@color/appBackground</item>
+    <!-- Transparent bars — mandatory in Android 15 edge-to-edge -->
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    <item name="android:navigationBarColor">@android:color/transparent</item>
+
+    <!-- Light icons (white) on dark background -->
     <item name="android:windowLightStatusBar">false</item>
-
-    <!-- Navigation Bar — solid #070B17, light icons -->
-    <item name="android:navigationBarColor">@color/appBackground</item>
     <item name="android:windowLightNavigationBar">false</item>
-
-    <!--
-      CRITICAL: Opt out of Android 15 edge-to-edge enforcement.
-      This prevents the platform from overriding our solid bar colors
-      with transparent/edge-to-edge mode.
-    -->
-    <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
   </style>
 </resources>
