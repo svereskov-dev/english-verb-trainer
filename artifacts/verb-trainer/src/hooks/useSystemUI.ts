@@ -32,7 +32,6 @@ export function useSystemUI() {
     const applyBars = async () => {
       try {
         await StatusBar.setStyle({ style: Style.Dark });
-        await StatusBar.setOverlaysWebView({ overlay: true });
       } catch {
         // Plugin may not be available during web dev — silently ignore.
       }
