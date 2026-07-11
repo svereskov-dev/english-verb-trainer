@@ -21,9 +21,11 @@
     <item name="colorAccent">@color/appBackground</item>
     <item name="android:windowBackground">@color/appBackground</item>
 
-    <!-- Transparent bars — mandatory in Android 15 edge-to-edge -->
+    <!-- Status bar: transparent for edge-to-edge. Nav bar: solid dark fallback
+         because OEMs (ColorOS, MIUI) ignore transparent and draw a white/grey
+         scrim. #070B17 matches the app background. -->
     <item name="android:statusBarColor">@android:color/transparent</item>
-    <item name="android:navigationBarColor">@android:color/transparent</item>
+    <item name="android:navigationBarColor">@color/appBackground</item>
 
     <!-- Light icons (white) on dark background -->
     <item name="android:windowLightStatusBar">false</item>

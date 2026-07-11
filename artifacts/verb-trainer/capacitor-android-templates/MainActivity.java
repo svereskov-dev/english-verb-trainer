@@ -59,13 +59,16 @@ public class MainActivity extends BridgeActivity {
    *  - White (light) icons on both bars
    */
   private void applySystemBars(Window window) {
-    // Transparent bars — the #070B17 WebView background is visible underneath.
+    // Try transparent first (edge-to-edge). If the OEM ignores it
+    // (ColorOS, MIUI) it falls back to the solid dark app background.
+    // The native navigationBarColor must be opaque for the scrim disable
+    // to work on some OEM skins.
     window.setStatusBarColor(Color.TRANSPARENT);
-    window.setNavigationBarColor(Color.TRANSPARENT);
+    window.setNavigationBarColor(Color.parseColor("#070B17"));
 
     // API 29+ (Android 10+): prevent the system from drawing an automatic
-    // semi-transparent scrim over the transparent nav/status bar areas.
-    // Without this the nav bar gets a white/grey tint on dark backgrounds.
+    // semi-transparent scrim over the nav bar area. Without this the
+    // nav bar gets a white/grey tint even on a dark background.
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
       window.setNavigationBarContrastEnforced(false);
       window.setStatusBarContrastEnforced(false);

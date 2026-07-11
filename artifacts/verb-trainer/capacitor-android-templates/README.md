@@ -1,8 +1,8 @@
 # Android System UI Templates
 
-These files configure the Android Status Bar and Navigation Bar to match
-your app's dark theme (#070B17) and guarantee consistent behavior across
-Android 13, 14, and 15+.
+These files configure the Android Status Bar and Navigation Bar to match your
+app's dark theme (#070B17) and guarantee consistent behavior across
+Android 13, 14, and 15+ (including ColorOS, One UI, MIUI).
 
 ## Where these files go
 
@@ -20,7 +20,7 @@ cp capacitor-android-templates/styles.xml   android/app/src/main/res/values/
 cp capacitor-android-templates/splash.xml   android/app/src/main/res/drawable/
 ```
 
-### Android 15 edge-to-edge opt-out
+### Android 15 edge-to-edge reinforcement
 
 ```bash
 mkdir -p android/app/src/main/res/values-v35
@@ -40,18 +40,23 @@ cp capacitor-android-templates/MainActivity.java \
 | File | Purpose |
 |------|---------|
 | `colors.xml` | Single source of truth — `appBackground` = `#070B17` |
-| `styles.xml` (values/) | Base theme: solid bars, light icons, all Android versions |
-| `styles.xml` (values-v35/) | Android 15 override: explicitly opts out of edge-to-edge |
+| `styles.xml` (values/) | Base theme: transparent status bar, solid dark nav bar, light icons |
+| `styles.xml` (values-v35/) | Android 15: same as base, reinforces nav-bar color |
 | `splash.xml` | Splash background drawable matching the app |
-| `MainActivity.java` | Native `onResume()` re-applies bar colors; `setDecorFitsSystemWindows` for Android 15 |
+| `MainActivity.java` | Re-applies bar colors on every `onResume()`; forces dark mode; suppresses OEM scrims |
 
-## Three-layer defence
+## Why the nav bar is solid instead of transparent
 
-| Layer | When it runs | What it protects against |
-|-------|-------------|-------------------------|
-| **Native XML** (`styles.xml`) | App process start (before WebView) | Wrong colors during cold boot |
-| **Native Java** (`MainActivity.onResume`) | Every resume from background | OEM resets after lock/unlock/theme change |
-| **Capacitor JS** (`useSystemUI.ts`) | App startup + `appStateChange` resume | WebView-level edge cases |
+ColorOS, MIUI, and One UI ignore `TRANSPARENT` on the navigation bar and draw
+a white or grey scrim instead. To guarantee a dark nav bar on every device:
+
+- `styles.xml` sets `navigationBarColor` to the solid `#070B17` app background
+- `MainActivity.java` sets it to the same solid color at runtime
+- `setNavigationBarContrastEnforced(false)` removes any extra tint on top
+
+The status bar stays transparent in edge-to-edge mode — the WebView background
+shows through it. CSS `max(env(safe-area-inset-top), 28px)` adds minimum top
+padding so content never overlaps the status bar.
 
 ## Dark keyboard
 
@@ -65,12 +70,9 @@ so the keyboard should use its dark appearance whenever supported.
 > app bug — the app correctly reports itself as dark. Gboard and most stock Android
 > keyboards will honor the dark theme.
 
-## Preventing the keyboard pan (important for Practice screen)
+## Keyboard mode for the Practice screen
 
-By default Android pans the WebView up when a keyboard appears (`adjustPan`).
-This shifts the entire page before the CSS layout can react, creating a jarring transition.
-
-To get smooth, in-place keyboard adaptation, set `windowSoftInputMode` in
+For the smoothest experience, set `windowSoftInputMode="adjustResize"` in
 `android/app/src/main/AndroidManifest.xml`:
 
 ```xml
@@ -81,11 +83,10 @@ To get smooth, in-place keyboard adaptation, set `windowSoftInputMode` in
 ```
 
 With `adjustResize`:
-- The WebView viewport height shrinks when the keyboard appears
-- `dvh` CSS units update immediately to the new height
-- The practice screen's `h-[100dvh]` container shrinks with it
-- `useKeyboardVisible` detects the change and activates the compact layout
-- No pan — content adapts smoothly in place
+- The WebView viewport shrinks when the keyboard appears
+- CSS `dvh` units update to the new height
+- The practice screen container shrinks accordingly
+- Content inside the scrollable exercise area stays accessible
 
 > `adjustResize` does not conflict with edge-to-edge mode. The WebView still
 > draws behind system bars; only the area above the keyboard changes.

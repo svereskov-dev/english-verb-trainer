@@ -27,6 +27,14 @@ export function AnswerInput({
     }
   };
 
+  const handleFocus = () => {
+    // Scroll the input into view so it is never hidden behind the keyboard.
+    // Works inside a scrollable flex-1 container on both mobile and desktop.
+    requestAnimationFrame(() => {
+      inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  };
+
   const isPostSubmit = !!feedback;
   const displayValue = isPostSubmit ? (submittedValue ?? "") : value;
 
@@ -59,6 +67,7 @@ export function AnswerInput({
           }
         }}
         onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
         readOnly={isPostSubmit}
         className={cn(
           "w-full mx-auto block rounded-xl border-2 bg-background px-3 py-2",

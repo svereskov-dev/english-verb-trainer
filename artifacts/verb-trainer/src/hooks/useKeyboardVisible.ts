@@ -12,9 +12,17 @@ export function useKeyboardVisible(threshold = 100) {
     const viewport = window.visualViewport;
     if (!viewport) return;
 
+    // Baseline: largest height seen (no keyboard).
+    // This works with OR without `adjustResize` because both window.innerHeight
+    // and visualViewport.height shrink together under adjustResize, so the
+    // difference between them stays ~0. Comparing against the baseline
+    // correctly detects the keyboard opening.
+    let maxHeight = viewport.height;
+
     const check = () => {
-      // Keyboard is visible if the viewport height shrinks significantly
-      const diff = window.innerHeight - viewport.height;
+      const h = viewport.height;
+      if (h > maxHeight) maxHeight = h;
+      const diff = maxHeight - h;
       setVisible(diff > threshold);
     };
 

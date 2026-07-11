@@ -161,7 +161,7 @@ export default function Practice() {
   if (noMistakes) {
     return (
       <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
-        <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center">
+        <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center overflow-y-auto">
           <div className="text-6xl">🎉</div>
           <div>
             <h2 className="text-xl font-bold mb-1">No mistakes to review</h2>
@@ -180,7 +180,7 @@ export default function Practice() {
   if (reviewExhausted) {
     return (
       <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
-        <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center">
+        <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center overflow-y-auto">
           <div className="text-6xl">🎉</div>
           <div>
             <h2 className="text-xl font-bold mb-1">Review Complete</h2>
@@ -200,7 +200,7 @@ export default function Practice() {
   const showingFeedback = feedback !== null;
 
   return (
-    <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
+    <div className="h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
       <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
 
       {/* Header — compact or hidden when keyboard is open */}
@@ -247,18 +247,18 @@ export default function Practice() {
         )}
       </div>
 
-      {/* Exercise area — compact when keyboard is open */}
+      {/* Exercise area — scrolls when keyboard is open so input stays visible */}
       <div className={cn(
-        "flex-1 flex flex-col items-center w-full max-w-md mx-auto transition-all duration-200",
+        "flex-1 flex flex-col items-center w-full max-w-md mx-auto transition-all duration-200 overflow-y-auto min-h-0",
         keyboardVisible
           ? "p-2 gap-2 justify-start pt-1"
           : "p-4 gap-3 justify-center"
       )}>
-        <div className="w-full">
+        <div className="w-full shrink-0">
           <ExerciseCard exercise={currentExercise} compact={keyboardVisible} />
         </div>
 
-        <div className="w-full flex flex-col items-center gap-3">
+        <div className="w-full flex flex-col items-center gap-3 shrink-0">
           <AnswerInput
             key={currentExercise.id}
             onSubmit={handleCheck}
