@@ -3,83 +3,80 @@ package com.verbtrainer.app;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+
 import com.getcapacitor.BridgeActivity;
 
 /**
  * MainActivity for English Verb Trainer.
  *
- * Extends BridgeActivity (Capacitor's standard base) and adds:
- * 1. Force dark mode so the keyboard appears dark
- * 2. Android 15 edge-to-edge opt-out via setDecorFitsSystemWindows
- * 3. Native re-application of system bar colors in onResume()
+ * Capacitor 8 already calls WindowCompat.setDecorFitsSystemWindows(window, false)
+ * inside BridgeActivity, putting the WebView into edge-to-edge mode. We embrace
+ * that — fighting it causes the white navigation bar and broken viewport height.
  *
- * This guarantees solid #070B17 bars on every Android version (13–15+)
- * and survives lifecycle events (background, lock/unlock, theme change).
+ * What this class does on top of BridgeActivity:
+ *  1. Force dark mode so the system keyboard appears dark.
+ *  2. Make both system bars fully transparent so the app background shows through.
+ *  3. Suppress Android 10+ automatic contrast scrims on the transparent bars.
+ *  4. Set light icon appearance (white icons) via WindowInsetsControllerCompat.
+ *  5. Re-apply on every onResume() so OEM resets don't cause regressions.
+ *
+ * Layout padding is handled entirely in CSS via env(safe-area-inset-*).
+ * The WebView receives correct insets because edge-to-edge is active.
  */
 public class MainActivity extends BridgeActivity {
 
-  private static final int APP_BACKGROUND = Color.parseColor("#070B17");
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // Force the app to always report as dark-themed to Android.
-    // This tells the system keyboard (and any other system UI) to use
-    // its dark appearance whenever supported.
+    // Force dark mode so the system keyboard uses its dark appearance.
     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
     super.onCreate(savedInstanceState);
+    // NOTE: super.onCreate() already calls
+    //   WindowCompat.setDecorFitsSystemWindows(window, false)
+    // which enables edge-to-edge and lets the WebView receive correct insets.
+    // Do NOT call setDecorFitsSystemWindows(true) — that breaks inset delivery.
 
-    Window window = getWindow();
-
-    // Opt out of edge-to-edge on Android 15+ so content never draws behind
-    // the Status Bar or Navigation Bar. This is the native companion to
-    // windowOptOutEdgeToEdgeEnforcement in values-v35/styles.xml.
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-      window.setDecorFitsSystemWindows(true);
-    }
-
-    // Apply bar colors natively — this runs before the WebView loads and
-    // guarantees zero flash during cold start.
-    applySystemBars(window);
+    applySystemBars(getWindow());
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-
-    // Re-apply bar colors whenever the activity resumes.
-    // Some devices (Samsung One UI, Xiaomi MIUI) reset system UI
-    // settings after lock/unlock, theme changes, or app switching.
+    // Re-apply on every resume. Some OEMs (ColorOS, One UI, MIUI) reset
+    // system bar appearance after lock/unlock or task-switch.
     applySystemBars(getWindow());
   }
 
   /**
-   * Sets solid #070B17 backgrounds with light icons on both Status Bar
-   * and Navigation Bar. Works on API 23+ (Android 6.0+).
+   * Configures both system bars for edge-to-edge dark mode:
+   *  - Fully transparent bars (app background #070B17 shows through)
+   *  - No automatic contrast scrim (API 29+)
+   *  - White (light) icons on both bars
    */
   private void applySystemBars(Window window) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      window.setStatusBarColor(APP_BACKGROUND);
+    // Transparent bars — the #070B17 WebView background is visible underneath.
+    window.setStatusBarColor(Color.TRANSPARENT);
+    window.setNavigationBarColor(Color.TRANSPARENT);
 
-      // Light Status Bar icons (white on dark background)
-      View decor = window.getDecorView();
-      int flags = decor.getSystemUiVisibility();
-      flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-      decor.setSystemUiVisibility(flags);
+    // API 29+ (Android 10+): prevent the system from drawing an automatic
+    // semi-transparent scrim over the transparent nav/status bar areas.
+    // Without this the nav bar gets a white/grey tint on dark backgrounds.
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+      window.setNavigationBarContrastEnforced(false);
+      window.setStatusBarContrastEnforced(false);
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      window.setNavigationBarColor(APP_BACKGROUND);
-
-      // Light Navigation Bar icons (white on dark background)
-      View decor = window.getDecorView();
-      int flags = decor.getSystemUiVisibility();
-      flags &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-      decor.setSystemUiVisibility(flags);
-    }
+    // Use WindowInsetsControllerCompat (the non-deprecated API) to request
+    // light-on-dark icon appearance. setAppearanceLightXxxBars(false) means
+    // "use light/white icons" — correct for a dark background.
+    WindowInsetsControllerCompat controller =
+        WindowCompat.getInsetsController(window, window.getDecorView());
+    controller.setAppearanceLightStatusBars(false);
+    controller.setAppearanceLightNavigationBars(false);
   }
 }
