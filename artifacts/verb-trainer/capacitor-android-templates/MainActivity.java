@@ -45,7 +45,7 @@ public class MainActivity extends BridgeActivity {
   }
 
   @Override
-  protected void onResume() {
+  public void onResume() {
     super.onResume();
     // Re-apply on every resume. Some OEMs (ColorOS, One UI, MIUI) reset
     // system bar appearance after lock/unlock or task-switch.
