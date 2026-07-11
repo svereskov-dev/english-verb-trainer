@@ -24,3 +24,9 @@ id = "rX4IyqYewjKzEX9SS_yHf"
 uri = "file://verb-trainer-full.tar.gz"
 type = "unspecified"
 title = "English Verb Trainer — Practice Screen UX Improvements"
+
+[[outputs]]
+id = "5EQAnMcP1wadhBWdDXtYX"
+uri = "file://verb-trainer-full.zip"
+type = "unspecified"
+title = "English Verb Trainer — Build-ready ZIP (Jul 11)"
