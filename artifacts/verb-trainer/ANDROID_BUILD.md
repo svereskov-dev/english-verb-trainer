@@ -1,118 +1,111 @@
 # Android APK Build Guide — English Verb Trainer
 
-Packaging method: **Capacitor 8**
-App ID: `com.verbtrainer.app`
-App name: `English Verb Trainer`
+Packaging: **Capacitor 8** · App ID: `com.verbtrainer.app`
 
 ---
 
-## Prerequisites
+## Prerequisites — install once
 
-Install these once on your local machine:
-
-| Tool | Version | Download |
-|------|---------|---------|
-| Node.js | 20 LTS or newer | https://nodejs.org |
-| pnpm | 9 or newer | `npm i -g pnpm` |
-| Java JDK | 17 (required by Android Gradle) | https://adoptium.net |
-| Android Studio | Ladybug 2024.2 or newer | https://developer.android.com/studio |
+| Tool | Version | Link |
+|------|---------|------|
+| Node.js | 20 LTS+ | https://nodejs.org |
+| pnpm | 9+ | `npm i -g pnpm` |
+| Java JDK | 17 | https://adoptium.net |
+| Android Studio | Ladybug 2024.2+ | https://developer.android.com/studio |
 
 After installing Android Studio:
-1. Open Android Studio → SDK Manager
-2. Install **Android SDK Platform 35** (or latest stable)
-3. Install **Android SDK Build-Tools 35**
-4. Set the `ANDROID_HOME` environment variable:
-   - **macOS/Linux**: add to `~/.zshrc` or `~/.bashrc`:
+1. **SDK Manager** → install **Android SDK Platform 35** + **Build-Tools 35**
+2. Set `ANDROID_HOME`:
+   - **macOS/Linux** (`~/.zshrc` or `~/.bashrc`):
      ```
-     export ANDROID_HOME=$HOME/Library/Android/sdk        # macOS
-     export ANDROID_HOME=$HOME/Android/Sdk               # Linux
+     export ANDROID_HOME=$HOME/Library/Android/sdk   # macOS
+     export ANDROID_HOME=$HOME/Android/Sdk           # Linux
      export PATH=$PATH:$ANDROID_HOME/platform-tools
      ```
-   - **Windows**: add to System Environment Variables:
+   - **Windows** (System Environment Variables):
      ```
      ANDROID_HOME = C:\Users\<YourName>\AppData\Local\Android\Sdk
      ```
 
 ---
 
-## Step 1 — Get the project
+## Step 1 — Install dependencies
 
-Clone or pull the latest code from Replit, then install dependencies:
+Extract the ZIP, then from the **root of the extracted folder**:
 
 ```bash
-git clone <your-repo-url>
-cd <repo-root>
 pnpm install
 ```
 
 ---
 
-## Step 2 — Build the web assets for Capacitor
-
-Run the Capacitor-specific Vite build. This produces a relative-path build
-in `artifacts/verb-trainer/dist/public/`:
+## Step 2 — Build web assets for Capacitor
 
 ```bash
 cd artifacts/verb-trainer
 pnpm run cap:build
 ```
 
-This command uses `vite.config.cap.ts` which:
-- Sets `base: "./"` so all asset paths are relative (required for `file://` webview)
-- Enables hash-based routing (`#/practice`, `#/dictionary`, etc.)
-- Excludes Replit-specific dev plugins
+This produces `artifacts/verb-trainer/dist/public/` with relative paths and
+hash routing — both required for Capacitor's `file://` WebView.
 
 ---
 
-## Step 3 — Add the Android platform (first time only)
+## Step 3 — Add Android platform (first time only)
 
 ```bash
 pnpm run cap:add:android
 ```
 
-This generates the `android/` directory with the full Gradle project.
-You only need to run this once. After that, use `cap:sync` to update it.
+Generates the `android/` Gradle project. Run once; use `cap:sync` after that.
 
 ---
 
-## Step 3b — Configure Android system bars *(first time only)*
+## Step 3b — Apply Android system bar templates (first time only)
 
-Copy the pre-made native Android theme files into the generated project so
-the Status Bar and Navigation Bar match your app's dark background on all
-Android versions (13–15+):
+Copy the pre-configured native files into the generated Android project.
+These implement the **Android 15 edge-to-edge** approach with transparent
+bars and white icons:
 
 ```bash
 cd artifacts/verb-trainer
 
-# Base theme — all Android versions
-cp capacitor-android-templates/colors.xml \
-   android/app/src/main/res/values/colors.xml
+# Base theme (all Android versions)
+cp capacitor-android-templates/colors.xml   android/app/src/main/res/values/colors.xml
+cp capacitor-android-templates/styles.xml   android/app/src/main/res/values/styles.xml
+cp capacitor-android-templates/splash.xml   android/app/src/main/res/drawable/splash.xml
 
-cp capacitor-android-templates/styles.xml \
-   android/app/src/main/res/values/styles.xml
-
-cp capacitor-android-templates/splash.xml \
-   android/app/src/main/res/drawable/splash.xml
-
-# Android 15 edge-to-edge opt-out (critical — prevents transparent bars)
+# Android 15 override
 mkdir -p android/app/src/main/res/values-v35
 cp capacitor-android-templates/values-v35/styles.xml \
    android/app/src/main/res/values-v35/styles.xml
 
-# Custom MainActivity — re-applies bar colors on every resume
-# (prevents gray bars after lock/unlock or theme change)
+# Custom MainActivity
 cp capacitor-android-templates/MainActivity.java \
    android/app/src/main/java/com/verbtrainer/app/MainActivity.java
 ```
 
-What this does:
-- Status Bar → solid `#070B17` background with light icons
-- Navigation Bar → solid `#070B17` background with light icons
-- Splash screen → `#070B17` background matching the app
-- Android 15 edge-to-edge → explicitly disabled so bars stay solid
-- Lifecycle re-application → bar colors re-applied on every resume
+What this configures:
+- Status Bar and Navigation Bar → **fully transparent** (app background shows through)
+- **No white scrim** on navigation bar (Android 10+ contrast enforcement disabled)
+- **White icons** on both bars via `WindowInsetsControllerCompat`
+- `setDecorFitsSystemWindows` is NOT called — Capacitor 8's edge-to-edge is preserved
+- Bar config **re-applied on every `onResume()`** to survive OEM resets (ColorOS, One UI)
 
-You only need to do this once. `cap:sync` will never overwrite these files.
+`cap sync` never overwrites these files — copy them once.
+
+---
+
+## Step 3c — Set keyboard resize mode (recommended)
+
+In `android/app/src/main/AndroidManifest.xml`, find `<activity android:name=".MainActivity"` and add:
+
+```xml
+android:windowSoftInputMode="adjustResize"
+```
+
+This makes the viewport shrink when the keyboard opens (instead of the whole
+page panning up), so the Practice screen's adaptive layout works smoothly.
 
 ---
 
@@ -122,9 +115,7 @@ You only need to do this once. `cap:sync` will never overwrite these files.
 pnpm run cap:sync
 ```
 
-This copies `dist/public/` into `android/app/src/main/assets/public/`
-and updates any native plugin configuration.
-
+Copies `dist/public/` into `android/app/src/main/assets/public/`.
 Run this every time you rebuild the web assets.
 
 ---
@@ -135,77 +126,59 @@ Run this every time you rebuild the web assets.
 pnpm run cap:open
 ```
 
-Android Studio opens the `android/` Gradle project automatically.
-
 ---
 
-## Step 6 — Build the Debug APK
+## Step 6 — Build the APK
 
 In Android Studio:
 
-1. Wait for Gradle sync to complete (first time takes 2–5 minutes)
-2. Menu → **Build → Build Bundle(s) / APK(s) → Build APK(s)**
-3. Click **Build APK(s)**
-4. When complete, click the **locate** link in the notification bar
+1. Wait for Gradle sync (first time: 2–5 min)
+2. **Build → Build Bundle(s) / APK(s) → Build APK(s)**
+3. Click the **locate** link in the notification bar
 
-The debug APK is at:
+Debug APK location:
 ```
 android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
----
+### Release APK (for distribution)
+1. **Build → Generate Signed Bundle / APK → APK**
+2. Create or reuse a keystore
+3. Select **release** build variant
 
-## Step 6b — Build a Release APK (optional, for distribution)
-
-1. Menu → **Build → Generate Signed Bundle / APK**
-2. Select **APK**, click Next
-3. Create a new keystore (first time) or use an existing one:
-   - Key store path: save to a safe location, e.g. `~/keys/verbtrainer.jks`
-   - Key alias: `verbtrainer`
-   - Validity: 25+ years
-4. Select **release** build variant, click Finish
-
-The release APK is at:
+Release APK:
 ```
 android/app/build/outputs/apk/release/app-release.apk
 ```
 
-**Important:** Keep the keystore file backed up. You need the same keystore for
-every future update to the same app — losing it means creating a new app listing.
+> **Back up your keystore.** You need the same file for every future update.
 
 ---
 
-## Step 7 — Install on a physical device
+## Step 7 — Install on device
 
-Enable developer options on your Android phone:
-1. Settings → About Phone → tap **Build Number** 7 times
-2. Settings → Developer Options → enable **USB Debugging**
-
-Connect via USB, then run:
+Enable USB debugging on the phone:
+- Settings → About Phone → tap **Build Number** 7 times
+- Settings → Developer Options → enable **USB Debugging**
 
 ```bash
 adb install android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Or transfer the `.apk` file to the device and open it with a file manager.
+Or copy the `.apk` to the device and open with a file manager.
 
 ---
 
 ## Daily workflow (after initial setup)
 
 ```bash
-# Edit code in Replit, then pull latest changes
-git pull
+# From project root
+pnpm install                          # only if package.json changed
 
-# Rebuild web assets
 cd artifacts/verb-trainer
-pnpm run cap:build
-
-# Sync to Android
-pnpm run cap:sync
-
-# Open Android Studio or reinstall via adb
-pnpm run cap:open
+pnpm run cap:build                    # rebuild web assets
+pnpm run cap:sync                     # push to android/
+pnpm run cap:open                     # open Android Studio → Build APK
 ```
 
 ---
@@ -215,56 +188,27 @@ pnpm run cap:open
 | Setting | Value |
 |---------|-------|
 | App ID | `com.verbtrainer.app` |
-| App name | `English Verb Trainer` |
-| Capacitor version | 8.x |
-| Min Android SDK | 22 (Android 5.1) |
+| Capacitor | 8.x |
+| Min SDK | 22 (Android 5.1) |
 | Target SDK | 35 (Android 15) |
 | Web dir | `dist/public` |
-| Routing | Hash-based (`#/practice`, etc.) |
-| Storage | `localStorage` + IndexedDB (both work natively in Capacitor webview) |
-| Status Bar | `#070B17` background, light icons |
-| Navigation Bar | `#070B17` background, light icons |
-| Splash Screen | `#070B17` background, auto-hides on app mount |
+| Routing | Hash-based (`#/practice`, `#/dictionary`, …) |
+| Status Bar | Transparent — app background visible |
+| Navigation Bar | Transparent — app background visible, no white scrim |
+| Splash Screen | `#070B17` background, auto-hides on mount |
 
 ---
 
 ## Troubleshooting
 
-**"SDK location not found"**
-Set `ANDROID_HOME` environment variable (see Prerequisites).
+**"SDK location not found"** — Set `ANDROID_HOME` (see Prerequisites).
 
-**Blank white screen on device**
-Run `pnpm run cap:build` and `pnpm run cap:sync` again — the web assets may be missing.
+**Blank white screen** — Run `cap:build` then `cap:sync`; web assets are missing.
 
-**Routing shows 404 / wrong page**
-Capacitor builds use hash routing (`#/`). If you navigate to `/#/practice` manually and it works, routing is fine.
+**White navigation bar** — You skipped Step 3b. Copy the template files and rebuild.
 
-**localStorage data not persisting**
-Capacitor's webview persists `localStorage` across sessions by default. No extra configuration needed.
+**Page shifts up when keyboard opens** — You skipped Step 3c. Add `adjustResize` to AndroidManifest.
 
-**Keyboard pushes content off screen**
-The `useKeyboardVisible` hook in the app uses the VisualViewport API which works in Capacitor's webview on Android 5+.
+**Routing 404** — Make sure you ran `pnpm run cap:build` (not the regular `build`).
 
-**Status Bar or Navigation Bar shows wrong color (gray/white)**
-You skipped Step 3b. Copy the XML files from `capacitor-android-templates/`
-into `android/app/src/main/res/values/` as shown in the guide, then rebuild
-the APK in Android Studio.
-
-**Splash screen is white / doesn't match the app**
-Same fix as above — the splash background is defined in `colors.xml` and
-`splash.xml` inside `capacitor-android-templates/`. Copy them to the
-Android project and rebuild.
-
----
-
-## Publishing to Google Play (future)
-
-When ready to publish:
-1. Build a signed Release APK (Step 6b above)
-2. Create a Google Play Developer account ($25 one-time fee)
-3. Create a new app → upload the `.aab` (Android App Bundle) or `.apk`
-4. Fill in store listing, screenshots, and privacy policy
-5. Submit for review
-
-For Play Store, use **Build Bundle** (`.aab`) instead of **Build APK** —
-it produces smaller downloads for users.
+**Status/nav bar wrong color after lock/unlock** — `MainActivity.java` from Step 3b re-applies on `onResume()`. Make sure you copied it.
