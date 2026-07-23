@@ -19,17 +19,24 @@ function Dot({ active }: { active: boolean }) {
 
 function Callout({ n, label, text }: { n: number; label: string; text: string }) {
   return (
-    <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "auto 1fr",
+      gap: 12,
+      alignItems: "start",
+      height: 58,
+      overflow: "hidden",
+    }}>
       <div style={{
-        minWidth: 24, height: 24, borderRadius: 12,
+        width: 24, height: 24, borderRadius: 12,
         background: PRIMARY, color: "#fff",
-        fontSize: 12, fontWeight: 700,
+        fontSize: 12, fontWeight: 700, lineHeight: 1,
         display: "flex", alignItems: "center", justifyContent: "center",
-        marginTop: 1, flexShrink: 0,
+        flexShrink: 0,
       }}>{n}</div>
-      <div>
-        <span style={{ color: FG, fontSize: 13, fontWeight: 600 }}>{label}</span>
-        <span style={{ color: MUTED, fontSize: 13, lineHeight: 1.5 }}>{" — "}{text}</span>
+      <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{label}</div>
+        <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{text}</div>
       </div>
     </div>
   );
