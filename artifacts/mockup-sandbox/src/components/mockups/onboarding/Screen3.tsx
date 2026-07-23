@@ -84,15 +84,14 @@ export function Screen3() {
           borderRadius: 20, overflow: "hidden",
         }}>
           {/* Arrow indicators */}
-          <div style={{ display: "flex", justifyContent: "space-around", padding: "10px 4px 0" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", padding: "10px 4px 0" }}>
             {tabs.map((t, i) => (
-              <div key={t.key} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div key={t.key} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
                 <div style={{
                   width: 24, height: 24, borderRadius: 12,
                   background: PRIMARY, color: "#fff",
-                  fontSize: 11, fontWeight: 700,
+                  fontSize: 11, fontWeight: 700, lineHeight: 1,
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  marginBottom: 4,
                 }}>{i + 1}</div>
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                   <path d="M5 2v6M2 6l3 3 3-3" stroke={PRIMARY} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -102,7 +101,7 @@ export function Screen3() {
           </div>
 
           {/* Nav bar */}
-          <div style={{ display: "flex", justifyContent: "space-around", height: 64, alignItems: "center", padding: "0 4px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", height: 64, alignItems: "center", padding: "0 4px" }}>
             {tabs.map((t, i) => {
               const active = i === 0;
               const color = active ? PRIMARY : MUTED;
@@ -122,15 +121,15 @@ export function Screen3() {
         {tabs.map((t, i) => (
           <div key={t.key} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
             <div style={{
-              minWidth: 22, height: 22, borderRadius: 11,
+              width: 22, height: 22, borderRadius: 11,
               background: PRIMARY, color: "#fff",
-              fontSize: 11, fontWeight: 700,
+              fontSize: 11, fontWeight: 700, lineHeight: 1,
               display: "flex", alignItems: "center", justifyContent: "center",
-              marginTop: 1, flexShrink: 0,
+              flexShrink: 0,
             }}>{i + 1}</div>
-            <div>
-              <span style={{ color: FG, fontSize: 13, fontWeight: 600 }}>{t.label}</span>
-              <span style={{ color: MUTED, fontSize: 12, lineHeight: 1.5 }}>{" — "}{t.desc}</span>
+            <div style={{ lineHeight: "22px" }}>
+              <span style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "22px" }}>{t.label}</span>
+              <span style={{ color: MUTED, fontSize: 12, lineHeight: "22px" }}>{" — "}{t.desc}</span>
             </div>
           </div>
         ))}
