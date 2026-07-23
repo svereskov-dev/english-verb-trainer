@@ -19,10 +19,10 @@ function Dot({ active }: { active: boolean }) {
 }
 
 const goals = [
-  { words: 20, label: "Лёгкий", emoji: "🌱", desc: "5 мин / день" },
-  { words: 50, label: "Обычный", emoji: "⚡", desc: "10 мин / день" },
-  { words: 75, label: "Интенсивный", emoji: "🔥", desc: "15 мин / день" },
-  { words: 100, label: "Серьёзный", emoji: "🚀", desc: "20 мин / день" },
+  { words: 20, emoji: "🌱", desc: "5 мин / день" },
+  { words: 50, emoji: "⚡", desc: "10 мин / день" },
+  { words: 75, emoji: "🔥", desc: "15 мин / день" },
+  { words: 100, emoji: "🚀", desc: "20 мин / день" },
 ];
 
 export function Screen4() {
@@ -98,13 +98,6 @@ export function Screen4() {
                     <span style={{ color: isSelected ? "#fff" : FG, fontSize: 14, fontWeight: 500 }}>
                       слов
                     </span>
-                    <span style={{
-                      marginLeft: "auto",
-                      background: isSelected ? PRIMARY : "#1A2A44",
-                      color: isSelected ? "#fff" : MUTED,
-                      fontSize: 11, fontWeight: 600,
-                      padding: "2px 8px", borderRadius: 6,
-                    }}>{g.label}</span>
                   </div>
                   <div style={{ color: isSelected ? `rgba(255,255,255,0.65)` : MUTED, fontSize: 12, marginTop: 2 }}>
                     {g.desc}
