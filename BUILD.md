@@ -59,7 +59,9 @@ pnpm run cap:open
 
 Then in Android Studio: **Build → Build APK(s)**.
 
-That's it — no manual edits, no copying files, and no Unix shell required.
+That's it — no manual edits, no copying files, and no Unix shell required. All
+three commands run from the project root; the `cap:open` script delegates to the
+`verb-trainer` package automatically.
 
 ## What each script does
 
