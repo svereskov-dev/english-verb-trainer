@@ -48,3 +48,27 @@ id = "BkXqmwQ46PoqWCPE3BvzP"
 uri = "file://attached_assets/icon_concept_c.png"
 type = "image"
 title = "Icon C — Current Loop (Spiral)"
+
+[[outputs]]
+id = "gnpNEzMwF5wYyf80OoT_D"
+uri = "file://screenshots/onboarding-screen1.jpg"
+type = "image"
+title = "Onboarding — Welcome"
+
+[[outputs]]
+id = "yd7d3WXbOUHkrTrghpOWg"
+uri = "file://screenshots/onboarding-screen2.jpg"
+type = "image"
+title = "Onboarding — Practice Screen"
+
+[[outputs]]
+id = "4EA2GKVA9Ms-_8QsEm6_W"
+uri = "file://screenshots/onboarding-screen3.jpg"
+type = "image"
+title = "Onboarding — Navigation"
+
+[[outputs]]
+id = "D1nQroj15W9Vzot25fI8h"
+uri = "file://screenshots/onboarding-screen4.jpg"
+type = "image"
+title = "Onboarding — Daily Goal"

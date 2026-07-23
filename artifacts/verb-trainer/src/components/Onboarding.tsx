@@ -274,12 +274,13 @@ function Screen3({ onNext }: { onNext: () => void }) {
       </div>
       <div className="px-4 pt-5">
         <Card
-          className="rounded-[20px] overflow-hidden border-0"
+          className="rounded-[20px] overflow-hidden border-0 shadow-none"
           style={{ background: CARD, border: `1px solid ${BORDER}` }}
         >
-          <div className="grid grid-cols-5 pt-2.5 px-1">
+          {/* Numbered arrows row */}
+          <div className="flex pt-2.5 px-2">
             {tabs.map((t, i) => (
-              <div key={t.key} className="flex flex-col items-center gap-0.5">
+              <div key={t.key} className="flex-1 flex flex-col items-center gap-0.5">
                 <div
                   className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold"
                   style={{ background: PRIMARY, color: "#fff" }}
@@ -292,15 +293,16 @@ function Screen3({ onNext }: { onNext: () => void }) {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-5 h-16 items-center px-1">
+          {/* Nav icons row */}
+          <div className="flex h-16 items-center px-2">
             {tabs.map((t, i) => {
               const active = i === 0;
               const color = active ? PRIMARY : MUTED;
               const Icon = t.icon;
               return (
-                <div key={t.key} className="flex flex-col items-center gap-0.5">
+                <div key={t.key} className="flex-1 flex flex-col items-center gap-0.5">
                   <Icon size={20} color={color} strokeWidth={2} />
-                  <span className="text-[10px] font-medium" style={{ color }}>
+                  <span className="text-[10px] font-medium leading-none" style={{ color }}>
                     {t.label}
                   </span>
                 </div>
