@@ -1,0 +1,99 @@
+Task: Design onboarding prototype (first launch only)
+
+We would like to add a short onboarding flow that is shown only once, on the very first launch of the app.
+
+Important:
+For now, do not implement it yet.
+First, please create high-fidelity mockups/prototypes of all onboarding screens so we can review the design and wording before development.
+
+General requirements
+Show onboarding only on first launch (implementation will come later).
+Use our existing visual style (dark theme, purple accent colors, rounded cards).
+Keep the layout clean, modern and friendly.
+The target audience is Russian-speaking users, therefore all texts below must remain in Russian exactly as written.
+Please use our actual UI components wherever possible (buttons, cards, typography, icons, etc.).
+For screens that reference the Practice page, use realistic screenshots or UI mockups from the app.
+Screen 1
+Title
+
+Добро пожаловать!
+
+Body
+
+VerbFlow поможет освоить правильные и неправильные глаголы и разобраться во временах английского языка.
+
+Button
+
+Далее
+
+Screen 2
+Title
+
+Экран тренировки
+
+Display a screenshot/mockup of the Practice screen.
+
+Below the screenshot, explain the interface:
+
+Training Mode — настройте тренировку под себя: выберите формы глаголов и времена, которые хотите практиковать, а также включите или отключите «контекстный режим».
+
+English Tenses — познакомьтесь с наглядной схемой времен английского языка, если вдруг захотите освежить знания.
+
+Поле с заданием — введите правильную форму глагола (добавляя при необходимости am/is/are или have/has/had при необходимости) и нажмите кнопку Check, чтобы проверить результат.
+
+Button
+
+Далее
+
+Screen 3
+Title
+
+Всё необходимое — под рукой
+
+Display the bottom navigation bar and visually point to each icon.
+
+Text:
+
+Главная
+Наблюдаем за статистикой ответов и ежедневным прогрессом.
+
+Практика
+Совершенствуем язык.
+
+Ошибки
+Изучаем список ошибок, допущенных в течение дня.
+
+Словарь
+Пользуемся подсказками: при клике на глагол можно увидеть его перевод, транскрипцию и основные формы.
+
+Настройки
+Выбираем цель ежедневной тренировки.
+
+Button
+
+Далее
+
+Screen 4
+Title
+
+Остался последний шаг
+
+Body
+
+Выберите количество слов, которое хотите тренировать каждый день. Это можно изменить позже в настройках приложения.
+
+Below the text, show the Daily Goal selection cards (20 / 50 / 75 / 100 words), similar to ConjuGato, but styled consistently with VerbFlow.
+
+Button
+
+Начать обучение
+
+Deliverable
+
+Please provide:
+
+High-fidelity mockups for all four onboarding screens.
+A short explanation of the navigation between them.
+Suggestions for any small UX improvements if you think something could be made even clearer, but do not change the Russian text without discussing it first.
+
+After we approve the mockups, we'll proceed with the actual implementation.
