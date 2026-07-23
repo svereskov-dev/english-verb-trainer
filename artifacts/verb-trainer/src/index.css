@@ -244,9 +244,15 @@
   .pt-safe {
     padding-top: max(env(safe-area-inset-top, 0px), 28px);
   }
+  /* pb-safe: safe-area-inset-bottom as reported by the browser.
+     For bottom sheets / footers use calc(Xrem + env(...)) directly
+     so the padding is additive (base spacing + inset). */
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
+  /* nav-safe-pad: page-level bottom padding that clears the fixed BottomNav
+     (4rem = 64 px nav height) plus the gesture-nav inset.
+     Min of 4rem + 0 on desktop; on phones env() provides the real inset. */
   .nav-safe-pad {
     padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
   }

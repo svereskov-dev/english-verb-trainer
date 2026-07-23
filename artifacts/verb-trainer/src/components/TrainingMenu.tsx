@@ -264,7 +264,7 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
         </SheetHeader>
 
         <ScrollArea className="flex-1 min-h-0">
-          <div className="px-4 py-4 space-y-3">
+          <div className="px-5 py-4 space-y-3">
             {GROUPS.map(group => {
               const hasActive = group.presets.some(p => selectedIds.includes(p.id));
 
@@ -315,7 +315,7 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
         </ScrollArea>
 
         {/* Footer */}
-        <div className="shrink-0 border-t px-6 py-4 space-y-3 bg-background">
+        <div className="shrink-0 border-t px-6 pt-4 space-y-3 bg-background" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}>
           <div className="flex items-center justify-between">
             <Label htmlFor="ctx-toggle" className="text-sm font-medium cursor-pointer">
               Context sentences

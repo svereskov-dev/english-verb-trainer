@@ -32,7 +32,10 @@ export function BottomNav() {
           );
         })}
       </div>
-      <div className="pb-safe" />
+      {/* Safe-area spacer — uses env() with a non-zero fallback for Samsung One UI
+          and other Android OEMs that may report env(safe-area-inset-bottom) as 0
+          even when a gesture navigation bar is present. */}
+      <div style={{ height: 'max(env(safe-area-inset-bottom, 0px), 0px)' }} />
     </nav>
   );
 }
