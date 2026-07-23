@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout override that swaps Capacitor's default CapacitorWebView for our
+  NoNumberRowWebView subclass.
+
+  Android's resource-merging system means any file in your app's
+  res/layout/ folder with the same name as a library resource wins.
+  Place this file at:
+
+    android/app/src/main/res/layout/capacitor_bridge_layout_main.xml
+
+  Also place NoNumberRowWebView.java at:
+
+    android/app/src/main/java/com/verbtrainer/app/NoNumberRowWebView.java
+
+  No changes to MainActivity.java are required.
+  Bridge still finds the WebView by id="webview" as normal.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.getcapacitor.BridgeActivity">
+
+    <com.verbtrainer.app.NoNumberRowWebView
+        android:id="@+id/webview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

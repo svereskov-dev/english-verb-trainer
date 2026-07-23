@@ -91,9 +91,38 @@ With `adjustResize`:
 > `adjustResize` does not conflict with edge-to-edge mode. The WebView still
 > draws behind system bars; only the area above the keyboard changes.
 
+## Removing the number row from the keyboard
+
+By default, Chrome/WebView tags every web text input with
+`TYPE_TEXT_VARIATION_WEB_EDIT_TEXT`. Android keyboards (MIUI, Samsung,
+Gboard) see this flag and add a number row — because web pages often need
+digits. Native apps like ConjuGato receive `TYPE_TEXT_VARIATION_NORMAL`
+(0x00) instead, so keyboards show a compact letter-only layout.
+
+**No HTML attribute can change this.** It is hardcoded in Chromium's
+`ImeUtils.java:computeEditorInfo()`, regardless of `inputmode`, `type`,
+`autocorrect`, `spellcheck`, or `autocapitalize`.
+
+**The fix — two files:**
+
+```bash
+# 1. Java class: subclasses CapacitorWebView and strips WEB_EDIT_TEXT
+cp capacitor-android-templates/NoNumberRowWebView.java \
+   android/app/src/main/java/com/verbtrainer/app/NoNumberRowWebView.java
+
+# 2. Layout override: tells Android to inflate NoNumberRowWebView instead of
+#    CapacitorWebView (app resources override library resources by same name)
+mkdir -p android/app/src/main/res/layout
+cp capacitor-android-templates/capacitor_bridge_layout_main.xml \
+   android/app/src/main/res/layout/capacitor_bridge_layout_main.xml
+```
+
+No changes to `MainActivity.java` are needed. Bridge still finds the WebView
+by `id="webview"` exactly as before.
+
 ## Re-applying after `cap:sync`
 
 `npx cap sync` does **not** overwrite `android/app/src/main/res/values/`,
-`values-v35/`, or `MainActivity.java`, so you only need to copy these files
-once. If you ever delete and regenerate the `android/` directory, copy them
-again.
+`values-v35/`, `res/layout/`, or `MainActivity.java`, so you only need to
+copy these files once. If you ever delete and regenerate the `android/`
+directory, copy them again.
