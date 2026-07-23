@@ -119,17 +119,24 @@ export function Screen3() {
       {/* Descriptions */}
       <div style={{ flex: 1, padding: "20px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
         {tabs.map((t, i) => (
-          <div key={t.key} style={{ display: "flex", gap: 12, alignItems: "flex-start", height: 44, overflow: "hidden" }}>
+          <div key={t.key} style={{
+            display: "grid",
+            gridTemplateColumns: "auto 1fr",
+            gap: 12,
+            alignItems: "start",
+            height: 58,
+            overflow: "hidden",
+          }}>
             <div style={{
-              width: 22, height: 22, borderRadius: 11,
+              width: 24, height: 24, borderRadius: 12,
               background: PRIMARY, color: "#fff",
-              fontSize: 11, fontWeight: 700, lineHeight: 1,
+              fontSize: 12, fontWeight: 700, lineHeight: 1,
               display: "flex", alignItems: "center", justifyContent: "center",
               flexShrink: 0,
             }}>{i + 1}</div>
-            <div style={{ lineHeight: "22px" }}>
-              <span style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "22px" }}>{t.label}</span>
-              <span style={{ color: MUTED, fontSize: 12, lineHeight: "22px" }}>{" — "}{t.desc}</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{t.label}</div>
+              <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{t.desc}</div>
             </div>
           </div>
         ))}
