@@ -176,13 +176,23 @@ export function useExerciseSession(config: SessionConfig) {
 
     setStreak(prev => (correct ? prev + 1 : 0));
 
+    const nextSessionAnswers = stats.sessionAnswers + 1;
+    const nextDailyCorrect = stats.dailyCorrect + (correct ? 1 : 0);
+    const nextDailyIncorrect = stats.dailyIncorrect + (correct ? 0 : 1);
+
+    // Cache the daily total so the ProgressBar never shows 0 while stats are
+    // re-loading after navigation or app restart. (IndexedDB is the source of truth.)
+    try {
+      sessionStorage.setItem("progress-daily-total", String(nextDailyCorrect + nextDailyIncorrect));
+    } catch { /* ignore */ }
+
     updateStats({
-      sessionAnswers:    stats.sessionAnswers + 1,
+      sessionAnswers:    nextSessionAnswers,
       totalAnswers:      stats.totalAnswers + 1,
       totalCorrect:      stats.totalCorrect + (correct ? 1 : 0),
       totalIncorrect:    stats.totalIncorrect + (correct ? 0 : 1),
-      dailyCorrect:      stats.dailyCorrect + (correct ? 1 : 0),
-      dailyIncorrect:    stats.dailyIncorrect + (correct ? 0 : 1),
+      dailyCorrect:      nextDailyCorrect,
+      dailyIncorrect:    nextDailyIncorrect,
       currentStreak:   correct ? stats.currentStreak + 1 : 0,
       bestStreak:      Math.max(stats.bestStreak, correct ? stats.currentStreak + 1 : 0),
       lastStudyDate:   Date.now(),

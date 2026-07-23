@@ -201,7 +201,13 @@ export default function Practice() {
 
   return (
     <div className="h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
-      <ProgressBar current={stats?.sessionAnswers ?? 0} total={dailyGoal} />
+      {/* Progress is driven by the persisted daily attempt count so it survives
+          navigation, app minimization, and app restarts. Loading state shows the
+          previous total as a placeholder if the app re-enters the screen. */}
+      <ProgressBar
+        current={stats ? (stats.dailyCorrect + stats.dailyIncorrect) : (parseInt(sessionStorage.getItem("progress-daily-total") || "0", 10))}
+        total={dailyGoal}
+      />
 
       {/* Header — compact or hidden when keyboard is open */}
       <div className={cn(

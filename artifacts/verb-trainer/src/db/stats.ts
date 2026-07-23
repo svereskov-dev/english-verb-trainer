@@ -48,7 +48,11 @@ export async function getStats(): Promise<Stats> {
   if (stats.dailyCorrect === undefined) stats.dailyCorrect = 0;
   if (stats.dailyIncorrect === undefined) stats.dailyIncorrect = 0;
 
-  // Daily reset: if lastStudyDate is from a previous day, reset daily counters
+  // Daily reset: if lastStudyDate is from a previous day, reset daily counters.
+  // Note: sessionAnswers is intentionally left as-is. It represents today's
+  // completed exercise count for the daily goal progress bar, so it should be
+  // reset exactly when the daily goal itself resets. We therefore reset it
+  // here as well so it stays in sync with dailyCorrect/dailyIncorrect.
   const lastDate = stats.lastStudyDate ?? 0;
   const today = new Date().setHours(0, 0, 0, 0);
   if (lastDate > 0 && lastDate < today) {
