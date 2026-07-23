@@ -30,3 +30,21 @@ id = "5EQAnMcP1wadhBWdDXtYX"
 uri = "file://verb-trainer-full.zip"
 type = "unspecified"
 title = "verb-trainer-full.zip"
+
+[[outputs]]
+id = "wK250gateKOUw-0DBwbIe"
+uri = "file://attached_assets/icon_concept_a.png"
+type = "image"
+title = "Icon A — Crest (V-Wave)"
+
+[[outputs]]
+id = "T42g9GswjPN_PHQOdvDfg"
+uri = "file://attached_assets/icon_concept_b.png"
+type = "image"
+title = "Icon B — Slipstream (Whale)"
+
+[[outputs]]
+id = "BkXqmwQ46PoqWCPE3BvzP"
+uri = "file://attached_assets/icon_concept_c.png"
+type = "image"
+title = "Icon C — Current Loop (Spiral)"
