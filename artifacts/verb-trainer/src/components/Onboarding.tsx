@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Home, Dumbbell, AlertCircle, BookOpen, Settings } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+// Onboarding — direct port of the approved Canvas mockups (Screen1–4)
+// Uses inline styles verbatim from the mockup source to guarantee visual fidelity.
 
-// Colors from the approved onboarding prototype
+import { useState } from "react";
+
+interface OnboardingProps {
+  onComplete: (dailyGoal: number) => void;
+}
+
 const BG = "#060C18";
 const CARD = "#0D1425";
 const PRIMARY = "#6C47FF";
@@ -12,120 +14,85 @@ const FG = "#E2E8F0";
 const MUTED = "#7A8DAA";
 const BORDER = "#1A2A44";
 
-interface OnboardingProps {
-  onComplete: (dailyGoal: number) => void;
-}
-
-const totalScreens = 4;
-
 function Dot({ active }: { active: boolean }) {
   return (
-    <div
-      className="h-2 rounded-full transition-all duration-200"
-      style={{
-        width: active ? 24 : 8,
-        background: active ? PRIMARY : "#2A3A58",
-      }}
-    />
+    <div style={{
+      width: active ? 24 : 8, height: 8, borderRadius: 4,
+      background: active ? PRIMARY : "#2A3A58", transition: "width 0.2s",
+    }} />
   );
 }
 
 function StatusBar() {
   return (
-    <div
-      className="w-full shrink-0 flex items-center justify-between px-6 text-foreground"
-      style={{ height: 44, color: FG }}
-    >
-      <span className="text-[15px] font-semibold">9:41</span>
-      <div className="flex items-center gap-1.5">
+    <div style={{ height: 44, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", flexShrink: 0 }}>
+      <span style={{ color: FG, fontSize: 15, fontWeight: 600 }}>9:41</span>
+      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
         <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
-          <rect x="0" y="3" width="3" height="9" rx="1" fill={FG} opacity="0.4" />
-          <rect x="4.5" y="2" width="3" height="10" rx="1" fill={FG} opacity="0.6" />
-          <rect x="9" y="0" width="3" height="12" rx="1" fill={FG} />
-          <rect x="13.5" y="0" width="3" height="12" rx="1" fill={FG} opacity="0.3" />
+          <rect x="0" y="3" width="3" height="9" rx="1" fill={FG} opacity="0.4"/>
+          <rect x="4.5" y="2" width="3" height="10" rx="1" fill={FG} opacity="0.6"/>
+          <rect x="9" y="0" width="3" height="12" rx="1" fill={FG}/>
+          <rect x="13.5" y="0" width="3" height="12" rx="1" fill={FG} opacity="0.3"/>
         </svg>
         <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
-          <path d="M8 2.5C10.5 2.5 12.7 3.6 14.2 5.3L15.5 4C13.6 1.9 11 0.5 8 0.5C5 0.5 2.4 1.9 0.5 4L1.8 5.3C3.3 3.6 5.5 2.5 8 2.5Z" fill={FG} />
-          <path d="M8 5.5C9.7 5.5 11.2 6.2 12.3 7.3L13.6 6C12.1 4.5 10.1 3.5 8 3.5C5.9 3.5 3.9 4.5 2.4 6L3.7 7.3C4.8 6.2 6.3 5.5 8 5.5Z" fill={FG} />
-          <circle cx="8" cy="10" r="1.5" fill={FG} />
+          <path d="M8 2.5C10.5 2.5 12.7 3.6 14.2 5.3L15.5 4C13.6 1.9 11 0.5 8 0.5C5 0.5 2.4 1.9 0.5 4L1.8 5.3C3.3 3.6 5.5 2.5 8 2.5Z" fill={FG}/>
+          <path d="M8 5.5C9.7 5.5 11.2 6.2 12.3 7.3L13.6 6C12.1 4.5 10.1 3.5 8 3.5C5.9 3.5 3.9 4.5 2.4 6L3.7 7.3C4.8 6.2 6.3 5.5 8 5.5Z" fill={FG}/>
+          <circle cx="8" cy="10" r="1.5" fill={FG}/>
         </svg>
-        <div className="flex items-center" style={{ padding: 2 }}>
-          <div
-            className="rounded-sm flex items-center"
-            style={{ width: 25, height: 12, border: `1.5px solid ${FG}`, borderRadius: 3, padding: 2 }}
-          >
-            <div className="rounded-[1px]" style={{ width: 16, height: 7, background: FG }} />
-          </div>
+        <div style={{ width: 25, height: 12, border: `1.5px solid ${FG}`, borderRadius: 3, padding: 2, display: "flex", alignItems: "center" }}>
+          <div style={{ width: 16, height: 7, background: FG, borderRadius: 1 }}/>
         </div>
       </div>
     </div>
   );
 }
+
+// ─── Screen 1 ─────────────────────────────────────────────────────────────────
 
 function Screen1({ onNext }: { onNext: () => void }) {
   return (
-    <div className="flex flex-col items-center h-full">
-      <div className="flex-1 flex flex-col items-center justify-center px-8 w-full">
-        <div
-          className="rounded-[28px] overflow-hidden mb-10"
-          style={{
-            width: 120,
-            height: 120,
-            boxShadow: `0 0 0 1px ${BORDER}, 0 16px 48px rgba(108,71,255,0.3)`,
-          }}
-        >
-          <img
-            src="/pwa-512x512.png"
-            alt="VerbFlow"
-            className="w-full h-full object-cover"
-          />
+    <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", overflow: "hidden" }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "0 32px" }}>
+        <div style={{
+          width: 120, height: 120, borderRadius: 28, overflow: "hidden", marginBottom: 40,
+          boxShadow: `0 0 0 1px ${BORDER}, 0 16px 48px rgba(108,71,255,0.3)`,
+        }}>
+          <img src="/pwa-512x512.png" alt="VerbFlow" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
-        <h1 className="text-[32px] leading-tight font-bold text-center tracking-tight mb-5" style={{ color: FG }}>
+        <h1 style={{ color: FG, fontSize: 32, fontWeight: 700, textAlign: "center", margin: "0 0 20px", lineHeight: 1.2, letterSpacing: "-0.5px" }}>
           Добро пожаловать!
         </h1>
-        <p
-          className="text-base leading-relaxed text-center max-w-[300px]"
-          style={{ color: MUTED }}
-        >
+        <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.65, textAlign: "center", margin: 0, maxWidth: 300 }}>
           VerbFlow поможет освоить правильные и неправильные глаголы и разобраться во временах английского языка.
         </p>
       </div>
-      <div className="w-full px-6 pb-12 flex flex-col items-center gap-6">
-        <div className="flex items-center gap-1.5">
-          <Dot active={true} />
-          <Dot active={false} />
-          <Dot active={false} />
-          <Dot active={false} />
+      <div style={{ width: "100%", padding: "0 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <Dot active={true} /><Dot active={false} /><Dot active={false} /><Dot active={false} />
         </div>
-        <Button
-          size="lg"
-          className="w-full h-14 text-lg font-semibold rounded-2xl border-0"
-          style={{ background: PRIMARY, boxShadow: `0 8px 24px rgba(108,71,255,0.4)` }}
-          onClick={onNext}
-        >
-          Далее
-        </Button>
+        <button onClick={onNext} style={{
+          width: "100%", height: 56, background: PRIMARY, border: "none",
+          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
+          cursor: "pointer", letterSpacing: "0.1px",
+          boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
+        }}>Далее</button>
       </div>
     </div>
   );
 }
 
-function Callout({ n, label, text }: { n: number; label: string; text: string }) {
+// ─── Screen 2 ─────────────────────────────────────────────────────────────────
+
+function Callout2({ n, label, text }: { n: number; label: string; text: string }) {
   return (
-    <div className="grid grid-cols-[auto_1fr] gap-3 items-start">
-      <div
-        className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-        style={{ background: PRIMARY, color: "#fff" }}
-      >
-        {n}
-      </div>
-      <div className="flex flex-col">
-        <span className="text-[13px] font-semibold leading-5" style={{ color: FG }}>
-          {label}
-        </span>
-        <span className="text-xs leading-[18px]" style={{ color: MUTED }}>
-          {text}
-        </span>
+    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start", height: 58, overflow: "hidden" }}>
+      <div style={{
+        width: 24, height: 24, borderRadius: 12, background: PRIMARY, color: "#fff",
+        fontSize: 12, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+      }}>{n}</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{label}</div>
+        <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{text}</div>
       </div>
     </div>
   );
@@ -133,76 +100,41 @@ function Callout({ n, label, text }: { n: number; label: string; text: string })
 
 function PracticePreview() {
   return (
-    <Card
-      className="rounded-2xl overflow-hidden border-0 shadow-none"
-      style={{ background: BG, border: `1px solid ${BORDER}` }}
-    >
-      <div className="h-1 w-full" style={{ background: "#1A2A44" }}>
-        <div className="h-full rounded-r" style={{ width: "40%", background: PRIMARY }} />
+    <div style={{ background: BG, borderRadius: 16, overflow: "hidden", border: `1px solid ${BORDER}`, position: "relative" }}>
+      <div style={{ background: "#1A2A44", height: 4, width: "100%" }}>
+        <div style={{ background: PRIMARY, height: "100%", width: "40%", borderRadius: 2 }} />
       </div>
-      <div
-        className="flex gap-2 px-3 py-2"
-        style={{ borderBottom: `1px solid ${BORDER}` }}
-      >
-        <Badge label="Training Mode" icon={<Dumbbell size={12} strokeWidth={2.5} color={PRIMARY} />} n={1} />
-        <Badge label="English Tenses" icon={<BookOpen size={12} strokeWidth={2.5} color={PRIMARY} />} n={2} />
-      </div>
-      <CardContent className="p-3 pb-0">
-        <div
-          className="rounded-xl p-2.5 px-3.5"
-          style={{ background: CARD, border: `1px solid ${BORDER}` }}
-        >
-          <div className="text-[10px] font-medium uppercase tracking-wider mb-1" style={{ color: MUTED }}>
-            Present Simple
-          </div>
-          <div className="text-[13px] leading-relaxed" style={{ color: FG }}>
-            She <span className="font-bold" style={{ color: PRIMARY }}>_____</span> English every day.
-          </div>
-          <div className="text-[11px] mt-1" style={{ color: MUTED }}>
-            speak → ?
-          </div>
+      <div style={{ padding: "8px 12px", display: "flex", gap: 8, borderBottom: `1px solid ${BORDER}` }}>
+        <div style={{ background: "#1A2A44", borderRadius: 8, padding: "5px 10px", display: "flex", alignItems: "center", gap: 5, position: "relative" }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
+            <path d="M12 2L22 8.5V15.5L12 22L2 15.5V8.5Z"/><path d="M12 2v20M2 8.5l10 7 10-7"/>
+          </svg>
+          <span style={{ color: FG, fontSize: 11, fontWeight: 600 }}>Training Mode</span>
+          <div style={{ position: "absolute", top: -8, right: -8, width: 18, height: 18, borderRadius: 9, background: PRIMARY, color: "#fff", fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>1</div>
         </div>
-      </CardContent>
-      <div className="flex gap-2 p-3">
-        <div
-          className="relative flex-1 rounded-[10px] flex items-center px-3 text-xs font-medium"
-          style={{ background: "#1A2A44", border: `1.5px solid ${PRIMARY}`, color: FG }}
-        >
-          speaks
-          <div
-            className="absolute top-0 right-0 -mt-2 -mr-2 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[10px] font-bold"
-            style={{ background: PRIMARY, color: "#fff" }}
-          >
-            3
-          </div>
+        <div style={{ background: "#1A2A44", borderRadius: 8, padding: "5px 10px", display: "flex", alignItems: "center", gap: 5, position: "relative" }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+          <span style={{ color: FG, fontSize: 11, fontWeight: 600 }}>English Tenses</span>
+          <div style={{ position: "absolute", top: -8, right: -8, width: 18, height: 18, borderRadius: 9, background: PRIMARY, color: "#fff", fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>2</div>
         </div>
-        <Button
-          size="sm"
-          className="rounded-[10px] text-xs font-semibold border-0"
-          style={{ background: PRIMARY, color: "#fff" }}
-        >
-          Check
-        </Button>
       </div>
-    </Card>
-  );
-}
-
-function Badge({ label, icon, n }: { label: string; icon: React.ReactNode; n: number }) {
-  return (
-    <div
-      className="relative rounded-lg flex items-center gap-1.5 px-2.5 py-1.5"
-      style={{ background: "#1A2A44" }}
-    >
-      {icon}
-      <span className="text-[11px] font-semibold" style={{ color: FG }}>
-        {label}
-      </span>
-      <div
-        className="absolute -top-2 -right-2 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[10px] font-bold"
-        style={{ background: PRIMARY, color: "#fff" }}
-      >
-        {n}
+      <div style={{ padding: "10px 12px 0" }}>
+        <div style={{ background: CARD, borderRadius: 12, border: `1px solid ${BORDER}`, padding: "10px 14px" }}>
+          <div style={{ color: MUTED, fontSize: 10, fontWeight: 500, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>Present Simple</div>
+          <div style={{ color: FG, fontSize: 13, lineHeight: 1.5 }}>
+            She <span style={{ color: PRIMARY, fontWeight: 700 }}>_____</span> English every day.
+          </div>
+          <div style={{ color: MUTED, fontSize: 11, marginTop: 4 }}>speak → ?</div>
+        </div>
+      </div>
+      <div style={{ padding: "8px 12px 10px", display: "flex", gap: 8 }}>
+        <div style={{ flex: 1, background: "#1A2A44", borderRadius: 10, border: `1.5px solid ${PRIMARY}`, padding: "7px 12px", display: "flex", alignItems: "center", position: "relative" }}>
+          <span style={{ color: FG, fontSize: 12, fontWeight: 500 }}>speaks</span>
+          <div style={{ position: "absolute", top: -8, right: -8, width: 18, height: 18, borderRadius: 9, background: PRIMARY, color: "#fff", fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>3</div>
+        </div>
+        <button style={{ background: PRIMARY, border: "none", borderRadius: 10, color: "#fff", fontSize: 12, fontWeight: 600, padding: "7px 14px", cursor: "pointer" }}>Check</button>
       </div>
     </div>
   );
@@ -210,146 +142,143 @@ function Badge({ label, icon, n }: { label: string; icon: React.ReactNode; n: nu
 
 function Screen2({ onNext }: { onNext: () => void }) {
   return (
-    <div className="flex flex-col h-full overflow-hidden">
-      <div className="px-6 pt-2 pb-3">
-        <h2 className="text-2xl font-bold tracking-tight" style={{ color: FG }}>
-          Экран тренировки
-        </h2>
+    <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      <div style={{ padding: "8px 24px 12px" }}>
+        <h2 style={{ color: FG, fontSize: 24, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>Экран тренировки</h2>
       </div>
-      <div className="px-5">
+      <div style={{ padding: "0 20px" }}>
         <PracticePreview />
       </div>
-      <div className="flex-1 px-6 pt-4 pb-2 flex flex-col gap-3 overflow-y-auto">
-        <Callout
-          n={1}
-          label="Training Mode"
-          text="Настройте тренировку под себя: выберите формы глаголов и времена, которые хотите практиковать."
-        />
-        <Callout
-          n={2}
-          label="English Tenses"
-          text="Наглядная схема времён английского языка, если захотите освежить знания."
-        />
-        <Callout
-          n={3}
-          label="Поле с заданием"
-          text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат."
-        />
+      <div style={{ flex: 1, padding: "16px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+        <Callout2 n={1} label="Training Mode" text="Настройте тренировку под себя: выберите формы глаголов и времена, которые хотите практиковать." />
+        <Callout2 n={2} label="English Tenses" text="Наглядная схема времён английского языка, если захотите освежить знания." />
+        <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат." />
       </div>
-      <div className="w-full px-6 pb-12 flex flex-col items-center gap-5">
-        <div className="flex items-center gap-1.5">
-          <Dot active={false} />
-          <Dot active={true} />
-          <Dot active={false} />
-          <Dot active={false} />
+      <div style={{ width: "100%", padding: "16px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <Dot active={false}/><Dot active={true}/><Dot active={false}/><Dot active={false}/>
         </div>
-        <Button
-          size="lg"
-          className="w-full h-14 text-lg font-semibold rounded-2xl border-0"
-          style={{ background: PRIMARY, boxShadow: `0 8px 24px rgba(108,71,255,0.4)` }}
-          onClick={onNext}
-        >
-          Далее
-        </Button>
+        <button onClick={onNext} style={{
+          width: "100%", height: 52, background: PRIMARY, border: "none",
+          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
+          cursor: "pointer", boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
+        }}>Далее</button>
       </div>
     </div>
   );
 }
 
-const tabs: { key: string; label: string; icon: LucideIcon; desc: string }[] = [
-  { key: "Home", label: "Главная", icon: Home, desc: "Наблюдаем за статистикой ответов и ежедневным прогрессом." },
-  { key: "Practice", label: "Практика", icon: Dumbbell, desc: "Совершенствуем язык." },
-  { key: "Mistakes", label: "Ошибки", icon: AlertCircle, desc: "Изучаем список ошибок, допущенных в течение дня." },
-  { key: "Dictionary", label: "Словарь", icon: BookOpen, desc: "При клике на глагол можно увидеть его перевод, транскрипцию и основные формы." },
-  { key: "Settings", label: "Настройки", icon: Settings, desc: "Выбираем цель ежедневной тренировки." },
+// ─── Screen 3 ─────────────────────────────────────────────────────────────────
+
+const navIcons = {
+  Home: (color: string) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+  ),
+  Practice: (color: string) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 9H14V7.5"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/>
+    </svg>
+  ),
+  Mistakes: (color: string) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+  ),
+  Dictionary: (color: string) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+    </svg>
+  ),
+  Settings: (color: string) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+    </svg>
+  ),
+};
+
+const tabs = [
+  { key: "Home", label: "Главная", icon: navIcons.Home, desc: "Наблюдаем за статистикой ответов и ежедневным прогрессом." },
+  { key: "Practice", label: "Практика", icon: navIcons.Practice, desc: "Совершенствуем язык." },
+  { key: "Mistakes", label: "Ошибки", icon: navIcons.Mistakes, desc: "Изучаем список ошибок, допущенных в течение дня." },
+  { key: "Dictionary", label: "Словарь", icon: navIcons.Dictionary, desc: "При клике на глагол можно увидеть его перевод, транскрипцию и основные формы." },
+  { key: "Settings", label: "Настройки", icon: navIcons.Settings, desc: "Выбираем цель ежедневной тренировки." },
 ];
 
 function Screen3({ onNext }: { onNext: () => void }) {
   return (
-    <div className="flex flex-col h-full overflow-hidden">
-      <div className="px-6 pt-2 pb-0">
-        <h2 className="text-[22px] font-bold tracking-tight leading-tight" style={{ color: FG }}>
-          Всё необходимое —<br />под рукой
+    <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      <div style={{ padding: "8px 24px 0" }}>
+        <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: "0 0 4px", letterSpacing: "-0.3px" }}>
+          Всё необходимое —{" "}<br />под рукой
         </h2>
       </div>
-      <div className="px-4 pt-5">
-        <Card
-          className="rounded-[20px] overflow-hidden border-0 shadow-none"
-          style={{ background: CARD, border: `1px solid ${BORDER}` }}
-        >
-          {/* Numbered arrows row */}
-          <div className="flex pt-2.5 px-2">
+
+      {/* Nav bar visual */}
+      <div style={{ padding: "20px 16px 0" }}>
+        <div style={{ background: CARD, border: `1px solid ${BORDER}`, borderRadius: 20, overflow: "hidden" }}>
+          {/* Arrow indicators */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", padding: "10px 4px 0" }}>
             {tabs.map((t, i) => (
-              <div key={t.key} className="flex-1 flex flex-col items-center gap-0.5">
-                <div
-                  className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold"
-                  style={{ background: PRIMARY, color: "#fff" }}
-                >
-                  {i + 1}
-                </div>
+              <div key={t.key} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+                <div style={{
+                  width: 24, height: 24, borderRadius: 12, background: PRIMARY, color: "#fff",
+                  fontSize: 11, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center",
+                }}>{i + 1}</div>
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                  <path d="M5 2v6M2 6l3 3 3-3" stroke={PRIMARY} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 2v6M2 6l3 3 3-3" stroke={PRIMARY} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             ))}
           </div>
-          {/* Nav icons row */}
-          <div className="flex h-16 items-center px-2">
+          {/* Nav bar */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", height: 64, alignItems: "center", padding: "0 4px" }}>
             {tabs.map((t, i) => {
               const active = i === 0;
               const color = active ? PRIMARY : MUTED;
-              const Icon = t.icon;
               return (
-                <div key={t.key} className="flex-1 flex flex-col items-center gap-0.5">
-                  <Icon size={20} color={color} strokeWidth={2} />
-                  <span className="text-[10px] font-medium leading-none" style={{ color }}>
-                    {t.label}
-                  </span>
+                <div key={t.key} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+                  {t.icon(color)}
+                  <span style={{ fontSize: 10, fontWeight: 500, color }}>{t.label}</span>
                 </div>
               );
             })}
           </div>
-        </Card>
+        </div>
       </div>
-      <div className="flex-1 px-6 pt-5 pb-2 flex flex-col gap-3 overflow-y-auto">
+
+      {/* Descriptions */}
+      <div style={{ flex: 1, padding: "20px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
         {tabs.map((t, i) => (
-          <div key={t.key} className="grid grid-cols-[auto_1fr] gap-3 items-start">
-            <div
-              className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-              style={{ background: PRIMARY, color: "#fff" }}
-            >
-              {i + 1}
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[13px] font-semibold leading-5" style={{ color: FG }}>
-                {t.label}
-              </span>
-              <span className="text-xs leading-[18px]" style={{ color: MUTED }}>
-                {t.desc}
-              </span>
+          <div key={t.key} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start", height: 58, overflow: "hidden" }}>
+            <div style={{
+              width: 24, height: 24, borderRadius: 12, background: PRIMARY, color: "#fff",
+              fontSize: 12, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            }}>{i + 1}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{t.label}</div>
+              <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{t.desc}</div>
             </div>
           </div>
         ))}
       </div>
-      <div className="w-full px-6 pb-12 flex flex-col items-center gap-5">
-        <div className="flex items-center gap-1.5">
-          <Dot active={false} />
-          <Dot active={false} />
-          <Dot active={true} />
-          <Dot active={false} />
+
+      <div style={{ padding: "16px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <Dot active={false}/><Dot active={false}/><Dot active={true}/><Dot active={false}/>
         </div>
-        <Button
-          size="lg"
-          className="w-full h-14 text-lg font-semibold rounded-2xl border-0"
-          style={{ background: PRIMARY, boxShadow: `0 8px 24px rgba(108,71,255,0.4)` }}
-          onClick={onNext}
-        >
-          Далее
-        </Button>
+        <button onClick={onNext} style={{
+          width: "100%", height: 52, background: PRIMARY, border: "none",
+          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
+          cursor: "pointer", boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
+        }}>Далее</button>
       </div>
     </div>
   );
 }
+
+// ─── Screen 4 ─────────────────────────────────────────────────────────────────
 
 const goals = [
   { words: 20, emoji: "🌱", desc: "5 мин / день" },
@@ -362,90 +291,74 @@ function Screen4({ onComplete }: { onComplete: (dailyGoal: number) => void }) {
   const [selected, setSelected] = useState(50);
 
   return (
-    <div className="flex flex-col h-full overflow-hidden">
-      <div className="flex-1 px-6 pt-2 pb-0 overflow-y-auto">
-        <h2
-          className="text-[26px] font-bold tracking-tight leading-tight mb-3"
-          style={{ color: FG }}
-        >
+    <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "8px 24px 0" }}>
+        <h2 style={{ color: FG, fontSize: 26, fontWeight: 700, margin: "0 0 12px", letterSpacing: "-0.3px", lineHeight: 1.25 }}>
           Остался последний шаг
         </h2>
-        <p className="text-[15px] leading-relaxed mb-8" style={{ color: MUTED }}>
+        <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.6, margin: "0 0 32px" }}>
           Выберите количество слов, которое хотите тренировать каждый день. Это можно изменить позже в настройках приложения.
         </p>
-        <div className="flex flex-col gap-3">
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {goals.map((g) => {
             const isSelected = selected === g.words;
             return (
               <button
                 key={g.words}
                 onClick={() => setSelected(g.words)}
-                className="flex items-center gap-4 rounded-2xl p-4 text-left transition-all"
                 style={{
                   background: isSelected ? "rgba(108,71,255,0.12)" : CARD,
                   border: `1.5px solid ${isSelected ? PRIMARY : BORDER}`,
+                  borderRadius: 16, padding: "16px 20px", cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: 16, textAlign: "left",
                   boxShadow: isSelected ? `0 0 0 1px ${PRIMARY}33, 0 4px 16px rgba(108,71,255,0.2)` : "none",
                 }}
               >
-                <div
-                  className="w-[22px] h-[22px] rounded-full shrink-0 flex items-center justify-center"
-                  style={{
-                    border: `2px solid ${isSelected ? PRIMARY : BORDER}`,
-                    background: isSelected ? PRIMARY : "transparent",
-                  }}
-                >
-                  {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+                <div style={{
+                  width: 22, height: 22, borderRadius: 11, flexShrink: 0,
+                  border: `2px solid ${isSelected ? PRIMARY : BORDER}`,
+                  background: isSelected ? PRIMARY : "transparent",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  {isSelected && <div style={{ width: 8, height: 8, borderRadius: 4, background: "#fff" }} />}
                 </div>
-                <span className="text-2xl">{g.emoji}</span>
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-lg font-bold" style={{ color: isSelected ? "#fff" : FG }}>
-                      {g.words}
-                    </span>
-                    <span className="text-sm font-medium" style={{ color: isSelected ? "#fff" : FG }}>
-                      слов
-                    </span>
+                <span style={{ fontSize: 24 }}>{g.emoji}</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                    <span style={{ color: isSelected ? "#fff" : FG, fontSize: 18, fontWeight: 700 }}>{g.words}</span>
+                    <span style={{ color: isSelected ? "#fff" : FG, fontSize: 14, fontWeight: 500 }}>слов</span>
                   </div>
-                  <div className="text-xs mt-0.5" style={{ color: isSelected ? "rgba(255,255,255,0.65)" : MUTED }}>
-                    {g.desc}
-                  </div>
+                  <div style={{ color: isSelected ? "rgba(255,255,255,0.65)" : MUTED, fontSize: 12, marginTop: 2 }}>{g.desc}</div>
                 </div>
               </button>
             );
           })}
         </div>
       </div>
-      <div className="w-full px-6 pb-12 flex flex-col items-center gap-5 pt-5">
-        <div className="flex items-center gap-1.5">
-          <Dot active={false} />
-          <Dot active={false} />
-          <Dot active={false} />
-          <Dot active={true} />
+      <div style={{ padding: "20px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <Dot active={false}/><Dot active={false}/><Dot active={false}/><Dot active={true}/>
         </div>
-        <Button
-          size="lg"
-          className="w-full h-14 text-lg font-semibold rounded-2xl border-0 tracking-wide"
-          style={{ background: PRIMARY, boxShadow: `0 8px 24px rgba(108,71,255,0.4)` }}
-          onClick={() => onComplete(selected)}
-        >
-          Начать обучение
-        </Button>
+        <button onClick={() => onComplete(selected)} style={{
+          width: "100%", height: 56, background: PRIMARY, border: "none",
+          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
+          cursor: "pointer", letterSpacing: "0.1px",
+          boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
+        }}>Начать обучение</button>
       </div>
     </div>
   );
 }
 
+// ─── Root ──────────────────────────────────────────────────────────────────────
+
 export function Onboarding({ onComplete }: OnboardingProps) {
   const [screen, setScreen] = useState(0);
-
-  const next = () => setScreen((s) => Math.min(s + 1, totalScreens - 1));
+  const next = () => setScreen((s) => Math.min(s + 1, 3));
 
   return (
-    <div
-      className="w-full h-dvh flex justify-center overflow-hidden"
-      style={{ background: BG, fontFamily: "'Inter', sans-serif" }}
-    >
-      <div className="w-full max-w-md h-full flex flex-col relative">
+    <div style={{ width: "100%", height: "100dvh", background: BG, fontFamily: "'Inter', sans-serif", display: "flex", justifyContent: "center", overflow: "hidden" }}>
+      <div style={{ width: "100%", maxWidth: 480, height: "100%", display: "flex", flexDirection: "column" }}>
         <StatusBar />
         {screen === 0 && <Screen1 onNext={next} />}
         {screen === 1 && <Screen2 onNext={next} />}
