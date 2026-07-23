@@ -1,0 +1,106 @@
+We've now built this project on Windows several times, and every release hits the same problems.
+
+I'd like to eliminate them permanently instead of working around them manually every time.
+
+Please make the project fully cross-platform (Linux + macOS + Windows) so that a clean clone can be built on Windows without any manual edits.
+
+Please address the following issues.
+
+1. Remove Unix-only shell scripts
+
+Right now pnpm install fails on Windows because of scripts like:
+
+"preinstall": "sh -c '...'"
+
+Windows does not have sh.
+
+Please replace every Unix-only shell command with a cross-platform solution.
+
+Possible approaches:
+
+Node.js scripts
+rimraf
+shx
+del-cli
+cross-env
+or any other cross-platform package
+
+The project should not require Git Bash, WSL or any Unix shell.
+
+2. Vite must build without Replit environment variables
+
+Currently vite.config.ts crashes because it requires
+
+PORT
+BASE_PATH
+
+Those variables only exist inside Replit.
+
+For local production builds the config should provide sensible defaults, for example:
+
+PORT=5173
+BASE_PATH="/"
+
+and still allow overriding them through environment variables.
+
+A local build should never fail because those variables are missing.
+
+3. Remove Replit-only dependencies from production builds
+
+During build we hit errors such as
+
+lib/api-client-react/...
+
+which do not exist in the exported project.
+
+Any plugins or imports that only exist inside Replit should be loaded only when running inside Replit.
+
+The exported project must not depend on internal Replit libraries.
+
+4. Verify a clean Windows build
+
+Please verify that a completely fresh clone works with only:
+
+pnpm install
+pnpm run build
+pnpm run cap:sync
+
+No manual edits.
+No environment variables.
+No copying files.
+No deleting scripts.
+
+5. Add a production build script
+
+Please add a script like
+
+"build:android"
+
+that performs the complete production build.
+
+For example:
+
+pnpm run build
+pnpm run cap:sync
+
+or whatever sequence is appropriate.
+
+That way every future release is one command.
+
+6. Update BUILD.md
+
+Please update BUILD.md so that it contains the correct Windows build instructions.
+
+A new developer should be able to clone the repository and produce an APK by following that document only.
+
+Goal
+
+After these changes, producing a new APK should always be:
+
+pnpm install
+pnpm run build:android
+pnpm run cap:open
+
+with zero manual fixes required.
+
+Please let me know exactly which files you changed to make the project fully cross-platform.

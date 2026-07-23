@@ -6,8 +6,19 @@ Android 13, 14, and 15+ (including ColorOS, One UI, MIUI).
 
 ## Where these files go
 
-After running `npx cap add android` (first-time setup), copy them into the
-generated `android/` directory as shown below.
+These templates are copied automatically by the cross-platform script:
+
+```bash
+cd artifacts/verb-trainer
+pnpm run cap:copy-templates
+```
+
+`pnpm run build:android` runs `cap:copy-templates` for you, so you do not need
+to call it manually. The script uses plain Node.js and works on Linux, macOS,
+and Windows without `cp`, `mkdir -p`, or any Unix shell.
+
+If you prefer to copy them manually, overwrite the generated files as shown
+below:
 
 > **Note:** `styles.xml` and `MainActivity.java` replace existing generated
 > files — overwrite them when prompted.
@@ -33,6 +44,16 @@ cp capacitor-android-templates/values-v35/styles.xml \
 ```bash
 cp capacitor-android-templates/MainActivity.java \
    android/app/src/main/java/com/verbtrainer/app/MainActivity.java
+```
+
+### Compact keyboard layout (NoNumberRowWebView)
+
+```bash
+cp capacitor-android-templates/NoNumberRowWebView.java \
+   android/app/src/main/java/com/verbtrainer/app/NoNumberRowWebView.java
+
+cp capacitor-android-templates/capacitor_bridge_layout_main.xml \
+   android/app/src/main/res/layout/capacitor_bridge_layout_main.xml
 ```
 
 ## What each file does
