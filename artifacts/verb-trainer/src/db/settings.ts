@@ -8,13 +8,15 @@ export interface Settings {
   dailyGoal: number;
   includeSubject: boolean;
   theme: Theme;
+  hasCompletedOnboarding: boolean;
 }
 
 const defaultSettings: Settings = {
   difficulty: "beginner",
   dailyGoal: 25,
   includeSubject: false,
-  theme: "dark"
+  theme: "dark",
+  hasCompletedOnboarding: false,
 };
 
 export async function getSettings(): Promise<Settings> {
@@ -36,6 +38,7 @@ export async function getSettings(): Promise<Settings> {
     dailyGoal: (await db.get('settings', 'dailyGoal')) || defaultSettings.dailyGoal,
     includeSubject: (await db.get('settings', 'includeSubject')) || defaultSettings.includeSubject,
     theme,
+    hasCompletedOnboarding: (await db.get('settings', 'hasCompletedOnboarding')) ?? false,
   };
 }
 
@@ -46,5 +49,6 @@ export async function saveSettings(settings: Settings): Promise<void> {
   await tx.objectStore('settings').put(settings.dailyGoal, 'dailyGoal');
   await tx.objectStore('settings').put(settings.includeSubject, 'includeSubject');
   await tx.objectStore('settings').put(settings.theme, 'theme');
+  await tx.objectStore('settings').put(settings.hasCompletedOnboarding, 'hasCompletedOnboarding');
   await tx.done;
 }

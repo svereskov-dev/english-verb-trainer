@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { useSystemUI } from "@/hooks/useSystemUI";
+import { useSettings } from "@/hooks/useSettings";
+import { Onboarding } from "@/components/Onboarding";
 
 import Home from "@/pages/home";
 import Practice from "@/pages/practice";
@@ -34,6 +36,15 @@ function Router() {
 
 function App() {
   useSystemUI();
+  const { settings, updateSettings } = useSettings();
+
+  if (!settings) return null;
+
+  const handleOnboardingComplete = (dailyGoal: number) => {
+    updateSettings({ hasCompletedOnboarding: true, dailyGoal });
+  };
+
+  const hasCompleted = settings.hasCompletedOnboarding;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -41,11 +52,11 @@ function App() {
         <TooltipProvider>
           {import.meta.env.VITE_CAPACITOR === "true" ? (
             <WouterRouter hook={useHashLocation}>
-              <Router />
+              {hasCompleted ? <Router /> : <Onboarding onComplete={handleOnboardingComplete} />}
             </WouterRouter>
           ) : (
             <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-              <Router />
+              {hasCompleted ? <Router /> : <Onboarding onComplete={handleOnboardingComplete} />}
             </WouterRouter>
           )}
           <Toaster />
