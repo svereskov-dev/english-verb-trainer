@@ -117,9 +117,9 @@ export function Screen3() {
       </div>
 
       {/* Descriptions */}
-      <div style={{ flex: 1, padding: "20px 24px 0", display: "flex", flexDirection: "column", gap: 10, overflowY: "auto" }}>
+      <div style={{ flex: 1, padding: "20px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
         {tabs.map((t, i) => (
-          <div key={t.key} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+          <div key={t.key} style={{ display: "flex", gap: 12, alignItems: "flex-start", height: 44, overflow: "hidden" }}>
             <div style={{
               width: 22, height: 22, borderRadius: 11,
               background: PRIMARY, color: "#fff",
