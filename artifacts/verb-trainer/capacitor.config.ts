@@ -2,7 +2,7 @@ import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
   appId: "com.verbtrainer.app",
-  appName: "English Verb Trainer",
+  appName: "VerbFlow",
   webDir: "dist/public",
   server: {
     androidScheme: "https",

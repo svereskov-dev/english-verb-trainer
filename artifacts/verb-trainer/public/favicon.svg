@@ -1,3 +1,13 @@
 <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="180" height="180" rx="36" fill="#FF3C00"/>
+  <rect width="180" height="180" rx="36" fill="#E3F2FD"/>
+  <!-- book base -->
+  <path d="M30 118 Q90 108 150 118 L150 128 Q90 118 30 128 Z" fill="#1565C0"/>
+  <path d="M30 118 Q90 130 90 130 Q90 130 90 130 L30 128 Z" fill="#1976D2"/>
+  <path d="M150 118 Q90 130 90 130 L150 128 Z" fill="#1976D2"/>
+  <!-- wave -->
+  <path d="M72 115 Q68 88 80 72 Q88 60 96 56 Q110 50 112 64 Q114 74 104 80 Q118 64 126 72 Q138 84 130 100 Q124 112 114 116" stroke="#1565C0" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <!-- foam dots -->
+  <circle cx="104" cy="58" r="4" fill="white" opacity="0.8"/>
+  <circle cx="116" cy="62" r="3" fill="white" opacity="0.7"/>
+  <circle cx="96" cy="52" r="3" fill="white" opacity="0.6"/>
 </svg>
