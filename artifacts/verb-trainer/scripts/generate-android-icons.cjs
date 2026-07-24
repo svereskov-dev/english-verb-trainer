@@ -41,7 +41,52 @@ function findImageMagick() {
   throw new Error('ImageMagick not found. Please install ImageMagick and ensure "magick" or "convert" is on PATH.');
 }
 
-const im = findImageMagick();
+// ---------------------------------------------------------------------------
+// Check whether rasterisation is needed:
+//   - All output PNGs already exist  AND
+//   - Neither SVG source is newer than the oldest existing PNG
+// If so, skip (ImageMagick may not be available on Windows).
+// ---------------------------------------------------------------------------
+function allPngsExist() {
+  for (const d of densities) {
+    const mipmap = path.join(androidRes, `mipmap-${d.name}`);
+    if (
+      !fs.existsSync(path.join(mipmap, 'ic_launcher_foreground.png')) ||
+      !fs.existsSync(path.join(mipmap, 'ic_launcher.png')) ||
+      !fs.existsSync(path.join(mipmap, 'ic_launcher_round.png'))
+    ) return false;
+  }
+  return true;
+}
+
+function svgNewerThanPngs() {
+  const fgMtime = fs.statSync(foregroundSvg).mtimeMs;
+  const lgMtime = fs.statSync(legacySvg).mtimeMs;
+  const svgMtime = Math.max(fgMtime, lgMtime);
+  for (const d of densities) {
+    const mipmap = path.join(androidRes, `mipmap-${d.name}`);
+    const pngMtime = fs.statSync(path.join(mipmap, 'ic_launcher.png')).mtimeMs;
+    if (svgMtime > pngMtime) return true;
+  }
+  return false;
+}
+
+if (allPngsExist() && !svgNewerThanPngs()) {
+  console.log('Android icon PNGs are up to date — skipping ImageMagick rasterisation.');
+  process.exit(0);
+}
+
+// PNGs are missing or SVGs changed — rasterisation required.
+let im;
+try {
+  im = findImageMagick();
+} catch (e) {
+  // ImageMagick is not installed. Pre-generated PNGs should have been shipped
+  // with the project. If they are missing this will cause a Gradle build error.
+  console.warn('WARNING: ' + e.message);
+  console.warn('Skipping icon rasterisation. If mipmap PNGs are missing, install ImageMagick and re-run.');
+  process.exit(0);
+}
 
 function convertSvg(input, output, size, density) {
   const args = [
