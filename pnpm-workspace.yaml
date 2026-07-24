@@ -71,6 +71,14 @@ onlyBuiltDependencies:
   - msw
   - unrs-resolver
 
+# approvedBuilds is the pnpm v10 format written by `pnpm approve-builds`.
+# Listed here so users never need to run that command manually.
+approvedBuilds:
+  - '@swc/core'
+  - esbuild
+  - msw
+  - unrs-resolver
+
 overrides:
   # drizzle-kit uses esbuild internally on an older version that's vulnerable; this overrides it
   "@esbuild-kit/esm-loader": "npm:tsx@^4.21.0"
