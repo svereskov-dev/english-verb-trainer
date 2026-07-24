@@ -24,8 +24,6 @@ function Callout({ n, label, text }: { n: number; label: string; text: string })
       gridTemplateColumns: "auto 1fr",
       gap: 12,
       alignItems: "start",
-      height: 58,
-      overflow: "hidden",
     }}>
       <div style={{
         width: 24, height: 24, borderRadius: 12,

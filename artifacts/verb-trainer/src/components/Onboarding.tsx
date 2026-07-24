@@ -86,7 +86,7 @@ function Screen1({ onNext }: { onNext: () => void }) {
 
 function Callout2({ n, label, text }: { n: number; label: string; text: string }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start", height: 58, overflow: "hidden" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start" }}>
       <div style={{
         width: 24, height: 24, borderRadius: 12, background: PRIMARY, color: "#fff",
         fontSize: 12, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
@@ -248,7 +248,7 @@ function Screen3({ onNext }: { onNext: () => void }) {
       {/* Descriptions */}
       <div style={{ flex: 1, padding: "20px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
         {tabs.map((t, i) => (
-          <div key={t.key} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start", height: 58, overflow: "hidden" }}>
+          <div key={t.key} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start" }}>
             <div style={{
               width: 24, height: 24, borderRadius: 12, background: PRIMARY, color: "#fff",
               fontSize: 12, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
