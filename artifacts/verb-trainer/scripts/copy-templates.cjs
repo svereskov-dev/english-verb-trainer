@@ -21,6 +21,7 @@ const androidDir = path.join(root, 'android');
 
 const mappings = [
   ['colors.xml', 'app/src/main/res/values/colors.xml'],
+  ['strings.xml', 'app/src/main/res/values/strings.xml'],
   ['styles.xml', 'app/src/main/res/values/styles.xml'],
   ['splash.xml', 'app/src/main/res/drawable/splash.xml'],
   ['values-v35/styles.xml', 'app/src/main/res/values-v35/styles.xml'],

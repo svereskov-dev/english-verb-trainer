@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import com.getcapacitor.BridgeActivity;
 
 /**
- * MainActivity for English Verb Trainer.
+ * MainActivity for VerbFlow.
  *
  * Capacitor 8 already calls WindowCompat.setDecorFitsSystemWindows(window, false)
  * inside BridgeActivity, putting the WebView into edge-to-edge mode. We embrace

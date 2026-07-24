@@ -1,6 +1,6 @@
 {
-  "name": "English Verb Trainer",
-  "short_name": "Verb Trainer",
+  "name": "VerbFlow",
+  "short_name": "VerbFlow",
   "description": "Train English verb conjugation with instant feedback",
   "start_url": "/",
   "display": "standalone",
