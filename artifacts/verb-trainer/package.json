@@ -11,7 +11,8 @@
     "cap:build": "vite build --config vite.config.cap.ts",
     "cap:ensure-android": "node ./scripts/ensure-android.cjs",
     "cap:copy-templates": "node ./scripts/copy-templates.cjs",
-    "cap:sync": "pnpm run cap:ensure-android && pnpm run cap:copy-templates && npx cap sync android",
+    "cap:generate-icons": "node ./scripts/generate-android-icons.cjs",
+    "cap:sync": "pnpm run cap:ensure-android && pnpm run cap:copy-templates && pnpm run cap:generate-icons && npx cap sync android",
     "cap:open": "npx cap open android",
     "cap:add:android": "npx cap add android",
     "build:android": "pnpm run cap:build && pnpm run cap:sync"

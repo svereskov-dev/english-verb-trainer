@@ -1,0 +1,18 @@
+<svg width="108" height="108" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+  <!-- Legacy launcher icon (pre-API 26). Solid background with centered artwork. -->
+  <rect width="108" height="108" fill="#E3F2FD"/>
+  <g transform="translate(-13.5, -13.5) scale(0.75)">
+    <!-- Open book base -->
+    <path d="M30 118 Q90 108 150 118 L150 128 Q90 118 30 128 Z" fill="#1565C0"/>
+    <!-- Left page -->
+    <path d="M30 118 Q90 130 90 130 L30 128 Z" fill="#1976D2"/>
+    <!-- Right page -->
+    <path d="M150 118 Q90 130 90 130 L150 128 Z" fill="#1976D2"/>
+    <!-- Wave rising from the book -->
+    <path d="M72 115 Q68 88 80 72 Q88 60 96 56 Q110 50 112 64 Q114 74 104 80 Q118 64 126 72 Q138 84 130 100 Q124 112 114 116" stroke="#1565C0" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <!-- Foam dots -->
+    <circle cx="104" cy="58" r="4" fill="white" opacity="0.8"/>
+    <circle cx="116" cy="62" r="3" fill="white" opacity="0.7"/>
+    <circle cx="96" cy="52" r="3" fill="white" opacity="0.6"/>
+  </g>
+</svg>
