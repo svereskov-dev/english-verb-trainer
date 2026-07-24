@@ -24,6 +24,7 @@ const mappings = [
   ['strings.xml', 'app/src/main/res/values/strings.xml'],
   ['styles.xml', 'app/src/main/res/values/styles.xml'],
   ['splash.xml', 'app/src/main/res/drawable/splash.xml'],
+  ['file_paths.xml', 'app/src/main/res/xml/file_paths.xml'],
   ['ic_launcher_background.xml', 'app/src/main/res/values/ic_launcher_background.xml'],
   ['mipmap-anydpi-v26/ic_launcher.xml', 'app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml'],
   ['mipmap-anydpi-v26/ic_launcher_round.xml', 'app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml'],
