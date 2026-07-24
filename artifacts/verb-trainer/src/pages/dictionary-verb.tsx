@@ -24,7 +24,7 @@ export default function DictionaryVerb() {
   const type = verb.isIrregular ? "Irregular" : "Regular";
 
   return (
-    <div className="min-h-[100dvh] bg-background pb-24 flex flex-col">
+    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
       <div className="w-full max-w-md mx-auto p-6">
         {/* Back link */}
         <Link
