@@ -278,14 +278,14 @@ function Screen3({ onNext }: { onNext: () => void }) {
 // ─── Screen 4 ─────────────────────────────────────────────────────────────────
 
 const goals = [
-  { words: 20, emoji: "🌱", desc: "5 мин / день" },
-  { words: 50, emoji: "⚡", desc: "10 мин / день" },
-  { words: 75, emoji: "🔥", desc: "15 мин / день" },
-  { words: 100, emoji: "🚀", desc: "20 мин / день" },
+  { words: 10, emoji: "🌱" },
+  { words: 20, emoji: "⚡" },
+  { words: 35, emoji: "🔥" },
+  { words: 50, emoji: "🚀" },
 ];
 
 function Screen4({ onComplete }: { onComplete: (dailyGoal: number) => void }) {
-  const [selected, setSelected] = useState(50);
+  const [selected, setSelected] = useState(20);
 
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
@@ -325,7 +325,6 @@ function Screen4({ onComplete }: { onComplete: (dailyGoal: number) => void }) {
                     <span style={{ color: isSelected ? "#fff" : FG, fontSize: 18, fontWeight: 700 }}>{g.words}</span>
                     <span style={{ color: isSelected ? "#fff" : FG, fontSize: 14, fontWeight: 500 }}>слов</span>
                   </div>
-                  <div style={{ color: isSelected ? "rgba(255,255,255,0.65)" : MUTED, fontSize: 12, marginTop: 2 }}>{g.desc}</div>
                 </div>
               </button>
             );

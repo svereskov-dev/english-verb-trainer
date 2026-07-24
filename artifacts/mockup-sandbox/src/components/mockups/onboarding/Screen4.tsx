@@ -19,14 +19,14 @@ function Dot({ active }: { active: boolean }) {
 }
 
 const goals = [
-  { words: 20, emoji: "🌱", desc: "5 мин / день" },
-  { words: 50, emoji: "⚡", desc: "10 мин / день" },
-  { words: 75, emoji: "🔥", desc: "15 мин / день" },
-  { words: 100, emoji: "🚀", desc: "20 мин / день" },
+  { words: 10, emoji: "🌱" },
+  { words: 20, emoji: "⚡" },
+  { words: 35, emoji: "🔥" },
+  { words: 50, emoji: "🚀" },
 ];
 
 export function Screen4() {
-  const [selected, setSelected] = useState(50);
+  const [selected, setSelected] = useState(20);
 
   return (
     <div style={{
@@ -98,9 +98,6 @@ export function Screen4() {
                     <span style={{ color: isSelected ? "#fff" : FG, fontSize: 14, fontWeight: 500 }}>
                       слов
                     </span>
-                  </div>
-                  <div style={{ color: isSelected ? `rgba(255,255,255,0.65)` : MUTED, fontSize: 12, marginTop: 2 }}>
-                    {g.desc}
                   </div>
                 </div>
               </button>

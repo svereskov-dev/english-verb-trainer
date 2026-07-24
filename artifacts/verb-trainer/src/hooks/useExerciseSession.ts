@@ -245,7 +245,7 @@ export function useExerciseSession(config: SessionConfig) {
     submitAnswer,
     nextExercise,
     skipExercise: nextExercise,
-    dailyGoal: settings?.dailyGoal || 25,
+    dailyGoal: settings?.dailyGoal || 20,
     noMistakes,
     reviewExhausted,
     onClearReview,

@@ -43,10 +43,10 @@ export default function Settings() {
                 <SelectValue placeholder="Select goal" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="10">10 Exercises</SelectItem>
-                <SelectItem value="25">25 Exercises</SelectItem>
-                <SelectItem value="50">50 Exercises</SelectItem>
-                <SelectItem value="100">100 Exercises</SelectItem>
+                <SelectItem value="10">10 words</SelectItem>
+                <SelectItem value="20">20 words</SelectItem>
+                <SelectItem value="35">35 words</SelectItem>
+                <SelectItem value="50">50 words</SelectItem>
               </SelectContent>
             </Select>
           </div>

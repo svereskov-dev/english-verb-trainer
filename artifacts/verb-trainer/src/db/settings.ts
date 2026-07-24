@@ -13,11 +13,18 @@ export interface Settings {
 
 const defaultSettings: Settings = {
   difficulty: "beginner",
-  dailyGoal: 25,
+  dailyGoal: 20,
   includeSubject: false,
   theme: "dark",
   hasCompletedOnboarding: false,
 };
+
+// Unified daily goal options across onboarding and Settings.
+const allowedDailyGoals = [10, 20, 35, 50];
+
+function normalizeDailyGoal(value: number): number {
+  return allowedDailyGoals.includes(value) ? value : defaultSettings.dailyGoal;
+}
 
 export async function getSettings(): Promise<Settings> {
   const db = await getDB();
@@ -35,7 +42,7 @@ export async function getSettings(): Promise<Settings> {
 
   return {
     difficulty: (await db.get('settings', 'difficulty')) || defaultSettings.difficulty,
-    dailyGoal: (await db.get('settings', 'dailyGoal')) || defaultSettings.dailyGoal,
+    dailyGoal: normalizeDailyGoal((await db.get('settings', 'dailyGoal')) || defaultSettings.dailyGoal),
     includeSubject: (await db.get('settings', 'includeSubject')) || defaultSettings.includeSubject,
     theme,
     hasCompletedOnboarding: (await db.get('settings', 'hasCompletedOnboarding')) ?? false,
