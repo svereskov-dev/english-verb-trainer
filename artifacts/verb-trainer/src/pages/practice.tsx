@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useExerciseSession } from "../hooks/useExerciseSession";
-import { useStats } from "../hooks/useStats";
 import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { AnswerInput } from "../components/AnswerInput";
@@ -86,8 +85,6 @@ export default function Practice() {
     reviewExhausted,
     onClearReview,
   } = useExerciseSession(config);
-
-  const { stats } = useStats();
 
   // ── Check for a Mistakes-review session on first load ───────────────────
   useEffect(() => {
@@ -201,11 +198,10 @@ export default function Practice() {
 
   return (
     <div className="h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
-      {/* Progress is driven by the persisted daily attempt count so it survives
-          navigation, app minimization, and app restarts. Loading state shows the
-          previous total as a placeholder if the app re-enters the screen. */}
+      {/* Progress is driven by the live session counters from useExerciseSession.
+          They update immediately on every answer and are persisted via the stats hook. */}
       <ProgressBar
-        current={stats ? (stats.dailyCorrect + stats.dailyIncorrect) : (parseInt(sessionStorage.getItem("progress-daily-total") || "0", 10))}
+        current={dailyCorrect + dailyIncorrect}
         total={dailyGoal}
       />
 
