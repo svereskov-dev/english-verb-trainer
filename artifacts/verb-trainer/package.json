@@ -12,7 +12,7 @@
     "cap:ensure-android": "node ./scripts/ensure-android.cjs",
     "cap:copy-templates": "node ./scripts/copy-templates.cjs",
     "cap:generate-icons": "node ./scripts/generate-android-icons.cjs",
-    "cap:sync": "pnpm run cap:ensure-android && pnpm run cap:copy-templates && pnpm run cap:generate-icons && npx cap sync android",
+    "cap:sync": "pnpm run cap:ensure-android && pnpm run cap:copy-templates && pnpm run cap:generate-icons && node ./scripts/cleanup-android-splash.cjs && npx cap sync android && node ./scripts/cleanup-android-splash.cjs",
     "cap:open": "npx cap open android",
     "cap:add:android": "npx cap add android",
     "build:android": "pnpm run cap:build && pnpm run cap:sync"
