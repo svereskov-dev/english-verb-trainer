@@ -249,11 +249,11 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
           variant="outline"
           size="sm"
           className={cn(
-            "rounded-full flex items-center gap-1.5 font-semibold",
+            "rounded-full flex items-center gap-1.5 font-semibold min-w-0 overflow-hidden",
             compact ? "max-w-[180px] h-7 text-xs px-2" : "max-w-[220px]"
           )}
         >
-          <span className="truncate text-left">{buttonLabel}</span>
+          <span className="truncate text-left min-w-0">{buttonLabel}</span>
           <ChevronDown size={compact ? 12 : 14} className="shrink-0 opacity-60" />
         </Button>
       </SheetTrigger>

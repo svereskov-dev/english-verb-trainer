@@ -157,7 +157,7 @@ export default function Practice() {
   // ── Mistakes mode with nothing to review ───────────────────────────────────
   if (noMistakes) {
     return (
-      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
+      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col" style={{overflowX:'hidden'}}>
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center overflow-y-auto">
           <div className="text-6xl">🎉</div>
           <div>
@@ -176,7 +176,7 @@ export default function Practice() {
   // ── Review session finished (all verbs now correct) ───────────────────────
   if (reviewExhausted) {
     return (
-      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
+      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col" style={{overflowX:'hidden'}}>
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center overflow-y-auto">
           <div className="text-6xl">🎉</div>
           <div>
@@ -197,7 +197,12 @@ export default function Practice() {
   const showingFeedback = feedback !== null;
 
   return (
-    <div className="h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
+    /* overflow-hidden is critical: it prevents any child overflow from
+       escaping to document level and growing the layout across mode switches. */
+    <div className={cn(
+      "h-[100dvh] overflow-hidden bg-background pt-safe flex flex-col",
+      keyboardVisible ? "" : "nav-safe-pad"
+    )}>
       {/* Progress is driven by the live session counters from useExerciseSession.
           They update immediately on every answer and are persisted via the stats hook. */}
       <ProgressBar
@@ -205,15 +210,13 @@ export default function Practice() {
         total={dailyGoal}
       />
 
-      {/* Header — compact or hidden when keyboard is open */}
+      {/* Header — compact when keyboard is open */}
       <div className={cn(
-        "w-full max-w-3xl mx-auto transition-all duration-200",
-        keyboardVisible
-          ? "px-3 pt-1 pb-0.5"
-          : "px-4 pt-2 pb-1"
+        "w-full max-w-3xl mx-auto",
+        keyboardVisible ? "px-3 pt-1 pb-0.5" : "px-4 pt-2 pb-1"
       )}>
         {/* Row 1: Training Mode (left) | English Tenses (right) */}
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-2 min-w-0">
           <TrainingMenu
             current={config}
             onSelect={handleSelectConfig}
@@ -236,7 +239,7 @@ export default function Practice() {
 
         {/* Row 2: Counters — hidden when keyboard is open */}
         {!keyboardVisible && (
-          <div className="flex justify-end gap-3 mt-1 transition-opacity duration-200">
+          <div className="flex justify-end gap-3 mt-1">
             <div className="flex items-center gap-1 text-green-600">
               <Check size={15} />
               <span className="font-bold text-sm">{dailyCorrect}</span>
@@ -251,7 +254,7 @@ export default function Practice() {
 
       {/* Exercise area — scrolls when keyboard is open so input stays visible */}
       <div className={cn(
-        "flex-1 flex flex-col items-center w-full max-w-md mx-auto transition-all duration-200 overflow-y-auto min-h-0",
+        "flex-1 flex flex-col items-center w-full max-w-md mx-auto overflow-y-auto min-h-0",
         keyboardVisible
           ? "p-2 gap-2 justify-start pt-1"
           : "p-4 gap-3 justify-center"

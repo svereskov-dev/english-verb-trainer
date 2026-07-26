@@ -1,0 +1,70 @@
+We found another layout issue that needs to be fixed.
+
+Problem
+
+After several minutes of using the Practice screen, the layout gradually becomes larger than the device viewport.
+
+It does not happen immediately after launching the app.
+
+It usually appears after changing training modes multiple times (especially modes with longer titles such as Continuous Forms or enabling Context).
+
+After that:
+
+the top controls become wider than the screen;
+the entire Practice screen starts overflowing horizontally;
+the vertical layout also grows, so not all content fits on the screen anymore;
+cards become taller or wider than before;
+the input field and Check button move lower and eventually no longer fit on one screen.
+
+Restarting the app restores the normal layout.
+
+Important
+
+This is not simply a long-text problem.
+
+The long labels may trigger it, but once it happens, the entire layout becomes incorrectly sized.
+
+Please investigate the root cause rather than masking it.
+
+Please inspect
+flexbox sizing
+width calculations
+min-width / min-content behavior
+flex-shrink / flex-grow
+overflow propagation
+viewport units (vh, dvh, svh)
+dynamic height calculations
+ResizeObserver usage
+any components measuring their own size
+any cached layout state
+repeated re-renders that may accumulate styles
+any CSS class being appended repeatedly
+any inline style whose width/height is computed from previous values
+Requirements
+
+The Practice screen must always satisfy the following:
+
+never exceed the viewport width;
+never exceed the viewport height;
+no horizontal scrolling;
+no vertical layout growth after changing modes;
+switching between any training modes must not change the page dimensions;
+the layout must remain identical after 5 minutes, 20 minutes, or hundreds of exercises.
+Please verify
+
+Test repeatedly switching between:
+
+Training Mode combinations
+Context ON/OFF
+Present / Past / Future / Perfect / Continuous
+English Tenses page
+other tabs and back
+
+Run at least 100 mode switches and confirm that:
+
+width stays constant;
+height stays constant;
+no overflow occurs;
+no accumulated layout changes remain.
+
+The goal is that the Practice screen has a completely stable layout regardless of how long the app has been running.
