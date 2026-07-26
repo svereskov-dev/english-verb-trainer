@@ -78,3 +78,21 @@ id = "7Jrywej5gfpg6CafIukuj"
 uri = "file://artifacts/verb-trainer/public/onboarding-icon-512.png"
 type = "image"
 title = "New VerbFlow onboarding icon (512×512)"
+
+[[outputs]]
+id = "KsIxfwIiJWpJ6VZOh8aU1"
+uri = "file://preview_icons/onboarding_preview.png"
+type = "image"
+title = "Onboarding preview (120×120 dp icon)"
+
+[[outputs]]
+id = "uZPc8rMD_DZkZyym8fRwT"
+uri = "file://preview_icons/launcher_preview.png"
+type = "image"
+title = "Android launcher preview (xxxhdpi 192×192 dp)"
+
+[[outputs]]
+id = "faveiU-ejLH0NHxr_AHvv"
+uri = "file://artifacts/verb-trainer/public/verbflow-icon.png"
+type = "image"
+title = "Full source PNG (1024×1024)"
