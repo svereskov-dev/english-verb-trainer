@@ -18,8 +18,8 @@ const root = path.resolve(__dirname, '..');
 const androidRes = path.join(root, 'android', 'app', 'src', 'main', 'res');
 const assetsDir = path.join(root, 'assets');
 
-const foregroundSvg = path.join(assetsDir, 'icon-foreground.svg');
-const legacySvg = path.join(assetsDir, 'icon-legacy.svg');
+// The single source-of-truth app icon (wave + book) exported from the Canvas.
+const appIconPng = path.join(assetsDir, 'app-icon.png');
 
 const densities = [
   { name: 'mdpi', scale: 1, fg: 108, legacy: 48 },
@@ -59,19 +59,17 @@ function allPngsExist() {
   return true;
 }
 
-function svgNewerThanPngs() {
-  const fgMtime = fs.statSync(foregroundSvg).mtimeMs;
-  const lgMtime = fs.statSync(legacySvg).mtimeMs;
-  const svgMtime = Math.max(fgMtime, lgMtime);
+function sourceNewerThanPngs() {
+  const srcMtime = fs.statSync(appIconPng).mtimeMs;
   for (const d of densities) {
     const mipmap = path.join(androidRes, `mipmap-${d.name}`);
     const pngMtime = fs.statSync(path.join(mipmap, 'ic_launcher.png')).mtimeMs;
-    if (svgMtime > pngMtime) return true;
+    if (srcMtime > pngMtime) return true;
   }
   return false;
 }
 
-if (allPngsExist() && !svgNewerThanPngs()) {
+if (allPngsExist() && !sourceNewerThanPngs()) {
   console.log('Android icon PNGs are up to date — skipping ImageMagick rasterisation.');
   process.exit(0);
 }
@@ -88,10 +86,9 @@ try {
   process.exit(0);
 }
 
-function convertSvg(input, output, size, density) {
+function convertPng(input, output, size) {
   const args = [
     input,
-    '-density', String(density * 96),
     '-resize', `${size}x${size}`,
     '-background', 'none',
     output,
@@ -105,15 +102,16 @@ for (const d of densities) {
     fs.mkdirSync(mipmap, { recursive: true });
   }
 
-  // Adaptive icon foreground (108dp canvas)
+  // Adaptive icon foreground (108dp canvas) — the full icon is used here,
+  // matched by the background color in ic_launcher_background.xml.
   const fgOut = path.join(mipmap, 'ic_launcher_foreground.png');
-  convertSvg(foregroundSvg, fgOut, d.fg, d.scale);
+  convertPng(appIconPng, fgOut, d.fg);
   console.log(`Generated ${fgOut}`);
 
   // Legacy launcher icon (48dp canvas)
   const legacyOut = path.join(mipmap, 'ic_launcher.png');
   const roundOut = path.join(mipmap, 'ic_launcher_round.png');
-  convertSvg(legacySvg, legacyOut, d.legacy, d.scale);
+  convertPng(appIconPng, legacyOut, d.legacy);
   fs.copyFileSync(legacyOut, roundOut);
   console.log(`Generated ${legacyOut} + round variant`);
 }

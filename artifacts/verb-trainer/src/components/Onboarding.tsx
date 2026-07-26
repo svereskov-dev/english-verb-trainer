@@ -60,17 +60,9 @@ function Screen1({ onNext }: { onNext: () => void }) {
           background: "#0B1A3A",
         }}>
           <img
-            src="/onboarding-icon-512.png"
+            src="/verbflow-icon.png"
             alt="VerbFlow"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            srcSet="
-              /onboarding-icon-64.png 64w,
-              /onboarding-icon-128.png 128w,
-              /onboarding-icon-192.png 192w,
-              /onboarding-icon-256.png 256w,
-              /onboarding-icon-512.png 512w,
-              /onboarding-icon-1024.png 1024w
-            "
             sizes="120px"
           />
         </div>
