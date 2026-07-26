@@ -57,8 +57,22 @@ function Screen1({ onNext }: { onNext: () => void }) {
         <div style={{
           width: 120, height: 120, borderRadius: 28, overflow: "hidden", marginBottom: 40,
           boxShadow: `0 0 0 1px ${BORDER}, 0 16px 48px rgba(108,71,255,0.3)`,
+          background: "#0B1A3A",
         }}>
-          <img src="/pwa-512x512.png" alt="VerbFlow" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <img
+            src="/onboarding-icon-512.png"
+            alt="VerbFlow"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            srcSet="
+              /onboarding-icon-64.png 64w,
+              /onboarding-icon-128.png 128w,
+              /onboarding-icon-192.png 192w,
+              /onboarding-icon-256.png 256w,
+              /onboarding-icon-512.png 512w,
+              /onboarding-icon-1024.png 1024w
+            "
+            sizes="120px"
+          />
         </div>
         <h1 style={{ color: FG, fontSize: 32, fontWeight: 700, textAlign: "center", margin: "0 0 20px", lineHeight: 1.2, letterSpacing: "-0.5px" }}>
           Добро пожаловать!

@@ -29,7 +29,7 @@ title = "English Verb Trainer — Practice Screen UX Improvements"
 id = "5EQAnMcP1wadhBWdDXtYX"
 uri = "file://verb-trainer-full.zip"
 type = "unspecified"
-title = "VerbFlow – no html/body safeguard (for verification)"
+title = "VerbFlow – onboarding icon + layout fix"
 
 [[outputs]]
 id = "wK250gateKOUw-0DBwbIe"
@@ -72,3 +72,9 @@ id = "D1nQroj15W9Vzot25fI8h"
 uri = "file://screenshots/onboarding-screen4.jpg"
 type = "image"
 title = "Onboarding — Daily Goal"
+
+[[outputs]]
+id = "7Jrywej5gfpg6CafIukuj"
+uri = "file://artifacts/verb-trainer/public/onboarding-icon-512.png"
+type = "image"
+title = "New VerbFlow onboarding icon (512×512)"
