@@ -29,7 +29,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
     return (
       <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
         {/* Tense pill */}
-        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30">
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
           {formatTenseName(exercise.question.tense)}
         </span>
 
@@ -88,7 +88,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
     return (
       <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
         {/* Form pill */}
-        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30">
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
           Irregular Form: {askForMap[exercise.question.askFor]}
         </span>
 
@@ -128,7 +128,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
     return (
       <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
         {/* Tense pill */}
-        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30">
+        <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
           {formatTenseName(exercise.question.tense)}
         </span>
 

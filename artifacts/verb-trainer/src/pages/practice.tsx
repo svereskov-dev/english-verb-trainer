@@ -157,7 +157,7 @@ export default function Practice() {
   // ── Mistakes mode with nothing to review ───────────────────────────────────
   if (noMistakes) {
     return (
-      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col" style={{overflowX:'hidden'}}>
+      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center overflow-y-auto">
           <div className="text-6xl">🎉</div>
           <div>
@@ -176,7 +176,7 @@ export default function Practice() {
   // ── Review session finished (all verbs now correct) ───────────────────────
   if (reviewExhausted) {
     return (
-      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col" style={{overflowX:'hidden'}}>
+      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center overflow-y-auto">
           <div className="text-6xl">🎉</div>
           <div>
