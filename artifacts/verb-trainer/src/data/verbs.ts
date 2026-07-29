@@ -298,6 +298,25 @@ const regularList = [
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
+/**
+ * Verbs whose final syllable is UNSTRESSED even though they end in a
+ * consonant-vowel-consonant pattern.  The general doubling rule must NOT
+ * apply to these words; e.g. "listen" → "listened" (not "listenned").
+ * Exported so the conjugation engine can reuse the same guard for -ing forms.
+ */
+export const neverDouble = new Set([
+  // -en / -on endings (unstressed final syllable)
+  "listen", "open", "happen", "fasten", "soften", "shorten", "lengthen",
+  // -er endings (unstressed schwa + r)
+  "answer", "offer", "enter", "order", "cover", "wonder", "gather",
+  "consider", "discover", "remember", "deliver", "encounter", "recover",
+  "suffer", "umber", "conquer", "differ", "filter", "foster",
+  // -et / -op / -el endings (unstressed)
+  "target", "visit", "develop", "focus",
+  // double-consonant stems where isCVC still fires on the final -er
+  "matter", "flutter", "scatter", "butter", "litter", "bitter",
+]);
+
 function isCVC(word: string): boolean {
   if (word.length < 3) return false;
   const vowels = "aeiou";
@@ -320,7 +339,10 @@ function getRegularPast(infinitive: string): string {
     const vowels = "aeiou";
     if (!vowels.includes(w[w.length - 2])) return w.slice(0, -1) + "ied";
   }
-  if (isCVC(w)) return w + w[w.length - 1] + "ed";
+  // Only double when the final syllable is stressed (monosyllables and a small
+  // set of polysyllables like "prefer", "transfer").  Words with an unstressed
+  // final syllable must never double (see neverDouble above).
+  if (isCVC(w) && !neverDouble.has(w)) return w + w[w.length - 1] + "ed";
   return w + "ed";
 }
 

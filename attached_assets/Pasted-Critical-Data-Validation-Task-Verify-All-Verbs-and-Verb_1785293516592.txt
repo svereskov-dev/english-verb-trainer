@@ -1,0 +1,87 @@
+Critical Data Validation Task – Verify All Verbs and Verb Forms
+
+We have identified a critical issue in the verb database.
+
+Example:
+
+listen
+Past Simple: listenned ❌
+Past Participle: listenned ❌
+
+Correct forms are:
+
+listen
+listened
+listened
+
+This indicates that there may be additional data errors in the verb database.
+
+Required task
+
+Perform a complete audit of the entire verb database, not just the reported example.
+
+Verify for every verb:
+
+Base form (V1)
+Past Simple (V2)
+Past Participle (V3)
+Verb type (Regular / Irregular)
+IPA transcription (if stored)
+Russian translation
+Validation requirements
+
+For regular verbs, verify that the generated forms follow English spelling rules correctly.
+
+This includes, but is not limited to:
+
+final -e
+love → loved
+live → lived
+consonant + y
+study → studied
+carry → carried
+vowel + y
+play → played
+enjoy → enjoyed
+consonant doubling
+stop → stopped
+plan → planned
+admit → admitted
+verbs ending in c
+panic → panicked
+mimic → mimicked
+verbs ending in l (British spelling rules, if intentionally used)
+every other standard English spelling rule.
+
+The current example (listen → listenned) suggests that the rule for consonant doubling is being applied too broadly.
+
+Irregular verbs
+
+Verify every irregular verb against a reliable English reference.
+
+No incorrect V2 or V3 forms should remain.
+
+Translation audit
+
+Also verify that every Russian translation matches the English verb and does not contain accidental mismatches or duplicates.
+
+IPA audit
+
+Verify IPA transcriptions for consistency and correctness wherever they are stored.
+
+Important
+
+Do not fix only the reported examples.
+
+Run a systematic validation across the entire database and correct every incorrect entry.
+
+The goal is that the dictionary and the training engine use a 100% verified verb database, since users rely on it as a learning reference.
+
+Deliverable
+
+After completing the audit, provide a short report including:
+
+total number of verbs checked;
+number of issues found;
+categories of issues (regular forms, irregular forms, translations, IPA, etc.);
+confirmation that every issue has been corrected.

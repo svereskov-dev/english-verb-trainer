@@ -1,4 +1,4 @@
-import { Verb } from "../data/verbs";
+import { Verb, neverDouble } from "../data/verbs";
 import { Subject, Tense } from "../data/grammar";
 
 export function getIngForm(verb: string): string {
@@ -8,7 +8,7 @@ export function getIngForm(verb: string): string {
   if (v.endsWith("e") && v !== "see" && v !== "flee" && v !== "agree") return v.slice(0, -1) + "ing";
 
   const vowels = "aeiou";
-  if (v.length >= 3) {
+  if (v.length >= 3 && !neverDouble.has(v)) {
     const c1 = v[v.length - 3];
     const v2 = v[v.length - 2];
     const c2 = v[v.length - 1];
