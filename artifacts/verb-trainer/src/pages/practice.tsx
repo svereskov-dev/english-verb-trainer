@@ -83,6 +83,7 @@ export default function Practice() {
     dailyGoal,
     noMistakes,
     reviewExhausted,
+    reviewComplete,
     onClearReview,
     exerciseSeq,
   } = useExerciseSession(config);
@@ -121,9 +122,33 @@ export default function Practice() {
   }, []);
 
   // ── Persist config changes to localStorage ──────────────────────────────
+  // Never persist the transient review config — if the user returns to Practice
+  // later it should open as a normal practice session, not restart a review.
   useEffect(() => {
+    if (config.id === "mistake-review") return;
     savePersistedConfig(config);
   }, [config]);
+
+  // ── Auto-navigate when Mistakes Review completes ─────────────────────────
+  // reviewComplete fires as soon as the last mistake is answered correctly.
+  // We do a full teardown before navigating so Practice comes up clean.
+  useEffect(() => {
+    if (!reviewComplete) return;
+    // Reset the practice page's own UI state.
+    setSubmittedValue("");
+    setPendingAnswer("");
+    // Reset to the last normal session (or default) so returning to Practice
+    // never re-enters review mode.
+    const normal = loadPersistedConfig() ?? DEFAULT_SESSION;
+    setConfig(normal);
+    // Clear all review bookkeeping inside the hook.
+    onClearReview();
+    // Navigate to the Mistakes screen — it will already show the empty state
+    // because the hook dispatched "mistakes-updated" when the last record
+    // had its lastFailureDate cleared.
+    navigate("/mistakes");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reviewComplete]);
 
   const handleCheck = () => {
     if (!pendingAnswer.trim() || feedback !== null) return;

@@ -61,6 +61,9 @@ export function useExerciseSession(config: SessionConfig) {
   const [mistakeVerbs, setMistakeVerbs]       = useState<string[]>([]);
   const [mistakesReady, setMistakesReady]     = useState(!config.mistakesOnly);
   const [reviewExhausted, setReviewExhausted] = useState(false);
+  // Set to true when every mistakeId has been answered correctly — triggers
+  // automatic navigation back to the Mistakes screen in the UI layer.
+  const [reviewComplete, setReviewComplete]   = useState(false);
   // Increments on every nextExercise() so AnswerInput always remounts even if
   // the generated exercise id happens to be the same as the previous one.
   const [exerciseSeq, setExerciseSeq]         = useState(0);
@@ -195,7 +198,8 @@ export function useExerciseSession(config: SessionConfig) {
       // If answered incorrectly it was already rotated to the back in submitAnswer.
       // So just look at what's next.
       if (pending.length === 0) {
-        setReviewExhausted(true);
+        // All mistakes have been cleared — signal the UI to navigate away.
+        setReviewComplete(true);
         return;
       }
 
@@ -292,9 +296,10 @@ export function useExerciseSession(config: SessionConfig) {
       // Notify the Mistakes screen so it can reload its list reactively.
       try { window.dispatchEvent(new CustomEvent("mistakes-updated")); } catch { /* ignore */ }
 
-      // Check exhaustion after potential removal.
-      if (pendingMistakeIdsRef.current.length === 0) {
-        // Will be picked up by nextExercise() when user clicks Next.
+      // If this was the last mistake and it was just answered correctly, signal
+      // the UI immediately — no need for the user to press Next.
+      if (correct && pendingMistakeIdsRef.current.length === 0) {
+        setReviewComplete(true);
       }
       return;
     }
@@ -318,7 +323,13 @@ export function useExerciseSession(config: SessionConfig) {
     !!config.mistakesOnly && mistakesReady && mistakeVerbs.length === 0;
 
   const onClearReview = () => {
+    // Full teardown of review state so Practice returns to a clean slate.
+    pendingMistakeIdsRef.current  = [];
+    reviewVerbsCorrectRef.current = new Set<string>();
+    lastFeedbackRef.current       = null;
     setReviewExhausted(false);
+    setReviewComplete(false);
+    clearSession();
     sessionStorage.removeItem("mistakeReview");
   };
 
@@ -335,6 +346,7 @@ export function useExerciseSession(config: SessionConfig) {
     dailyGoal: settings?.dailyGoal || 20,
     noMistakes,
     reviewExhausted,
+    reviewComplete,
     onClearReview,
     exerciseSeq,
   };
