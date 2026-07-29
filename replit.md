@@ -34,7 +34,12 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- **Build archives must always be complete.** Any zip created for the user to build the Android app must include ALL of the following — no exceptions:
+  1. Root workspace files: `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, `tsconfig.json`, `tsconfig.base.json`, `.npmrc`
+  2. `scripts/preinstall.cjs` (required by the root preinstall hook)
+  3. `artifacts/verb-trainer/` — full source tree including the `android/` project
+  4. Exclude only generated/cache directories: `node_modules/`, `dist/`, `dev-dist/`, `.vite/`, `android/app/build/`, `android/.gradle/`, `android/build/`
+  - A zip that unpacks to only an `artifacts/` folder with no root files is INCOMPLETE and unusable.
 
 ## Gotchas
 

@@ -1,1 +1,2 @@
 - [Android edge-to-edge working config](android-edge-to-edge.md) — exact setup that makes transparent bars + dark nav bar work on ColorOS/Android 15. Do not change without testing on a real device.
+- [Build archive requirements](build-archive-requirements.md) — every zip for the user MUST include root workspace files + android/; a zip with only artifacts/ is incomplete.
