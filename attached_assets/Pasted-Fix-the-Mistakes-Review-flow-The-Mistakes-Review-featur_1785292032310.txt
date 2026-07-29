@@ -1,0 +1,148 @@
+Fix the Mistakes Review flow
+
+The Mistakes Review feature is almost complete, but there are several important logic issues that need to be fixed.
+
+1. Always start with an actual mistake
+
+Current behavior:
+
+Sometimes, after tapping Practice from the Mistakes screen, the first exercise is not one of the recorded mistakes. Occasionally a completely random exercise is loaded.
+
+Expected behavior:
+
+When the user taps Practice on the Mistakes screen, the training session must always start with one of the recorded mistakes.
+Never load a random exercise first.
+The exercise must correspond to the exact mistake that was stored.
+
+For example:
+
+If the user answered find → found incorrectly in Irregular Verb → Past Participle, then the first exercise must be exactly:
+
+verb: find
+mode: Irregular Verb
+form: Past Participle
+
+Not:
+
+Past Simple
+Context mode
+another tense
+another verb
+
+The stored mistake should completely determine the first exercise.
+
+2. Preserve the exact exercise configuration
+
+A mistake is not just a verb.
+
+It includes:
+
+verb
+exercise type
+tense / verb form
+practice mode
+any other parameters that define the generated exercise
+
+When practicing mistakes, recreate the original exercise exactly.
+
+Do not regenerate it randomly.
+
+3. Fix the "Check" button becoming disabled
+
+Current behavior:
+
+During Mistakes Review, after several exercises, the Check button sometimes becomes impossible to press.
+
+This appears to happen randomly.
+
+Expected behavior:
+
+The Check button should always behave exactly like it does during normal Practice.
+It should become enabled whenever the answer is valid.
+It should never become permanently disabled.
+Investigate the state management for Mistakes Review and remove the bug instead of adding a workaround.
+4. Remove mistakes after they are corrected
+
+Current behavior:
+
+Correctly answered mistakes remain in the Mistakes screen forever.
+
+Expected behavior:
+
+When the user correctly answers a mistake during Mistakes Review:
+
+remove that mistake from the stored mistakes list immediately
+update the Mistakes screen immediately
+the corrected mistake should disappear without requiring an app restart
+
+Example:
+
+Mistakes list:
+
+find → found
+sink → sank
+tell → told
+
+User starts Mistakes Review.
+
+Answers "find → found" correctly.
+
+Result:
+
+Remaining mistakes:
+
+sink → sank
+tell → told
+
+The "find" mistake should disappear immediately.
+
+5. Incorrect answers should remain
+
+If the user answers the mistake incorrectly again:
+
+keep it in the mistakes list
+do not remove it
+allow it to be practiced again later
+
+Only a successful correction removes the mistake.
+
+6. Update UI immediately
+
+The Mistakes screen should always reflect the current storage.
+
+No refresh.
+
+No navigation away.
+
+No app restart.
+
+State updates should be reactive.
+
+7. Verify the entire Mistakes workflow
+
+Please test the following scenario from start to finish:
+
+Make several mistakes in normal Practice.
+Verify they appear in the Mistakes screen.
+Open Mistakes Review.
+Confirm the first exercise is always one of the stored mistakes.
+Confirm every exercise matches its original mode and form.
+Ensure the Check button works throughout the entire session.
+Correct one mistake.
+Verify it disappears immediately from the Mistakes screen.
+Answer another mistake incorrectly.
+Verify it remains in the list.
+Repeat until all mistakes are corrected.
+Verify the Mistakes screen becomes empty.
+Goal
+
+The Mistakes Review feature should behave like a proper spaced-repetition review system:
+
+only stored mistakes are practiced;
+every mistake is reproduced exactly as originally encountered;
+corrected mistakes disappear immediately;
+uncorrected mistakes remain;
+the Check button is always functional;
+no random exercises ever appear during Mistakes Review.
+
+This logic should be deterministic and reliable, with no random fallback behavior.

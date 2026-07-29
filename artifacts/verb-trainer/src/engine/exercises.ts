@@ -20,7 +20,8 @@ export interface SessionConfig {
   tenses?: Tense[];
   irregularForm?: IrregularForm;
   mistakesOnly?: boolean;
-  reviewVerbs?: string[];  // temporary filtered list from Mistakes page
+  reviewVerbs?: string[];      // temporary filtered list from Mistakes page (verb names)
+  reviewMistakeIds?: string[]; // specific mistake record IDs (preserves type+tense+form)
   contextEnabled: boolean;
   userCustomized?: boolean;  // true after first manual selection
 }
@@ -139,6 +140,49 @@ function makeGapFill(pool: Verb[], tenses: Tense[]): ExerciseItem {
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
+
+/**
+ * Reconstruct an ExerciseItem from a stored ProgressRecord id.
+ * IDs are encoded as:
+ *   verbform:   "verbform:<verb>:<tense>:<subject>"
+ *   irregular:  "irregular:<verb>:<askFor>"
+ *   gapfill:    "gapfill:<templateId>:<verb>:<tense>"  — not reconstructable, returns null
+ */
+export function exerciseFromMistakeId(id: string): ExerciseItem | null {
+  const parts = id.split(":");
+  if (parts.length < 2) return null;
+
+  const type = parts[0];
+
+  if (type === "verbform" && parts.length >= 4) {
+    const verbInf = parts[1];
+    const tense   = parts[2] as Tense;
+    const subject = parts.slice(3).join(":") as Subject; // subject can contain "/"
+    const verb = allVerbs.find(v => v.infinitive === verbInf);
+    if (!verb) return null;
+    const answer = conjugate(verb, tense, subject);
+    return { id, type: "verbform", question: { verb: verbInf, tense, subject }, answer };
+  }
+
+  if (type === "irregular" && parts.length >= 3) {
+    const verbInf = parts[1];
+    const askFor  = parts[2] as "past" | "pastParticiple";
+    const verb =
+      allVerbs.find(v => v.infinitive === verbInf) ??
+      allIrregularVerbs.find(v => v.infinitive === verbInf);
+    if (!verb) return null;
+    const raw = askFor === "past" ? verb.past : verb.pastParticiple;
+    if (!raw) return null;
+    return {
+      id,
+      type: "irregular",
+      question: { verb: verbInf, askFor },
+      answer: raw.split("/"),
+    };
+  }
+
+  return null; // gapfill IDs are not reconstructable
+}
 
 // Legacy — kept for any code that still calls the old signature
 export function generateExercise(type: ExerciseMode, difficulty: DifficultyLevel): ExerciseItem {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "wouter";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
@@ -17,7 +17,7 @@ export default function Mistakes() {
   const [loading, setLoading] = useState(true);
   const [, navigate] = useLocation();
 
-  useEffect(() => {
+  const loadMistakes = useCallback(() => {
     const todayStart = getTodayStart();
     getAllProgress().then(all => {
       const mistakes = all
@@ -28,12 +28,36 @@ export default function Mistakes() {
     });
   }, []);
 
+  useEffect(() => {
+    loadMistakes();
+
+    // Reload reactively when the Practice page resolves a mistake.
+    window.addEventListener("mistakes-updated", loadMistakes);
+    // Also reload when the user returns to this tab / screen.
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      window.removeEventListener("mistakes-updated", loadMistakes);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+
+    function handleVisibility() {
+      if (document.visibilityState === "visible") loadMistakes();
+    }
+  }, [loadMistakes]);
+
   const uniqueVerbs = [...new Set(records.map(r => r.verbInfinitive))];
 
   const handlePractice = () => {
     sessionStorage.setItem(
       "mistakeReview",
-      JSON.stringify({ verbs: uniqueVerbs, mode: "review" })
+      JSON.stringify({
+        verbs: uniqueVerbs,
+        // Pass the full record IDs so Practice can reconstruct the exact
+        // exercises (same verb + type + tense/form that was originally missed).
+        mistakeIds: records.map(r => r.id),
+        mode: "review",
+      })
     );
     navigate("/practice");
   };

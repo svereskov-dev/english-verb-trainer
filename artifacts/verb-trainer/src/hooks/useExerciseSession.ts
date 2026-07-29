@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { SessionConfig, ExerciseItem, generateExerciseFromConfig } from '../engine/exercises';
+import { SessionConfig, ExerciseItem, generateExerciseFromConfig, exerciseFromMistakeId } from '../engine/exercises';
 import { useSettings } from './useSettings';
 import { useStats } from './useStats';
 import { getProgress, saveProgress, getAllProgress } from '../db/progress';
@@ -44,6 +44,7 @@ function configsMatch(a: SessionConfig, b: SessionConfig): boolean {
   if (a.contextEnabled !== b.contextEnabled) return false;
   if (a.mistakesOnly !== b.mistakesOnly) return false;
   if (JSON.stringify(a.reviewVerbs) !== JSON.stringify(b.reviewVerbs)) return false;
+  if (JSON.stringify(a.reviewMistakeIds) !== JSON.stringify(b.reviewMistakeIds)) return false;
   return true;
 }
 
@@ -60,12 +61,20 @@ export function useExerciseSession(config: SessionConfig) {
   const [mistakeVerbs, setMistakeVerbs]       = useState<string[]>([]);
   const [mistakesReady, setMistakesReady]     = useState(!config.mistakesOnly);
   const [reviewExhausted, setReviewExhausted] = useState(false);
+  // Increments on every nextExercise() so AnswerInput always remounts even if
+  // the generated exercise id happens to be the same as the previous one.
+  const [exerciseSeq, setExerciseSeq]         = useState(0);
 
-  // Track which review verbs have been answered correctly in this session
+  // ── Review-mode tracking ────────────────────────────────────────────────────
+  // Ordered list of mistake IDs still to be answered correctly this session.
+  const pendingMistakeIdsRef  = useRef<string[]>([]);
+  // Legacy: track by verb name (used when only reviewVerbs is set)
   const reviewVerbsCorrectRef = useRef(new Set<string>());
-  const reviewVerbsKeyRef = useRef<string>("");
+  const reviewVerbsKeyRef     = useRef<string>("");
+  // Remember the outcome of the last submitted answer so nextExercise() can act on it.
+  const lastFeedbackRef       = useRef<"correct" | "incorrect" | null>(null);
+
   if (config.reviewVerbs) {
-    // Reset tracking whenever reviewVerbs list changes
     const key = config.reviewVerbs.join(",");
     if (key !== reviewVerbsKeyRef.current) {
       reviewVerbsCorrectRef.current = new Set<string>();
@@ -105,6 +114,26 @@ export function useExerciseSession(config: SessionConfig) {
   useEffect(() => {
     if (!settings || !mistakesReady) return;
 
+    // When review mode is active with specific mistake IDs, always start fresh —
+    // never restore from session (the ordering is per-session and session storage
+    // may hold a stale exercise from a different review run).
+    if (config.reviewMistakeIds && config.reviewMistakeIds.length > 0) {
+      // Initialize the pending list (sorted: keep original order from DB query)
+      pendingMistakeIdsRef.current = [...config.reviewMistakeIds];
+      lastFeedbackRef.current = null;
+      reviewVerbsCorrectRef.current = new Set<string>();
+      setFeedback(null);
+      setShowAnswer(null);
+      setReviewExhausted(false);
+      clearSession();
+
+      const firstId = pendingMistakeIdsRef.current[0];
+      const ex = exerciseFromMistakeId(firstId) ??
+        generateExerciseFromConfig(config, settings.difficulty);
+      setCurrentExercise(ex);
+      return;
+    }
+
     const stored = loadSession();
     if (stored && configsMatch(stored.config, config)) {
       setCurrentExercise(stored.exercise);
@@ -132,6 +161,8 @@ export function useExerciseSession(config: SessionConfig) {
   // ── Save session state whenever exercise or feedback changes ─────────────────
   useEffect(() => {
     if (!currentExercise) return;
+    // Don't persist review-mode sessions — they are always rebuilt from IDs.
+    if (config.reviewMistakeIds && config.reviewMistakeIds.length > 0) return;
     saveSession({
       config,
       exercise: currentExercise,
@@ -146,10 +177,36 @@ export function useExerciseSession(config: SessionConfig) {
   const nextExercise = () => {
     if (!settings) return;
     const cfg = configRef.current;
+    const wasCorrect = lastFeedbackRef.current === "correct";
+    lastFeedbackRef.current = null;
+
     setFeedback(null);
     setShowAnswer(null);
     setPendingAnswer("");
     setSubmittedValue("");
+    setExerciseSeq(s => s + 1);
+
+    // ── Specific-mistake-ID review mode ──────────────────────────────────────
+    if (cfg.reviewMistakeIds && cfg.reviewMistakeIds.length > 0) {
+      const pending = pendingMistakeIdsRef.current;
+
+      // Current exercise's ID is pending[0].
+      // If answered correctly it was already removed from the front in submitAnswer.
+      // If answered incorrectly it was already rotated to the back in submitAnswer.
+      // So just look at what's next.
+      if (pending.length === 0) {
+        setReviewExhausted(true);
+        return;
+      }
+
+      const nextId = pending[0];
+      const ex = exerciseFromMistakeId(nextId) ??
+        generateExerciseFromConfig(cfg, settings.difficulty);
+      setCurrentExercise(ex);
+      return;
+    }
+
+    // ── Regular / legacy verb-name review mode ───────────────────────────────
     setCurrentExercise(
       generateExerciseFromConfig(
         cfg,
@@ -167,6 +224,7 @@ export function useExerciseSession(config: SessionConfig) {
     if (!currentExercise || feedback || !settings || !stats) return;
 
     const correct = isCorrect(answer, currentExercise.answer);
+    lastFeedbackRef.current = correct ? "correct" : "incorrect";
     setFeedback(correct ? "correct" : "incorrect");
     setShowAnswer(
       Array.isArray(currentExercise.answer)
@@ -180,8 +238,6 @@ export function useExerciseSession(config: SessionConfig) {
     const nextDailyCorrect = stats.dailyCorrect + (correct ? 1 : 0);
     const nextDailyIncorrect = stats.dailyIncorrect + (correct ? 0 : 1);
 
-    // Cache the daily total so the ProgressBar never shows 0 while stats are
-    // re-loading after navigation or app restart. (IndexedDB is the source of truth.)
     try {
       sessionStorage.setItem("progress-daily-total", String(nextDailyCorrect + nextDailyIncorrect));
     } catch { /* ignore */ }
@@ -213,13 +269,44 @@ export function useExerciseSession(config: SessionConfig) {
     };
 
     record = updateSRS(record, correct);
+
+    // ── Review-mode specific handling ─────────────────────────────────────────
+    const cfg = configRef.current;
+
+    if (cfg.reviewMistakeIds && cfg.reviewMistakeIds.length > 0) {
+      const pending = pendingMistakeIdsRef.current;
+
+      if (correct) {
+        // Clear the failure marker so this item no longer shows on the Mistakes
+        // screen.  SRS history (interval, easeFactor) is preserved.
+        record.lastFailureDate = 0;
+        // Remove from the front of the pending list.
+        pendingMistakeIdsRef.current = pending.slice(1);
+      } else {
+        // Rotate to the back so the user will see it again after the rest.
+        pendingMistakeIdsRef.current = [...pending.slice(1), pending[0]];
+      }
+
+      await saveProgress(record);
+
+      // Notify the Mistakes screen so it can reload its list reactively.
+      try { window.dispatchEvent(new CustomEvent("mistakes-updated")); } catch { /* ignore */ }
+
+      // Check exhaustion after potential removal.
+      if (pendingMistakeIdsRef.current.length === 0) {
+        // Will be picked up by nextExercise() when user clicks Next.
+      }
+      return;
+    }
+
     await saveProgress(record);
 
+    // Legacy verb-name review tracking
     if (correct) {
       const verb = currentExercise.question.verb;
-      if (verb && config.reviewVerbs) {
+      if (verb && cfg.reviewVerbs) {
         reviewVerbsCorrectRef.current.add(verb);
-        const allCorrect = config.reviewVerbs.every(v => reviewVerbsCorrectRef.current.has(v));
+        const allCorrect = cfg.reviewVerbs.every(v => reviewVerbsCorrectRef.current.has(v));
         if (allCorrect) {
           setReviewExhausted(true);
         }
@@ -249,5 +336,6 @@ export function useExerciseSession(config: SessionConfig) {
     noMistakes,
     reviewExhausted,
     onClearReview,
+    exerciseSeq,
   };
 }

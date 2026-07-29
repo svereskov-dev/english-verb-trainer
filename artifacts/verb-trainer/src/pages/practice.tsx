@@ -84,6 +84,7 @@ export default function Practice() {
     noMistakes,
     reviewExhausted,
     onClearReview,
+    exerciseSeq,
   } = useExerciseSession(config);
 
   // ── Check for a Mistakes-review session on first load ───────────────────
@@ -91,7 +92,11 @@ export default function Practice() {
     const raw = sessionStorage.getItem("mistakeReview");
     if (!raw) return;
     try {
-      const data = JSON.parse(raw) as { verbs: string[]; mode: string };
+      const data = JSON.parse(raw) as {
+        verbs: string[];
+        mistakeIds?: string[];
+        mode: string;
+      };
       if (data.verbs && data.verbs.length > 0) {
         setConfig({
           id: "mistake-review",
@@ -101,6 +106,11 @@ export default function Practice() {
           exerciseTypes: ["verbform", "irregular"],
           verbPool: "all",
           reviewVerbs: data.verbs,
+          // Prefer specific mistake IDs so exercises match the exact
+          // verb + type + tense/form that was originally answered incorrectly.
+          reviewMistakeIds: data.mistakeIds && data.mistakeIds.length > 0
+            ? data.mistakeIds
+            : undefined,
           contextEnabled: false,
           userCustomized: true,
         });
@@ -265,7 +275,7 @@ export default function Practice() {
 
         <div className="w-full flex flex-col items-center gap-3 shrink-0">
           <AnswerInput
-            key={currentExercise.id}
+            key={exerciseSeq}
             onSubmit={handleCheck}
             onValueChange={setPendingAnswer}
             disabled={showingFeedback}
