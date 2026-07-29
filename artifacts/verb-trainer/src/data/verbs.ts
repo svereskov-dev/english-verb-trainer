@@ -306,15 +306,15 @@ const regularList = [
  */
 export const neverDouble = new Set([
   // -en / -on endings (unstressed final syllable)
-  "listen", "open", "happen", "fasten", "soften", "shorten", "lengthen",
+  "listen", "open", "happen",
   // -er endings (unstressed schwa + r)
   "answer", "offer", "enter", "order", "cover", "wonder", "gather",
-  "consider", "discover", "remember", "deliver", "encounter", "recover",
-  "suffer", "umber", "conquer", "differ", "filter", "foster",
-  // -et / -op / -el endings (unstressed)
+  "consider", "discover", "remember",
+  // -et / -op / -el / -us endings (unstressed)
   "target", "visit", "develop", "focus",
-  // double-consonant stems where isCVC still fires on the final -er
-  "matter", "flutter", "scatter", "butter", "litter", "bitter",
+  // stems with an internal double consonant — isCVC fires on the final C-V-C
+  // run of what is actually an unstressed syllable (e.g. mat·ter, not mat·TER)
+  "matter",
 ]);
 
 function isCVC(word: string): boolean {
