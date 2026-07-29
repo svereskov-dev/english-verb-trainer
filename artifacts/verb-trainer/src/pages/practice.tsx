@@ -243,6 +243,7 @@ export default function Practice() {
       <ProgressBar
         current={dailyCorrect + dailyIncorrect}
         total={dailyGoal}
+        goalReached={dailyCorrect + dailyIncorrect >= dailyGoal}
       />
 
       {/* Header — compact when keyboard is open */}
