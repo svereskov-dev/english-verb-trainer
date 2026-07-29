@@ -96,3 +96,9 @@ id = "faveiU-ejLH0NHxr_AHvv"
 uri = "file://artifacts/verb-trainer/public/verbflow-icon.png"
 type = "image"
 title = "Full source PNG (1024×1024)"
+
+[[outputs]]
+id = "GbBuAVIwIom6cTaWs6U6u"
+uri = "file://verb-trainer-source.zip"
+type = "unspecified"
+title = "VerbFlow — Source Code (verb-trainer-source.zip)"
