@@ -102,3 +102,9 @@ id = "GbBuAVIwIom6cTaWs6U6u"
 uri = "file://verb-trainer-source.zip"
 type = "unspecified"
 title = "VerbFlow — Source Code (verb-trainer-source.zip)"
+
+[[outputs]]
+id = "Jw7hVMjsqPV49pJ2oeumi"
+uri = "file://verbflow-build.zip"
+type = "unspecified"
+title = "VerbFlow — Complete Build Archive (verbflow-build.zip)"
