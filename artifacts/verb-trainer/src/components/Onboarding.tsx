@@ -24,30 +24,6 @@ function Dot({ active }: { active: boolean }) {
   );
 }
 
-function StatusBar() {
-  return (
-    <div style={{ height: 44, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", flexShrink: 0 }}>
-      <span style={{ color: FG, fontSize: 15, fontWeight: 600 }}>9:41</span>
-      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-        <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
-          <rect x="0" y="3" width="3" height="9" rx="1" fill={FG} opacity="0.4"/>
-          <rect x="4.5" y="2" width="3" height="10" rx="1" fill={FG} opacity="0.6"/>
-          <rect x="9" y="0" width="3" height="12" rx="1" fill={FG}/>
-          <rect x="13.5" y="0" width="3" height="12" rx="1" fill={FG} opacity="0.3"/>
-        </svg>
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
-          <path d="M8 2.5C10.5 2.5 12.7 3.6 14.2 5.3L15.5 4C13.6 1.9 11 0.5 8 0.5C5 0.5 2.4 1.9 0.5 4L1.8 5.3C3.3 3.6 5.5 2.5 8 2.5Z" fill={FG}/>
-          <path d="M8 5.5C9.7 5.5 11.2 6.2 12.3 7.3L13.6 6C12.1 4.5 10.1 3.5 8 3.5C5.9 3.5 3.9 4.5 2.4 6L3.7 7.3C4.8 6.2 6.3 5.5 8 5.5Z" fill={FG}/>
-          <circle cx="8" cy="10" r="1.5" fill={FG}/>
-        </svg>
-        <div style={{ width: 25, height: 12, border: `1.5px solid ${FG}`, borderRadius: 3, padding: 2, display: "flex", alignItems: "center" }}>
-          <div style={{ width: 16, height: 7, background: FG, borderRadius: 1 }}/>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ─── Screen 1 ─────────────────────────────────────────────────────────────────
 
 function Screen1({ onNext }: { onNext: () => void }) {
@@ -360,8 +336,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
 
   return (
     <div style={{ width: "100%", height: "100dvh", background: BG, fontFamily: "'Inter', sans-serif", display: "flex", justifyContent: "center", overflow: "hidden" }}>
-      <div style={{ width: "100%", maxWidth: 480, height: "100%", display: "flex", flexDirection: "column" }}>
-        <StatusBar />
+      <div style={{ width: "100%", maxWidth: 480, height: "100%", display: "flex", flexDirection: "column", paddingTop: "max(env(safe-area-inset-top, 0px), 28px)" }}>
         {screen === 0 && <Screen1 onNext={next} />}
         {screen === 1 && <Screen2 onNext={next} />}
         {screen === 2 && <Screen3 onNext={next} />}
