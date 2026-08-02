@@ -1,0 +1,142 @@
+Task: Investigate and fix the "Clear Data" action on Android
+Goal
+
+Verify that the Clear Data button in Settings works reliably on all supported Android devices.
+
+Currently the feature works correctly on several devices (including Oppo), but one tester reported that on a Samsung Galaxy S21 (Android 13) the button is clickable, yet nothing happens.
+
+This must be investigated and fixed.
+
+Required investigation
+
+Do not assume the problem is device-specific.
+
+Perform a full audit of the entire Clear Data flow:
+
+button click
+confirmation dialog
+database clearing
+localStorage clearing
+IndexedDB clearing
+sessionStorage clearing
+cache clearing (if applicable)
+UI refresh
+app restart/navigation after clearing
+
+Verify every step.
+
+Verify event handling
+
+Confirm that:
+
+the button receives the click event;
+the click handler executes;
+no exception is thrown;
+no Promise rejection is silently ignored;
+async operations are properly awaited.
+
+There should never be a situation where the button appears to work but exits silently.
+
+IndexedDB audit
+
+Carefully verify:
+
+database deletion
+object store clearing
+transaction completion
+transaction errors
+blocked database deletion
+browser compatibility
+
+Samsung WebView may behave differently from Chrome on some Android versions.
+
+If IndexedDB deletion can fail or become blocked, handle that case gracefully.
+
+Error handling
+
+Currently it appears possible for the operation to fail silently.
+
+This must not happen.
+
+If any step fails:
+
+log the actual error;
+show an appropriate message to the user;
+never leave the app in an undefined state.
+Promise handling
+
+Audit every async function involved.
+
+Check for:
+
+missing await
+ignored Promise
+race conditions
+early return
+multiple simultaneous executions
+
+The entire reset flow should complete deterministically.
+
+UI behavior
+
+After pressing Clear Data:
+
+Expected:
+
+confirmation dialog
+user confirms
+all app data is deleted
+statistics reset
+SRS progress reset
+mistakes cleared
+settings reset (if intended by design)
+onboarding state reset (if intended)
+application immediately reflects the cleared state
+
+There should never be a case where the UI still shows old data after a successful reset.
+
+Device compatibility
+
+Please specifically verify compatibility with:
+
+Android 13
+Samsung One UI
+Android System WebView
+Chrome WebView
+Capacitor Android
+
+Do not rely only on desktop browser testing.
+
+Logging
+
+Temporarily add detailed logging around the entire Clear Data flow.
+
+Example:
+
+Clear Data button clicked
+Confirmation accepted
+Clearing IndexedDB...
+IndexedDB cleared
+Clearing localStorage...
+localStorage cleared
+Clearing sessionStorage...
+Cache cleared
+Reset complete
+
+This will make it much easier to identify where the Samsung device stops.
+
+The logs can be removed once the issue is resolved.
+
+Acceptance criteria
+Clear Data works on all supported Android devices.
+No silent failures.
+All storage is actually cleared.
+The UI immediately reflects the reset.
+Any failure is reported instead of being ignored.
+The implementation is robust across different Android WebView implementations.
+
+Important
+
+Please do not apply a workaround that only fixes the Samsung Galaxy S21.
+
+Identify the real root cause and make the Clear Data implementation robust across all Android devices and WebView implementations. The goal is to eliminate the underlying issue rather than introducing device-specific fixes.
