@@ -308,6 +308,11 @@ export default function Practice() {
             feedback={feedback}
             submittedValue={submittedValue}
             compact={keyboardVisible}
+            expectedAnswer={
+              Array.isArray(currentExercise.answer)
+                ? currentExercise.answer[0]
+                : currentExercise.answer
+            }
           />
 
           {!showingFeedback ? (

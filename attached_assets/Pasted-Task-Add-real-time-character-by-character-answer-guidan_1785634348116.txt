@@ -1,0 +1,176 @@
+Task: Add real-time character-by-character answer guidance (Conjugato-style)
+Goal
+
+Provide subtle real-time feedback while the user types an answer.
+
+The purpose is not to reveal the correct answer, but to help the user recognize mistakes early and continue recalling the correct form.
+
+The behavior should feel similar to Conjugato.
+
+Required behavior
+
+As the user types:
+
+every character that matches the correct answer remains in the normal text color;
+the first incorrect character immediately becomes red;
+every subsequent incorrect character also stays red until corrected.
+
+Example:
+
+Correct answer:
+
+remove
+
+User types:
+
+remaver
+
+Display:
+
+rem aver
+    ↑
+red starts here
+
+The user instantly understands that something is wrong and can continue thinking instead of pressing Check.
+
+Character-by-character comparison
+
+Compare the typed answer with the expected answer from left to right.
+
+Rules:
+
+Correct:
+
+listen
+listen
+
+↓
+
+All letters normal.
+
+User:
+
+lesten
+
+Display:
+
+l e s t e n
+      ↑
+first mismatch
+
+The incorrect character and everything after it become red.
+
+Another example:
+
+Correct
+
+written
+
+User
+
+writen
+
+The missing "t" should cause the comparison to diverge at the correct position.
+
+Important
+
+Do not automatically insert missing letters.
+
+Do not autocomplete.
+
+Do not move the cursor.
+
+The user must still type everything manually.
+
+This is only a visual guide.
+
+Editing
+
+If the user presses Backspace and fixes the mistake:
+
+the comparison must immediately update.
+
+Example:
+
+remavir
+
+↓
+
+red
+
+User deletes
+
+remav
+
+↓
+
+comparison recalculates instantly.
+
+If the remaining text is now correct again, all letters become normal.
+
+Check button
+
+The Check button behavior must remain unchanged.
+
+It should still:
+
+validate the complete answer;
+update SRS;
+update statistics;
+update Mistakes.
+
+The live coloring is only visual guidance.
+
+Keyboard
+
+The feature must work identically on:
+
+Android
+iPhone
+desktop browser
+
+No cursor jumps.
+
+No keyboard flicker.
+
+No focus loss.
+
+Performance
+
+The comparison should be O(n) over the current input length.
+
+It should update smoothly on every keystroke with no visible lag.
+
+Visual style
+Correct characters → current input color.
+Incorrect characters → app error red (same red already used elsewhere in the app).
+No blinking.
+No animation.
+No shaking.
+
+The experience should feel calm and unobtrusive.
+
+Important implementation note
+
+Do not replace the native <input> with a custom text editor.
+
+Keep the existing native input for typing and keyboard behavior.
+
+Implement the colored text as a lightweight visual layer (or another robust approach) that preserves:
+
+native keyboard behavior;
+cursor position;
+text selection;
+IME compatibility (Android/iOS);
+accessibility.
+
+The user should not notice any difference in typing—only the real-time color feedback.
+
+Acceptance criteria
+Character-by-character feedback updates on every keystroke.
+First incorrect character turns red immediately.
+Correcting the text immediately updates the coloring.
+The Check button logic is unchanged.
+No cursor jumping.
+No typing lag.
+Works identically on Android, iOS, and desktop.
