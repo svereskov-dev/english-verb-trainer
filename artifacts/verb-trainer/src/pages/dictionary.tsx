@@ -1,11 +1,22 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "wouter";
 import { BottomNav } from "../components/BottomNav";
 import { Input } from "../components/ui/input";
 import { verbs } from "../data/verbs";
 
+type VerbFilter = "all" | "regular" | "irregular";
+const DICTIONARY_FILTER_KEY = "dictionary-verb-filter";
+
 export default function Dictionary() {
   const [search, setSearch] = useState("");
+  const [verbFilter, setVerbFilter] = useState<VerbFilter>(() => {
+    const saved = sessionStorage.getItem(DICTIONARY_FILTER_KEY);
+    return saved === "regular" || saved === "irregular" ? saved : "all";
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem(DICTIONARY_FILTER_KEY, verbFilter);
+  }, [verbFilter]);
 
   const sorted = useMemo(
     () => [...verbs].sort((a, b) => a.infinitive.localeCompare(b.infinitive)),
@@ -14,13 +25,17 @@ export default function Dictionary() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q) return sorted;
-    return sorted.filter(
+    const byType = verbFilter === "all"
+      ? sorted
+      : sorted.filter(v => verbFilter === "irregular" ? v.isIrregular : !v.isIrregular);
+
+    if (!q) return byType;
+    return byType.filter(
       v =>
         v.infinitive.includes(q) ||
         (v.translation && v.translation.toLowerCase().includes(q)),
     );
-  }, [search, sorted]);
+  }, [search, sorted, verbFilter]);
 
   return (
     <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
@@ -29,6 +44,35 @@ export default function Dictionary() {
         <p className="text-muted-foreground text-sm mb-4">
           {verbs.length} verbs
         </p>
+
+        <div
+          className="flex w-full rounded-xl bg-muted p-1 mb-3"
+          role="group"
+          aria-label="Filter verbs by type"
+        >
+          {([
+            ["all", "All"],
+            ["regular", "Regular"],
+            ["irregular", "Irregular"],
+          ] as const).map(([value, label]) => {
+            const active = verbFilter === value;
+            return (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setVerbFilter(value)}
+                className={`flex-1 rounded-lg px-2 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  active
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
 
         <Input
           placeholder="Search verbs..."

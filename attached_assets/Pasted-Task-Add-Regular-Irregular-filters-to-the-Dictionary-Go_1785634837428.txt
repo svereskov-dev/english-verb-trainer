@@ -1,0 +1,125 @@
+Task: Add Regular / Irregular filters to the Dictionary
+Goal
+
+Allow users to filter the Dictionary by verb type.
+
+The verb database already contains the information about whether each verb is regular or irregular, so no new data model is required.
+
+Required behavior
+
+Add a filter control at the top of the Dictionary screen.
+
+The available options should be:
+
+All Verbs (default)
+Regular
+Irregular
+
+The default state when opening the Dictionary should always be All Verbs.
+
+Filtering
+
+When the user selects:
+
+All Verbs
+
+→ show the complete dictionary.
+
+Regular
+
+→ display only regular verbs.
+
+Irregular
+
+→ display only irregular verbs.
+
+Filtering should happen instantly without reloading the page.
+
+Search integration
+
+The filter and search must work together.
+
+Example:
+
+Search:
+
+ta
+
+Filter:
+
+Irregular
+
+Result:
+
+Only irregular verbs containing "ta".
+
+Example:
+
+Search:
+
+op
+
+Filter:
+
+Regular
+
+Result:
+
+Only regular verbs matching "op".
+
+The search should always operate on the currently filtered list.
+
+Navigation
+
+Opening a verb should behave exactly as before.
+
+Filtering must not affect:
+
+Dictionary detail page
+Back navigation
+Scroll behavior
+Existing search functionality
+State persistence
+
+Remember the user's selected filter while they remain in the Dictionary.
+
+Leaving the Dictionary and returning later should restore the last selected filter (recommended), unless the app intentionally resets Dictionary state elsewhere.
+
+Performance
+
+Filtering should be performed in memory.
+
+No database migration.
+
+No duplicate arrays.
+
+No duplicated data structures.
+
+The existing verb list should simply be filtered by the existing regular/irregular property.
+
+UI
+
+The filter should match the existing design language.
+
+Suggested implementation:
+
+Segmented control or pill buttons:
+
+All     Regular     Irregular
+
+using the same style already used throughout the app for mode selection.
+
+The active filter should use the app's purple accent.
+
+Acceptance criteria
+Three filter options: All / Regular / Irregular.
+Uses the existing verb type information.
+No duplicate data.
+Search works together with filtering.
+Opening a verb works exactly as before.
+Filtering is instant and smooth.
+No impact on Dictionary performance or navigation.
+
+Implementation note
+
+Please reuse the existing isRegular (or equivalent) property already present in the verb database. Do not introduce a second source of truth or duplicate this information anywhere in the project.
