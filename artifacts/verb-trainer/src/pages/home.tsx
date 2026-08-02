@@ -55,7 +55,7 @@ export default function Home() {
         </Card>
 
         <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-card">
+          <Card className="border-border bg-background/40 shadow-none">
             <CardContent className="p-4 flex flex-col items-center justify-center space-y-1">
               <Flame className="w-6 h-6 text-green-500 mb-1" />
               <span className="text-2xl font-bold">{stats.totalCorrect}</span>
@@ -63,7 +63,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="bg-card">
+          <Card className="border-border bg-background/40 shadow-none">
             <CardContent className="p-4 flex flex-col items-center justify-center space-y-1">
               <Flame className="w-6 h-6 text-red-500 mb-1" />
               <span className="text-2xl font-bold">{stats.totalIncorrect}</span>
@@ -82,7 +82,7 @@ export default function Home() {
           <Button
             variant="outline"
             size="lg"
-            className="w-full h-14 text-lg font-semibold rounded-xl"
+            className="w-full h-14 text-lg font-semibold rounded-xl bg-card shadow-sm"
             onClick={handleChooseMode}
             data-testid="btn-choose-mode"
           >

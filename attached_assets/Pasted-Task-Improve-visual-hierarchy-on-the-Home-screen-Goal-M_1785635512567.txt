@@ -1,0 +1,85 @@
+Task: Improve visual hierarchy on the Home screen
+Goal
+
+Make it immediately clear which elements are interactive and which are informational.
+
+Currently the "Correct" and "Incorrect" statistic cards visually resemble buttons, causing users to expect that they are clickable.
+
+At the same time, "Choose Training Mode" is an important interactive action but appears less interactive than the statistic cards.
+
+The visual hierarchy should better reflect actual behavior.
+
+1. Correct / Incorrect cards
+
+These cards are informational only.
+
+Users should not expect them to be tappable.
+
+Please reduce their visual affordance as clickable elements.
+
+Recommended approach:
+
+keep the existing rounded cards;
+keep the border;
+reduce or remove the lighter background fill;
+make them visually closer to information panels rather than buttons.
+
+The goal is to make them clearly read as statistics, not actions.
+
+Do not remove the cards entirely.
+
+Do not reduce readability.
+
+2. Choose Training Mode
+
+This is one of the primary actions on the Home screen.
+
+It should visually communicate that it is interactive.
+
+Recommended changes:
+
+add a subtle elevated background (similar to other tappable surfaces in the app);
+keep the existing border;
+preserve the current typography and icon.
+
+The button should become visually closer to:
+
+Start Practice
+other tappable controls in the application
+
+while still remaining secondary to the primary CTA.
+
+Visual hierarchy
+
+Desired emphasis:
+
+Primary
+
+Start Practice
+
+Secondary
+
+Choose Training Mode
+
+Informational
+
+Daily Progress
+Correct
+Incorrect
+
+Users should immediately understand what can be tapped and what is simply displaying information.
+
+Design consistency
+
+Reuse the existing design language.
+
+Do not introduce new colors.
+
+Use the existing surface/background palette already present throughout the app.
+
+Acceptance criteria
+Correct and Incorrect no longer look like buttons.
+Choose Training Mode clearly looks interactive.
+The overall Home screen remains visually balanced.
+No layout changes are required.
+No functionality changes are required.
