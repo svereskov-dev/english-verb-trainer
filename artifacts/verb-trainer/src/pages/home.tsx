@@ -31,7 +31,7 @@ export default function Home() {
 
         {/* Daily Progress — informational widget, kept at page level so it
             doesn't compete visually with the action buttons below. */}
-        <Card className="border-border/40 bg-background shadow-none">
+        <Card className="border-border bg-background/40 shadow-none">
           <CardContent className="p-6 space-y-4">
             <div className="flex justify-between items-center mb-2">
               <h2 className="font-semibold text-lg flex items-center gap-2">
