@@ -1,0 +1,66 @@
+Task: Rebalance the visual hierarchy of the Home screen
+Goal
+
+The Home screen should clearly communicate what the user is expected to do.
+
+Currently, the Daily Progress card draws more visual attention than Choose Training Mode, even though Daily Progress is informational while Choose Training Mode is an important interactive action.
+
+Please rebalance the visual hierarchy.
+
+1. Reduce the visual weight of the Daily Progress card
+
+Daily Progress is an information panel, not an action.
+
+Please make it visually lighter.
+
+Suggestions:
+
+slightly darker card background;
+thinner or less prominent border;
+reduce the contrast of the card surface;
+keep the progress bar readable, but let the card blend more naturally into the page.
+
+The progress bar itself should remain the primary visual element inside the card.
+
+The card should not compete with the main actions.
+
+2. Increase the visual weight of "Choose Training Mode"
+
+This is the second most important action on the Home screen.
+
+It should feel clearly tappable.
+
+Recommended changes:
+
+give the button the same elevated surface style used elsewhere in the app;
+add the subtle lighter background used for interactive cards;
+keep the existing border;
+preserve the current typography and icon.
+
+The button should look like an interactive control, not an outlined panel.
+
+3. Desired visual hierarchy
+
+The screen should naturally guide the eye in this order:
+
+Start Practice (primary CTA)
+Choose Training Mode (secondary CTA)
+Daily Progress
+Correct / Incorrect
+
+Interactive elements should visually stand out more than informational ones.
+
+4. Design consistency
+
+Reuse existing colors and surfaces from the application.
+
+Do not introduce new accent colors.
+
+The goal is not to redesign the Home screen, but to improve visual clarity while staying within the current design system.
+
+Acceptance criteria
+Daily Progress feels like an information widget.
+Choose Training Mode immediately reads as a button.
+Start Practice remains the strongest visual element.
+The Home screen has a clear interaction hierarchy.
+No functionality changes.

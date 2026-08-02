@@ -29,7 +29,9 @@ export default function Home() {
           <p className="text-muted-foreground">Go get your goal</p>
         </div>
 
-        <Card className="border-border bg-card">
+        {/* Daily Progress — informational widget, kept at page level so it
+            doesn't compete visually with the action buttons below. */}
+        <Card className="border-border/40 bg-background shadow-none">
           <CardContent className="p-6 space-y-4">
             <div className="flex justify-between items-center mb-2">
               <h2 className="font-semibold text-lg flex items-center gap-2">
@@ -79,10 +81,13 @@ export default function Home() {
             </Button>
           </Link>
 
+          {/* Choose Training Mode — secondary CTA; uses the secondary/elevated
+              surface so it reads as clearly interactive, secondary only to
+              Start Practice. */}
           <Button
-            variant="outline"
+            variant="secondary"
             size="lg"
-            className="w-full h-14 text-lg font-semibold rounded-xl bg-card shadow-sm"
+            className="w-full h-14 text-lg font-semibold rounded-xl shadow-sm"
             onClick={handleChooseMode}
             data-testid="btn-choose-mode"
           >
