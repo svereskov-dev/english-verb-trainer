@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
-import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "../lib/utils";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { SessionConfig, VerbPoolSpec, IrregularForm } from "../engine/exercises";
 import { Tense } from "../data/grammar";
 
@@ -173,6 +172,35 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
   const [selectedIds, setSelectedIds] = useState<string[]>(current.selectedIds);
   const [contextOn, setContextOn]   = useState(current.contextEnabled);
 
+  // ── Scroll indicators ──────────────────────────────────────────────────────
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollUp,   setCanScrollUp]   = useState(false);
+  const [canScrollDown, setCanScrollDown] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const update = () => {
+      setCanScrollUp(el.scrollTop > 4);
+      setCanScrollDown(el.scrollTop + el.clientHeight < el.scrollHeight - 4);
+    };
+
+    // Defer first check so the sheet animation has settled and scrollHeight is accurate.
+    const raf = requestAnimationFrame(update);
+    el.addEventListener("scroll", update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("scroll", update);
+      ro.disconnect();
+    };
+  }, [open]);
+
   // Auto-open when navigated from Home via "Choose Training Mode"
   useEffect(() => {
     if (sessionStorage.getItem("openTrainingMenu") === "true") {
@@ -263,56 +291,93 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
           <SheetTitle className="text-left text-base">Training Mode</SheetTitle>
         </SheetHeader>
 
-        <ScrollArea className="flex-1 min-h-0">
-          <div className="px-5 py-4 space-y-3">
-            {GROUPS.map(group => {
-              const hasActive = group.presets.some(p => selectedIds.includes(p.id));
+        {/* Scroll area with fade indicators ──────────────────────────────── */}
+        <div className="relative flex-1 min-h-0">
+          {/* Scrollable content — native div for direct scroll-position access */}
+          <div
+            ref={scrollRef}
+            className="h-full overflow-y-auto"
+            // Hide native scrollbar on WebKit/Blink; indicator fades replace it.
+            style={{ scrollbarWidth: "none" }}
+          >
+            <div className="px-5 py-4 space-y-3">
+              {GROUPS.map(group => {
+                const hasActive = group.presets.some(p => selectedIds.includes(p.id));
 
-              return (
-                <div
-                  key={group.id}
-                  className={cn(
-                    "rounded-xl border p-5 flex flex-col space-y-5 transition-colors",
-                    hasActive
-                      ? "border-primary/50 bg-primary/5"
-                      : "border-border",
-                  )}
-                >
-                  {/* Group header */}
-                  <span
+                return (
+                  <div
+                    key={group.id}
                     className={cn(
-                      "text-sm font-semibold",
-                      hasActive ? "text-foreground" : "text-muted-foreground",
+                      "rounded-xl border p-5 flex flex-col space-y-5 transition-colors",
+                      hasActive
+                        ? "border-primary/50 bg-primary/5"
+                        : "border-border",
                     )}
                   >
-                    {group.label}
-                  </span>
+                    {/* Group header */}
+                    <span
+                      className={cn(
+                        "text-sm font-semibold",
+                        hasActive ? "text-foreground" : "text-muted-foreground",
+                      )}
+                    >
+                      {group.label}
+                    </span>
 
-                  {/* Preset chips */}
-                  <div className="flex flex-wrap gap-2">
-                    {group.presets.map(preset => {
-                      const chosen = selectedIds.includes(preset.id);
-                      return (
-                        <button
-                          key={preset.id}
-                          onClick={() => togglePreset(preset.id)}
-                          className={cn(
-                            "text-sm px-3 py-1.5 rounded-full border transition-colors font-medium",
-                            chosen
-                              ? "border-primary bg-primary text-primary-foreground"
-                              : "border-border text-foreground hover:border-primary/50 hover:bg-muted",
-                          )}
-                        >
-                          {preset.label}
-                        </button>
-                      );
-                    })}
+                    {/* Preset chips */}
+                    <div className="flex flex-wrap gap-2">
+                      {group.presets.map(preset => {
+                        const chosen = selectedIds.includes(preset.id);
+                        return (
+                          <button
+                            key={preset.id}
+                            onClick={() => togglePreset(preset.id)}
+                            className={cn(
+                              "text-sm px-3 py-1.5 rounded-full border transition-colors font-medium",
+                              chosen
+                                ? "border-primary bg-primary text-primary-foreground"
+                                : "border-border text-foreground hover:border-primary/50 hover:bg-muted",
+                            )}
+                          >
+                            {preset.label}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </ScrollArea>
+
+          {/* Top fade + up-arrow — visible when content exists above the viewport */}
+          <div
+            aria-hidden="true"
+            className={cn(
+              "absolute inset-x-0 top-0 h-14 pointer-events-none z-10",
+              "flex items-start justify-center pt-1",
+              "bg-gradient-to-b from-background via-background/70 to-transparent",
+              "transition-opacity duration-200",
+              canScrollUp ? "opacity-100" : "opacity-0",
+            )}
+          >
+            <ChevronUp size={18} className="text-muted-foreground mt-1" />
+          </div>
+
+          {/* Bottom fade + down-arrow — visible when content exists below the viewport */}
+          <div
+            aria-hidden="true"
+            className={cn(
+              "absolute inset-x-0 bottom-0 h-14 pointer-events-none z-10",
+              "flex items-end justify-center pb-1",
+              "bg-gradient-to-t from-background via-background/70 to-transparent",
+              "transition-opacity duration-200",
+              canScrollDown ? "opacity-100" : "opacity-0",
+            )}
+          >
+            <ChevronDown size={18} className="text-muted-foreground mb-1" />
+          </div>
+        </div>
 
         {/* Footer */}
         <div className="shrink-0 border-t px-6 pt-4 space-y-3 bg-background" style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))' }}>
