@@ -1,4 +1,4 @@
-import { Link, useParams } from "wouter";
+import { useParams } from "wouter";
 import { BottomNav } from "../components/BottomNav";
 import { verbs } from "../data/verbs";
 import { ChevronLeft } from "lucide-react";
@@ -12,9 +12,12 @@ export default function DictionaryVerb() {
       <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center p-8 text-center gap-4">
           <p className="text-muted-foreground">Verb not found.</p>
-          <Link href="/dictionary" className="text-primary underline text-sm">
-            Back to Dictionary
-          </Link>
+          <button
+            onClick={() => window.history.back()}
+            className="text-primary underline text-sm"
+          >
+            Back
+          </button>
         </div>
         <BottomNav />
       </div>
@@ -26,14 +29,14 @@ export default function DictionaryVerb() {
   return (
     <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
       <div className="w-full max-w-md mx-auto p-6">
-        {/* Back link */}
-        <Link
-          href="/dictionary"
+        {/* Back — returns to wherever the user navigated from (Dictionary or Mistakes) */}
+        <button
+          onClick={() => window.history.back()}
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
         >
           <ChevronLeft size={16} />
-          Dictionary
-        </Link>
+          Back
+        </button>
 
         {/* English verb */}
         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">

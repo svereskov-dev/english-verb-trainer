@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "wouter";
+import { ChevronRight } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 import { getAllProgress } from "../db/progress";
@@ -93,15 +94,19 @@ export default function Mistakes() {
               <Button size="sm" onClick={handlePractice}>Practice →</Button>
             </div>
 
-            {/* Mistake list — grouped by unique verb */}
+            {/* Mistake list — grouped by unique verb. Tap to open verb details. */}
             {uniqueVerbs.map(inf => {
               const verb = verbs.find(v => v.infinitive === inf);
               return (
                 <div
                   key={inf}
-                  className="flex items-center rounded-xl border border-border px-4 py-3 gap-3"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => navigate(`/dictionary/${inf}`)}
+                  onKeyDown={e => e.key === "Enter" && navigate(`/dictionary/${inf}`)}
+                  className="flex items-center rounded-xl border border-border px-4 py-3 gap-3 cursor-pointer hover:bg-muted/50 active:bg-muted transition-colors"
                 >
-                  <div className="min-w-0 flex items-baseline gap-2 flex-wrap">
+                  <div className="min-w-0 flex items-baseline gap-2 flex-wrap flex-1">
                     <span className="font-semibold">{inf}</span>
                     {verb?.translation && (
                       <span className="text-muted-foreground text-sm truncate">
@@ -109,6 +114,7 @@ export default function Mistakes() {
                       </span>
                     )}
                   </div>
+                  <ChevronRight size={16} className="text-muted-foreground flex-shrink-0" />
                 </div>
               );
             })}

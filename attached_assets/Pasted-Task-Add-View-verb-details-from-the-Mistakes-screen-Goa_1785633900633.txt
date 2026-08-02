@@ -1,0 +1,94 @@
+Task: Add "View verb details" from the Mistakes screen
+Goal
+
+Allow users to open the full verb information page directly from the Mistakes screen, using the existing Dictionary detail page.
+
+This is not a new feature with duplicated data. We already have everything needed in the existing verb database and Dictionary screen.
+
+Required behavior
+
+Each mistake item on the Mistakes screen should provide a way to open the full verb page.
+
+Possible UI options (choose the one that fits the existing design best):
+
+tap the verb itself;
+add a small chevron (>);
+add an "Info" icon;
+make the entire card clickable.
+
+The preferred option is making the entire mistake card clickable, because it is the most natural mobile interaction.
+
+Navigation
+
+When the user taps a mistake:
+
+Open the existing Dictionary verb details page for that verb.
+
+Exactly the same page that opens when selecting a verb inside the Dictionary.
+
+Do not create a new details screen.
+
+Reuse the existing component and routing.
+
+Data
+
+Do not duplicate any data.
+
+Retrieve the verb by its existing ID (or infinitive if that's how the Dictionary currently works).
+
+The page should display exactly the same information as in the Dictionary:
+
+infinitive
+translation
+regular / irregular type
+IPA
+all verb forms
+any existing metadata already shown there
+
+No additional database tables.
+
+No duplicated models.
+
+Practice flow must remain unchanged
+
+This feature must not interfere with the current Mistakes Review workflow.
+
+Specifically:
+
+tapping Practice must still start Mistakes Review exactly as it does now;
+opening a verb page must not modify the review queue;
+opening and closing the Dictionary page must not remove mistakes;
+no review state may be reset.
+
+Viewing information and practicing mistakes are two independent actions.
+
+UX
+
+The expected user flow is:
+
+Mistakes screen
+
+↓
+
+Tap a mistake
+
+↓
+
+Dictionary verb details
+
+↓
+
+Back
+
+↓
+
+Return to the Mistakes screen exactly where the user left it.
+
+The review list, scroll position, and filters should remain unchanged.
+
+Acceptance criteria
+Every mistake can open its Dictionary page.
+The Dictionary page is the existing one (no duplicate implementation).
+No duplicate data is introduced.
+Practice Review continues to work exactly as before.
+Returning from the Dictionary restores the Mistakes screen without resetting its state.
