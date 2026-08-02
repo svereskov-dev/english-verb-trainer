@@ -3,7 +3,7 @@ import { useStats } from "../hooks/useStats";
 import { useSettings } from "../hooks/useSettings";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { Flame, Target, SlidersHorizontal } from "lucide-react";
+import { Check, X, Target, SlidersHorizontal } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 
 export default function Home() {
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-4">
           <Card className="border-border bg-background/40 shadow-none">
             <CardContent className="p-4 flex flex-col items-center justify-center space-y-1">
-              <Flame className="w-6 h-6 text-green-500 mb-1" />
+              <Check className="w-6 h-6 text-green-500 mb-1" />
               <span className="text-2xl font-bold">{stats.totalCorrect}</span>
               <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Correct</span>
             </CardContent>
@@ -67,7 +67,7 @@ export default function Home() {
 
           <Card className="border-border bg-background/40 shadow-none">
             <CardContent className="p-4 flex flex-col items-center justify-center space-y-1">
-              <Flame className="w-6 h-6 text-red-500 mb-1" />
+              <X className="w-6 h-6 text-red-500 mb-1" />
               <span className="text-2xl font-bold">{stats.totalIncorrect}</span>
               <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Incorrect</span>
             </CardContent>
