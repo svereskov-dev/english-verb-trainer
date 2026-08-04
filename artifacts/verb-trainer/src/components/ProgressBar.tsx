@@ -20,9 +20,9 @@ export function ProgressBar({ current, total, goalReached = false }: ProgressBar
   const percentage = total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0;
 
   return (
-    <div className="w-full mt-2.5">
+    <div className="w-full mt-1.5">
       {/* Label row */}
-      <div className="flex items-center justify-between mb-1.5">
+      <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
           Daily Progress
         </span>

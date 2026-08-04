@@ -27,7 +27,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
     const translation = getTranslation(exercise.question.verb);
     const ipa = getIPA(exercise.question.verb);
     return (
-      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
+      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-2")}>
         {/* Tense pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
           {formatTenseName(exercise.question.tense)}
@@ -36,7 +36,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
         {/* Subject card */}
         <div className={cn(
           "w-full rounded-2xl bg-card border border-border flex flex-col items-center gap-0.5",
-          compact ? "p-2.5" : "p-5"
+          compact ? "p-2.5" : "p-4"
         )}>
           <p className={cn(
             "uppercase tracking-widest text-muted-foreground font-semibold",
@@ -51,7 +51,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
         {/* Verb card */}
         <div className={cn(
           "w-full rounded-2xl bg-card border border-primary/20 flex flex-col items-center",
-          compact ? "p-2.5 gap-0.5" : "p-5 gap-1"
+          compact ? "p-2.5 gap-0.5" : "p-4 gap-1"
         )}>
           <p className={cn(
             "uppercase tracking-widest text-muted-foreground font-semibold",
@@ -64,7 +64,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
           {ipa && (
             <p className={cn(
               "text-muted-foreground tracking-wide",
-              compact ? "text-xs mt-0.5" : "text-sm mt-3"
+              compact ? "text-xs mt-0.5" : "text-sm mt-2"
             )}>{ipa}</p>
           )}
           {translation && (
@@ -86,7 +86,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
     const translation = getTranslation(exercise.question.verb);
     const ipa = getIPA(exercise.question.verb);
     return (
-      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
+      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-2")}>
         {/* Form pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
           Irregular Form: {askForMap[exercise.question.askFor]}
@@ -95,7 +95,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
         {/* Verb card */}
         <div className={cn(
           "w-full rounded-2xl bg-card border border-primary/20 flex flex-col items-center",
-          compact ? "p-2.5 gap-0.5" : "p-5 gap-1"
+          compact ? "p-2.5 gap-0.5" : "p-4 gap-1"
         )}>
           <p className={cn(
             "uppercase tracking-widest text-muted-foreground font-semibold",
@@ -126,7 +126,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
     const translation = getTranslation(exercise.question.verb ?? "");
     const ipa = getIPA(exercise.question.verb ?? "");
     return (
-      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-3")}>
+      <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-2")}>
         {/* Tense pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
           {formatTenseName(exercise.question.tense)}
@@ -135,7 +135,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
         {/* Sentence card */}
         <div className={cn(
           "w-full rounded-2xl bg-card border border-border flex flex-col items-center",
-          compact ? "p-2.5 gap-1.5" : "p-5 gap-3"
+          compact ? "p-2.5 gap-1.5" : "p-4 gap-2"
         )}>
           <p className={cn(
             "uppercase tracking-widest text-muted-foreground font-semibold",
