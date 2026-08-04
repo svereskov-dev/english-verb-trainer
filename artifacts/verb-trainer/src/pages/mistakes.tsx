@@ -3,15 +3,20 @@ import { useLocation } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
-import { getAllProgress } from "../db/progress";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../components/ui/alert-dialog";
+import { getAllProgress, saveProgress } from "../db/progress";
 import { ProgressRecord } from "../engine/srs";
 import { verbs } from "../data/verbs";
-
-function getTodayStart(): number {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
-  return start.getTime();
-}
 
 export default function Mistakes() {
   const [records, setRecords] = useState<ProgressRecord[]>([]);
@@ -19,10 +24,12 @@ export default function Mistakes() {
   const [, navigate] = useLocation();
 
   const loadMistakes = useCallback(() => {
-    const todayStart = getTodayStart();
     getAllProgress().then(all => {
+      // Mistakes persist indefinitely — a verb stays here until it is
+      // answered correctly in Mistakes Review (lastFailureDate → 0) or
+      // the user manually clears the list. No midnight reset.
       const mistakes = all
-        .filter(r => r.lastFailureDate >= todayStart)
+        .filter(r => r.lastFailureDate > 0)
         .sort((a, b) => b.failureCount - a.failureCount);
       setRecords(mistakes);
       setLoading(false);
@@ -61,6 +68,18 @@ export default function Mistakes() {
       })
     );
     navigate("/practice");
+  };
+
+  // Clears only the review queue — sets lastFailureDate to 0 for every
+  // current mistake record. Statistics (correct/incorrect counts, streaks,
+  // progress) are entirely separate fields and are NOT touched.
+  const handleClearMistakes = async () => {
+    await Promise.all(
+      records.map(r => saveProgress({ ...r, lastFailureDate: 0 }))
+    );
+    // Notify Practice so it can update its own mistake-related state.
+    try { window.dispatchEvent(new CustomEvent("mistakes-updated")); } catch { /* ignore */ }
+    loadMistakes();
   };
 
   return (
@@ -124,6 +143,36 @@ export default function Mistakes() {
                 Showing top 60 of {records.length}
               </p>
             )}
+
+            {/* Clear Mistakes — removes review queue only, never touches stats */}
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-full text-muted-foreground hover:text-destructive hover:bg-destructive/10 mt-2"
+                >
+                  Clear Mistakes
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Clear all mistakes?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This removes {uniqueVerbs.length} verb{uniqueVerbs.length !== 1 ? "s" : ""} from your
+                    review queue. Your practice statistics, progress, and streaks will not change.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    onClick={handleClearMistakes}
+                  >
+                    Clear Mistakes
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         )}
       </div>

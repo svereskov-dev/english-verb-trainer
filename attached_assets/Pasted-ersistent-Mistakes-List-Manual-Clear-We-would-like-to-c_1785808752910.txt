@@ -1,0 +1,133 @@
+ersistent Mistakes List + Manual Clear
+
+We would like to change how the Mistakes system works.
+
+Current behavior
+
+Currently, all mistakes disappear automatically at 00:00 because they are filtered by lastFailureDate.
+
+This causes a poor user experience:
+
+a user starts reviewing mistakes in the evening,
+plans to continue the next day,
+opens the app in the morning,
+the Mistakes screen is empty,
+all unfinished review work is lost.
+
+The mistake review queue should not be tied to the daily statistics.
+
+New behavior
+
+Mistakes should persist indefinitely.
+
+A verb should remain on the Mistakes screen until one of these happens:
+
+the user correctly answers that mistake in Mistakes Review mode (current behavior),
+the user manually clears the list.
+
+The daily reset at midnight must NOT clear the mistake list anymore.
+
+Add "Clear Mistakes" button
+
+Add a button to the Mistakes screen.
+
+Button text:
+
+Clear Mistakes
+
+When pressed:
+
+ask for confirmation
+if confirmed,
+remove every entry from the Mistakes list.
+IMPORTANT
+
+This button clears only the review queue.
+
+It must NOT affect any daily statistics.
+
+Specifically it must NOT:
+
+decrease today's Incorrect counter
+decrease today's Correct counter
+decrease Daily Progress
+affect streaks
+affect completed exercises
+affect goal progress
+affect any historical statistics
+modify today's training summary
+
+The user is only saying:
+
+"I don't want to review these mistakes anymore."
+
+They are not saying:
+
+"Pretend these mistakes never happened."
+
+Separate review data from statistics
+
+If necessary, split the concepts internally.
+
+For example:
+
+Daily statistics
+correct answers
+incorrect answers
+progress
+streak
+
+should remain independent from
+
+Mistakes Review queue
+
+The review queue is simply a list of exercises waiting to be reviewed.
+
+Statistics are historical facts and must never change because the queue was cleared.
+
+Expected behavior
+
+Example:
+
+User answers today:
+
+50 exercises
+8 incorrect
+
+Statistics:
+
+Correct: 42
+Incorrect: 8
+Progress: 50/50
+
+Mistakes screen:
+
+8 items
+
+The user presses Clear Mistakes.
+
+Result:
+
+Mistakes screen:
+
+0 items
+
+Statistics remain exactly:
+
+Correct: 42
+Incorrect: 8
+Progress: 50/50
+
+Nothing else changes.
+
+Acceptance criteria
+Mistakes no longer disappear at midnight.
+Mistakes remain until reviewed correctly or manually cleared.
+"Clear Mistakes" removes only the review queue.
+Clearing the queue does not modify any statistics.
+Daily Progress remains unchanged.
+Today's Incorrect count remains unchanged.
+The top Practice counters remain unchanged.
+Streaks remain unchanged.
+Historical data remains unchanged.
+The implementation cleanly separates review state from training statistics, preventing future coupling bugs.
