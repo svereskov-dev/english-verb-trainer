@@ -349,5 +349,7 @@ export function useExerciseSession(config: SessionConfig) {
     reviewComplete,
     onClearReview,
     exerciseSeq,
+    /** Returns the number of mistake IDs still in the review queue (always fresh). */
+    getReviewQueueLength: () => pendingMistakeIdsRef.current.length,
   };
 }

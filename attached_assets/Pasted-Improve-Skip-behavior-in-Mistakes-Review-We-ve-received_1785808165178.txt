@@ -1,0 +1,96 @@
+Improve Skip behavior in Mistakes Review
+
+We've received feedback from testers that users can get "stuck" inside Mistakes Review without understanding why.
+
+Example:
+
+the user enters Mistakes Review
+only one mistake remains (or only one exercise keeps repeating)
+they press Skip
+the same exercise immediately appears again
+the user believes the app is broken because there seems to be no way back to normal Practice.
+
+We do not want to make it easy to abandon Mistakes Review entirely.
+
+Instead, implement the following behavior.
+
+New Skip logic
+
+When the user presses Skip while in Mistakes Review:
+
+Case 1
+
+If there are other mistake exercises remaining in the review queue:
+
+keep the current behavior
+move to the next mistake
+remain in Mistakes Review
+
+Nothing changes.
+
+Case 2
+
+If the current exercise is the last remaining mistake (or skipping it would leave no remaining mistake exercises to review):
+
+Automatically exit Mistakes Review and return the user to the normal training session.
+
+Specifically:
+
+restore the user's previous Practice configuration
+switch the Practice mode back to the normal training mode (the same configuration the user had before entering Mistakes Review)
+update the top-left mode selector immediately (it must no longer display Mistakes Review)
+generate a brand-new normal practice exercise
+continue training as if the user had opened Practice normally
+
+The transition should happen automatically after pressing Skip.
+
+Important
+
+Do not mark the mistake as solved.
+
+Skipping is not a correct answer.
+
+The mistake must remain in the Mistakes list so the user can review it later.
+
+Only the review session ends.
+
+Technical requirements
+
+Reuse the existing review cleanup logic wherever possible.
+
+The behavior should be equivalent to manually leaving Mistakes Review:
+
+clear the review queue
+clear temporary review session state
+restore the saved normal Practice configuration
+generate a fresh normal exercise
+
+Do not duplicate this logic.
+
+Expected UX
+
+Current behavior:
+
+Mistakes Review
+↓
+Skip
+↓
+same word again
+↓
+user feels trapped
+
+New behavior:
+
+Mistakes Review
+↓
+Skip
+↓
+(no more mistake exercises remain)
+↓
+automatically return to normal Practice
+↓
+top-left selector switches back to the normal training mode
+↓
+a new regular practice exercise starts
+
+This keeps Mistakes Review strict when there are still mistakes to review, but avoids trapping the user when only one unresolved mistake remains and they clearly don't want to continue reviewing it at that moment.

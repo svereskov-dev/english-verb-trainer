@@ -86,6 +86,7 @@ export default function Practice() {
     reviewComplete,
     onClearReview,
     exerciseSeq,
+    getReviewQueueLength,
   } = useExerciseSession(config);
 
   // ── Check for a Mistakes-review session on first load ───────────────────
@@ -159,6 +160,19 @@ export default function Practice() {
   const handleSkip = () => {
     setSubmittedValue("");
     setPendingAnswer("");
+
+    // Case 2: last (or only) remaining mistake in the review queue.
+    // Skipping it would just loop the same exercise forever, so auto-exit
+    // Mistakes Review and return to the user's normal Practice session.
+    // The mistake is NOT marked solved — it stays in the Mistakes list.
+    if (config.id === "mistake-review" && getReviewQueueLength() <= 1) {
+      const normal = loadPersistedConfig() ?? DEFAULT_SESSION;
+      setConfig(normal);
+      onClearReview();
+      return;
+    }
+
+    // Case 1: other mistakes remain — normal skip, stay in Mistakes Review.
     skipExercise();
   };
 
