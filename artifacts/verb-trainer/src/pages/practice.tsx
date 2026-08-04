@@ -238,18 +238,10 @@ export default function Practice() {
       "h-[100dvh] overflow-hidden bg-background pt-safe flex flex-col",
       keyboardVisible ? "" : "nav-safe-pad"
     )}>
-      {/* Progress is driven by the live session counters from useExerciseSession.
-          They update immediately on every answer and are persisted via the stats hook. */}
-      <ProgressBar
-        current={dailyCorrect + dailyIncorrect}
-        total={dailyGoal}
-        goalReached={dailyCorrect + dailyIncorrect >= dailyGoal}
-      />
-
       {/* Header — compact when keyboard is open */}
       <div className={cn(
         "w-full max-w-3xl mx-auto",
-        keyboardVisible ? "px-3 pt-1 pb-0.5" : "px-4 pt-2 pb-1"
+        keyboardVisible ? "px-3 pt-1 pb-0.5" : "px-4 pt-2 pb-3"
       )}>
         {/* Row 1: Training Mode (left) | English Tenses (right) */}
         <div className="flex items-center justify-between gap-2 min-w-0">
@@ -285,6 +277,16 @@ export default function Practice() {
               <span className="font-bold text-sm">{dailyIncorrect}</span>
             </div>
           </div>
+        )}
+
+        {/* Row 3: Daily Progress block — visible only when keyboard is closed.
+            Sits naturally below the top controls instead of at the screen edge. */}
+        {!keyboardVisible && (
+          <ProgressBar
+            current={dailyCorrect + dailyIncorrect}
+            total={dailyGoal}
+            goalReached={dailyCorrect + dailyIncorrect >= dailyGoal}
+          />
         )}
       </div>
 
