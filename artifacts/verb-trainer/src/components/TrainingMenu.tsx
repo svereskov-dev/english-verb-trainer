@@ -457,7 +457,7 @@ export function TrainingMenu({ current, onSelect, onImmediateToggle, compact = f
             onClick={handleStart}
             disabled={selectedIds.length === 0}
           >
-            {selectedIds.length === 0 ? "Select at least one mode" : "Start Training"}
+            {selectedIds.length === 0 ? "Select at least one mode" : "To Training"}
           </Button>
         </div>
       </SheetContent>
