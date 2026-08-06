@@ -4,6 +4,7 @@ import { useExerciseSession } from "../hooks/useExerciseSession";
 import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { AnswerInput } from "../components/AnswerInput";
+import { LetterBuilder } from "../components/LetterBuilder";
 import { ProgressBar } from "../components/ProgressBar";
 import { TrainingMenu, DEFAULT_SESSION } from "../components/TrainingMenu";
 import { SessionConfig } from "../engine/exercises";
@@ -155,6 +156,17 @@ export default function Practice() {
     if (!pendingAnswer.trim() || feedback !== null) return;
     setSubmittedValue(pendingAnswer);
     submitAnswer(pendingAnswer);
+  };
+
+  // ── Letter Builder callbacks ─────────────────────────────────────────────────
+  const handleLetterBuilderSuccess = (answer: string) => {
+    setSubmittedValue(answer);
+    submitAnswer(answer);
+  };
+
+  const handleLetterBuilderFailure = () => {
+    // Submit a clearly-wrong string so the existing failure flow fires
+    submitAnswer("__lb_fail__");
   };
 
   const handleSkip = () => {
@@ -316,22 +328,37 @@ export default function Practice() {
         </div>
 
         <div className="w-full flex flex-col items-center gap-3 shrink-0">
-          <AnswerInput
-            key={exerciseSeq}
-            onSubmit={handleCheck}
-            onValueChange={setPendingAnswer}
-            disabled={showingFeedback}
-            feedback={feedback}
-            submittedValue={submittedValue}
-            compact={keyboardVisible}
-            expectedAnswer={
-              Array.isArray(currentExercise.answer)
-                ? currentExercise.answer[0]
-                : currentExercise.answer
-            }
-          />
+          {currentExercise.letterBuilder ? (
+            /* ── Letter Builder mode ──────────────────────────────────────── */
+            !showingFeedback && (
+              <LetterBuilder
+                key={exerciseSeq}
+                exercise={currentExercise}
+                onSuccess={handleLetterBuilderSuccess}
+                onFailure={handleLetterBuilderFailure}
+                onSkip={handleSkip}
+                compact={keyboardVisible}
+              />
+            )
+          ) : (
+            /* ── Traditional typing mode ──────────────────────────────────── */
+            <AnswerInput
+              key={exerciseSeq}
+              onSubmit={handleCheck}
+              onValueChange={setPendingAnswer}
+              disabled={showingFeedback}
+              feedback={feedback}
+              submittedValue={submittedValue}
+              compact={keyboardVisible}
+              expectedAnswer={
+                Array.isArray(currentExercise.answer)
+                  ? currentExercise.answer[0]
+                  : currentExercise.answer
+              }
+            />
+          )}
 
-          {!showingFeedback ? (
+          {!currentExercise.letterBuilder && !showingFeedback && (
             <>
               <Button
                 onClick={handleCheck}
@@ -358,7 +385,9 @@ export default function Practice() {
                 Skip
               </Button>
             </>
-          ) : (
+          )}
+
+          {showingFeedback && (
             <>
               <div className="flex flex-col items-center justify-center gap-1">
                 {showAnswer && (

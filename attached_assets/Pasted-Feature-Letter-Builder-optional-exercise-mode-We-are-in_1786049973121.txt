@@ -1,0 +1,214 @@
+Feature: Letter Builder (optional exercise mode)
+
+We are introducing a new exercise type called Letter Builder, inspired by Drops.
+
+Important: this is not a replacement for the current typing exercises. It is an optional exercise mode that can be enabled or disabled by the user.
+
+The goal is to make the app more accessible for beginners while preserving the existing typing-based practice for users who prefer it.
+
+1. Training Mode settings
+
+In the Training Mode dialog, add a second toggle alongside the existing Context Sentences option.
+
+Current:
+
+Context Sentences ✅
+
+New:
+
+Context Sentences
+Letter Builder
+
+Both should use the same switch component and visual style.
+
+Default value
+
+Letter Builder should be enabled by default for new users.
+
+Reason:
+
+Typing long English verb forms on a mobile keyboard can be frustrating. Letter Builder provides a more approachable learning experience.
+
+Advanced users can disable it at any time.
+
+The toggle state must persist exactly like the Context Sentences setting.
+
+2. Exercise generation
+
+When Letter Builder is enabled:
+
+The exercise generator should randomly choose between:
+
+traditional typing exercise
+Letter Builder
+
+The probability can initially be 50/50.
+
+When Letter Builder is disabled:
+
+The application behaves exactly as it does today.
+
+No other logic should change.
+
+3. Letter Builder UI
+
+Instead of the text input field, display placeholders representing every character of the answer.
+
+Examples:
+
+worked
+
+_ _ _ _ _ _
+
+has worked
+
+_ _ _    _ _ _ _ _ _
+
+Spaces remain visible.
+
+4. Letter choices
+
+Display exactly 5 letter buttons.
+
+Rules:
+
+exactly one button contains the correct next letter
+the remaining four are distractors
+distractors must not duplicate the correct letter
+generate a new set after every correct letter
+5. Correct letter
+
+When the user taps the correct letter:
+
+reveal that letter
+generate a new set of five letters
+continue until the answer is complete
+
+When the last letter is revealed:
+
+automatically mark the exercise as correct
+trigger the existing success flow
+statistics, SRS, daily progress and streak logic must remain unchanged
+6. Wrong letter
+
+When the user taps a wrong letter:
+
+that button becomes disabled (dimmed)
+remaining buttons stay active
+do NOT regenerate the letter set
+
+The player may continue selecting among the remaining letters.
+
+7. Mistake limit
+
+Maximum:
+
+3 incorrect letter selections per exercise
+
+After the third wrong tap:
+
+mark the exercise as incorrect
+record the mistake exactly as today's typing exercise
+continue using the existing flow
+8. Audio feedback
+
+Every letter tap should produce a short keyboard-like click.
+
+Requirements:
+
+use a subtle, pleasant typing sound
+latency should feel instantaneous
+the sound should respect the device sound settings
+if the phone is in silent mode, no click should be played
+avoid long or distracting sounds
+
+Correct and incorrect letters may continue using the existing success/failure animations if present.
+
+9. Architecture
+
+Do not duplicate the existing answer validation.
+
+Reuse the current:
+
+statistics
+SRS
+Mistakes Review
+daily progress
+answer validation
+exercise generation
+
+Letter Builder should only replace the input method.
+
+10. Supported answers
+
+Must work correctly with:
+
+single words
+multi-word answers
+auxiliary verbs
+perfect forms
+continuous forms
+future forms
+contractions (if supported)
+spaces
+punctuation already supported by the engine
+11. Compatibility with Context Mode
+
+Letter Builder must work with both exercise types:
+
+Verb Form
+
+Example:
+
+Subject:
+he
+
+Verb:
+go
+
+Answer:
+
+_ _ _ _
+Context Sentences
+
+Gap-fill exercises should also be compatible.
+
+Example:
+
+Yesterday she ____ home early.
+
+_ _ _ _
+
+The exercise generation rules remain unchanged.
+
+Only the answer input method changes.
+
+This compatibility must be thoroughly verified.
+
+12. Regression requirements
+
+The implementation must not break:
+
+traditional typing exercises
+Context Sentences
+Mistakes Review
+Dictionary
+Statistics
+Daily Progress
+Daily Goal
+SRS scheduling
+existing automated tests
+13. Automated tests
+
+Please add tests covering:
+
+single-word answers
+multi-word answers
+Context Sentence compatibility
+successful completion
+three wrong taps → failure
+statistics update
+Mistakes Review integration
+switching Letter Builder ON/OFF
+persistence of the toggle
+coexistence with Context Sentences ON/OFF

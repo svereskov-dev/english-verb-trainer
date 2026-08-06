@@ -23,6 +23,7 @@ export interface SessionConfig {
   reviewVerbs?: string[];      // temporary filtered list from Mistakes page (verb names)
   reviewMistakeIds?: string[]; // specific mistake record IDs (preserves type+tense+form)
   contextEnabled: boolean;
+  letterBuilderEnabled?: boolean; // when true, 50% of exercises use letter-picker UI
   userCustomized?: boolean;  // true after first manual selection
 }
 
@@ -31,6 +32,7 @@ export interface ExerciseItem {
   type: ExerciseMode;
   question: any;
   answer: string | string[];
+  letterBuilder?: boolean; // true when this exercise should use the letter-picker UI
 }
 
 // ─── Tense pools ──────────────────────────────────────────────────────────────
@@ -229,9 +231,14 @@ export function generateExerciseFromConfig(
   ];
 
   // 7. Pick a type and generate
+  let exercise: ExerciseItem;
   switch (pick(types)) {
-    case "verbform":  return makeVerbForm(pool, tenses);
-    case "irregular": return makeIrregular(pool, config.irregularForm ?? "mixed");
+    case "verbform":
+      exercise = makeVerbForm(pool, tenses);
+      break;
+    case "irregular":
+      exercise = makeIrregular(pool, config.irregularForm ?? "mixed");
+      break;
     case "gapfill": {
       // When an irregularForm is set, constrain gapfill tenses so the sentence
       // structure matches the form being drilled:
@@ -247,8 +254,17 @@ export function generateExerciseFromConfig(
           config.irregularForm === "pastParticiple" ? PERFECT :
           /* mixed */                                 [...PAST_SIMPLE, ...PERFECT];
       }
-      return makeGapFill(pool, gapfillTenses);
+      exercise = makeGapFill(pool, gapfillTenses);
+      break;
     }
-    default: return makeVerbForm(pool, tenses);
+    default:
+      exercise = makeVerbForm(pool, tenses);
   }
+
+  // 8. Randomly assign Letter Builder UI (50/50) when enabled
+  if (config.letterBuilderEnabled) {
+    exercise.letterBuilder = Math.random() < 0.5;
+  }
+
+  return exercise;
 }

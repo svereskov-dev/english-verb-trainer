@@ -106,6 +106,7 @@ const GROUPS: GroupDef[] = [
 function buildConfig(
   selectedIds: string[],
   contextEnabled: boolean,
+  letterBuilderEnabled: boolean,
 ): SessionConfig {
   const presets = selectedIds.map(id => findGroupAndPreset(id)).filter(Boolean);
   if (presets.length === 0) {
@@ -119,6 +120,7 @@ function buildConfig(
       verbPool: fallback.preset.verbPool,
       tenses: fallback.preset.tenses,
       contextEnabled,
+      letterBuilderEnabled,
     };
   }
 
@@ -157,6 +159,7 @@ function buildConfig(
     irregularForm: allIrregularForms.size === 1 ? [...allIrregularForms][0] : undefined,
     mistakesOnly: allMistakesOnly.size > 0,
     contextEnabled,
+    letterBuilderEnabled,
     userCustomized: true,
   };
 }
@@ -174,6 +177,7 @@ function findGroupAndPreset(id: string) {
 const _DEFAULT_SESSION: SessionConfig = buildConfig(
   ["full-all"], // Full Conjugation → All Tenses
   false,
+  true,         // Letter Builder enabled by default for new users
 );
 
 export const DEFAULT_SESSION: SessionConfig = {
@@ -190,9 +194,11 @@ interface TrainingMenuProps {
 }
 
 export function TrainingMenu({ current, onSelect, compact = false }: TrainingMenuProps) {
-  const [open, setOpen]             = useState(false);
+  const [open, setOpen]               = useState(false);
   const [selectedIds, setSelectedIds] = useState<string[]>(current.selectedIds);
-  const [contextOn, setContextOn]   = useState(current.contextEnabled);
+  const [contextOn, setContextOn]     = useState(current.contextEnabled);
+  // Letter Builder defaults to true for new users (current.letterBuilderEnabled may be undefined for old saved configs)
+  const [letterBuilderOn, setLetterBuilderOn] = useState(current.letterBuilderEnabled ?? true);
 
   // ── Scroll indicators ──────────────────────────────────────────────────────
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -235,12 +241,13 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
     if (o) {
       setSelectedIds(current.selectedIds);
       setContextOn(current.contextEnabled);
+      setLetterBuilderOn(current.letterBuilderEnabled ?? true);
     }
     setOpen(o);
   };
 
   const handleStart = () => {
-    onSelect(buildConfig(selectedIds, contextOn));
+    onSelect(buildConfig(selectedIds, contextOn, letterBuilderOn));
     setOpen(false);
   };
 
@@ -414,6 +421,20 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
               id="ctx-toggle"
               checked={contextOn}
               onCheckedChange={setContextOn}
+              className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="lb-toggle" className="text-sm font-medium cursor-pointer">
+              Letter Builder
+              <span className="block text-xs text-muted-foreground font-normal">
+                Tap letters instead of typing
+              </span>
+            </Label>
+            <Switch
+              id="lb-toggle"
+              checked={letterBuilderOn}
+              onCheckedChange={setLetterBuilderOn}
               className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
             />
           </div>
