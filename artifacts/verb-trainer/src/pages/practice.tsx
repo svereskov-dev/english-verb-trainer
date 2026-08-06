@@ -348,6 +348,10 @@ export default function Practice() {
           <ExerciseCard
             exercise={currentExercise}
             compact={keyboardVisible || !!config.letterBuilderEnabled}
+            irregularContext={
+              !!config.exerciseTypes?.includes("irregular") &&
+              !config.exerciseTypes?.includes("verbform")
+            }
           />
         </div>
 

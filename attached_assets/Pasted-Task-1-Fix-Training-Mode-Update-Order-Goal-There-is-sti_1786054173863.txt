@@ -1,0 +1,116 @@
+Task 1 — Fix Training Mode Update Order
+Goal
+
+There is still one inconsistency in how Training Mode updates the current exercise.
+
+The individual features work correctly, but the behavior depends on the order in which the user changes the settings.
+
+This should never happen.
+
+Current issue
+
+This sequence works correctly:
+
+Select a Training Mode (tense or irregular form).
+Enable or disable Context Mode and/or Letter Builder.
+The exercise updates immediately.
+
+However, this sequence does not work correctly:
+
+Deselect the current Training Mode.
+Enable or disable Context Mode and/or Letter Builder.
+Then select a new Training Mode.
+
+In this case:
+
+the exercise often does not update immediately;
+the input method may stay incorrect;
+the exercise type may stay incorrect;
+the user has to toggle Context Mode or Letter Builder again to force the UI to refresh.
+
+This should never be necessary.
+
+Expected behavior
+
+Training Mode should behave identically regardless of the order in which the user changes settings.
+
+Changing any setting should immediately produce a UI that reflects the complete current configuration.
+
+The user should never have to "refresh" the UI by toggling something twice.
+
+Please investigate
+
+This appears to be another state synchronization issue.
+
+Please trace the complete update flow when:
+
+the selected Training Mode changes;
+Context Mode changes;
+Letter Builder changes.
+
+Verify that every change causes the current exercise/UI to be recomputed from the current configuration, not from partially stale state.
+
+There should be a single source of truth for the active Training Mode configuration.
+
+No update should depend on which control the user touched first.
+
+Acceptance criteria
+✅ The order of user actions no longer matters.
+✅ Any combination of Training Mode, Context Mode and Letter Builder immediately produces the correct exercise.
+✅ No second toggle is ever required.
+✅ No stale exercise or stale input component remains visible.
+Task 2 — Preserve "Irregular Verb Forms" Label in Context Mode
+Goal
+
+The exercise information label should remain consistent when Context Mode is enabled.
+
+Current behavior
+
+For normal Verb Form exercises, the label is correct.
+
+Examples:
+
+Past Simple
+Future Perfect
+Present Continuous
+
+For Irregular Verb Forms, the label is also correct:
+
+Irregular Form: Past Simple
+Irregular Form: Past Participle
+
+However, when Context Mode is enabled, this information is lost.
+
+The label changes to something like:
+
+Past Simple
+Present Perfect
+
+This makes it look like the exercise is just another tense exercise, even though the user is actually training Irregular Verb Forms inside a contextual sentence.
+
+Expected behavior
+
+When Context Mode is enabled, the label should continue to indicate that the exercise belongs to the Irregular Verb Forms category.
+
+For example:
+
+Irregular Form: Past Simple
+Irregular Form: Past Participle
+
+The context sentence changes how the exercise is presented, but it does not change what the user is training.
+
+The exercise is still an Irregular Verb Forms exercise.
+
+Important
+
+Do not change the exercise generation.
+
+Do not change Context Mode behavior.
+
+This is purely a presentation/UI improvement so that the user always understands what type of exercise they are currently solving.
+
+Acceptance criteria
+✅ Irregular Verb Forms exercises always display the "Irregular Form" prefix.
+✅ This remains true whether Context Mode is ON or OFF.
+✅ The displayed label always reflects the actual training category.
+✅ No changes are made to exercise generation or answer validation.

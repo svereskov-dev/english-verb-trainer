@@ -134,6 +134,7 @@ export function useExerciseSession(config: SessionConfig) {
       const ex = exerciseFromMistakeId(firstId) ??
         generateExerciseFromConfig(config, settings.difficulty);
       setCurrentExercise(ex);
+      setExerciseSeq(s => s + 1);
       return;
     }
 
@@ -144,6 +145,7 @@ export function useExerciseSession(config: SessionConfig) {
       setShowAnswer(stored.showAnswer);
       setPendingAnswer(stored.pendingAnswer ?? "");
       setSubmittedValue(stored.submittedValue ?? "");
+      // Session restore: exerciseSeq unchanged — same exercise, same component state.
       return;
     }
 
@@ -156,6 +158,9 @@ export function useExerciseSession(config: SessionConfig) {
         config.mistakesOnly ? mistakeVerbs : undefined,
       ),
     );
+    // Bump so LetterBuilder / AnswerInput always remount on a fresh exercise,
+    // whether the change came from nextExercise() or a config-driven regeneration.
+    setExerciseSeq(s => s + 1);
     // mistakeVerbs intentionally read from state here (always fresh after
     // mistakesReady flips); config.id + contextEnabled track config identity.
     // letterBuilderEnabled is intentionally excluded — it controls the input

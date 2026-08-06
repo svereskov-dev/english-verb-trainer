@@ -22,7 +22,19 @@ function getIPA(infinitive: string): string {
   return getVerbData(infinitive)?.infinitiveIPA ?? "";
 }
 
-export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & { compact?: boolean }) {
+/** When true, gapfill exercises show "Irregular Form: …" instead of just the tense name. */
+const PERFECT_TENSES = new Set(["presentPerfect", "pastPerfect", "futurePerfect"]);
+
+function irregularGapfillLabel(tense: string): string {
+  const form = PERFECT_TENSES.has(tense) ? "Past Participle" : "Past Simple";
+  return `Irregular Form: ${form}`;
+}
+
+export function ExerciseCard({
+  exercise,
+  compact = false,
+  irregularContext = false,
+}: ExerciseCardProps & { compact?: boolean; irregularContext?: boolean }) {
   if (exercise.type === "verbform") {
     const translation = getTranslation(exercise.question.verb);
     const ipa = getIPA(exercise.question.verb);
@@ -127,9 +139,11 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps & 
     const ipa = getIPA(exercise.question.verb ?? "");
     return (
       <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-2")}>
-        {/* Tense pill */}
+        {/* Tense / form pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
-          {formatTenseName(exercise.question.tense)}
+          {irregularContext
+            ? irregularGapfillLabel(exercise.question.tense)
+            : formatTenseName(exercise.question.tense)}
         </span>
 
         {/* Sentence card */}
