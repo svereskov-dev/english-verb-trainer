@@ -183,8 +183,12 @@ export function LetterBuilder({
   }, [isFailed]);
 
   const handleTap = (letter: string) => {
-    if (disabledLetters.has(letter.toUpperCase())) return;
-    playClick();
+    const up = letter.toUpperCase();
+    if (disabledLetters.has(up)) return;
+    // Play the click only on a correct tap — wrong taps are intentionally silent
+    // so incorrect selections feel neutral rather than punishing.
+    const isCorrectTap = up === (chars[nextPos]?.toUpperCase() ?? "");
+    if (isCorrectTap) playClick();
     tapLetter(letter);
   };
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useExerciseSession } from "../hooks/useExerciseSession";
 import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
+import { useAudioFeedback } from "../hooks/useAudioFeedback";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { AnswerInput } from "../components/AnswerInput";
 import { LetterBuilder } from "../components/LetterBuilder";
@@ -152,6 +153,13 @@ export default function Practice() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reviewComplete]);
 
+  // ── Success sound ────────────────────────────────────────────────────────────
+  const { playSuccess } = useAudioFeedback();
+  useEffect(() => {
+    if (feedback === "correct") playSuccess();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [feedback]);
+
   const handleCheck = () => {
     if (!pendingAnswer.trim() || feedback !== null) return;
     setSubmittedValue(pendingAnswer);
@@ -202,6 +210,16 @@ export default function Practice() {
     onClearReview();
   };
 
+  // Fires immediately when the user flips a toggle (Context / Letter Builder)
+  // inside the Training Mode sheet — no need to press "Start Training".
+  const handleImmediateToggle = (next: SessionConfig) => {
+    setSubmittedValue("");
+    setPendingAnswer("");
+    setConfig(next);
+    // Deliberately no onClearReview() — toggle changes should not discard
+    // any in-progress review queue.
+  };
+
   const handleOpenTenses = () => {
     // Pass the single tense being practiced as context, if applicable
     const singleTense = config.tenses?.length === 1 ? config.tenses[0] : null;
@@ -227,7 +245,7 @@ export default function Practice() {
               Keep practicing — items you miss will appear here.
             </p>
           </div>
-          <TrainingMenu current={config} onSelect={handleSelectConfig} />
+          <TrainingMenu current={config} onSelect={handleSelectConfig} onImmediateToggle={handleImmediateToggle} />
         </div>
         <BottomNav />
       </div>
@@ -246,7 +264,7 @@ export default function Practice() {
               You answered correctly on all verbs from this review.
             </p>
           </div>
-          <TrainingMenu current={config} onSelect={handleSelectConfig} />
+          <TrainingMenu current={config} onSelect={handleSelectConfig} onImmediateToggle={handleImmediateToggle} />
         </div>
         <BottomNav />
       </div>
@@ -274,6 +292,7 @@ export default function Practice() {
           <TrainingMenu
             current={config}
             onSelect={handleSelectConfig}
+            onImmediateToggle={handleImmediateToggle}
             compact={keyboardVisible}
           />
           {!keyboardVisible && (

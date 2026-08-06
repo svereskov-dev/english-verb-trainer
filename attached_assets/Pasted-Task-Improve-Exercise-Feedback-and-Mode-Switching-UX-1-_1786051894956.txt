@@ -1,0 +1,101 @@
+Task: Improve Exercise Feedback and Mode Switching UX
+1. Add a positive success sound
+
+Please add a short, pleasant confirmation sound whenever the user completes an exercise correctly.
+
+The sound should play:
+
+Classic typing mode: immediately after the user presses Check and the answer is correct (together with the green "Correct" feedback).
+Letter Builder mode: immediately after the final correct letter is placed and the completed word is recognized as correct (again together with the green success feedback).
+
+Requirements:
+
+The sound should feel light and rewarding (similar to Duolingo, Drops, etc.).
+It must never become intrusive or overly loud.
+It should play only once per correctly completed exercise.
+Respect the device sound settings (silent mode = no sound).
+2. Keep the current visual error feedback, but remove error sounds
+
+The current visual feedback is good and should remain exactly as it is.
+
+Specifically:
+
+keep the red highlighting of incorrect letters in Classic Typing mode;
+keep the current visual feedback in Letter Builder mode (incorrect letters becoming unavailable).
+
+However:
+
+do not play any sound when the user makes a mistake.
+
+The interaction should stay visually informative but emotionally neutral. Wrong answers should not produce negative audio feedback.
+
+3. Apply Training Mode changes immediately
+
+Currently, changing a Training Mode toggle does not affect the exercise already on screen.
+
+This is confusing.
+
+When the user changes either:
+
+Letter Builder
+Context Mode
+
+the current exercise should immediately regenerate according to the new configuration.
+
+Examples:
+
+Letter Builder OFF → ON
+
+Immediately replace the current typing exercise with a Letter Builder version of the same training mode.
+
+Letter Builder ON → OFF
+
+Immediately replace the current Letter Builder exercise with the normal text input field ("Type your answer...").
+
+No Skip action should be required.
+
+The user should instantly see that the mode has changed.
+
+4. Context Mode should also update immediately
+
+The same behavior should apply to Context Mode.
+
+When Context Mode is turned ON:
+
+immediately replace the current exercise with a gap-fill/context exercise.
+
+When Context Mode is turned OFF:
+
+immediately return to a normal conjugation exercise.
+
+Again, no Skip should be required.
+
+5. Add a neutral toggle sound
+
+When the user enables or disables:
+
+Letter Builder
+Context Mode
+
+play a short neutral UI click.
+
+This should be different from:
+
+the typing click,
+the success sound.
+
+Think of it as a standard interface toggle sound.
+
+Requirements:
+
+subtle;
+plays once;
+respects silent mode.
+Acceptance criteria
+✅ Success sound plays only after a correct answer.
+✅ No error sound is played for incorrect answers.
+✅ Existing visual error feedback remains unchanged.
+✅ Letter Builder toggle immediately changes the current exercise.
+✅ Context Mode toggle immediately changes the current exercise.
+✅ Toggle actions play a neutral UI sound.
+✅ All sounds respect the device's silent mode.

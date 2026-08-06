@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useAudioFeedback } from "../hooks/useAudioFeedback";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Switch } from "./ui/switch";
@@ -190,15 +191,20 @@ export const DEFAULT_SESSION: SessionConfig = {
 interface TrainingMenuProps {
   current: SessionConfig;
   onSelect: (config: SessionConfig) => void;
+  /** Fires immediately when a toggle (Context / Letter Builder) changes,
+   *  before the user presses "Start Training", so the exercise updates instantly. */
+  onImmediateToggle?: (config: SessionConfig) => void;
   compact?: boolean;
 }
 
-export function TrainingMenu({ current, onSelect, compact = false }: TrainingMenuProps) {
+export function TrainingMenu({ current, onSelect, onImmediateToggle, compact = false }: TrainingMenuProps) {
   const [open, setOpen]               = useState(false);
   const [selectedIds, setSelectedIds] = useState<string[]>(current.selectedIds);
   const [contextOn, setContextOn]     = useState(current.contextEnabled);
   // Letter Builder defaults to true for new users (current.letterBuilderEnabled may be undefined for old saved configs)
   const [letterBuilderOn, setLetterBuilderOn] = useState(current.letterBuilderEnabled ?? true);
+
+  const { playToggle } = useAudioFeedback();
 
   // ── Scroll indicators ──────────────────────────────────────────────────────
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -420,7 +426,11 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
             <Switch
               id="ctx-toggle"
               checked={contextOn}
-              onCheckedChange={setContextOn}
+              onCheckedChange={(checked) => {
+                setContextOn(checked);
+                playToggle();
+                onImmediateToggle?.(buildConfig(selectedIds, checked, letterBuilderOn));
+              }}
               className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
             />
           </div>
@@ -434,7 +444,11 @@ export function TrainingMenu({ current, onSelect, compact = false }: TrainingMen
             <Switch
               id="lb-toggle"
               checked={letterBuilderOn}
-              onCheckedChange={setLetterBuilderOn}
+              onCheckedChange={(checked) => {
+                setLetterBuilderOn(checked);
+                playToggle();
+                onImmediateToggle?.(buildConfig(selectedIds, contextOn, checked));
+              }}
               className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
             />
           </div>
