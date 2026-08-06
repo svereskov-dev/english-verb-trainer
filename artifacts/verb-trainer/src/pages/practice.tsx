@@ -324,7 +324,12 @@ export default function Practice() {
           : "px-4 py-3 gap-2 justify-center"
       )}>
         <div className="w-full shrink-0">
-          <ExerciseCard exercise={currentExercise} compact={keyboardVisible} />
+          {/* Letter Builder needs the compact card — the letter UI is the focus,
+              not the large-format verb display. */}
+          <ExerciseCard
+            exercise={currentExercise}
+            compact={keyboardVisible || !!currentExercise.letterBuilder}
+          />
         </div>
 
         <div className="w-full flex flex-col items-center gap-3 shrink-0">
