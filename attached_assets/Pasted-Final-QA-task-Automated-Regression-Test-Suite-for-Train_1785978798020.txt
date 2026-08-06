@@ -1,0 +1,120 @@
+Final QA task — Automated Regression Test Suite for Training Mode
+
+The manual QA looks excellent and the Training Mode refactor appears complete.
+
+I'd like to add one final engineering task before considering this feature finished.
+
+Goal
+
+Convert the current verification into a permanent automated regression test that runs with the project.
+
+This is not about changing application behavior.
+
+It is about making sure future edits cannot accidentally break Training Mode.
+
+Requirements
+1. Create automated tests
+
+Create a permanent test suite that verifies all Training Modes.
+
+For every mode:
+
+generate many exercises
+verify that every generated exercise belongs only to the expected tense(s)
+verify exercise types
+verify Context Mode
+verify Mixed modes
+verify irregular modes
+verify Full Conjugation
+
+The assertions should be deterministic.
+
+2. Verify Context Mode
+
+For every preset:
+
+Context OFF
+
+→ only verb-form exercises.
+
+Context ON
+
+→ both verb-form and gap-fill exercises.
+
+Gap-fill exercises must always belong to the same tense group as the preset.
+
+3. Verify answer validation
+
+For every supported exercise type:
+
+correct answer → accepted
+incorrect answer → rejected
+4. Verify generator boundaries
+
+Mixed modes:
+
+Past Mixed
+
+→ must never generate Present or Future.
+
+Present Mixed
+
+→ must never generate Past or Future.
+
+Future Mixed
+
+→ must never generate Past or Present.
+
+5. Verify irregular modes
+
+V2 mode
+
+→ only V2 exercises.
+
+V3 mode
+
+→ only V3 exercises.
+
+Mixed
+
+→ both appear.
+
+Context Mode:
+
+V2
+
+→ only Past Simple gap-fill.
+
+V3
+
+→ only Perfect gap-fill.
+
+6. Easy command
+
+The test suite should be runnable with a single command, for example:
+
+pnpm test:training
+
+or equivalent.
+
+7. CI-friendly
+
+The test must exit with:
+
+0
+
+when everything is correct.
+
+Any violation should fail immediately with a descriptive error.
+
+Acceptance Criteria
+
+Future developers should be unable to accidentally break:
+
+Training Mode
+Context Mode
+Mixed modes
+Irregular modes
+Answer validation
+
+without the automated tests catching it immediately.
