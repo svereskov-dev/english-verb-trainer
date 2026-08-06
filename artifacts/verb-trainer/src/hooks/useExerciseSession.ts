@@ -42,6 +42,7 @@ function clearSession() {
 function configsMatch(a: SessionConfig, b: SessionConfig): boolean {
   if (a.id !== b.id) return false;
   if (a.contextEnabled !== b.contextEnabled) return false;
+  if (a.letterBuilderEnabled !== b.letterBuilderEnabled) return false;
   if (a.mistakesOnly !== b.mistakesOnly) return false;
   if (JSON.stringify(a.reviewVerbs) !== JSON.stringify(b.reviewVerbs)) return false;
   if (JSON.stringify(a.reviewMistakeIds) !== JSON.stringify(b.reviewMistakeIds)) return false;
@@ -157,9 +158,10 @@ export function useExerciseSession(config: SessionConfig) {
       ),
     );
     // mistakeVerbs intentionally read from state here (always fresh after
-    // mistakesReady flips); config.id + contextEnabled track config identity.
+    // mistakesReady flips); config.id + contextEnabled + letterBuilderEnabled
+    // track config identity.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [config.id, config.contextEnabled, settings?.difficulty, mistakesReady]);
+  }, [config.id, config.contextEnabled, config.letterBuilderEnabled, settings?.difficulty, mistakesReady]);
 
   // ── Save session state whenever exercise or feedback changes ─────────────────
   useEffect(() => {

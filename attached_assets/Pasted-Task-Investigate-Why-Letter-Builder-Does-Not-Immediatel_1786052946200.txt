@@ -1,0 +1,104 @@
+Task — Investigate Why Letter Builder Does Not Immediately Update the Current Exercise
+Goal
+
+The immediate update behavior now works correctly for Context Mode, but it still does not work correctly for Letter Builder.
+
+This indicates that the architecture is already capable of regenerating the current exercise, but the Letter Builder toggle is not participating correctly in that process.
+
+Please investigate the root cause rather than applying another workaround.
+
+Expected behavior
+
+When the user turns Letter Builder ON:
+
+the current exercise should be discarded immediately;
+a new exercise should be generated immediately;
+that exercise should be displayed using the Letter Builder interface.
+
+When the user turns Letter Builder OFF:
+
+the current exercise should be discarded immediately;
+a new exercise should be generated immediately;
+the classic typing interface should appear immediately.
+
+No Skip action should ever be required.
+
+Please perform a structural investigation
+
+Do not simply patch the symptom.
+
+Trace the complete flow from the toggle to the rendered exercise.
+
+Specifically verify:
+
+1. Toggle state
+
+Confirm that changing the Letter Builder switch immediately updates the stored configuration/state.
+
+2. Practice configuration
+
+Verify that the updated Letter Builder value actually reaches the Practice screen configuration.
+
+3. Exercise regeneration
+
+Confirm that changing Letter Builder triggers exactly the same regeneration path that already works correctly for Context Mode.
+
+If Context Mode already forces:
+
+discard current exercise
+generate new exercise
+
+then Letter Builder should trigger the identical lifecycle.
+
+4. Rendering
+
+Verify that the newly generated exercise is rendered using the current value of the Letter Builder flag.
+
+Make sure the UI is not rendering a stale version of the previous exercise.
+
+5. Cached state
+
+Check whether any of these are preventing the update:
+
+useMemo
+useCallback
+stale closure
+React key reuse
+cached currentExercise
+session persistence
+memoized components
+
+The current exercise should never survive a Letter Builder mode change.
+
+6. Source of truth
+
+There should be only one source of truth for the input method.
+
+The UI should always render based on the current Letter Builder setting.
+
+There should be no secondary local state that can become out of sync.
+
+Regression check
+
+After the fix verify this exact sequence:
+
+Typing → enable Letter Builder
+
+→ current exercise immediately becomes Letter Builder.
+
+Letter Builder → disable
+
+→ current exercise immediately becomes typing.
+
+Repeat this sequence at least 20 times.
+
+There should never be a case where pressing Skip is required.
+
+Acceptance criteria
+✅ Letter Builder toggle immediately regenerates the current exercise.
+✅ The correct input UI appears instantly.
+✅ No Skip is ever required.
+✅ Behavior is identical to Context Mode.
+✅ No stale exercise survives the toggle.
+✅ No workaround or duplicate state is introduced.
+✅ The implementation remains consistent with the existing architecture.
