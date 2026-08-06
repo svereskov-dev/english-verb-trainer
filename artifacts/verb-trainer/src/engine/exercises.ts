@@ -32,7 +32,6 @@ export interface ExerciseItem {
   type: ExerciseMode;
   question: any;
   answer: string | string[];
-  letterBuilder?: boolean; // true when this exercise should use the letter-picker UI
 }
 
 // ─── Tense pools ──────────────────────────────────────────────────────────────
@@ -259,11 +258,6 @@ export function generateExerciseFromConfig(
     }
     default:
       exercise = makeVerbForm(pool, tenses);
-  }
-
-  // 8. Assign Letter Builder UI to every exercise when enabled
-  if (config.letterBuilderEnabled) {
-    exercise.letterBuilder = true;
   }
 
   return exercise;

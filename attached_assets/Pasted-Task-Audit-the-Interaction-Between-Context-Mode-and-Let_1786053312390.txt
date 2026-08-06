@@ -1,0 +1,148 @@
+Task — Audit the Interaction Between Context Mode and Letter Builder
+Goal
+
+Both toggles now work correctly individually:
+
+Context Mode works correctly when changed by itself.
+Letter Builder works correctly when changed by itself.
+
+However, when the user starts changing both toggles during the same session, the application becomes inconsistent.
+
+Please investigate the architecture and identify the root cause instead of adding another workaround.
+
+Expected behavior
+
+The two toggles control different aspects of the exercise and must remain completely independent.
+
+Letter Builder
+
+Changing Letter Builder should:
+
+NOT generate a different exercise.
+NOT change the selected verb.
+NOT change the selected tense.
+NOT change the generated answer.
+
+It should only change how the current exercise is answered.
+
+Example:
+
+Current exercise:
+
+Verb: go
+Subject: he
+Tense: Present Perfect
+
+Typing mode:
+
+Type your answer:
+
+Letter Builder ON:
+
+_ _ _    _ _ _ _
+
+Exactly the same exercise.
+
+Only the input method changes.
+
+Context Mode
+
+Changing Context Mode should:
+
+immediately generate a new exercise;
+replace the current Verb Form exercise with a Context Sentence exercise (or vice versa);
+keep all current Training Mode settings.
+
+This behavior is already correct and should remain unchanged.
+
+Independent responsibilities
+
+The two toggles should never interfere with one another.
+
+Think of them as controlling two completely different layers:
+
+Context Mode
+
+→ controls WHAT exercise is generated.
+
+Letter Builder
+
+→ controls HOW the answer is entered.
+
+These responsibilities must remain completely independent.
+
+Please investigate the update flow
+
+Trace the complete lifecycle when either toggle changes.
+
+Verify:
+
+Letter Builder
+
+Changing Letter Builder should:
+
+keep the current exercise model;
+only replace the input component;
+never regenerate the exercise.
+Context Mode
+
+Changing Context Mode should:
+
+discard the current exercise;
+generate a new exercise;
+keep the current input mode (typing or Letter Builder).
+Verify all combinations
+
+Please test every combination repeatedly:
+
+Context	Letter Builder	Expected behavior
+OFF	OFF	Classic typing + Verb Form
+OFF	ON	Letter Builder + Verb Form
+ON	OFF	Classic typing + Context Sentence
+ON	ON	Letter Builder + Context Sentence
+
+Now repeatedly switch between all four states.
+
+Examples:
+
+OFF/OFF → ON/OFF
+
+ON/OFF → ON/ON
+
+ON/ON → OFF/ON
+
+OFF/ON → OFF/OFF
+
+Repeat this many times.
+
+The UI should always remain consistent.
+
+Look for architectural issues
+
+Please verify there is no conflict caused by:
+
+stale React state;
+useMemo dependencies;
+useEffect dependency arrays;
+memoized components;
+cached currentExercise;
+duplicated state;
+race conditions between state updates;
+session persistence restoring outdated values;
+incorrect component keys preventing re-rendering.
+Acceptance criteria
+✅ Letter Builder changes only the input method.
+✅ Context Mode changes only the exercise type.
+✅ The two toggles are completely independent.
+✅ Both toggles can be changed in any order.
+✅ No stale UI appears.
+✅ No Skip action is ever required.
+✅ No inconsistent state can occur.
+✅ The architecture remains clean, with a single source of truth for both settings.
+
+I suspect the issue is that both toggles are currently trying to regenerate the exercise, while they actually have different responsibilities. The clean architecture should be:
+
+Context Mode → regenerates the exercise (changes what you're asked).
+Letter Builder → simply swaps the input component (changes how you answer), leaving the current exercise itself untouched.
+
+Separating those responsibilities should eliminate the glitches you're seeing when both toggles are used together.

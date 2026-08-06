@@ -347,12 +347,12 @@ export default function Practice() {
               not the large-format verb display. */}
           <ExerciseCard
             exercise={currentExercise}
-            compact={keyboardVisible || !!currentExercise.letterBuilder}
+            compact={keyboardVisible || !!config.letterBuilderEnabled}
           />
         </div>
 
         <div className="w-full flex flex-col items-center gap-3 shrink-0">
-          {currentExercise.letterBuilder ? (
+          {config.letterBuilderEnabled ? (
             /* ── Letter Builder mode ──────────────────────────────────────── */
             !showingFeedback && (
               <LetterBuilder
@@ -382,7 +382,7 @@ export default function Practice() {
             />
           )}
 
-          {!currentExercise.letterBuilder && !showingFeedback && (
+          {!config.letterBuilderEnabled && !showingFeedback && (
             <>
               <Button
                 onClick={handleCheck}

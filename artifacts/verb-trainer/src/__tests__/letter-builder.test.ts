@@ -82,31 +82,10 @@ describe("generateChoices", () => {
   });
 });
 
-// ─── generateExerciseFromConfig — letterBuilderEnabled flag ───────────────────
-
-describe("generateExerciseFromConfig — letterBuilderEnabled: false", () => {
-  const config = makeConfig({ letterBuilderEnabled: false });
-
-  it("never sets letterBuilder on generated exercises", () => {
-    for (let i = 0; i < 100; i++) {
-      const ex = generateExerciseFromConfig(config, "intermediate");
-      expect(ex.letterBuilder).toBeUndefined();
-    }
-  });
-});
-
-describe("generateExerciseFromConfig — letterBuilderEnabled: true", () => {
-  const config = makeConfig({ letterBuilderEnabled: true });
-
-  it("sets letterBuilder to true on every exercise", () => {
-    for (let i = 0; i < 50; i++) {
-      const ex = generateExerciseFromConfig(config, "intermediate");
-      expect(ex.letterBuilder).toBe(true);
-    }
-  });
-});
-
 // ─── SessionConfig field persistence ─────────────────────────────────────────
+// letterBuilderEnabled lives only in the config (for persistence + TrainingMenu).
+// It is NOT stamped onto ExerciseItem — the UI reads config.letterBuilderEnabled
+// directly to decide which input component to render.
 
 describe("SessionConfig — letterBuilderEnabled field", () => {
   it("preserves letterBuilderEnabled: false in the generated config shape", () => {
@@ -119,23 +98,26 @@ describe("SessionConfig — letterBuilderEnabled field", () => {
     expect(config.letterBuilderEnabled).toBe(true);
   });
 
-  it("coexists with contextEnabled: true", () => {
+  it("coexists with contextEnabled: true — exercises are generated normally", () => {
     const config = makeConfig({ contextEnabled: true, letterBuilderEnabled: true });
-    // Context adds gapfill; exercises should still get the letterBuilder flag
     const results = Array.from({ length: 60 }, () =>
       generateExerciseFromConfig(config, "advanced")
     );
-    const withFlag = results.filter(ex => ex.letterBuilder === true);
-    expect(withFlag).toHaveLength(60);
+    // All exercises must be valid regardless of the input-mode flag
+    for (const ex of results) {
+      expect(ex.id).toBeTruthy();
+      expect(ex.type).toBeTruthy();
+    }
   });
 
-  it("coexists with contextEnabled: false (typing-only mode)", () => {
+  it("coexists with contextEnabled: false — exercises are generated normally", () => {
     const config = makeConfig({ contextEnabled: false, letterBuilderEnabled: false });
     const results = Array.from({ length: 30 }, () =>
       generateExerciseFromConfig(config, "beginner")
     );
     for (const ex of results) {
-      expect(ex.letterBuilder).toBeUndefined();
+      expect(ex.id).toBeTruthy();
+      expect(ex.type).toBeTruthy();
     }
   });
 });
@@ -232,7 +214,7 @@ describe("Letter Builder toggle — coexistence with existing modes", () => {
         expect(ex.type).toBeTruthy();
         const ans = Array.isArray(ex.answer) ? ex.answer[0] : ex.answer;
         expect(ans.length).toBeGreaterThan(0);
-        expect(ex.letterBuilder).toBe(true);
+        // letterBuilder is a UI-layer concern; it is not stamped onto ExerciseItem
       }
     });
 
@@ -241,7 +223,8 @@ describe("Letter Builder toggle — coexistence with existing modes", () => {
       for (let i = 0; i < 20; i++) {
         const ex = generateExerciseFromConfig(config, "intermediate");
         expect(ex.id).toBeTruthy();
-        expect(ex.letterBuilder).toBeUndefined();
+        expect(ex.type).toBeTruthy();
+        // letterBuilder is a UI-layer concern; it is not stamped onto ExerciseItem
       }
     });
   }
