@@ -1,0 +1,160 @@
+QA Task: End-to-End Verification of All Training Modes
+
+The Training Mode refactor is complete, and the code audit looks correct.
+
+Now perform a full end-to-end verification of every training mode.
+
+This is not a code review.
+
+This is a runtime verification.
+
+Goal
+
+Verify that every Training Mode actually generates the correct exercises in the running application.
+
+Do not assume the configuration is correct simply because the code compiles.
+
+Test every mode manually
+
+For every available mode:
+
+start a fresh training session
+generate a large number of exercises (at least 30–50)
+verify that every generated exercise belongs to the selected mode
+verify that no exercises from another mode appear
+Past Tenses
+Past Simple
+
+Expected:
+
+Only Past Simple.
+
+Never:
+
+Past Continuous
+Past Perfect
+Past Perfect Continuous
+Past Continuous
+
+Expected:
+
+Only Past Continuous.
+
+Past Perfect
+
+Expected:
+
+Only Past Perfect.
+
+Past Perfect Continuous
+
+Expected:
+
+Only Past Perfect Continuous.
+
+Past Mixed
+
+Expected:
+
+Random mix of
+
+Past Simple
+Past Continuous
+Past Perfect
+Past Perfect Continuous
+
+No Present or Future tenses.
+
+Present Tenses
+
+Repeat the same verification.
+
+Future Tenses
+
+Repeat the same verification.
+
+Irregular Verb Forms
+Past Simple (V2)
+
+Verify:
+
+Only V2 exercises appear.
+
+Gap-fill (Context Mode) should use only sentences compatible with V2.
+
+Past Participle (V3)
+
+Verify:
+
+Only V3 exercises appear.
+
+Context Mode should use only Perfect-related sentences.
+
+Mixed
+
+Verify:
+
+Random combination of V2 and V3.
+
+No other exercise types.
+
+Full Conjugation
+
+Verify:
+
+Exercises are generated from all enabled tenses exactly as before.
+
+Nothing should be missing.
+
+Mistakes Review
+
+Verify that the refactor did not affect Mistakes Review.
+
+The exact recorded mistake must still be reconstructed.
+
+Context Mode
+
+Repeat the verification with Context Mode enabled.
+
+For every mode confirm that:
+
+only compatible gap-fill sentences appear;
+no sentence from another tense appears;
+answer validation works correctly;
+hints still work;
+inline letter highlighting still works.
+Randomization
+
+For every Mixed mode verify that:
+
+all expected tenses eventually appear;
+distribution looks reasonably balanced;
+one tense is not unintentionally favored.
+Regression Check
+
+Confirm that the Training Mode redesign did not change:
+
+SRS scheduling
+Daily progress
+Correct/Incorrect counters
+Mistakes recording
+Mistakes Review
+Statistics
+Dictionary
+Daily goal tracking
+Acceptance Criteria
+
+The task is complete only if:
+
+every Training Mode has been tested in the running app;
+every Context Mode combination has been tested;
+no incorrect tense appears in any mode;
+no missing tense exists;
+no regressions are found.
+
+Please provide a concise QA report listing:
+
+every mode tested;
+number of exercises generated for each mode;
+any issues found (if any);
+confirmation that all tests passed.
