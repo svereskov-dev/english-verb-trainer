@@ -201,6 +201,7 @@ export function generateExerciseFromConfig(
   config: SessionConfig,
   difficulty: DifficultyLevel,
   mistakeVerbs?: string[],
+  forceType?: ExerciseMode,
 ): ExerciseItem {
   // 1. Resolve verb pool
   let pool: Verb[] =
@@ -230,8 +231,12 @@ export function generateExerciseFromConfig(
   ];
 
   // 7. Pick a type and generate
+  // forceType lets the caller guarantee a specific mode (e.g. "gapfill" when
+  // Context Mode is first enabled, so the user immediately sees a context sentence).
+  const resolvedType =
+    forceType && types.includes(forceType) ? forceType : pick(types);
   let exercise: ExerciseItem;
-  switch (pick(types)) {
+  switch (resolvedType) {
     case "verbform":
       exercise = makeVerbForm(pool, tenses);
       break;

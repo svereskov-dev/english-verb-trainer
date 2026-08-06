@@ -86,8 +86,11 @@ export function useExerciseSession(config: SessionConfig) {
   }
 
   // Keep latest values in refs so nextExercise closure is never stale
-  const configRef       = useRef(config);
-  const mistakeVerbsRef = useRef(mistakeVerbs);
+  const configRef             = useRef(config);
+  const mistakeVerbsRef       = useRef(mistakeVerbs);
+  // Track the previous contextEnabled so we can detect a false→true transition
+  // and guarantee the first exercise after enabling Context is a gapfill.
+  const prevContextEnabledRef = useRef(config.contextEnabled);
   configRef.current       = config;
   mistakeVerbsRef.current = mistakeVerbs;
 
@@ -149,6 +152,12 @@ export function useExerciseSession(config: SessionConfig) {
       return;
     }
 
+    // When the user just enabled Context Mode, guarantee the first exercise is a
+    // gapfill so the change is immediately visible (random pick could give verbform).
+    const contextJustEnabled =
+      config.contextEnabled && !prevContextEnabledRef.current;
+    prevContextEnabledRef.current = config.contextEnabled;
+
     setFeedback(null);
     setShowAnswer(null);
     setCurrentExercise(
@@ -156,6 +165,7 @@ export function useExerciseSession(config: SessionConfig) {
         config,
         settings.difficulty,
         config.mistakesOnly ? mistakeVerbs : undefined,
+        contextJustEnabled ? "gapfill" : undefined,
       ),
     );
     // Bump so LetterBuilder / AnswerInput always remount on a fresh exercise,
