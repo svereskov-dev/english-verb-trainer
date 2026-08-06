@@ -1,0 +1,159 @@
+Refactor Training Mode to match the English Tenses timeline
+
+This is an intentional UX redesign, not a bug fix.
+
+Goal
+
+The structure of Training Mode should match the structure of the English Tenses screen.
+
+At the moment users learn the tenses using the timeline, but then encounter a completely different organization in Training Mode (Continuous Forms, Perfect Forms, etc.).
+
+This creates unnecessary cognitive load because the same grammar is organized in two different ways.
+
+The goal is to make both screens follow exactly the same mental model.
+
+Important requirement
+
+This is a UI/UX refactor only.
+
+Do NOT change:
+
+exercise generation logic
+spaced repetition
+review mode
+progress tracking
+mistake tracking
+exercise types
+saved settings
+database structure
+
+Only reorganize the Training Mode interface.
+
+New Training Mode structure
+
+Replace the current structure with the following:
+
+Past Tenses
+
+Buttons:
+
+Past Simple
+Past Continuous
+Past Perfect
+Past Perfect Continuous
+Mixed
+Present Tenses
+
+Buttons:
+
+Present Simple
+Present Continuous
+Present Perfect
+Present Perfect Continuous
+Mixed
+Future Tenses
+
+Buttons:
+
+Future Simple
+Future Continuous
+Future Perfect
+Future Perfect Continuous
+Mixed
+Irregular Verb Forms
+
+Buttons:
+
+Past Simple (V2)
+Past Participle (V3)
+Mixed
+
+This section is intentionally separated because these are verb forms, not tenses.
+
+Full Conjugation
+
+Keep the existing section exactly as it is.
+
+All Tenses
+
+No logic changes.
+
+Mistakes Review
+
+Keep exactly as it works now.
+
+Relationship with the English Tenses screen
+
+The order, naming and terminology should match the English Tenses screen whenever possible.
+
+For example:
+
+English Tenses
+
+Past
+→ Past Simple
+→ Past Continuous
+→ Past Perfect
+→ Past Perfect Continuous
+
+Training Mode
+
+Past Tenses
+→ Past Simple
+→ Past Continuous
+→ Past Perfect
+→ Past Perfect Continuous
+
+Users should immediately recognize that they are selecting the same grammar categories they have already learned on the timeline.
+
+Remove the old grouping
+
+The following sections should disappear:
+
+Continuous Forms
+Perfect Forms
+
+Although technically correct, these groups are less intuitive for learners than grouping by Past / Present / Future.
+
+Preserve existing functionality
+
+Every existing training mode must continue to work exactly as before.
+
+Only the navigation hierarchy changes.
+
+For example:
+
+Old:
+
+Continuous Forms
+    Present
+
+becomes
+
+Present Tenses
+    Present Continuous
+
+using the exact same underlying exercise generator.
+
+Likewise:
+
+Perfect Forms
+    Future
+
+becomes
+
+Future Tenses
+    Future Perfect
+
+No new exercise logic should be implemented.
+
+UX goal
+
+After this refactor, users should feel that:
+
+they study grammar on the English Tenses screen;
+they practice the same grammar inside Training Mode.
+
+The application should have one consistent mental model instead of two different navigation systems.
+
+This redesign is intended to make the app feel more coherent, easier to learn, and more intuitive for first-time users.

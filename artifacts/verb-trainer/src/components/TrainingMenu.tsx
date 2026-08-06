@@ -27,42 +27,62 @@ interface GroupDef {
 }
 
 const GROUPS: GroupDef[] = [
+  // ── Past Tenses ─────────────────────────────────────────────────────────────
   {
-    id: "irregular",
-    label: "Irregular Verbs",
+    id: "past-tenses",
+    label: "Past Tenses",
     presets: [
-      { id: "irr-past",  label: "Past Simple",      exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "past" },
-      { id: "irr-pp",    label: "Past Participle",   exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "pastParticiple" },
-      { id: "irr-mixed", label: "Mixed",             exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "mixed" },
+      // "past-simple" is a new ID (no old equivalent); cont-past/perf-past kept for saved-config compat.
+      { id: "past-simple", label: "Past Simple",             exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastSimple"] },
+      { id: "cont-past",   label: "Past Continuous",         exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastContinuous"] },
+      { id: "perf-past",   label: "Past Perfect",            exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastPerfect"] },
+      { id: "past-pc",     label: "Past Perfect Continuous", exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastPerfectContinuous"] },
+      { id: "past-mixed",  label: "Mixed",                   exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastSimple", "pastContinuous", "pastPerfect", "pastPerfectContinuous"] },
     ],
   },
+
+  // ── Present Tenses ──────────────────────────────────────────────────────────
   {
-    id: "present-simple",
-    label: "Present Simple",
+    id: "present-tenses",
+    label: "Present Tenses",
     presets: [
-      { id: "ps-all", label: "All Subjects", exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentSimple"] },
+      // ps-all / cont-pres / perf-pres kept for saved-config compat.
+      { id: "ps-all",      label: "Present Simple",             exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentSimple"] },
+      { id: "cont-pres",   label: "Present Continuous",         exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentContinuous"] },
+      { id: "perf-pres",   label: "Present Perfect",            exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentPerfect"] },
+      { id: "pres-pc",     label: "Present Perfect Continuous", exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentPerfectContinuous"] },
+      { id: "pres-mixed",  label: "Mixed",                      exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentSimple", "presentContinuous", "presentPerfect", "presentPerfectContinuous"] },
     ],
   },
+
+  // ── Future Tenses ───────────────────────────────────────────────────────────
   {
-    id: "continuous",
-    label: "Continuous Forms",
+    id: "future-tenses",
+    label: "Future Tenses",
     presets: [
-      { id: "cont-pres",  label: "Present",  exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentContinuous"] },
-      { id: "cont-past",  label: "Past",     exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastContinuous"] },
-      { id: "cont-fut",   label: "Future",   exerciseTypes: ["verbform"], verbPool: "all", tenses: ["futureContinuous"] },
-      { id: "cont-mixed", label: "Mixed",    exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentContinuous", "pastContinuous", "futureContinuous"] },
+      // cont-fut / perf-fut kept for saved-config compat; others are new IDs.
+      { id: "fut-simple",  label: "Future Simple",             exerciseTypes: ["verbform"], verbPool: "all", tenses: ["futureSimple"] },
+      { id: "cont-fut",    label: "Future Continuous",         exerciseTypes: ["verbform"], verbPool: "all", tenses: ["futureContinuous"] },
+      { id: "perf-fut",    label: "Future Perfect",            exerciseTypes: ["verbform"], verbPool: "all", tenses: ["futurePerfect"] },
+      { id: "fut-pc",      label: "Future Perfect Continuous", exerciseTypes: ["verbform"], verbPool: "all", tenses: ["futurePerfectContinuous"] },
+      { id: "fut-mixed",   label: "Mixed",                     exerciseTypes: ["verbform"], verbPool: "all", tenses: ["futureSimple", "futureContinuous", "futurePerfect", "futurePerfectContinuous"] },
     ],
   },
+
+  // ── Irregular Verb Forms ────────────────────────────────────────────────────
+  // Intentionally separate: these are verb forms, not tenses.
   {
-    id: "perfect",
-    label: "Perfect Forms",
+    id: "irregular-forms",
+    label: "Irregular Verb Forms",
     presets: [
-      { id: "perf-pres",  label: "Present", exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentPerfect"] },
-      { id: "perf-past",  label: "Past",    exerciseTypes: ["verbform"], verbPool: "all", tenses: ["pastPerfect"] },
-      { id: "perf-fut",   label: "Future",  exerciseTypes: ["verbform"], verbPool: "all", tenses: ["futurePerfect"] },
-      { id: "perf-mixed", label: "Mixed",   exerciseTypes: ["verbform"], verbPool: "all", tenses: ["presentPerfect", "pastPerfect", "futurePerfect"] },
+      // irr-* IDs kept for saved-config compat; labels clarified with V2/V3 notation.
+      { id: "irr-past",  label: "Past Simple (V2)",    exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "past" },
+      { id: "irr-pp",    label: "Past Participle (V3)", exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "pastParticiple" },
+      { id: "irr-mixed", label: "Mixed",                exerciseTypes: ["irregular"], verbPool: "irregular", irregularForm: "mixed" },
     ],
   },
+
+  // ── Full Conjugation ────────────────────────────────────────────────────────
   {
     id: "full",
     label: "Full Conjugation",
@@ -70,6 +90,8 @@ const GROUPS: GroupDef[] = [
       { id: "full-all", label: "All Tenses", exerciseTypes: ["verbform"], verbPool: "all" },
     ],
   },
+
+  // ── Mistakes Review ─────────────────────────────────────────────────────────
   {
     id: "mistakes",
     label: "Mistakes Review",
