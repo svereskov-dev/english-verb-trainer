@@ -23,7 +23,7 @@ export interface SessionConfig {
   reviewVerbs?: string[];      // temporary filtered list from Mistakes page (verb names)
   reviewMistakeIds?: string[]; // specific mistake record IDs (preserves type+tense+form)
   contextEnabled: boolean;
-  letterBuilderEnabled?: boolean; // when true, 50% of exercises use letter-picker UI
+  letterBuilderEnabled?: boolean; // when true, every exercise uses letter-picker UI
   userCustomized?: boolean;  // true after first manual selection
 }
 
@@ -261,9 +261,9 @@ export function generateExerciseFromConfig(
       exercise = makeVerbForm(pool, tenses);
   }
 
-  // 8. Randomly assign Letter Builder UI (50/50) when enabled
+  // 8. Assign Letter Builder UI to every exercise when enabled
   if (config.letterBuilderEnabled) {
-    exercise.letterBuilder = Math.random() < 0.5;
+    exercise.letterBuilder = true;
   }
 
   return exercise;

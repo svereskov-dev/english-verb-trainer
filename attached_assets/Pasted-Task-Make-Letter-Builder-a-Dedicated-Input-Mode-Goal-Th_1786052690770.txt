@@ -1,0 +1,84 @@
+Task — Make Letter Builder a Dedicated Input Mode
+Goal
+
+The current behavior is confusing.
+
+When the user enables Letter Builder, the app still mixes two different input methods:
+
+Letter Builder
+Classic typing
+
+This is not what users expect.
+
+If the Letter Builder toggle is ON, every exercise should use Letter Builder.
+
+New behavior
+Letter Builder = ON
+
+When the toggle is enabled:
+
+every generated exercise must use the Letter Builder interface;
+no classic typing exercises should appear;
+no random mixing between the two input methods.
+
+The input method remains Letter Builder until the user turns the toggle OFF.
+
+Letter Builder = OFF
+
+When the toggle is disabled:
+
+every exercise must use the existing typing input;
+Letter Builder should never appear.
+Important clarification
+
+This change affects only the input method.
+
+It must not change:
+
+exercise generation;
+verb selection;
+tense selection;
+Context Mode;
+SRS;
+Daily Progress;
+Mistakes Review;
+statistics;
+answer validation.
+
+The generator should continue producing exactly the same exercises.
+
+Only the way the user enters the answer changes.
+
+Compatibility with Context Mode
+
+Letter Builder must continue to work with both exercise types:
+
+Verb Form exercises
+Context Sentence (Gap Fill) exercises
+
+If both toggles are ON:
+
+every Context exercise should also use Letter Builder.
+
+If Context Mode is OFF:
+
+every Verb Form exercise should use Letter Builder.
+
+No exceptions.
+
+Persistence
+
+The selected input mode must be saved exactly like the existing Context Mode preference.
+
+After restarting the application:
+
+if Letter Builder was ON, it should remain ON;
+if it was OFF, it should remain OFF.
+Acceptance criteria
+✅ Letter Builder ON → 100% of exercises use Letter Builder.
+✅ Letter Builder OFF → 100% of exercises use classic typing.
+✅ No mixing between input methods.
+✅ Context Mode remains fully compatible.
+✅ Exercise generation is unchanged.
+✅ SRS, statistics, Mistakes Review, Daily Progress and answer validation continue to work exactly as before.
+✅ The selected mode persists after restarting the app.

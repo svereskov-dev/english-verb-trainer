@@ -98,23 +98,11 @@ describe("generateExerciseFromConfig — letterBuilderEnabled: false", () => {
 describe("generateExerciseFromConfig — letterBuilderEnabled: true", () => {
   const config = makeConfig({ letterBuilderEnabled: true });
 
-  it("sets letterBuilder to a boolean on every exercise", () => {
+  it("sets letterBuilder to true on every exercise", () => {
     for (let i = 0; i < 50; i++) {
       const ex = generateExerciseFromConfig(config, "intermediate");
-      expect(typeof ex.letterBuilder).toBe("boolean");
+      expect(ex.letterBuilder).toBe(true);
     }
-  });
-
-  it("produces both true and false across many exercises (50/50 coin-flip)", () => {
-    let trueCount = 0;
-    const TRIALS = 200;
-    for (let i = 0; i < TRIALS; i++) {
-      const ex = generateExerciseFromConfig(config, "intermediate");
-      if (ex.letterBuilder) trueCount++;
-    }
-    // With p=0.5 and n=200 we expect roughly 100; accept 30–170 to avoid flakiness
-    expect(trueCount).toBeGreaterThan(30);
-    expect(trueCount).toBeLessThan(170);
   });
 });
 
@@ -137,7 +125,7 @@ describe("SessionConfig — letterBuilderEnabled field", () => {
     const results = Array.from({ length: 60 }, () =>
       generateExerciseFromConfig(config, "advanced")
     );
-    const withFlag = results.filter(ex => typeof ex.letterBuilder === "boolean");
+    const withFlag = results.filter(ex => ex.letterBuilder === true);
     expect(withFlag).toHaveLength(60);
   });
 
@@ -244,7 +232,7 @@ describe("Letter Builder toggle — coexistence with existing modes", () => {
         expect(ex.type).toBeTruthy();
         const ans = Array.isArray(ex.answer) ? ex.answer[0] : ex.answer;
         expect(ans.length).toBeGreaterThan(0);
-        expect(typeof ex.letterBuilder).toBe("boolean");
+        expect(ex.letterBuilder).toBe(true);
       }
     });
 
