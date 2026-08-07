@@ -1,0 +1,96 @@
+Task: Add “Repeat Guide” to Settings
+
+Add a new “Repeat Guide” option to the Settings page.
+
+1. Purpose
+
+Users should be able to revisit the onboarding guide after completing the initial onboarding, without having to reset the entire application.
+
+The feature should reopen the onboarding guide, but only show onboarding screens 2 and 3.
+
+Do not show:
+
+Screen 1 — Welcome
+Screen 4 — Daily word goal selection
+
+The purpose is simply to let users refresh their understanding of how the app works.
+
+2. Settings UI
+
+Add a new settings item:
+
+Repeat Guide
+
+It should be placed in a logical location within Settings, preferably near other general/help/information options rather than among training preferences.
+
+Use the existing Settings visual style and components.
+
+The item should be clearly tappable/clickable.
+
+3. Behaviour
+
+When the user taps Repeat Guide:
+
+Open the existing onboarding/guide flow.
+Start directly from screen 2.
+Allow the user to navigate normally through:
+Screen 2 — Training Mode / English Tenses / Exercise field
+Screen 3 — Everything you need / navigation overview
+After screen 3, the user should exit the guide and return to the normal application.
+Do not show the Daily Word Goal screen.
+Do not modify the user's existing daily goal or any other settings.
+4. Important: do not duplicate the onboarding
+
+Reuse the existing onboarding screens/components and navigation logic.
+
+Do not create a second, separate version of the guide.
+
+Ideally, the onboarding flow should accept a starting screen/index or equivalent parameter, for example:
+
+startFrom = 1
+
+or another implementation appropriate to the existing architecture.
+
+This way, future changes to the onboarding content automatically apply both to:
+
+the initial onboarding;
+Repeat Guide.
+5. Do not reset onboarding state
+
+Tapping Repeat Guide must NOT:
+
+reset onboarding completion;
+reset training progress;
+reset mistakes;
+reset statistics;
+reset SRS data;
+reset daily goal;
+modify Training Mode;
+modify Context Mode / Letter Builder settings.
+
+It is purely a read-only tutorial replay.
+
+6. Navigation
+
+The existing onboarding navigation should continue to work:
+
+User can go forward with Next.
+User can go backward using the existing back navigation mechanism.
+The final screen in this replay should simply return the user to the app.
+
+There should be no additional “Start Learning” action that changes or resets anything.
+
+7. Acceptance criteria
+ Settings contains a visible Repeat Guide option.
+ Tapping it opens the existing onboarding UI.
+ The guide starts directly on screen 2.
+ Screen 1 is never shown.
+ Screen 3 is shown normally.
+ Screen 4 / Daily Word Goal is never shown.
+ User can navigate back and forth between screens 2 and 3.
+ Leaving the guide does not modify any user data or settings.
+ Existing initial onboarding continues to work exactly as before.
+ No duplicated onboarding implementation is introduced.
+ The feature works correctly on both Android and the existing web/PWA version if the same Settings screen is shared.
+
+Important: before implementing, inspect the current onboarding architecture and reuse the existing components/state/navigation rather than creating a parallel flow.

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { deleteDB } from "idb";
 import { useSettings } from "../hooks/useSettings";
+import { Onboarding } from "../components/Onboarding";
 import { BottomNav } from "../components/BottomNav";
 import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
@@ -22,8 +23,19 @@ export default function Settings() {
   const { settings, updateSettings } = useSettings();
   const [clearing, setClearing] = useState(false);
   const [clearError, setClearError] = useState<string | null>(null);
+  const [showGuide, setShowGuide] = useState(false);
 
   if (!settings) return null;
+
+  if (showGuide) {
+    return (
+      <Onboarding
+        startScreen={1}
+        endScreen={2}
+        onComplete={() => setShowGuide(false)}
+      />
+    );
+  }
 
   /**
    * Execute the full data-wipe sequence.
@@ -135,6 +147,15 @@ export default function Settings() {
               </SelectContent>
             </Select>
           </div>
+
+          <Button
+            type="button"
+            className="w-full"
+            variant="outline"
+            onClick={() => setShowGuide(true)}
+          >
+            Repeat Guide
+          </Button>
 
           {/* Clear Data — uses AlertDialog instead of window.confirm() so it
               works reliably on Samsung WebView and all Capacitor environments. */}

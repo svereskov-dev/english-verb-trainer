@@ -6,6 +6,8 @@ import { ChevronLeft, Dumbbell } from "lucide-react";
 
 interface OnboardingProps {
   onComplete: (dailyGoal: number) => void;
+  startScreen?: number;
+  endScreen?: number;
 }
 
 const BG = "#060C18";
@@ -375,8 +377,12 @@ function Screen4({
 
 // ─── Root ──────────────────────────────────────────────────────────────────────
 
-export function Onboarding({ onComplete }: OnboardingProps) {
-  const [screen, setScreen] = useState(0);
+export function Onboarding({
+  onComplete,
+  startScreen = 0,
+  endScreen = 3,
+}: OnboardingProps) {
+  const [screen, setScreen] = useState(startScreen);
   const [dailyGoal, setDailyGoal] = useState(20);
   const [transitionDirection, setTransitionDirection] = useState<"forward" | "back">("forward");
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
@@ -386,9 +392,15 @@ export function Onboarding({ onComplete }: OnboardingProps) {
     setScreen(nextScreen);
   };
 
-  const next = () => goTo(Math.min(screen + 1, 3), "forward");
+  const next = () => {
+    if (screen >= endScreen) {
+      onComplete(dailyGoal);
+      return;
+    }
+    goTo(Math.min(screen + 1, endScreen), "forward");
+  };
   const previous = () => {
-    if (screen > 0) goTo(screen - 1, "back");
+    if (screen > startScreen) goTo(screen - 1, "back");
   };
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
@@ -407,8 +419,8 @@ export function Onboarding({ onComplete }: OnboardingProps) {
     const isHorizontalSwipe = Math.abs(deltaX) >= 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25;
 
     if (!isHorizontalSwipe) return;
-    if (deltaX < 0 && screen < 3) next();
-    if (deltaX > 0 && screen > 0) previous();
+    if (deltaX < 0 && screen <= endScreen) next();
+    if (deltaX > 0 && screen > startScreen) previous();
   };
 
   return (
