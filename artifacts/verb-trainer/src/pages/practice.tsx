@@ -9,7 +9,7 @@ import { LetterBuilder } from "../components/LetterBuilder";
 import { ProgressBar } from "../components/ProgressBar";
 import { TrainingMenu, DEFAULT_SESSION } from "../components/TrainingMenu";
 import { SessionConfig } from "../engine/exercises";
-import { Check, X, SkipForward, Sparkles, ChevronRight } from "lucide-react";
+import { Check, X, SkipForward, ChevronRight } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
@@ -303,7 +303,6 @@ export default function Practice() {
               className="rounded-full shrink-0 gap-1.5 font-semibold border-primary/30 hover:border-primary/50 hover:bg-card hover:text-foreground shadow-sm"
               aria-label="English Tenses reference"
             >
-              <Sparkles size={13} className="text-primary" />
               <span>English Tenses</span>
               <ChevronRight size={13} className="text-muted-foreground -ml-0.5" />
             </Button>
