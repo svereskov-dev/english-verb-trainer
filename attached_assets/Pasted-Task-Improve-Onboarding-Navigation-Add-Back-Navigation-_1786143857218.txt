@@ -1,0 +1,103 @@
+Task: Improve Onboarding Navigation — Add Back Navigation
+
+We have finished the main onboarding content and the current onboarding flow works correctly, but users can only move forward through the screens. There is no way to return to a previous screen.
+
+Please improve the onboarding navigation without adding a large secondary “Back” button next to the main CTA.
+
+Goal
+
+Users should be able to:
+
+move forward through onboarding as they do now;
+return to the previous onboarding screen if they want to reread or verify something;
+still have a very clear primary action at the bottom;
+use either buttons or gestures, without making the interface visually heavy.
+1. Add a subtle Back arrow
+
+Add a small left-pointing arrow (← or an appropriate icon) in the top-left corner of the onboarding screen.
+
+Behavior:
+
+On screens 2, 3 and 4: tapping the arrow moves to the previous onboarding screen.
+On screen 1: the arrow should either be hidden or disabled, because there is no previous screen.
+The arrow should be visually subtle and secondary to the main CTA.
+Do not create a large “Back” button at the bottom.
+
+The existing large bottom button (Next / Start Learning) remains the primary navigation control.
+
+2. Add horizontal swipe navigation
+
+Support natural horizontal swipe gestures:
+
+swipe left → next onboarding screen;
+swipe right → previous onboarding screen.
+
+The swipe should feel natural and responsive, but should not interfere with normal vertical scrolling or accidental touches.
+
+If the onboarding screens currently don't require vertical scrolling, horizontal swipe navigation can be implemented directly.
+
+3. Keep the existing bottom CTA logic
+
+Do not change the current button structure:
+
+Screens 1–3: Next
+Screen 4: Start Learning
+
+The bottom CTA should remain visually dominant.
+
+The new back arrow and swipe gestures are secondary navigation, not replacements for the CTA.
+
+4. Preserve onboarding state
+
+When navigating backward:
+
+do not reset onboarding state;
+do not recreate the onboarding session unnecessarily;
+simply display the previous screen with all its existing content;
+when moving forward again, the user should continue normally.
+5. Animation / transition
+
+Use the existing onboarding transition if one already exists.
+
+If there is no transition, add a subtle horizontal slide animation:
+
+moving forward → screen slides in from the right;
+moving backward → screen slides in from the left.
+
+Keep it quick and unobtrusive. The goal is to make the direction of navigation intuitively clear.
+
+6. Important UX requirement
+
+The onboarding should now feel like a reversible sequence, rather than a one-way wizard.
+
+A user should be able to reach the final screen, realize:
+
+“Wait, what was written on the previous screen?”
+
+and simply tap the small arrow or swipe right to go back, read it, and then continue to Start Learning.
+
+7. Do not change
+
+Please do not change:
+
+onboarding text/content;
+screen order;
+illustrations;
+progress indicators;
+CTA wording;
+onboarding completion logic;
+the existing visual design/theme.
+
+This task is only about improving navigation.
+
+Acceptance criteria
+ User can navigate forward using the existing CTA.
+ User can navigate backward using a subtle top-left arrow.
+ Back arrow is unavailable/hidden on the first screen.
+ User can swipe left/right between onboarding screens.
+ Swipe navigation does not interfere with normal interaction.
+ Bottom CTA remains the primary visual action.
+ No large “Back” button is added.
+ Returning to a previous screen does not reset onboarding state.
+ Existing onboarding completion behavior remains unchanged.
+ Forward/backward transitions feel visually consistent.

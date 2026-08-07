@@ -1,8 +1,8 @@
 // Onboarding — direct port of the approved Canvas mockups (Screen1–4)
 // Uses inline styles verbatim from the mockup source to guarantee visual fidelity.
 
-import { useState } from "react";
-import { Dumbbell } from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowLeft, Dumbbell } from "lucide-react";
 
 interface OnboardingProps {
   onComplete: (dailyGoal: number) => void;
@@ -130,7 +130,7 @@ function PracticePreview() {
 function Screen2({ onNext }: { onNext: () => void }) {
   return (
     <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <div style={{ padding: "4px 24px 8px" }}>
+      <div style={{ padding: "4px 24px 8px 54px" }}>
         <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>Экран тренировки</h2>
       </div>
       <div style={{ padding: "0 20px" }}>
@@ -192,7 +192,7 @@ const tabs = [
 function Screen3({ onNext }: { onNext: () => void }) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <div style={{ padding: "8px 24px 0" }}>
+      <div style={{ padding: "8px 24px 0 54px" }}>
         <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: "0 0 4px", letterSpacing: "-0.3px" }}>
           Всё необходимое —{" "}<br />под рукой
         </h2>
@@ -270,13 +270,19 @@ const goals = [
   { words: 50, emoji: "🚀" },
 ];
 
-function Screen4({ onComplete }: { onComplete: (dailyGoal: number) => void }) {
-  const [selected, setSelected] = useState(20);
-
+function Screen4({
+  selected,
+  onSelect,
+  onComplete,
+}: {
+  selected: number;
+  onSelect: (dailyGoal: number) => void;
+  onComplete: (dailyGoal: number) => void;
+}) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
       <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "8px 24px 0" }}>
-        <h2 style={{ color: FG, fontSize: 26, fontWeight: 700, margin: "0 0 12px", letterSpacing: "-0.3px", lineHeight: 1.25 }}>
+        <h2 style={{ color: FG, fontSize: 26, fontWeight: 700, margin: "0 0 12px", paddingLeft: 30, letterSpacing: "-0.3px", lineHeight: 1.25 }}>
           Остался последний шаг
         </h2>
         <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.6, margin: "0 0 32px" }}>
@@ -288,7 +294,7 @@ function Screen4({ onComplete }: { onComplete: (dailyGoal: number) => void }) {
             return (
               <button
                 key={g.words}
-                onClick={() => setSelected(g.words)}
+                onClick={() => onSelect(g.words)}
                 style={{
                   background: isSelected ? "rgba(108,71,255,0.12)" : CARD,
                   border: `1.5px solid ${isSelected ? PRIMARY : BORDER}`,
@@ -336,15 +342,104 @@ function Screen4({ onComplete }: { onComplete: (dailyGoal: number) => void }) {
 
 export function Onboarding({ onComplete }: OnboardingProps) {
   const [screen, setScreen] = useState(0);
-  const next = () => setScreen((s) => Math.min(s + 1, 3));
+  const [dailyGoal, setDailyGoal] = useState(20);
+  const [transitionDirection, setTransitionDirection] = useState<"forward" | "back">("forward");
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const goTo = (nextScreen: number, direction: "forward" | "back") => {
+    setTransitionDirection(direction);
+    setScreen(nextScreen);
+  };
+
+  const next = () => goTo(Math.min(screen + 1, 3), "forward");
+  const previous = () => {
+    if (screen > 0) goTo(screen - 1, "back");
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start) return;
+
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+    const isHorizontalSwipe = Math.abs(deltaX) >= 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25;
+
+    if (!isHorizontalSwipe) return;
+    if (deltaX < 0 && screen < 3) next();
+    if (deltaX > 0 && screen > 0) previous();
+  };
 
   return (
-    <div style={{ width: "100%", height: "100dvh", background: BG, fontFamily: "'Inter', sans-serif", display: "flex", justifyContent: "center", overflow: "hidden" }}>
-      <div style={{ width: "100%", maxWidth: 480, height: "100%", display: "flex", flexDirection: "column", paddingTop: "max(env(safe-area-inset-top, 0px), 28px)" }}>
-        {screen === 0 && <Screen1 onNext={next} />}
-        {screen === 1 && <Screen2 onNext={next} />}
-        {screen === 2 && <Screen3 onNext={next} />}
-        {screen === 3 && <Screen4 onComplete={onComplete} />}
+    <div
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      style={{ width: "100%", height: "100dvh", background: BG, fontFamily: "'Inter', sans-serif", display: "flex", justifyContent: "center", overflow: "hidden", touchAction: "pan-y" }}
+    >
+      <style>{`
+        @keyframes onboarding-slide-forward {
+          from { opacity: 0.6; transform: translateX(18px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes onboarding-slide-back {
+          from { opacity: 0.6; transform: translateX(-18px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+      `}</style>
+      <div style={{ width: "100%", maxWidth: 480, height: "100%", display: "flex", flexDirection: "column", paddingTop: "max(env(safe-area-inset-top, 0px), 28px)", position: "relative" }}>
+        {screen > 0 && (
+          <button
+            type="button"
+            aria-label="Back"
+            onClick={previous}
+            style={{
+              position: "absolute",
+              top: 4,
+              left: 14,
+              width: 36,
+              height: 36,
+              padding: 0,
+              border: "none",
+              borderRadius: 18,
+              background: "transparent",
+              color: MUTED,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              zIndex: 2,
+            }}
+          >
+            <ArrowLeft size={20} strokeWidth={1.8} />
+          </button>
+        )}
+        <div
+          key={screen}
+          style={{
+            flex: 1,
+            minHeight: 0,
+            display: "flex",
+            flexDirection: "column",
+            animation: `${transitionDirection === "forward" ? "onboarding-slide-forward" : "onboarding-slide-back"} 180ms ease-out`,
+          }}
+        >
+          {screen === 0 && <Screen1 onNext={next} />}
+          {screen === 1 && <Screen2 onNext={next} />}
+          {screen === 2 && <Screen3 onNext={next} />}
+          {screen === 3 && (
+            <Screen4
+              selected={dailyGoal}
+              onSelect={setDailyGoal}
+              onComplete={onComplete}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
