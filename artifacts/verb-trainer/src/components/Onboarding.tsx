@@ -106,18 +106,31 @@ function PracticePreview() {
       <div style={{ padding: "10px 12px 0" }}>
         <div style={{ background: CARD, borderRadius: 12, border: `1px solid ${BORDER}`, padding: "10px 14px" }}>
           <div style={{ color: MUTED, fontSize: 10, fontWeight: 500, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>Present Simple</div>
-          <div style={{ color: FG, fontSize: 13, lineHeight: 1.5 }}>
-            She <span style={{ color: PRIMARY, fontWeight: 700 }}>_____</span> English every day.
-          </div>
-          <div style={{ color: MUTED, fontSize: 11, marginTop: 4 }}>speak → ?</div>
+          <div style={{ color: MUTED, fontSize: 9, textTransform: "uppercase", letterSpacing: "0.5px", marginTop: 6 }}>Verb</div>
+          <div style={{ color: PRIMARY, fontSize: 18, lineHeight: 1.25, fontWeight: 700 }}>speak</div>
+          <div style={{ color: MUTED, fontSize: 10, marginTop: 2 }}>he / she / it → speaks</div>
         </div>
       </div>
-      <div style={{ padding: "8px 12px 10px", display: "flex", gap: 8 }}>
-        <div style={{ flex: 1, background: "#1A2A44", borderRadius: 10, border: `1.5px solid ${PRIMARY}`, padding: "7px 12px", display: "flex", alignItems: "center", position: "relative" }}>
-          <span style={{ color: FG, fontSize: 12, fontWeight: 500 }}>speaks</span>
+      <div style={{ padding: "8px 12px 10px", display: "flex", flexDirection: "column", gap: 7 }}>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 4, minHeight: 27 }}>
+          {"speaks".split("").map((letter, index) => (
+            <div key={`${letter}-${index}`} style={{
+              width: 18, height: 21, borderBottom: `2px solid ${index < 2 ? PRIMARY : "#2A3A58"}`,
+              color: index < 2 ? FG : "transparent", fontSize: 11, fontWeight: 700,
+              display: "flex", alignItems: "flex-start", justifyContent: "center",
+            }}>{index < 2 ? letter.toUpperCase() : letter}</div>
+          ))}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5, position: "relative" }}>
+          {["S", "P", "E", "A", "K"].map((letter, index) => (
+            <div key={`${letter}-choice-${index}`} style={{
+              width: 25, height: 27, borderRadius: 8, background: CARD,
+              border: `1px solid ${BORDER}`, color: FG, fontSize: 11, fontWeight: 700,
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>{letter}</div>
+          ))}
           <div style={{ position: "absolute", top: -8, right: -8, width: 18, height: 18, borderRadius: 9, background: PRIMARY, color: "#fff", fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>3</div>
         </div>
-        <button style={{ background: PRIMARY, border: "none", borderRadius: 10, color: "#fff", fontSize: 12, fontWeight: 600, padding: "7px 14px", cursor: "pointer" }}>Check</button>
       </div>
     </div>
   );
@@ -133,7 +146,7 @@ function Screen2({ onNext }: { onNext: () => void }) {
         <PracticePreview />
       </div>
       <div style={{ flex: 1, padding: "16px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
-        <Callout2 n={1} label="Training Mode" text="Настройте тренировку под себя: выберите формы глаголов и времена, которые хотите практиковать." />
+        <Callout2 n={1} label="Training Mode" text="Настройте обучение под себя: выберите формы глаголов и времена, которые хотите тренировать. Используйте режим Context sentences, чтобы практиковать глаголы в предложениях. Повысьте сложность заданий, отключив Letter Builder." />
         <Callout2 n={2} label="English Tenses" text="Наглядная схема времён английского языка, если захотите освежить знания." />
         <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат." />
       </div>
