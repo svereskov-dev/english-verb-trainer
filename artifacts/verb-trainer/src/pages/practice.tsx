@@ -309,7 +309,17 @@ export default function Practice() {
           )}
         </div>
 
-        {/* Row 2: Counters — hidden when keyboard is open */}
+        {/* Row 2: Daily Progress block — visible only when keyboard is closed.
+            Sits naturally below the top controls instead of at the screen edge. */}
+        {!keyboardVisible && (
+          <ProgressBar
+            current={dailyCorrect + dailyIncorrect}
+            total={dailyGoal}
+            goalReached={dailyCorrect + dailyIncorrect >= dailyGoal}
+          />
+        )}
+
+        {/* Row 3: Counters — hidden when keyboard is open */}
         {!keyboardVisible && (
           <div className="flex justify-end gap-3 mt-0.5">
             <div className="flex items-center gap-1 text-green-600">
@@ -321,16 +331,6 @@ export default function Practice() {
               <span className="font-bold text-sm">{dailyIncorrect}</span>
             </div>
           </div>
-        )}
-
-        {/* Row 3: Daily Progress block — visible only when keyboard is closed.
-            Sits naturally below the top controls instead of at the screen edge. */}
-        {!keyboardVisible && (
-          <ProgressBar
-            current={dailyCorrect + dailyIncorrect}
-            total={dailyGoal}
-            goalReached={dailyCorrect + dailyIncorrect >= dailyGoal}
-          />
         )}
       </div>
 
