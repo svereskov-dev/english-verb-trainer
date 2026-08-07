@@ -99,6 +99,7 @@ function PracticePreview() {
           <div style={{ color: MUTED, fontSize: 9, fontWeight: 500, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.5px" }}>Present Simple</div>
           <div style={{ color: MUTED, fontSize: 8, textTransform: "uppercase", letterSpacing: "0.5px", marginTop: 4 }}>Verb</div>
           <div style={{ color: PRIMARY, fontSize: 16, lineHeight: 1.2, fontWeight: 700 }}>speak</div>
+          <div style={{ color: MUTED, fontSize: 9, marginTop: 1 }}>he / she / it</div>
         </div>
       </div>
       <div style={{ padding: "6px 10px 8px", display: "flex", flexDirection: "column", gap: 5 }}>
