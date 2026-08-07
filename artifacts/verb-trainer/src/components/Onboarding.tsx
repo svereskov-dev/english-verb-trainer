@@ -182,11 +182,11 @@ const navIcons = {
 };
 
 const tabs = [
-  { key: "Home", label: "Главная", icon: navIcons.Home, desc: "Наблюдаем за статистикой ответов и ежедневным прогрессом." },
-  { key: "Practice", label: "Практика", icon: navIcons.Practice, desc: "Совершенствуем язык." },
-  { key: "Mistakes", label: "Ошибки", icon: navIcons.Mistakes, desc: "Изучаем список ошибок, допущенных в течение дня." },
-  { key: "Dictionary", label: "Словарь", icon: navIcons.Dictionary, desc: "При клике на глагол можно увидеть его перевод, транскрипцию и основные формы." },
-  { key: "Settings", label: "Настройки", icon: navIcons.Settings, desc: "Выбираем цель ежедневной тренировки." },
+  { key: "Home", label: "Home", icon: navIcons.Home, desc: "Наблюдаем за статистикой ответов и ежедневным прогрессом." },
+  { key: "Practice", label: "Practice", icon: navIcons.Practice, desc: "Совершенствуем язык." },
+  { key: "Mistakes", label: "Mistakes", icon: navIcons.Mistakes, desc: "Изучаем список ошибок, допущенных в течение дня." },
+  { key: "Dictionary", label: "Dictionary", icon: navIcons.Dictionary, desc: "При клике на глагол можно увидеть его перевод, транскрипцию и основные формы." },
+  { key: "Settings", label: "Settings", icon: navIcons.Settings, desc: "Выбираем цель ежедневной тренировки." },
 ];
 
 function Screen3({ onNext }: { onNext: () => void }) {
