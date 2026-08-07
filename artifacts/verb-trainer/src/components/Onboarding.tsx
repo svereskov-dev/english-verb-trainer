@@ -122,7 +122,7 @@ function PracticePreview() {
           ))}
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5, position: "relative" }}>
-          {["S", "P", "E", "A", "K"].map((letter, index) => (
+          {["D", "R", "E", "J", "F"].map((letter, index) => (
             <div key={`${letter}-choice-${index}`} style={{
               width: 25, height: 27, borderRadius: 8, background: CARD,
               border: `1px solid ${BORDER}`, color: FG, fontSize: 11, fontWeight: 700,
