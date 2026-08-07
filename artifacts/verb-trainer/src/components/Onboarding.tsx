@@ -196,7 +196,7 @@ function Screen2({
         <Pagination
           activeIndex={repeatGuide ? 0 : 1}
           totalDots={repeatGuide ? 2 : 4}
-          onBack={onBack}
+          onBack={repeatGuide ? undefined : onBack}
         />
         <button onClick={onNext} style={{
           width: "100%", height: 48, background: PRIMARY, border: "none",
