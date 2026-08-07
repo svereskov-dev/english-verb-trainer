@@ -1,0 +1,80 @@
+UI Fix: Daily Progress Layout and Typography
+
+Please make one final adjustment to the Daily Progress layout on the Training screen.
+
+1. Progress bar position
+
+Keep the progress bar directly below the top controls:
+
+[ Training Mode ]                    [ English Tenses ]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. Information row below the progress bar
+
+Under the progress bar, create a single information row:
+
+DAILY PROGRESS  0 / 20                         ✓ 0   × 0
+
+The exact spacing can be adjusted to fit the screen, but the hierarchy should be:
+
+Left side:
+
+DAILY PROGRESS
+immediately next to it: 0 / 20
+
+Right side:
+
+correct answers: ✓ 0
+incorrect answers: × 0
+3. Important: do NOT put 0 / 20 on the right
+
+The 0 / 20 value belongs specifically to Daily Progress, so it should remain visually next to the DAILY PROGRESS label.
+
+Do not place it on the right side of the screen near the correct/incorrect counters.
+
+This is important because the right side is already reserved for answer statistics.
+
+4. Typography unification
+
+Unify the typography of all four elements:
+
+DAILY PROGRESS
+0 / 20
+✓ 0
+× 0
+
+They should use the same font family, font size, font weight and general typographic treatment.
+
+The existing semantic colours should remain:
+
+✓ / correct → green
+× / incorrect → red
+Daily Progress text and 0 / 20 → existing neutral/progress styling
+
+The goal is for these four elements to look like parts of one coherent status/information row, rather than four unrelated UI elements.
+
+5. Preserve functionality
+
+Do not change:
+
+daily goal calculation;
+progress calculation;
+correct/incorrect counters;
+progress bar behaviour;
+Training Mode;
+English Tenses;
+any training logic.
+
+This is a layout and typography change only.
+
+Acceptance criteria
+ Training Mode and English Tenses remain on the top row.
+ Progress bar is directly below them.
+ DAILY PROGRESS is below the progress bar.
+ 0 / 20 is immediately next to DAILY PROGRESS.
+ ✓ 0 and × 0 remain grouped on the right.
+ 0 / 20 is NOT placed next to the correct/incorrect counters.
+ All four information elements use unified typography.
+ Layout remains clean and balanced on small phone screens.
+
+Please keep this as a minimal UI adjustment and do not restructure unrelated Training screen components.

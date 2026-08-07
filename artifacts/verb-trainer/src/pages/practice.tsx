@@ -9,7 +9,7 @@ import { LetterBuilder } from "../components/LetterBuilder";
 import { ProgressBar } from "../components/ProgressBar";
 import { TrainingMenu, DEFAULT_SESSION } from "../components/TrainingMenu";
 import { SessionConfig } from "../engine/exercises";
-import { Check, X, SkipForward, ChevronRight } from "lucide-react";
+import { SkipForward, ChevronRight } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
@@ -315,22 +315,10 @@ export default function Practice() {
           <ProgressBar
             current={dailyCorrect + dailyIncorrect}
             total={dailyGoal}
+            correct={dailyCorrect}
+            incorrect={dailyIncorrect}
             goalReached={dailyCorrect + dailyIncorrect >= dailyGoal}
           />
-        )}
-
-        {/* Row 3: Counters — hidden when keyboard is open */}
-        {!keyboardVisible && (
-          <div className="flex justify-end gap-3 mt-0.5">
-            <div className="flex items-center gap-1 text-green-600">
-              <Check size={15} />
-              <span className="font-bold text-sm">{dailyCorrect}</span>
-            </div>
-            <div className="flex items-center gap-1 text-red-500">
-              <X size={15} />
-              <span className="font-bold text-sm">{dailyIncorrect}</span>
-            </div>
-          </div>
         )}
       </div>
 
