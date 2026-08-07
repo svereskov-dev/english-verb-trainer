@@ -68,14 +68,14 @@ function Screen1({ onNext }: { onNext: () => void }) {
 
 function Callout2({ n, label, text }: { n: number; label: string; text: string }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 10, alignItems: "start" }}>
       <div style={{
-        width: 24, height: 24, borderRadius: 12, background: PRIMARY, color: "#fff",
+        width: 22, height: 22, borderRadius: 11, background: PRIMARY, color: "#fff",
         fontSize: 12, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
       }}>{n}</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{label}</div>
-        <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{text}</div>
+        <div style={{ color: FG, fontSize: 12, fontWeight: 600, lineHeight: "18px" }}>{label}</div>
+        <div style={{ color: MUTED, fontSize: 11, lineHeight: "16px" }}>{text}</div>
       </div>
     </div>
   );
@@ -83,53 +83,53 @@ function Callout2({ n, label, text }: { n: number; label: string; text: string }
 
 function PracticePreview() {
   return (
-    <div style={{ background: BG, borderRadius: 16, overflow: "hidden", border: `1px solid ${BORDER}`, position: "relative" }}>
+    <div style={{ background: BG, borderRadius: 14, overflow: "hidden", border: `1px solid ${BORDER}`, position: "relative" }}>
       <div style={{ background: "#1A2A44", height: 4, width: "100%" }}>
         <div style={{ background: PRIMARY, height: "100%", width: "40%", borderRadius: 2 }} />
       </div>
-      <div style={{ padding: "8px 12px", display: "flex", gap: 8, borderBottom: `1px solid ${BORDER}` }}>
-        <div style={{ background: "#1A2A44", borderRadius: 8, padding: "5px 10px", display: "flex", alignItems: "center", gap: 5, position: "relative" }}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
+      <div style={{ padding: "6px 10px", display: "flex", gap: 6, borderBottom: `1px solid ${BORDER}` }}>
+        <div style={{ background: "#1A2A44", borderRadius: 7, padding: "4px 8px", display: "flex", alignItems: "center", gap: 4, position: "relative" }}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
             <path d="M12 2L22 8.5V15.5L12 22L2 15.5V8.5Z"/><path d="M12 2v20M2 8.5l10 7 10-7"/>
           </svg>
-          <span style={{ color: FG, fontSize: 11, fontWeight: 600 }}>Training Mode</span>
-          <div style={{ position: "absolute", top: -8, right: -8, width: 18, height: 18, borderRadius: 9, background: PRIMARY, color: "#fff", fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>1</div>
+          <span style={{ color: FG, fontSize: 10, fontWeight: 600 }}>Training Mode</span>
+          <div style={{ position: "absolute", top: -7, right: -7, width: 16, height: 16, borderRadius: 8, background: PRIMARY, color: "#fff", fontSize: 9, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>1</div>
         </div>
-        <div style={{ background: "#1A2A44", borderRadius: 8, padding: "5px 10px", display: "flex", alignItems: "center", gap: 5, position: "relative" }}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
+        <div style={{ background: "#1A2A44", borderRadius: 7, padding: "4px 8px", display: "flex", alignItems: "center", gap: 4, position: "relative" }}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
             <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
           </svg>
-          <span style={{ color: FG, fontSize: 11, fontWeight: 600 }}>English Tenses</span>
-          <div style={{ position: "absolute", top: -8, right: -8, width: 18, height: 18, borderRadius: 9, background: PRIMARY, color: "#fff", fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>2</div>
+          <span style={{ color: FG, fontSize: 10, fontWeight: 600 }}>English Tenses</span>
+          <div style={{ position: "absolute", top: -7, right: -7, width: 16, height: 16, borderRadius: 8, background: PRIMARY, color: "#fff", fontSize: 9, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>2</div>
         </div>
       </div>
-      <div style={{ padding: "10px 12px 0" }}>
-        <div style={{ background: CARD, borderRadius: 12, border: `1px solid ${BORDER}`, padding: "10px 14px" }}>
-          <div style={{ color: MUTED, fontSize: 10, fontWeight: 500, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>Present Simple</div>
-          <div style={{ color: MUTED, fontSize: 9, textTransform: "uppercase", letterSpacing: "0.5px", marginTop: 6 }}>Verb</div>
-          <div style={{ color: PRIMARY, fontSize: 18, lineHeight: 1.25, fontWeight: 700 }}>speak</div>
-          <div style={{ color: MUTED, fontSize: 10, marginTop: 2 }}>he / she / it → speaks</div>
+      <div style={{ padding: "8px 10px 0" }}>
+        <div style={{ background: CARD, borderRadius: 10, border: `1px solid ${BORDER}`, padding: "8px 10px" }}>
+          <div style={{ color: MUTED, fontSize: 9, fontWeight: 500, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.5px" }}>Present Simple</div>
+          <div style={{ color: MUTED, fontSize: 8, textTransform: "uppercase", letterSpacing: "0.5px", marginTop: 4 }}>Verb</div>
+          <div style={{ color: PRIMARY, fontSize: 16, lineHeight: 1.2, fontWeight: 700 }}>speak</div>
+          <div style={{ color: MUTED, fontSize: 9, marginTop: 1 }}>he / she / it → speaks</div>
         </div>
       </div>
-      <div style={{ padding: "8px 12px 10px", display: "flex", flexDirection: "column", gap: 7 }}>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 4, minHeight: 27 }}>
+      <div style={{ padding: "6px 10px 8px", display: "flex", flexDirection: "column", gap: 5 }}>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 3, minHeight: 22 }}>
           {"speaks".split("").map((letter, index) => (
             <div key={`${letter}-${index}`} style={{
-              width: 18, height: 21, borderBottom: `2px solid ${index < 2 ? PRIMARY : "#2A3A58"}`,
-              color: index < 2 ? FG : "transparent", fontSize: 11, fontWeight: 700,
+              width: 16, height: 18, borderBottom: `2px solid ${index < 2 ? PRIMARY : "#2A3A58"}`,
+              color: index < 2 ? FG : "transparent", fontSize: 10, fontWeight: 700,
               display: "flex", alignItems: "flex-start", justifyContent: "center",
             }}>{index < 2 ? letter.toUpperCase() : letter}</div>
           ))}
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5, position: "relative" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4, position: "relative" }}>
           {["D", "R", "E", "J", "F"].map((letter, index) => (
             <div key={`${letter}-choice-${index}`} style={{
-              width: 25, height: 27, borderRadius: 8, background: CARD,
-              border: `1px solid ${BORDER}`, color: FG, fontSize: 11, fontWeight: 700,
+              width: 22, height: 24, borderRadius: 7, background: CARD,
+              border: `1px solid ${BORDER}`, color: FG, fontSize: 10, fontWeight: 700,
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>{letter}</div>
           ))}
-          <div style={{ position: "absolute", top: -8, right: -8, width: 18, height: 18, borderRadius: 9, background: PRIMARY, color: "#fff", fontSize: 10, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>3</div>
+          <div style={{ position: "absolute", top: -7, right: -7, width: 16, height: 16, borderRadius: 8, background: PRIMARY, color: "#fff", fontSize: 9, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>3</div>
         </div>
       </div>
     </div>
@@ -138,24 +138,24 @@ function PracticePreview() {
 
 function Screen2({ onNext }: { onNext: () => void }) {
   return (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <div style={{ padding: "8px 24px 12px" }}>
-        <h2 style={{ color: FG, fontSize: 24, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>Экран тренировки</h2>
+    <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      <div style={{ padding: "4px 24px 8px" }}>
+        <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>Экран тренировки</h2>
       </div>
       <div style={{ padding: "0 20px" }}>
         <PracticePreview />
       </div>
-      <div style={{ flex: 1, padding: "16px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+      <div style={{ flex: 1, minHeight: 0, padding: "10px 24px 0", display: "flex", flexDirection: "column", gap: 8, overflow: "hidden" }}>
         <Callout2 n={1} label="Training Mode" text="Настройте обучение под себя: выберите формы глаголов и времена, которые хотите тренировать. Используйте режим Context sentences, чтобы практиковать глаголы в предложениях. Повысьте сложность заданий, отключив Letter Builder." />
         <Callout2 n={2} label="English Tenses" text="Наглядная схема времён английского языка, если захотите освежить знания." />
         <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат." />
       </div>
-      <div style={{ width: "100%", padding: "16px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+      <div style={{ width: "100%", padding: "10px 24px 30px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, boxSizing: "border-box" }}>
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
           <Dot active={false}/><Dot active={true}/><Dot active={false}/><Dot active={false}/>
         </div>
         <button onClick={onNext} style={{
-          width: "100%", height: 52, background: PRIMARY, border: "none",
+          width: "100%", height: 48, background: PRIMARY, border: "none",
           borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
           cursor: "pointer", boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
         }}>Далее</button>
