@@ -1,0 +1,66 @@
+Onboarding navigation refinement
+
+Please refine the onboarding navigation to make backward navigation available without creating an additional navigation bar at the top of the screen.
+
+1. Remove the top-left back arrow
+
+Remove the current back arrow from the top-left corner of onboarding screens.
+
+The onboarding header should contain only the screen title, without a separate navigation row.
+
+This is important for mobile aesthetics: the current arrow creates an unnecessary horizontal navigation line above the content.
+
+2. Add a subtle back control near the pagination indicator
+
+On onboarding screens 2, 3 and 4, add a small left chevron (‹ or ←) next to the pagination indicator near the bottom of the screen.
+
+Example:
+
+‹ ● ━ ● ●
+
+The back control should be:
+
+visually subtle;
+significantly smaller and less prominent than the primary "Next" button;
+easy to tap on a mobile screen;
+positioned near the pagination dots rather than in the top navigation area.
+
+On the first onboarding screen there should be no back control, because there is nowhere to go back to.
+
+3. Keep the existing primary CTA
+
+Do not change the existing large bottom CTA:
+
+Screens 1–3: Next
+Screen 4: Start Learning
+
+The back control must remain visually secondary to this CTA.
+
+4. Add swipe navigation
+
+The onboarding should also support horizontal swipe gestures:
+
+swipe left → go to the next onboarding screen;
+swipe right → go to the previous onboarding screen.
+
+Swipe navigation should work across the main onboarding content area.
+
+Do not remove the existing buttons — swipe is an additional navigation method, not a replacement.
+
+5. Navigation consistency
+
+The three navigation mechanisms should work together correctly:
+
+Next / Start Learning → forward navigation;
+small back chevron → backward navigation;
+horizontal swipe → forward/backward navigation.
+
+All three methods must update the pagination indicator correctly and preserve the existing onboarding state/content.
+
+6. Important UX principle
+
+Do not add a second large "Back" button.
+
+The goal is to make backward navigation available and discoverable while keeping Next / Start Learning clearly the primary action and maintaining the clean visual hierarchy of the current onboarding design.
+
+Please implement this without changing the existing onboarding content, texts, illustrations, pagination logic, or final "Start Learning" behavior.

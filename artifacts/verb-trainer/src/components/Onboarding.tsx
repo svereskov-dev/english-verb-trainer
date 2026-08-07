@@ -2,7 +2,7 @@
 // Uses inline styles verbatim from the mockup source to guarantee visual fidelity.
 
 import { useRef, useState } from "react";
-import { ArrowLeft, Dumbbell } from "lucide-react";
+import { ChevronLeft, Dumbbell } from "lucide-react";
 
 interface OnboardingProps {
   onComplete: (dailyGoal: number) => void;
@@ -21,6 +21,45 @@ function Dot({ active }: { active: boolean }) {
       width: active ? 24 : 8, height: 8, borderRadius: 4,
       background: active ? PRIMARY : "#2A3A58", transition: "width 0.2s",
     }} />
+  );
+}
+
+function Pagination({
+  activeIndex,
+  onBack,
+}: {
+  activeIndex: number;
+  onBack?: () => void;
+}) {
+  return (
+    <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+      {onBack && (
+        <button
+          type="button"
+          aria-label="Back"
+          onClick={onBack}
+          style={{
+            width: 28,
+            height: 24,
+            padding: 0,
+            marginRight: 2,
+            border: "none",
+            borderRadius: 12,
+            background: "transparent",
+            color: MUTED,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+        >
+          <ChevronLeft size={18} strokeWidth={1.8} />
+        </button>
+      )}
+      {[0, 1, 2, 3].map((index) => (
+        <Dot key={index} active={index === activeIndex} />
+      ))}
+    </div>
   );
 }
 
@@ -127,10 +166,10 @@ function PracticePreview() {
   );
 }
 
-function Screen2({ onNext }: { onNext: () => void }) {
+function Screen2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
   return (
     <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <div style={{ padding: "4px 24px 8px 54px" }}>
+      <div style={{ padding: "4px 24px 8px" }}>
         <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>Экран тренировки</h2>
       </div>
       <div style={{ padding: "0 20px" }}>
@@ -142,9 +181,7 @@ function Screen2({ onNext }: { onNext: () => void }) {
         <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат." />
       </div>
       <div style={{ width: "100%", padding: "10px 24px 30px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, boxSizing: "border-box" }}>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <Dot active={false}/><Dot active={true}/><Dot active={false}/><Dot active={false}/>
-        </div>
+        <Pagination activeIndex={1} onBack={onBack} />
         <button onClick={onNext} style={{
           width: "100%", height: 48, background: PRIMARY, border: "none",
           borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
@@ -189,10 +226,10 @@ const tabs = [
   { key: "Settings", label: "Settings", icon: navIcons.Settings, desc: "Выбираем цель ежедневной тренировки." },
 ];
 
-function Screen3({ onNext }: { onNext: () => void }) {
+function Screen3({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <div style={{ padding: "8px 24px 0 54px" }}>
+      <div style={{ padding: "8px 24px 0" }}>
         <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: "0 0 4px", letterSpacing: "-0.3px" }}>
           Всё необходимое —{" "}<br />под рукой
         </h2>
@@ -248,9 +285,7 @@ function Screen3({ onNext }: { onNext: () => void }) {
       </div>
 
       <div style={{ padding: "16px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <Dot active={false}/><Dot active={false}/><Dot active={true}/><Dot active={false}/>
-        </div>
+        <Pagination activeIndex={2} onBack={onBack} />
         <button onClick={onNext} style={{
           width: "100%", height: 52, background: PRIMARY, border: "none",
           borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
@@ -273,10 +308,12 @@ const goals = [
 function Screen4({
   selected,
   onSelect,
+  onBack,
   onComplete,
 }: {
   selected: number;
   onSelect: (dailyGoal: number) => void;
+  onBack: () => void;
   onComplete: (dailyGoal: number) => void;
 }) {
   return (
@@ -324,9 +361,7 @@ function Screen4({
         </div>
       </div>
       <div style={{ padding: "20px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <Dot active={false}/><Dot active={false}/><Dot active={false}/><Dot active={true}/>
-        </div>
+        <Pagination activeIndex={3} onBack={onBack} />
         <button onClick={() => onComplete(selected)} style={{
           width: "100%", height: 56, background: PRIMARY, border: "none",
           borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
@@ -393,32 +428,6 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         }
       `}</style>
       <div style={{ width: "100%", maxWidth: 480, height: "100%", display: "flex", flexDirection: "column", paddingTop: "max(env(safe-area-inset-top, 0px), 28px)", position: "relative" }}>
-        {screen > 0 && (
-          <button
-            type="button"
-            aria-label="Back"
-            onClick={previous}
-            style={{
-              position: "absolute",
-              top: 4,
-              left: 14,
-              width: 36,
-              height: 36,
-              padding: 0,
-              border: "none",
-              borderRadius: 18,
-              background: "transparent",
-              color: MUTED,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              zIndex: 2,
-            }}
-          >
-            <ArrowLeft size={20} strokeWidth={1.8} />
-          </button>
-        )}
         <div
           key={screen}
           style={{
@@ -430,12 +439,13 @@ export function Onboarding({ onComplete }: OnboardingProps) {
           }}
         >
           {screen === 0 && <Screen1 onNext={next} />}
-          {screen === 1 && <Screen2 onNext={next} />}
-          {screen === 2 && <Screen3 onNext={next} />}
+          {screen === 1 && <Screen2 onNext={next} onBack={previous} />}
+          {screen === 2 && <Screen3 onNext={next} onBack={previous} />}
           {screen === 3 && (
             <Screen4
               selected={dailyGoal}
               onSelect={setDailyGoal}
+              onBack={previous}
               onComplete={onComplete}
             />
           )}
