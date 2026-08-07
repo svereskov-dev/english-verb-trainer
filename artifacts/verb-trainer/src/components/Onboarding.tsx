@@ -84,21 +84,12 @@ function Callout2({ n, label, text }: { n: number; label: string; text: string }
 function PracticePreview() {
   return (
     <div style={{ background: BG, borderRadius: 14, overflow: "hidden", border: `1px solid ${BORDER}`, position: "relative" }}>
-      <div style={{ background: "#1A2A44", height: 4, width: "100%" }}>
-        <div style={{ background: PRIMARY, height: "100%", width: "40%", borderRadius: 2 }} />
-      </div>
       <div style={{ padding: "6px 10px", display: "flex", gap: 6, borderBottom: `1px solid ${BORDER}` }}>
         <div style={{ background: "#1A2A44", borderRadius: 7, padding: "4px 8px", display: "flex", alignItems: "center", gap: 4, position: "relative" }}>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
-            <path d="M12 2L22 8.5V15.5L12 22L2 15.5V8.5Z"/><path d="M12 2v20M2 8.5l10 7 10-7"/>
-          </svg>
           <span style={{ color: FG, fontSize: 10, fontWeight: 600 }}>Training Mode</span>
           <div style={{ position: "absolute", top: -7, right: -7, width: 16, height: 16, borderRadius: 8, background: PRIMARY, color: "#fff", fontSize: 9, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>1</div>
         </div>
         <div style={{ background: "#1A2A44", borderRadius: 7, padding: "4px 8px", display: "flex", alignItems: "center", gap: 4, position: "relative" }}>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5">
-            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-          </svg>
           <span style={{ color: FG, fontSize: 10, fontWeight: 600 }}>English Tenses</span>
           <div style={{ position: "absolute", top: -7, right: -7, width: 16, height: 16, borderRadius: 8, background: PRIMARY, color: "#fff", fontSize: 9, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>2</div>
         </div>
