@@ -29,7 +29,7 @@ export function ProgressBar({
   const percentage = total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0;
 
   return (
-    <div className="w-full mt-1.5">
+    <div className="w-full mt-4">
       {/* Progress track */}
       <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
         <div
