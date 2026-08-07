@@ -1,0 +1,48 @@
+Fix: Repeat Guide — show only 2 pages
+The Repeat Guide flow in Settings currently opens the correct content (pages 2 and 3 of the original onboarding), but the UI still behaves visually like a 4-page onboarding.
+Please fix this.
+1. Progress indicator
+When the user enters the guide through Repeat Guide, it must be treated as a completely separate 2-page flow.
+Only two progress dots should be displayed:
+•	Page 1 = Экран тренировки 
+•	Page 2 = Всё необходимое — под рукой 
+The current 4-dot indicator must NOT be shown.
+The user should see exactly 2 dots, with the active dot corresponding to the current page.
+Do not simply hide navigation to pages 1 and 4 while keeping the original 4-page progress indicator. The progress indicator itself must represent a 2-page flow.
+2. Navigation
+The Repeat Guide flow should contain only:
+Repeat Guide Page 1
+•	Training Mode 
+•	English Tenses 
+•	Поле с заданием
+•	Button: Далее 
+Repeat Guide Page 2
+•	Всё необходимое — под рукой 
+•	Navigation overview 
+•	Button: Вернуться к обучению
+There is no third page, so “Далее” is inappropriate on the second page.
+Change the button on the second page from:
+Далее 
+to:
+Вернуться к обучению 
+3. Final behaviour
+When the user taps Вернуться к обучению:
+•	close the Repeat Guide; 
+•	return to the normal application/training screen; 
+•	do not restart onboarding; 
+•	do not modify onboarding completion state; 
+•	do not modify any training settings or user data. 
+4. Important implementation requirement
+Please keep the existing initial onboarding flow unchanged.
+The initial onboarding must continue to have its original 4-page structure and 4-page progress indicator.
+Only the flow launched through Settings → Repeat Guide should use:
+2 pages → 2 dots → Далее → Вернуться к обучению
+Prefer reusing the existing onboarding components with a different flow configuration rather than duplicating the screens.
+Acceptance criteria
+•	 Repeat Guide displays exactly 2 progress dots. 
+•	 First Repeat Guide page shows Далее. 
+•	 Second Repeat Guide page shows Вернуться к обучению. 
+•	 There is no visual indication of hidden pages 1 or 4. 
+•	 User cannot navigate to the original Welcome or Daily Goal pages. 
+•	 Initial 4-page onboarding remains unchanged. 
+•	 Returning from Repeat Guide does not reset or modify anything.

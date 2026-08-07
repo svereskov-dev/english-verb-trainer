@@ -29,9 +29,11 @@ function Dot({ active }: { active: boolean }) {
 function Pagination({
   activeIndex,
   onBack,
+  totalDots = 4,
 }: {
   activeIndex: number;
   onBack?: () => void;
+  totalDots?: number;
 }) {
   return (
     <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
@@ -58,7 +60,7 @@ function Pagination({
           <ChevronLeft size={18} strokeWidth={1.8} />
         </button>
       )}
-      {[0, 1, 2, 3].map((index) => (
+      {Array.from({ length: totalDots }, (_, index) => (
         <Dot key={index} active={index === activeIndex} />
       ))}
     </div>
@@ -168,7 +170,15 @@ function PracticePreview() {
   );
 }
 
-function Screen2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
+function Screen2({
+  onNext,
+  onBack,
+  repeatGuide = false,
+}: {
+  onNext: () => void;
+  onBack: () => void;
+  repeatGuide?: boolean;
+}) {
   return (
     <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}>
       <div style={{ padding: "4px 24px 8px" }}>
@@ -183,7 +193,11 @@ function Screen2({ onNext, onBack }: { onNext: () => void; onBack: () => void })
         <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат." />
       </div>
       <div style={{ width: "100%", padding: "10px 24px 30px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, boxSizing: "border-box" }}>
-        <Pagination activeIndex={1} onBack={onBack} />
+        <Pagination
+          activeIndex={repeatGuide ? 0 : 1}
+          totalDots={repeatGuide ? 2 : 4}
+          onBack={onBack}
+        />
         <button onClick={onNext} style={{
           width: "100%", height: 48, background: PRIMARY, border: "none",
           borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
@@ -228,7 +242,15 @@ const tabs = [
   { key: "Settings", label: "Settings", icon: navIcons.Settings, desc: "Выбираем цель ежедневной тренировки." },
 ];
 
-function Screen3({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
+function Screen3({
+  onNext,
+  onBack,
+  repeatGuide = false,
+}: {
+  onNext: () => void;
+  onBack: () => void;
+  repeatGuide?: boolean;
+}) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
       <div style={{ padding: "8px 24px 0" }}>
@@ -287,12 +309,16 @@ function Screen3({ onNext, onBack }: { onNext: () => void; onBack: () => void })
       </div>
 
       <div style={{ padding: "16px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-        <Pagination activeIndex={2} onBack={onBack} />
+        <Pagination
+          activeIndex={repeatGuide ? 1 : 2}
+          totalDots={repeatGuide ? 2 : 4}
+          onBack={onBack}
+        />
         <button onClick={onNext} style={{
           width: "100%", height: 52, background: PRIMARY, border: "none",
           borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
           cursor: "pointer", boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
-        }}>Далее</button>
+        }}>{repeatGuide ? "Вернуться к обучению" : "Далее"}</button>
       </div>
     </div>
   );
@@ -386,6 +412,7 @@ export function Onboarding({
   const [dailyGoal, setDailyGoal] = useState(20);
   const [transitionDirection, setTransitionDirection] = useState<"forward" | "back">("forward");
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const repeatGuide = startScreen === 1 && endScreen === 2;
 
   const goTo = (nextScreen: number, direction: "forward" | "back") => {
     setTransitionDirection(direction);
@@ -451,8 +478,20 @@ export function Onboarding({
           }}
         >
           {screen === 0 && <Screen1 onNext={next} />}
-          {screen === 1 && <Screen2 onNext={next} onBack={previous} />}
-          {screen === 2 && <Screen3 onNext={next} onBack={previous} />}
+          {screen === 1 && (
+            <Screen2
+              onNext={next}
+              onBack={previous}
+              repeatGuide={repeatGuide}
+            />
+          )}
+          {screen === 2 && (
+            <Screen3
+              onNext={next}
+              onBack={previous}
+              repeatGuide={repeatGuide}
+            />
+          )}
           {screen === 3 && (
             <Screen4
               selected={dailyGoal}
