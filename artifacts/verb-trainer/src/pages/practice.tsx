@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { getAllProgress } from "../db/progress";
 import { useExerciseSession } from "../hooks/useExerciseSession";
 import { useKeyboardVisible } from "../hooks/useKeyboardVisible";
 import { useAudioFeedback } from "../hooks/useAudioFeedback";
@@ -8,14 +9,29 @@ import { AnswerInput } from "../components/AnswerInput";
 import { LetterBuilder } from "../components/LetterBuilder";
 import { ProgressBar } from "../components/ProgressBar";
 import { TrainingMenu, DEFAULT_SESSION } from "../components/TrainingMenu";
-import { SessionConfig } from "../engine/exercises";
+import { SessionConfig, toPersistedSessionConfig } from "../engine/exercises";
+import { createExactReviewConfig, getActiveMistakeRecords } from "../engine/reviewQueue";
 import { SkipForward, ChevronRight } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
+import { isDailyGoalReached } from "../lib/dailyProgress";
+import { useFullAccess } from "../purchases/FullAccessContext";
+import { isPremiumSessionConfig } from "../purchases/access";
 
 const CONFIG_KEY = "practice_config";
 const CONFIG_DATE_KEY = "practice_config_date";
+// Set to "true" when the user explicitly selects Mistakes Review from
+// TrainingMenu. Cleared when the review ends (all solved / all skipped /
+// user switches mode). Lets Practice re-enter the review on remount.
+const MISTAKES_REVIEW_KEY = "practice_mistakes_review_active";
+// Preserve the Letter Builder choice while an active review survives route
+// navigation. The normal practice config is intentionally kept separate.
+const MISTAKES_REVIEW_LETTER_BUILDER_KEY = "practice_mistakes_review_letter_builder";
+
+function loadReviewLetterBuilderPreference(): boolean {
+  return localStorage.getItem(MISTAKES_REVIEW_LETTER_BUILDER_KEY) !== "false";
+}
 
 function isNewDay(): boolean {
   const saved = localStorage.getItem(CONFIG_DATE_KEY);
@@ -54,20 +70,36 @@ function loadPersistedConfig(): SessionConfig | null {
 
 function savePersistedConfig(config: SessionConfig) {
   try {
-    localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(toPersistedSessionConfig(config)));
     localStorage.setItem(CONFIG_DATE_KEY, Date.now().toString());
   } catch {
     // ignore
   }
 }
 
+function createFullConjugationConfig(letterBuilderEnabled: boolean): SessionConfig {
+  return {
+    ...DEFAULT_SESSION,
+    letterBuilderEnabled,
+    userCustomized: true,
+  };
+}
+
 export default function Practice() {
   const [, navigate] = useLocation();
+  const {
+    entitlementReady,
+    hasFullAccess,
+    openPaywall,
+  } = useFullAccess();
   const [config, setConfig]               = useState<SessionConfig>(
     loadPersistedConfig() ?? DEFAULT_SESSION
   );
-  const [submittedValue, setSubmittedValue] = useState("");
-  const [pendingAnswer, setPendingAnswer]   = useState("");
+  const sessionConfig = config.mistakesOnly || config.id === "mistake-review"
+    ? config
+    : (!entitlementReady || (!hasFullAccess && isPremiumSessionConfig(config)))
+      ? DEFAULT_SESSION
+      : config;
 
   // Keyboard-aware compact layout
   const keyboardVisible = useKeyboardVisible();
@@ -84,44 +116,85 @@ export default function Practice() {
     skipExercise,
     dailyGoal,
     noMistakes,
-    reviewExhausted,
     reviewComplete,
     onClearReview,
     exerciseSeq,
     getReviewQueueLength,
-  } = useExerciseSession(config);
+    pendingAnswer,
+    submittedValue,
+    letterBuilderState,
+    setPendingAnswer,
+    setSubmittedValue,
+    setLetterBuilderState,
+  } = useExerciseSession(sessionConfig);
+
+  useEffect(() => {
+    if (!entitlementReady || hasFullAccess || !isPremiumSessionConfig(config)) return;
+    sessionStorage.removeItem("exercise_session");
+    setConfig({
+      ...DEFAULT_SESSION,
+      letterBuilderEnabled: config.letterBuilderEnabled ?? true,
+      userCustomized: false,
+    });
+  }, [config, entitlementReady, hasFullAccess]);
 
   // ── Check for a Mistakes-review session on first load ───────────────────
   useEffect(() => {
+    // Priority 1: navigated here directly from the Mistakes page.
     const raw = sessionStorage.getItem("mistakeReview");
-    if (!raw) return;
-    try {
-      const data = JSON.parse(raw) as {
-        verbs: string[];
-        mistakeIds?: string[];
-        mode: string;
-      };
-      if (data.verbs && data.verbs.length > 0) {
-        setConfig({
-          id: "mistake-review",
-          label: "Review Mistakes",
-          groupLabel: "Mistakes Review",
-          selectedIds: ["mistakes"],
-          exerciseTypes: ["verbform", "irregular"],
-          verbPool: "all",
-          reviewVerbs: data.verbs,
-          // Prefer specific mistake IDs so exercises match the exact
-          // verb + type + tense/form that was originally answered incorrectly.
-          reviewMistakeIds: data.mistakeIds && data.mistakeIds.length > 0
-            ? data.mistakeIds
-            : undefined,
-          contextEnabled: false,
-          userCustomized: true,
+    if (raw) {
+      try {
+        const data = JSON.parse(raw) as {
+          mistakeIds?: string[];
+          mode: string;
+        };
+        getAllProgress().then(all => {
+          const activeMistakes = getActiveMistakeRecords(all);
+          const requestedIds = data.mistakeIds?.length
+            ? new Set(data.mistakeIds)
+            : null;
+          const reviewIds = activeMistakes
+            .filter(record => !requestedIds || requestedIds.has(record.id))
+            .map(record => record.id);
+
+          if (reviewIds.length === 0) {
+            // Never substitute a stale exact-ID snapshot with random exercises.
+            sessionStorage.removeItem("mistakeReview");
+            return;
+          }
+
+          setConfig(createExactReviewConfig(
+            reviewIds,
+            loadReviewLetterBuilderPreference(),
+          ));
         });
+      } catch {
+        sessionStorage.removeItem("mistakeReview");
       }
-    } catch {
-      sessionStorage.removeItem("mistakeReview");
+      return;
     }
+
+    // Priority 2: user explicitly selected Mistakes Review via TrainingMenu
+    // and left Practice (navigated to another tab and back). Rebuild the review
+    // from the current IDB mistake list — mistakes may have changed.
+    if (localStorage.getItem(MISTAKES_REVIEW_KEY) === "true") {
+      getAllProgress().then(all => {
+        const mistakes = getActiveMistakeRecords(all)
+          .sort((a, b) => b.failureCount - a.failureCount);
+        const mistakeIds  = mistakes.map(r => r.id);
+        if (mistakeIds.length > 0) {
+          setConfig(createExactReviewConfig(
+            mistakeIds,
+            loadReviewLetterBuilderPreference(),
+          ));
+        } else {
+          // All mistakes were solved elsewhere — exit review mode silently.
+          localStorage.removeItem(MISTAKES_REVIEW_KEY);
+          localStorage.removeItem(MISTAKES_REVIEW_LETTER_BUILDER_KEY);
+        }
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // ── Persist config changes to localStorage ──────────────────────────────
@@ -132,24 +205,17 @@ export default function Practice() {
     savePersistedConfig(config);
   }, [config]);
 
-  // ── Auto-navigate when Mistakes Review completes ─────────────────────────
-  // reviewComplete fires as soon as the last mistake is answered correctly.
-  // We do a full teardown before navigating so Practice comes up clean.
+  // ── Return to Full Conjugation when Mistakes Review completes ─────────────
+  // reviewComplete fires as soon as the last exact mistake is answered correctly.
   useEffect(() => {
     if (!reviewComplete) return;
-    // Reset the practice page's own UI state.
     setSubmittedValue("");
     setPendingAnswer("");
-    // Reset to the last normal session (or default) so returning to Practice
-    // never re-enters review mode.
-    const normal = loadPersistedConfig() ?? DEFAULT_SESSION;
-    setConfig(normal);
-    // Clear all review bookkeeping inside the hook.
+    setLetterBuilderState(null);
+    localStorage.removeItem(MISTAKES_REVIEW_KEY);
+    localStorage.removeItem(MISTAKES_REVIEW_LETTER_BUILDER_KEY);
+    setConfig(createFullConjugationConfig(config.letterBuilderEnabled ?? true));
     onClearReview();
-    // Navigate to the Mistakes screen — it will already show the empty state
-    // because the hook dispatched "mistakes-updated" when the last record
-    // had its lastFailureDate cleared.
-    navigate("/mistakes");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reviewComplete]);
 
@@ -169,6 +235,7 @@ export default function Practice() {
   // ── Letter Builder callbacks ─────────────────────────────────────────────────
   const handleLetterBuilderSuccess = (answer: string) => {
     setSubmittedValue(answer);
+    setLetterBuilderState(null);
     submitAnswer(answer);
   };
 
@@ -180,14 +247,16 @@ export default function Practice() {
   const handleSkip = () => {
     setSubmittedValue("");
     setPendingAnswer("");
+    setLetterBuilderState(null);
 
     // Case 2: last (or only) remaining mistake in the review queue.
     // Skipping it would just loop the same exercise forever, so auto-exit
-    // Mistakes Review and return to the user's normal Practice session.
+    // Mistakes Review and return to Full Conjugation.
     // The mistake is NOT marked solved — it stays in the Mistakes list.
     if (config.id === "mistake-review" && getReviewQueueLength() <= 1) {
-      const normal = loadPersistedConfig() ?? DEFAULT_SESSION;
-      setConfig(normal);
+      localStorage.removeItem(MISTAKES_REVIEW_KEY);
+      localStorage.removeItem(MISTAKES_REVIEW_LETTER_BUILDER_KEY);
+      setConfig(createFullConjugationConfig(config.letterBuilderEnabled ?? true));
       onClearReview();
       return;
     }
@@ -199,12 +268,46 @@ export default function Practice() {
   const handleNext = () => {
     setSubmittedValue("");
     setPendingAnswer("");
+    setLetterBuilderState(null);
     nextExercise();
   };
 
-  const handleSelectConfig = (next: SessionConfig) => {
+  const handleSelectConfig = async (next: SessionConfig) => {
+    if (!hasFullAccess && isPremiumSessionConfig(next)) {
+      openPaywall();
+      return;
+    }
     setSubmittedValue("");
     setPendingAnswer("");
+    setLetterBuilderState(null);
+
+    // When Mistakes Review is selected from TrainingMenu, perform the same
+    // IDB lookup the Mistakes page does — build a proper reviewMistakeIds-based
+    // config so the session starts immediately from the real mistake list.
+    if (next.mistakesOnly) {
+      const all = await getAllProgress();
+      const mistakes = getActiveMistakeRecords(all)
+        .sort((a, b) => b.failureCount - a.failureCount);
+      const mistakeIds  = mistakes.map(r => r.id);
+
+      if (mistakeIds.length > 0) {
+        onClearReview();
+        // Remember the user's explicit choice so Practice re-enters review on remount.
+        localStorage.setItem(MISTAKES_REVIEW_KEY, "true");
+        const letterBuilderEnabled = next.letterBuilderEnabled ?? true;
+        localStorage.setItem(
+          MISTAKES_REVIEW_LETTER_BUILDER_KEY,
+          String(letterBuilderEnabled),
+        );
+        setConfig(createExactReviewConfig(mistakeIds, letterBuilderEnabled));
+        return;
+      }
+      // No mistakes in IDB — fall through so the session shows the empty state
+      // (noMistakes will be true and practice.tsx renders the "no mistakes" prompt).
+    }
+
+    // User switched to a normal mode — discard the Mistakes Review persistence.
+    localStorage.removeItem(MISTAKES_REVIEW_KEY);
     setConfig(next);
     // If user manually picks a mode, clear the transient review session
     onClearReview();
@@ -212,9 +315,35 @@ export default function Practice() {
 
   // Fires immediately when the user flips a toggle (Context / Letter Builder)
   // inside the Training Mode sheet — no need to press "Start Training".
+  // During an active Review Mistakes session, preserve the review queue while
+  // applying the Letter Builder choice. Context remains locked off by the menu.
   const handleImmediateToggle = (next: SessionConfig) => {
+    if (!hasFullAccess && isPremiumSessionConfig(next)) {
+      openPaywall();
+      return;
+    }
     setSubmittedValue("");
     setPendingAnswer("");
+    setLetterBuilderState(null);
+
+    if (config.id === "mistake-review") {
+      const letterBuilderEnabled = next.letterBuilderEnabled ?? true;
+      localStorage.setItem(
+        MISTAKES_REVIEW_LETTER_BUILDER_KEY,
+        String(letterBuilderEnabled),
+      );
+      setConfig(prev => ({
+        ...prev,
+        contextEnabled: false,
+        letterBuilderEnabled,
+      }));
+      return;
+    }
+
+    // Selecting Review Mistakes is committed by "To Training"; changing its
+    // draft toggles should not start a review before that confirmation.
+    if (next.mistakesOnly) return;
+
     setConfig(next);
     // Deliberately no onClearReview() — toggle changes should not discard
     // any in-progress review queue.
@@ -245,26 +374,13 @@ export default function Practice() {
               Keep practicing — items you miss will appear here.
             </p>
           </div>
-          <TrainingMenu current={config} onSelect={handleSelectConfig} onImmediateToggle={handleImmediateToggle} />
-        </div>
-        <BottomNav />
-      </div>
-    );
-  }
-
-  // ── Review session finished (all verbs now correct) ───────────────────────
-  if (reviewExhausted) {
-    return (
-      <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
-        <div className="flex-1 flex flex-col items-center justify-center p-8 gap-5 text-center overflow-y-auto">
-          <div className="text-6xl">🎉</div>
-          <div>
-            <h2 className="text-xl font-bold mb-1">Review Complete</h2>
-            <p className="text-muted-foreground text-sm">
-              You answered correctly on all verbs from this review.
-            </p>
-          </div>
-          <TrainingMenu current={config} onSelect={handleSelectConfig} onImmediateToggle={handleImmediateToggle} />
+          <TrainingMenu
+            current={config}
+            onSelect={handleSelectConfig}
+            onImmediateToggle={handleImmediateToggle}
+            hasFullAccess={hasFullAccess}
+            onLockedPreset={openPaywall}
+          />
         </div>
         <BottomNav />
       </div>
@@ -293,14 +409,16 @@ export default function Practice() {
             current={config}
             onSelect={handleSelectConfig}
             onImmediateToggle={handleImmediateToggle}
+            hasFullAccess={hasFullAccess}
+            onLockedPreset={openPaywall}
             compact={keyboardVisible}
           />
           {!keyboardVisible && (
             <Button
-              variant="outline"
-              size="sm"
+              variant="secondary"
+              size="compact"
               onClick={handleOpenTenses}
-              className="rounded-full shrink-0 gap-1.5 font-semibold border-primary/30 hover:border-primary/50 hover:bg-card hover:text-foreground shadow-sm"
+              className="shrink-0"
               aria-label="English Tenses reference"
             >
               <span>English Tenses</span>
@@ -317,7 +435,7 @@ export default function Practice() {
             total={dailyGoal}
             correct={dailyCorrect}
             incorrect={dailyIncorrect}
-            goalReached={dailyCorrect + dailyIncorrect >= dailyGoal}
+            goalReached={isDailyGoalReached(dailyCorrect + dailyIncorrect, dailyGoal)}
           />
         )}
       </div>
@@ -349,6 +467,8 @@ export default function Practice() {
               <LetterBuilder
                 key={exerciseSeq}
                 exercise={currentExercise}
+                initialState={letterBuilderState}
+                onStateChange={setLetterBuilderState}
                 onSuccess={handleLetterBuilderSuccess}
                 onFailure={handleLetterBuilderFailure}
                 onSkip={handleSkip}
@@ -359,6 +479,7 @@ export default function Practice() {
             /* ── Traditional typing mode ──────────────────────────────────── */
             <AnswerInput
               key={exerciseSeq}
+              value={pendingAnswer}
               onSubmit={handleCheck}
               onValueChange={setPendingAnswer}
               disabled={showingFeedback}
@@ -376,23 +497,24 @@ export default function Practice() {
           {!config.letterBuilderEnabled && !showingFeedback && (
             <>
               <Button
+                size="lg"
                 onClick={handleCheck}
                 disabled={!pendingAnswer.trim()}
                 className={cn(
-                  "w-full max-w-md font-semibold",
-                  keyboardVisible ? "h-10 text-sm" : "h-12 text-base"
+                  "w-full max-w-md",
+                  keyboardVisible && "h-10 text-sm"
                 )}
                 data-testid="button-check"
               >
                 Check
               </Button>
               <Button
-                variant="ghost"
-                size="sm"
+                variant="tertiary"
+                size="compact"
                 onClick={handleSkip}
                 className={cn(
-                  "text-muted-foreground hover:text-foreground gap-1.5",
-                  keyboardVisible && "text-xs h-8 px-2"
+                  "hover:text-foreground",
+                  keyboardVisible && "text-xs"
                 )}
                 data-testid="button-skip"
               >
@@ -413,10 +535,11 @@ export default function Practice() {
                 )}
               </div>
               <Button
+                size="lg"
                 onClick={handleNext}
                 className={cn(
-                  "w-full max-w-md font-semibold",
-                  keyboardVisible ? "h-10 text-sm" : "h-12 text-base"
+                  "w-full max-w-md",
+                  keyboardVisible && "h-10 text-sm"
                 )}
                 data-testid="button-next"
               >

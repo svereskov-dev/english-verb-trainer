@@ -19,6 +19,31 @@ export type Tense =
   | "pastPerfectPassive"
   | "futureSimplePassive";
 
+const TENSE_LABELS: Record<Tense, string> = {
+  presentSimple: "Present Simple",
+  presentContinuous: "Present Continuous",
+  presentPerfect: "Present Perfect",
+  presentPerfectContinuous: "Present Perfect Continuous",
+  pastSimple: "Past Simple",
+  pastContinuous: "Past Continuous",
+  pastPerfect: "Past Perfect",
+  pastPerfectContinuous: "Past Perfect Continuous",
+  futureSimple: "Future Simple",
+  futureContinuous: "Future Continuous",
+  futurePerfect: "Future Perfect",
+  futurePerfectContinuous: "Future Perfect Continuous",
+  presentSimplePassive: "Present Simple Passive",
+  pastSimplePassive: "Past Simple Passive",
+  presentPerfectPassive: "Present Perfect Passive",
+  pastPerfectPassive: "Past Perfect Passive",
+  futureSimplePassive: "Future Simple Passive",
+};
+
+/** Resolve a stable tense ID to its current display label. */
+export function getTenseLabel(tense: Tense | string): string {
+  return TENSE_LABELS[tense as Tense] ?? tense;
+}
+
 // PRIMARY filter: grammatical behaviour of the verb
 // - dynamic: actions/processes — appear naturally in all tenses, can be progressive
 // - stative: states — resist progressive; avoid bare-action frames

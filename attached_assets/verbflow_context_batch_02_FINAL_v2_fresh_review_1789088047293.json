@@ -1,0 +1,6819 @@
+{
+  "dataset": "VerbFlow context exercises",
+  "variant": "American English",
+  "batch": 2,
+  "frequencyRankRange": [
+    51,
+    100
+  ],
+  "verbRange": [
+    "rise",
+    "upset"
+  ],
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "rise_pastSimple_01",
+      "verb": "rise",
+      "tense": "pastSimple",
+      "subject": "prices",
+      "sentence": "Ticket prices _____ sharply last July.",
+      "expectedAnswer": "rose",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "rise_pastContinuous_01",
+      "verb": "rise",
+      "tense": "pastContinuous",
+      "subject": "prices",
+      "sentence": "At the start of last summer, ticket prices _____ quickly.",
+      "expectedAnswer": "were rising",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "rise_pastPerfect_01",
+      "verb": "rise",
+      "tense": "pastPerfect",
+      "subject": "prices",
+      "sentence": "By the time summer ended, ticket prices _____ by ten percent.",
+      "expectedAnswer": "had risen",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "rise_pastPerfectContinuous_01",
+      "verb": "rise",
+      "tense": "pastPerfectContinuous",
+      "subject": "prices",
+      "sentence": "By the time summer ended, ticket prices _____ steadily for three months.",
+      "expectedAnswer": "had been rising",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "rise_presentSimple_01",
+      "verb": "rise",
+      "tense": "presentSimple",
+      "subject": "prices",
+      "sentence": "Ticket prices usually _____ during the summer.",
+      "expectedAnswer": "rise",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "rise_presentContinuous_01",
+      "verb": "rise",
+      "tense": "presentContinuous",
+      "subject": "prices",
+      "sentence": "Ticket prices _____ again this month.",
+      "expectedAnswer": "are rising",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "rise_presentPerfect_01",
+      "verb": "rise",
+      "tense": "presentPerfect",
+      "subject": "prices",
+      "sentence": "Ticket prices _____ twice so far this year.",
+      "expectedAnswer": "have risen",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "rise_presentPerfectContinuous_01",
+      "verb": "rise",
+      "tense": "presentPerfectContinuous",
+      "subject": "prices",
+      "sentence": "Ticket prices _____ steadily for the past three months.",
+      "expectedAnswer": "have been rising",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "rise_futureSimple_01",
+      "verb": "rise",
+      "tense": "futureSimple",
+      "subject": "prices",
+      "sentence": "Ticket prices _____ again next summer.",
+      "expectedAnswer": "will rise",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "rise_futureContinuous_01",
+      "verb": "rise",
+      "tense": "futureContinuous",
+      "subject": "prices",
+      "sentence": "This time next month, ticket prices _____ again.",
+      "expectedAnswer": "will be rising",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "rise_futurePerfect_01",
+      "verb": "rise",
+      "tense": "futurePerfect",
+      "subject": "prices",
+      "sentence": "By next September, ticket prices _____ by another ten percent.",
+      "expectedAnswer": "will have risen",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "rise_futurePerfectContinuous_01",
+      "verb": "rise",
+      "tense": "futurePerfectContinuous",
+      "subject": "prices",
+      "sentence": "By next September, ticket prices _____ for three straight months.",
+      "expectedAnswer": "will have been rising",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "grow_pastSimple_01",
+      "verb": "grow",
+      "tense": "pastSimple",
+      "subject": "the plants",
+      "sentence": "The plants _____ several inches last month.",
+      "expectedAnswer": "grew",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "grow_pastContinuous_01",
+      "verb": "grow",
+      "tense": "pastContinuous",
+      "subject": "the plants",
+      "sentence": "During last week's warm spell, the plants _____ quickly.",
+      "expectedAnswer": "were growing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "grow_pastPerfect_01",
+      "verb": "grow",
+      "tense": "pastPerfect",
+      "subject": "the plants",
+      "sentence": "By the time we measured them, the plants _____ several inches.",
+      "expectedAnswer": "had grown",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "grow_pastPerfectContinuous_01",
+      "verb": "grow",
+      "tense": "pastPerfectContinuous",
+      "subject": "the plants",
+      "sentence": "Before we moved them indoors, the plants _____ quickly for several weeks.",
+      "expectedAnswer": "had been growing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "grow_presentSimple_01",
+      "verb": "grow",
+      "tense": "presentSimple",
+      "subject": "the plants",
+      "sentence": "The plants usually _____ fastest in spring.",
+      "expectedAnswer": "grow",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "grow_presentContinuous_01",
+      "verb": "grow",
+      "tense": "presentContinuous",
+      "subject": "the plants",
+      "sentence": "The plants _____ quickly in the warmer weather.",
+      "expectedAnswer": "are growing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "grow_presentPerfect_01",
+      "verb": "grow",
+      "tense": "presentPerfect",
+      "subject": "the plants",
+      "sentence": "The plants _____ several inches so far this month.",
+      "expectedAnswer": "have grown",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "grow_presentPerfectContinuous_01",
+      "verb": "grow",
+      "tense": "presentPerfectContinuous",
+      "subject": "the plants",
+      "sentence": "The plants _____ quickly for the past few weeks.",
+      "expectedAnswer": "have been growing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "grow_futureSimple_01",
+      "verb": "grow",
+      "tense": "futureSimple",
+      "subject": "the plants",
+      "sentence": "The plants _____ even taller next month.",
+      "expectedAnswer": "will grow",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "grow_futureContinuous_01",
+      "verb": "grow",
+      "tense": "futureContinuous",
+      "subject": "the plants",
+      "sentence": "This time next month, the plants _____ even faster.",
+      "expectedAnswer": "will be growing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "grow_futurePerfect_01",
+      "verb": "grow",
+      "tense": "futurePerfect",
+      "subject": "the plants",
+      "sentence": "By next June, the plants _____ another six inches.",
+      "expectedAnswer": "will have grown",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "grow_futurePerfectContinuous_01",
+      "verb": "grow",
+      "tense": "futurePerfectContinuous",
+      "subject": "the plants",
+      "sentence": "By next June, the plants _____ steadily for three months.",
+      "expectedAnswer": "will have been growing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "draw_pastSimple_01",
+      "verb": "draw",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ a city map for the club last Tuesday.",
+      "expectedAnswer": "drew",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "draw_pastContinuous_01",
+      "verb": "draw",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At 3:00 p.m. yesterday, she _____ a city map for the club.",
+      "expectedAnswer": "was drawing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "draw_pastPerfect_01",
+      "verb": "draw",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "By the time yesterday's meeting began, she _____ three map drafts.",
+      "expectedAnswer": "had drawn",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "draw_pastPerfectContinuous_01",
+      "verb": "draw",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before yesterday's meeting began, she _____ maps for two hours.",
+      "expectedAnswer": "had been drawing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "draw_presentSimple_01",
+      "verb": "draw",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ maps for the local history club.",
+      "expectedAnswer": "draws",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "draw_presentContinuous_01",
+      "verb": "draw",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ a new map for the club.",
+      "expectedAnswer": "is drawing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "draw_presentPerfect_01",
+      "verb": "draw",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ three maps so far this month.",
+      "expectedAnswer": "has drawn",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "draw_presentPerfectContinuous_01",
+      "verb": "draw",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ maps for the club all morning.",
+      "expectedAnswer": "has been drawing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "draw_futureSimple_01",
+      "verb": "draw",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ another map for the club tomorrow.",
+      "expectedAnswer": "will draw",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "draw_futureContinuous_01",
+      "verb": "draw",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At 3:00 p.m. tomorrow, she _____ another map for the club.",
+      "expectedAnswer": "will be drawing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "draw_futurePerfect_01",
+      "verb": "draw",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ four maps this month.",
+      "expectedAnswer": "will have drawn",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "draw_futurePerfectContinuous_01",
+      "verb": "draw",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By noon tomorrow, she _____ maps for three hours.",
+      "expectedAnswer": "will have been drawing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "choose_pastSimple_01",
+      "verb": "choose",
+      "tense": "pastSimple",
+      "subject": "they",
+      "sentence": "They _____ the blue design at Monday's meeting.",
+      "expectedAnswer": "chose",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "choose_pastContinuous_01",
+      "verb": "choose",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "sentence": "When I arrived yesterday, they _____ a design for the poster.",
+      "expectedAnswer": "were choosing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "choose_pastPerfect_01",
+      "verb": "choose",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "sentence": "Before the voting began, they _____ three finalists.",
+      "expectedAnswer": "had chosen",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "choose_pastPerfectContinuous_01",
+      "verb": "choose",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "sentence": "Before the vote, they _____ between designs for two hours.",
+      "expectedAnswer": "had been choosing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "choose_presentSimple_01",
+      "verb": "choose",
+      "tense": "presentSimple",
+      "subject": "they",
+      "sentence": "They usually _____ a new design each month.",
+      "expectedAnswer": "choose",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "choose_presentContinuous_01",
+      "verb": "choose",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "sentence": "Right now, they _____ a design for the spring poster.",
+      "expectedAnswer": "are choosing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "choose_presentPerfect_01",
+      "verb": "choose",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "sentence": "They _____ three designs so far this year.",
+      "expectedAnswer": "have chosen",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "choose_presentPerfectContinuous_01",
+      "verb": "choose",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "sentence": "They _____ new designs all morning.",
+      "expectedAnswer": "have been choosing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "choose_futureSimple_01",
+      "verb": "choose",
+      "tense": "futureSimple",
+      "subject": "they",
+      "sentence": "They _____ a new design at tomorrow's meeting.",
+      "expectedAnswer": "will choose",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "choose_futureContinuous_01",
+      "verb": "choose",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "sentence": "At this time tomorrow, they _____ the final design.",
+      "expectedAnswer": "will be choosing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "choose_futurePerfect_01",
+      "verb": "choose",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "sentence": "By next Friday, they _____ all five designs for the campaign.",
+      "expectedAnswer": "will have chosen",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "choose_futurePerfectContinuous_01",
+      "verb": "choose",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "sentence": "By noon tomorrow, they _____ between designs for three hours.",
+      "expectedAnswer": "will have been choosing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "throw_pastSimple_01",
+      "verb": "throw",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ paper planes at the picnic last Sunday.",
+      "expectedAnswer": "threw",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "throw_pastContinuous_01",
+      "verb": "throw",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At noon yesterday, he _____ paper planes with the kids.",
+      "expectedAnswer": "was throwing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "throw_pastPerfect_01",
+      "verb": "throw",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "By the time lunch began, he _____ ten paper planes.",
+      "expectedAnswer": "had thrown",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "throw_pastPerfectContinuous_01",
+      "verb": "throw",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before the picnic ended, he _____ paper planes for nearly an hour.",
+      "expectedAnswer": "had been throwing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "throw_presentSimple_01",
+      "verb": "throw",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He often _____ paper planes with his nephews.",
+      "expectedAnswer": "throws",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "throw_presentContinuous_01",
+      "verb": "throw",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ paper planes in the backyard.",
+      "expectedAnswer": "is throwing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "throw_presentPerfect_01",
+      "verb": "throw",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ twenty paper planes so far this week.",
+      "expectedAnswer": "has thrown",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "throw_presentPerfectContinuous_01",
+      "verb": "throw",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ paper planes with the kids all afternoon.",
+      "expectedAnswer": "has been throwing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "throw_futureSimple_01",
+      "verb": "throw",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ paper planes with them again tomorrow.",
+      "expectedAnswer": "will throw",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "throw_futureContinuous_01",
+      "verb": "throw",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At noon tomorrow, he _____ paper planes in the backyard.",
+      "expectedAnswer": "will be throwing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "throw_futurePerfect_01",
+      "verb": "throw",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ fifty paper planes this month.",
+      "expectedAnswer": "will have thrown",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "throw_futurePerfectContinuous_01",
+      "verb": "throw",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By 2:00 p.m. tomorrow, he _____ paper planes for two hours.",
+      "expectedAnswer": "will have been throwing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "catch_pastSimple_01",
+      "verb": "catch",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ the early bus last Monday.",
+      "expectedAnswer": "caught",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "catch_pastContinuous_01",
+      "verb": "catch",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "Last week, she _____ the early bus every morning.",
+      "expectedAnswer": "was catching",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "catch_pastPerfect_01",
+      "verb": "catch",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before yesterday's meeting began, she _____ the early bus twice.",
+      "expectedAnswer": "had caught",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "catch_pastPerfectContinuous_01",
+      "verb": "catch",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before she moved, she _____ the early bus for several weeks.",
+      "expectedAnswer": "had been catching",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "catch_presentSimple_01",
+      "verb": "catch",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ the early bus downtown.",
+      "expectedAnswer": "catches",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "catch_presentContinuous_01",
+      "verb": "catch",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "This week, she _____ the early bus every morning.",
+      "expectedAnswer": "is catching",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "catch_presentPerfect_01",
+      "verb": "catch",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ the early bus three times so far this week.",
+      "expectedAnswer": "has caught",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "catch_presentPerfectContinuous_01",
+      "verb": "catch",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ the early bus all week.",
+      "expectedAnswer": "has been catching",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "catch_futureSimple_01",
+      "verb": "catch",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ the early bus again tomorrow.",
+      "expectedAnswer": "will catch",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "catch_futureContinuous_01",
+      "verb": "catch",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "Next week, she _____ the early bus every morning.",
+      "expectedAnswer": "will be catching",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "catch_futurePerfect_01",
+      "verb": "catch",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ the early bus five times.",
+      "expectedAnswer": "will have caught",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "catch_futurePerfectContinuous_01",
+      "verb": "catch",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ the early bus for two straight weeks.",
+      "expectedAnswer": "will have been catching",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "teach_pastSimple_01",
+      "verb": "teach",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ a photography class last Saturday.",
+      "expectedAnswer": "taught",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "teach_pastContinuous_01",
+      "verb": "teach",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At 11:00 a.m. yesterday, he _____ a photography class.",
+      "expectedAnswer": "was teaching",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "teach_pastPerfect_01",
+      "verb": "teach",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "By the time the summer course ended, he _____ three beginner classes.",
+      "expectedAnswer": "had taught",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "teach_pastPerfectContinuous_01",
+      "verb": "teach",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before the term ended, he _____ evening classes for months.",
+      "expectedAnswer": "had been teaching",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "teach_presentSimple_01",
+      "verb": "teach",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ photography on Saturdays.",
+      "expectedAnswer": "teaches",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "teach_presentContinuous_01",
+      "verb": "teach",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "This month, he _____ an evening photography class.",
+      "expectedAnswer": "is teaching",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "teach_presentPerfect_01",
+      "verb": "teach",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ four classes so far this month.",
+      "expectedAnswer": "has taught",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "teach_presentPerfectContinuous_01",
+      "verb": "teach",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ evening classes for the past six weeks.",
+      "expectedAnswer": "has been teaching",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "teach_futureSimple_01",
+      "verb": "teach",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ another photography class next Saturday.",
+      "expectedAnswer": "will teach",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "teach_futureContinuous_01",
+      "verb": "teach",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At 11:00 a.m. next Saturday, he _____ photography.",
+      "expectedAnswer": "will be teaching",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "teach_futurePerfect_01",
+      "verb": "teach",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next June, he _____ twenty photography classes.",
+      "expectedAnswer": "will have taught",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "teach_futurePerfectContinuous_01",
+      "verb": "teach",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By next June, he _____ evening classes for six months.",
+      "expectedAnswer": "will have been teaching",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "fly_pastSimple_01",
+      "verb": "fly",
+      "tense": "pastSimple",
+      "subject": "they",
+      "sentence": "They _____ to Denver for work last Thursday.",
+      "expectedAnswer": "flew",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "fly_pastContinuous_01",
+      "verb": "fly",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "sentence": "At noon yesterday, they _____ over the mountains.",
+      "expectedAnswer": "were flying",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "fly_pastPerfect_01",
+      "verb": "fly",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "sentence": "Before last month's conference began, they _____ to Denver twice.",
+      "expectedAnswer": "had flown",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "fly_pastPerfectContinuous_01",
+      "verb": "fly",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "sentence": "Before the route changed, they _____ there monthly for a year.",
+      "expectedAnswer": "had been flying",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "fly_presentSimple_01",
+      "verb": "fly",
+      "tense": "presentSimple",
+      "subject": "they",
+      "sentence": "They often _____ to Denver for work.",
+      "expectedAnswer": "fly",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "fly_presentContinuous_01",
+      "verb": "fly",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "sentence": "Right now, they _____ over the mountains.",
+      "expectedAnswer": "are flying",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "fly_presentPerfect_01",
+      "verb": "fly",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "sentence": "They _____ to Denver three times so far this year.",
+      "expectedAnswer": "have flown",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "fly_presentPerfectContinuous_01",
+      "verb": "fly",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "sentence": "They _____ there regularly for the past few months.",
+      "expectedAnswer": "have been flying",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "fly_futureSimple_01",
+      "verb": "fly",
+      "tense": "futureSimple",
+      "subject": "they",
+      "sentence": "They _____ to Denver again next Thursday.",
+      "expectedAnswer": "will fly",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "fly_futureContinuous_01",
+      "verb": "fly",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "sentence": "At noon tomorrow, they _____ over the mountains.",
+      "expectedAnswer": "will be flying",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "fly_futurePerfect_01",
+      "verb": "fly",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "sentence": "By next June, they _____ to Denver six times this year.",
+      "expectedAnswer": "will have flown",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "fly_futurePerfectContinuous_01",
+      "verb": "fly",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "sentence": "By next June, they _____ there regularly for six months.",
+      "expectedAnswer": "will have been flying",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "forget_pastSimple_01",
+      "verb": "forget",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ her access code during Monday's workshop.",
+      "expectedAnswer": "forgot",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "forget_pastContinuous_01",
+      "verb": "forget",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "Last month, she _____ names more often than usual.",
+      "expectedAnswer": "was forgetting",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "forget_pastPerfect_01",
+      "verb": "forget",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before she wrote it down, she _____ the code twice.",
+      "expectedAnswer": "had forgotten",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forget_pastPerfectContinuous_01",
+      "verb": "forget",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before she made a list, she _____ names for several weeks.",
+      "expectedAnswer": "had been forgetting",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "forget_presentSimple_01",
+      "verb": "forget",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She sometimes _____ names at large meetings.",
+      "expectedAnswer": "forgets",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "forget_presentContinuous_01",
+      "verb": "forget",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "This week, she _____ names more often than usual.",
+      "expectedAnswer": "is forgetting",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "forget_presentPerfect_01",
+      "verb": "forget",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ her access code twice so far this month.",
+      "expectedAnswer": "has forgotten",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forget_presentPerfectContinuous_01",
+      "verb": "forget",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ names more often for the past few weeks.",
+      "expectedAnswer": "has been forgetting",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "forget_futureSimple_01",
+      "verb": "forget",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ a few names at tomorrow's large meeting.",
+      "expectedAnswer": "will forget",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "forget_futureContinuous_01",
+      "verb": "forget",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "forget_futurePerfect_01",
+      "verb": "forget",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next year, she _____ most details of the old project.",
+      "expectedAnswer": "will have forgotten",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forget_futurePerfectContinuous_01",
+      "verb": "forget",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "swim_pastSimple_01",
+      "verb": "swim",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ twenty laps at the pool last Saturday.",
+      "expectedAnswer": "swam",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "swim_pastContinuous_01",
+      "verb": "swim",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At 8:00 a.m. yesterday, he _____ laps at the pool.",
+      "expectedAnswer": "was swimming",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "swim_pastPerfect_01",
+      "verb": "swim",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before last month's event began, he _____ that distance twice.",
+      "expectedAnswer": "had swum",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "swim_pastPerfectContinuous_01",
+      "verb": "swim",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before winter began, he _____ every morning for two months.",
+      "expectedAnswer": "had been swimming",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "swim_presentSimple_01",
+      "verb": "swim",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ before work on Saturdays.",
+      "expectedAnswer": "swims",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "swim_presentContinuous_01",
+      "verb": "swim",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ laps at the indoor pool.",
+      "expectedAnswer": "is swimming",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "swim_presentPerfect_01",
+      "verb": "swim",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ twenty laps three times so far this month.",
+      "expectedAnswer": "has swum",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "swim_presentPerfectContinuous_01",
+      "verb": "swim",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ every Saturday for the past two months.",
+      "expectedAnswer": "has been swimming",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "swim_futureSimple_01",
+      "verb": "swim",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ twenty laps again next Saturday.",
+      "expectedAnswer": "will swim",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "swim_futureContinuous_01",
+      "verb": "swim",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At 8:00 a.m. next Saturday, he _____ laps at the pool.",
+      "expectedAnswer": "will be swimming",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "swim_futurePerfect_01",
+      "verb": "swim",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next June, he _____ that distance ten times.",
+      "expectedAnswer": "will have swum",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "swim_futurePerfectContinuous_01",
+      "verb": "swim",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By next June, he _____ every Saturday for six months.",
+      "expectedAnswer": "will have been swimming",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "sing_pastSimple_01",
+      "verb": "sing",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ three songs at the festival last weekend.",
+      "expectedAnswer": "sang",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "sing_pastContinuous_01",
+      "verb": "sing",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At 9:00 p.m. yesterday, she _____ on the small stage.",
+      "expectedAnswer": "was singing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "sing_pastPerfect_01",
+      "verb": "sing",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before the show ended, she _____ all six songs.",
+      "expectedAnswer": "had sung",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sing_pastPerfectContinuous_01",
+      "verb": "sing",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before the break, she _____ for nearly an hour.",
+      "expectedAnswer": "had been singing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "sing_presentSimple_01",
+      "verb": "sing",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ at the cafe on Fridays.",
+      "expectedAnswer": "sings",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "sing_presentContinuous_01",
+      "verb": "sing",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ on the small stage.",
+      "expectedAnswer": "is singing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "sing_presentPerfect_01",
+      "verb": "sing",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ at the cafe four times so far this month.",
+      "expectedAnswer": "has sung",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sing_presentPerfectContinuous_01",
+      "verb": "sing",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ there every Friday for the past two months.",
+      "expectedAnswer": "has been singing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "sing_futureSimple_01",
+      "verb": "sing",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ at the cafe again next Friday.",
+      "expectedAnswer": "will sing",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "sing_futureContinuous_01",
+      "verb": "sing",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At 9:00 p.m. next Friday, she _____ on the small stage.",
+      "expectedAnswer": "will be singing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "sing_futurePerfect_01",
+      "verb": "sing",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next June, she _____ there twenty times.",
+      "expectedAnswer": "will have sung",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sing_futurePerfectContinuous_01",
+      "verb": "sing",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By next June, she _____ there every Friday for six months.",
+      "expectedAnswer": "will have been singing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "ride_pastSimple_01",
+      "verb": "ride",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ his bike to work last Wednesday.",
+      "expectedAnswer": "rode",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "ride_pastContinuous_01",
+      "verb": "ride",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At 8:00 a.m. yesterday, he _____ his bike along the river.",
+      "expectedAnswer": "was riding",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "ride_pastPerfect_01",
+      "verb": "ride",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before he changed routes, he _____ that route three times.",
+      "expectedAnswer": "had ridden",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "ride_pastPerfectContinuous_01",
+      "verb": "ride",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before winter began, he _____ that route for months.",
+      "expectedAnswer": "had been riding",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "ride_presentSimple_01",
+      "verb": "ride",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ his bike to work.",
+      "expectedAnswer": "rides",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "ride_presentContinuous_01",
+      "verb": "ride",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ his bike along the river.",
+      "expectedAnswer": "is riding",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "ride_presentPerfect_01",
+      "verb": "ride",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ that route four times so far this week.",
+      "expectedAnswer": "has ridden",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "ride_presentPerfectContinuous_01",
+      "verb": "ride",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ his bike to work for the past few weeks.",
+      "expectedAnswer": "has been riding",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "ride_futureSimple_01",
+      "verb": "ride",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ his bike to work again tomorrow.",
+      "expectedAnswer": "will ride",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "ride_futureContinuous_01",
+      "verb": "ride",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At 8:00 a.m. tomorrow, he _____ his bike along the river.",
+      "expectedAnswer": "will be riding",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "ride_futurePerfect_01",
+      "verb": "ride",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ that route ten times this month.",
+      "expectedAnswer": "will have ridden",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "ride_futurePerfectContinuous_01",
+      "verb": "ride",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ his bike to work for a full month.",
+      "expectedAnswer": "will have been riding",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "wear_pastSimple_01",
+      "verb": "wear",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ her blue jacket to the concert last Friday.",
+      "expectedAnswer": "wore",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "wear_pastContinuous_01",
+      "verb": "wear",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At yesterday's event, she _____ her new blue jacket.",
+      "expectedAnswer": "was wearing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "wear_pastPerfect_01",
+      "verb": "wear",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before she wore it last weekend, she _____ the jacket only once.",
+      "expectedAnswer": "had worn",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "wear_pastPerfectContinuous_01",
+      "verb": "wear",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before spring arrived, she _____ that coat for months.",
+      "expectedAnswer": "had been wearing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "wear_presentSimple_01",
+      "verb": "wear",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ a blue jacket to outdoor events.",
+      "expectedAnswer": "wears",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "wear_presentContinuous_01",
+      "verb": "wear",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Today, she _____ her new blue jacket.",
+      "expectedAnswer": "is wearing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "wear_presentPerfect_01",
+      "verb": "wear",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ the jacket three times so far this month.",
+      "expectedAnswer": "has worn",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "wear_presentPerfectContinuous_01",
+      "verb": "wear",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ that jacket almost every day this week.",
+      "expectedAnswer": "has been wearing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "wear_futureSimple_01",
+      "verb": "wear",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ the blue jacket again tomorrow.",
+      "expectedAnswer": "will wear",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "wear_futureContinuous_01",
+      "verb": "wear",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At tomorrow's event, she _____ her blue jacket.",
+      "expectedAnswer": "will be wearing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "wear_futurePerfect_01",
+      "verb": "wear",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ the jacket five times this month.",
+      "expectedAnswer": "will have worn",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "wear_futurePerfectContinuous_01",
+      "verb": "wear",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ that jacket daily for two weeks.",
+      "expectedAnswer": "will have been wearing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "wake_pastSimple_01",
+      "verb": "wake",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ before sunrise last Tuesday.",
+      "expectedAnswer": "woke",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "wake_pastContinuous_01",
+      "verb": "wake",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "During last week's trip, he _____ before sunrise each day.",
+      "expectedAnswer": "was waking",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "wake_pastPerfect_01",
+      "verb": "wake",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "By the time the trip ended, he _____ before sunrise five times.",
+      "expectedAnswer": "had woken",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "wake_pastPerfectContinuous_01",
+      "verb": "wake",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before the trip ended, he _____ early for a full week.",
+      "expectedAnswer": "had been waking",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "wake_presentSimple_01",
+      "verb": "wake",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ before sunrise on weekdays.",
+      "expectedAnswer": "wakes",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "wake_presentContinuous_01",
+      "verb": "wake",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "This week, he _____ before sunrise every day.",
+      "expectedAnswer": "is waking",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "wake_presentPerfect_01",
+      "verb": "wake",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ before sunrise four times so far this week.",
+      "expectedAnswer": "has woken",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "wake_presentPerfectContinuous_01",
+      "verb": "wake",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ early every day for the past two weeks.",
+      "expectedAnswer": "has been waking",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "wake_futureSimple_01",
+      "verb": "wake",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ before sunrise again tomorrow.",
+      "expectedAnswer": "will wake",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "wake_futureContinuous_01",
+      "verb": "wake",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "During next week's trip, he _____ before sunrise each day.",
+      "expectedAnswer": "will be waking",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "wake_futurePerfect_01",
+      "verb": "wake",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ before sunrise five times.",
+      "expectedAnswer": "will have woken",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "wake_futurePerfectContinuous_01",
+      "verb": "wake",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ early every day for two weeks.",
+      "expectedAnswer": "will have been waking",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "shake_pastSimple_01",
+      "verb": "shake",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "After the interview, she _____ his hand and thanked him.",
+      "expectedAnswer": "shook",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "shake_pastContinuous_01",
+      "verb": "shake",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "When I came in, she _____ the rain from her umbrella.",
+      "expectedAnswer": "was shaking",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "shake_pastPerfect_01",
+      "verb": "shake",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "shake_pastPerfectContinuous_01",
+      "verb": "shake",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "shake_presentSimple_01",
+      "verb": "shake",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ the crumbs from the tablecloth outside.",
+      "expectedAnswer": "shakes",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "shake_presentContinuous_01",
+      "verb": "shake",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "She _____ the sand from her shoes at the moment.",
+      "expectedAnswer": "is shaking",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "shake_presentPerfect_01",
+      "verb": "shake",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ the dust from three rugs so far today.",
+      "expectedAnswer": "has shaken",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "shake_presentPerfectContinuous_01",
+      "verb": "shake",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "shake_futureSimple_01",
+      "verb": "shake",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "shake_futureContinuous_01",
+      "verb": "shake",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "shake_futurePerfect_01",
+      "verb": "shake",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "shake_futurePerfectContinuous_01",
+      "verb": "shake",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "steal_pastSimple_01",
+      "verb": "steal",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ an idea from my notes during last week's meeting.",
+      "expectedAnswer": "stole",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "steal_pastContinuous_01",
+      "verb": "steal",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "Last month, he _____ ideas from other people's drafts.",
+      "expectedAnswer": "was stealing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "steal_pastPerfect_01",
+      "verb": "steal",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before anyone noticed, he _____ three ideas from my notes.",
+      "expectedAnswer": "had stolen",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "steal_pastPerfectContinuous_01",
+      "verb": "steal",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before he was confronted, he _____ ideas for several weeks.",
+      "expectedAnswer": "had been stealing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "steal_presentSimple_01",
+      "verb": "steal",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He sometimes _____ ideas from other people's drafts.",
+      "expectedAnswer": "steals",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "steal_presentContinuous_01",
+      "verb": "steal",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "This month, he _____ ideas from other people's drafts.",
+      "expectedAnswer": "is stealing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "steal_presentPerfect_01",
+      "verb": "steal",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ several ideas from my notes this month.",
+      "expectedAnswer": "has stolen",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "steal_presentPerfectContinuous_01",
+      "verb": "steal",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ ideas from other people's drafts for weeks.",
+      "expectedAnswer": "has been stealing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "steal_futureSimple_01",
+      "verb": "steal",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ more of my time if the meeting runs late tomorrow.",
+      "expectedAnswer": "will steal",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "steal_futureContinuous_01",
+      "verb": "steal",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "During next week's project, he _____ time from other tasks.",
+      "expectedAnswer": "will be stealing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "steal_futurePerfect_01",
+      "verb": "steal",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ several hours from other tasks.",
+      "expectedAnswer": "will have stolen",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "steal_futurePerfectContinuous_01",
+      "verb": "steal",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ time from other tasks for a month.",
+      "expectedAnswer": "will have been stealing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "hide_pastSimple_01",
+      "verb": "hide",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ the spare key under a flowerpot last Friday.",
+      "expectedAnswer": "hid",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "hide_pastContinuous_01",
+      "verb": "hide",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "When I walked in, she _____ a note inside a book.",
+      "expectedAnswer": "was hiding",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "hide_pastPerfect_01",
+      "verb": "hide",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before he arrived, she _____ the letter in a drawer.",
+      "expectedAnswer": "had hidden",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hide_pastPerfectContinuous_01",
+      "verb": "hide",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "hide_presentSimple_01",
+      "verb": "hide",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He sometimes _____ the truth when he is embarrassed.",
+      "expectedAnswer": "hides",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "hide_presentContinuous_01",
+      "verb": "hide",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "She _____ a birthday gift in the closet at the moment.",
+      "expectedAnswer": "is hiding",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "hide_presentPerfect_01",
+      "verb": "hide",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ the spare key somewhere in the kitchen.",
+      "expectedAnswer": "has hidden",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hide_presentPerfectContinuous_01",
+      "verb": "hide",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "hide_futureSimple_01",
+      "verb": "hide",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ the note before he gets home tomorrow.",
+      "expectedAnswer": "will hide",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "hide_futureContinuous_01",
+      "verb": "hide",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "hide_futurePerfect_01",
+      "verb": "hide",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By the time he arrives, she _____ the letter in a safe place.",
+      "expectedAnswer": "will have hidden",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hide_futurePerfectContinuous_01",
+      "verb": "hide",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "bite_pastSimple_01",
+      "verb": "bite",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ into a crisp apple after lunch last Friday.",
+      "expectedAnswer": "bit",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "bite_pastContinuous_01",
+      "verb": "bite",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At lunch yesterday, she _____ into an apple when I called.",
+      "expectedAnswer": "was biting",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "bite_pastPerfect_01",
+      "verb": "bite",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before she threw them away, she _____ into two different apples.",
+      "expectedAnswer": "had bitten",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "bite_pastPerfectContinuous_01",
+      "verb": "bite",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "bite_presentSimple_01",
+      "verb": "bite",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She often _____ into an apple during her afternoon break.",
+      "expectedAnswer": "bites",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "bite_presentContinuous_01",
+      "verb": "bite",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ into a crisp green apple.",
+      "expectedAnswer": "is biting",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "bite_presentPerfect_01",
+      "verb": "bite",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ into three new apple varieties this week.",
+      "expectedAnswer": "has bitten",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "bite_presentPerfectContinuous_01",
+      "verb": "bite",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "bite_futureSimple_01",
+      "verb": "bite",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ into another apple at tomorrow's tasting.",
+      "expectedAnswer": "will bite",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "bite_futureContinuous_01",
+      "verb": "bite",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At noon tomorrow, she _____ into an apple at the tasting.",
+      "expectedAnswer": "will be biting",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "bite_futurePerfect_01",
+      "verb": "bite",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ into ten new apple varieties.",
+      "expectedAnswer": "will have bitten",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "bite_futurePerfectContinuous_01",
+      "verb": "bite",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "freeze_pastSimple_01",
+      "verb": "freeze",
+      "tense": "pastSimple",
+      "subject": "the pond",
+      "sentence": "The pond _____ solid during last January's cold spell.",
+      "expectedAnswer": "froze",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "freeze_pastContinuous_01",
+      "verb": "freeze",
+      "tense": "pastContinuous",
+      "subject": "the pond",
+      "sentence": "During last week's cold nights, the pond _____ quickly.",
+      "expectedAnswer": "was freezing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "freeze_pastPerfect_01",
+      "verb": "freeze",
+      "tense": "pastPerfect",
+      "subject": "the pond",
+      "sentence": "By the time the sun rose, the pond _____ completely.",
+      "expectedAnswer": "had frozen",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "freeze_pastPerfectContinuous_01",
+      "verb": "freeze",
+      "tense": "pastPerfectContinuous",
+      "subject": "the pond",
+      "sentence": "By the time the sun rose, the pond _____ steadily for hours.",
+      "expectedAnswer": "had been freezing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "freeze_presentSimple_01",
+      "verb": "freeze",
+      "tense": "presentSimple",
+      "subject": "the pond",
+      "sentence": "The pond usually _____ during the coldest winter nights.",
+      "expectedAnswer": "freezes",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "freeze_presentContinuous_01",
+      "verb": "freeze",
+      "tense": "presentContinuous",
+      "subject": "the pond",
+      "sentence": "The pond _____ quickly in this week's cold weather.",
+      "expectedAnswer": "is freezing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "freeze_presentPerfect_01",
+      "verb": "freeze",
+      "tense": "presentPerfect",
+      "subject": "the pond",
+      "sentence": "The pond _____ twice so far this winter.",
+      "expectedAnswer": "has frozen",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "freeze_presentPerfectContinuous_01",
+      "verb": "freeze",
+      "tense": "presentPerfectContinuous",
+      "subject": "the pond",
+      "sentence": "The pond _____ a little more each night this week.",
+      "expectedAnswer": "has been freezing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "freeze_futureSimple_01",
+      "verb": "freeze",
+      "tense": "futureSimple",
+      "subject": "the pond",
+      "sentence": "The pond _____ again during next week's cold spell.",
+      "expectedAnswer": "will freeze",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "freeze_futureContinuous_01",
+      "verb": "freeze",
+      "tense": "futureContinuous",
+      "subject": "the pond",
+      "sentence": "Overnight tomorrow, the pond _____ again.",
+      "expectedAnswer": "will be freezing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "freeze_futurePerfect_01",
+      "verb": "freeze",
+      "tense": "futurePerfect",
+      "subject": "the pond",
+      "sentence": "By dawn tomorrow, the pond _____ completely.",
+      "expectedAnswer": "will have frozen",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "freeze_futurePerfectContinuous_01",
+      "verb": "freeze",
+      "tense": "futurePerfectContinuous",
+      "subject": "the pond",
+      "sentence": "By dawn tomorrow, the pond _____ steadily for six hours.",
+      "expectedAnswer": "will have been freezing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "tear_pastSimple_01",
+      "verb": "tear",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ the old paper into strips last Saturday.",
+      "expectedAnswer": "tore",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "tear_pastContinuous_01",
+      "verb": "tear",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At noon yesterday, he _____ old paper into strips.",
+      "expectedAnswer": "was tearing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "tear_pastPerfect_01",
+      "verb": "tear",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before the workshop ended, he _____ twenty sheets into strips.",
+      "expectedAnswer": "had torn",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "tear_pastPerfectContinuous_01",
+      "verb": "tear",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "tear_presentSimple_01",
+      "verb": "tear",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He often _____ scrap paper into strips for crafts.",
+      "expectedAnswer": "tears",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "tear_presentContinuous_01",
+      "verb": "tear",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ old paper into strips.",
+      "expectedAnswer": "is tearing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "tear_presentPerfect_01",
+      "verb": "tear",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ twenty sheets into strips so far today.",
+      "expectedAnswer": "has torn",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "tear_presentPerfectContinuous_01",
+      "verb": "tear",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "tear_futureSimple_01",
+      "verb": "tear",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ more scrap paper into strips tomorrow.",
+      "expectedAnswer": "will tear",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "tear_futureContinuous_01",
+      "verb": "tear",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At noon tomorrow, he _____ paper into strips.",
+      "expectedAnswer": "will be tearing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "tear_futurePerfect_01",
+      "verb": "tear",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By tomorrow afternoon, he _____ fifty sheets into strips.",
+      "expectedAnswer": "will have torn",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "tear_futurePerfectContinuous_01",
+      "verb": "tear",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "blow_pastSimple_01",
+      "verb": "blow",
+      "tense": "pastSimple",
+      "subject": "they",
+      "sentence": "They _____ soap bubbles in the park last Sunday.",
+      "expectedAnswer": "blew",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "blow_pastContinuous_01",
+      "verb": "blow",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "sentence": "At noon yesterday, they _____ soap bubbles in the yard.",
+      "expectedAnswer": "were blowing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "blow_pastPerfect_01",
+      "verb": "blow",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "sentence": "Before the party began, they _____ hundreds of soap bubbles.",
+      "expectedAnswer": "had blown",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "blow_pastPerfectContinuous_01",
+      "verb": "blow",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "blow_presentSimple_01",
+      "verb": "blow",
+      "tense": "presentSimple",
+      "subject": "they",
+      "sentence": "They often _____ soap bubbles in the backyard.",
+      "expectedAnswer": "blow",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "blow_presentContinuous_01",
+      "verb": "blow",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "sentence": "Right now, they _____ soap bubbles in the yard.",
+      "expectedAnswer": "are blowing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "blow_presentPerfect_01",
+      "verb": "blow",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "sentence": "They _____ hundreds of bubbles so far today.",
+      "expectedAnswer": "have blown",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "blow_presentPerfectContinuous_01",
+      "verb": "blow",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "blow_futureSimple_01",
+      "verb": "blow",
+      "tense": "futureSimple",
+      "subject": "they",
+      "sentence": "They _____ soap bubbles in the park tomorrow.",
+      "expectedAnswer": "will blow",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "blow_futureContinuous_01",
+      "verb": "blow",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "sentence": "At noon tomorrow, they _____ soap bubbles in the park.",
+      "expectedAnswer": "will be blowing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "blow_futurePerfect_01",
+      "verb": "blow",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "sentence": "By tomorrow afternoon, they _____ hundreds of bubbles.",
+      "expectedAnswer": "will have blown",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "blow_futurePerfectContinuous_01",
+      "verb": "blow",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "strike_pastSimple_01",
+      "verb": "strike",
+      "tense": "pastSimple",
+      "subject": "lightning",
+      "sentence": "Lightning _____ a tall tree near the house last night.",
+      "expectedAnswer": "struck",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "strike_pastContinuous_01",
+      "verb": "strike",
+      "tense": "pastContinuous",
+      "subject": "the clock",
+      "sentence": "As we entered, the clock _____ midnight.",
+      "expectedAnswer": "was striking",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "strike_pastPerfect_01",
+      "verb": "strike",
+      "tense": "pastPerfect",
+      "subject": "the clock",
+      "sentence": "Before we reached the square, the clock _____ twelve.",
+      "expectedAnswer": "had struck",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "strike_pastPerfectContinuous_01",
+      "verb": "strike",
+      "tense": "pastPerfectContinuous",
+      "subject": "the clock",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "strike_presentSimple_01",
+      "verb": "strike",
+      "tense": "presentSimple",
+      "subject": "lightning",
+      "sentence": "Lightning sometimes _____ tall trees on this hill.",
+      "expectedAnswer": "strikes",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "strike_presentContinuous_01",
+      "verb": "strike",
+      "tense": "presentContinuous",
+      "subject": "the clock",
+      "sentence": "Listen: the clock _____ twelve.",
+      "expectedAnswer": "is striking",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "strike_presentPerfect_01",
+      "verb": "strike",
+      "tense": "presentPerfect",
+      "subject": "lightning",
+      "sentence": "Lightning _____ this tree twice in the past ten years.",
+      "expectedAnswer": "has struck",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "strike_presentPerfectContinuous_01",
+      "verb": "strike",
+      "tense": "presentPerfectContinuous",
+      "subject": "the clock",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "strike_futureSimple_01",
+      "verb": "strike",
+      "tense": "futureSimple",
+      "subject": "the clock",
+      "sentence": "The clock _____ twelve at midnight tonight.",
+      "expectedAnswer": "will strike",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "strike_futureContinuous_01",
+      "verb": "strike",
+      "tense": "futureContinuous",
+      "subject": "the clock",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "strike_futurePerfect_01",
+      "verb": "strike",
+      "tense": "futurePerfect",
+      "subject": "the clock",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "strike_futurePerfectContinuous_01",
+      "verb": "strike",
+      "tense": "futurePerfectContinuous",
+      "subject": "the clock",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "stick_pastSimple_01",
+      "verb": "stick",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ labels on twenty boxes last Friday.",
+      "expectedAnswer": "stuck",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "stick_pastContinuous_01",
+      "verb": "stick",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At 4:00 p.m. yesterday, she _____ labels on boxes.",
+      "expectedAnswer": "was sticking",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "stick_pastPerfect_01",
+      "verb": "stick",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before the shipment left, she _____ labels on every box.",
+      "expectedAnswer": "had stuck",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "stick_pastPerfectContinuous_01",
+      "verb": "stick",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before the shipment left, she _____ labels on boxes for hours.",
+      "expectedAnswer": "had been sticking",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "stick_presentSimple_01",
+      "verb": "stick",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ labels on the boxes before shipping.",
+      "expectedAnswer": "sticks",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "stick_presentContinuous_01",
+      "verb": "stick",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ labels on a new batch of boxes.",
+      "expectedAnswer": "is sticking",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "stick_presentPerfect_01",
+      "verb": "stick",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ labels on forty boxes so far today.",
+      "expectedAnswer": "has stuck",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "stick_presentPerfectContinuous_01",
+      "verb": "stick",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ labels on boxes all afternoon.",
+      "expectedAnswer": "has been sticking",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "stick_futureSimple_01",
+      "verb": "stick",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ labels on another batch tomorrow.",
+      "expectedAnswer": "will stick",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "stick_futureContinuous_01",
+      "verb": "stick",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At 4:00 p.m. tomorrow, she _____ labels on boxes.",
+      "expectedAnswer": "will be sticking",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "stick_futurePerfect_01",
+      "verb": "stick",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By tomorrow evening, she _____ labels on sixty boxes.",
+      "expectedAnswer": "will have stuck",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "stick_futurePerfectContinuous_01",
+      "verb": "stick",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By 5:00 p.m. tomorrow, she _____ labels on boxes for three hours.",
+      "expectedAnswer": "will have been sticking",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "swing_pastSimple_01",
+      "verb": "swing",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ on the playground swing after school last Friday.",
+      "expectedAnswer": "swung",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "swing_pastContinuous_01",
+      "verb": "swing",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "When I arrived, she _____ on the playground swing.",
+      "expectedAnswer": "was swinging",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "swing_pastPerfect_01",
+      "verb": "swing",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "swing_pastPerfectContinuous_01",
+      "verb": "swing",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "swing_presentSimple_01",
+      "verb": "swing",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She often _____ on the playground swing after school.",
+      "expectedAnswer": "swings",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "swing_presentContinuous_01",
+      "verb": "swing",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "She _____ on the playground swing at the moment.",
+      "expectedAnswer": "is swinging",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "swing_presentPerfect_01",
+      "verb": "swing",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "swing_presentPerfectContinuous_01",
+      "verb": "swing",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "swing_futureSimple_01",
+      "verb": "swing",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ on the playground swing again tomorrow.",
+      "expectedAnswer": "will swing",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "swing_futureContinuous_01",
+      "verb": "swing",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "After school tomorrow, she _____ on the playground swing.",
+      "expectedAnswer": "will be swinging",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "swing_futurePerfect_01",
+      "verb": "swing",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "swing_futurePerfectContinuous_01",
+      "verb": "swing",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "dig_pastSimple_01",
+      "verb": "dig",
+      "tense": "pastSimple",
+      "subject": "they",
+      "sentence": "They _____ six holes for new trees last Saturday.",
+      "expectedAnswer": "dug",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "dig_pastContinuous_01",
+      "verb": "dig",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "sentence": "At 10:00 a.m. yesterday, they _____ holes for new trees.",
+      "expectedAnswer": "were digging",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "dig_pastPerfect_01",
+      "verb": "dig",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "sentence": "Before they planted the trees, they _____ six holes.",
+      "expectedAnswer": "had dug",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "dig_pastPerfectContinuous_01",
+      "verb": "dig",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "sentence": "Before they started planting, they _____ holes for three hours.",
+      "expectedAnswer": "had been digging",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "dig_presentSimple_01",
+      "verb": "dig",
+      "tense": "presentSimple",
+      "subject": "they",
+      "sentence": "They often _____ holes for new trees in spring.",
+      "expectedAnswer": "dig",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "dig_presentContinuous_01",
+      "verb": "dig",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "sentence": "Right now, they _____ holes for new trees.",
+      "expectedAnswer": "are digging",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "dig_presentPerfect_01",
+      "verb": "dig",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "sentence": "They _____ six holes so far today.",
+      "expectedAnswer": "have dug",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "dig_presentPerfectContinuous_01",
+      "verb": "dig",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "sentence": "They _____ holes for the past three hours.",
+      "expectedAnswer": "have been digging",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "dig_futureSimple_01",
+      "verb": "dig",
+      "tense": "futureSimple",
+      "subject": "they",
+      "sentence": "They _____ more holes for trees tomorrow.",
+      "expectedAnswer": "will dig",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "dig_futureContinuous_01",
+      "verb": "dig",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "sentence": "At 10:00 a.m. tomorrow, they _____ holes for trees.",
+      "expectedAnswer": "will be digging",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "dig_futurePerfect_01",
+      "verb": "dig",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "sentence": "By noon tomorrow, they _____ ten holes for the trees.",
+      "expectedAnswer": "will have dug",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "dig_futurePerfectContinuous_01",
+      "verb": "dig",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "sentence": "By noon tomorrow, they _____ holes for three hours.",
+      "expectedAnswer": "will have been digging",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "hang_pastSimple_01",
+      "verb": "hang",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ three posters in the hall last Monday.",
+      "expectedAnswer": "hung",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "hang_pastContinuous_01",
+      "verb": "hang",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At 2:00 p.m. yesterday, she _____ posters in the hall.",
+      "expectedAnswer": "was hanging",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "hang_pastPerfect_01",
+      "verb": "hang",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before the event began, she _____ all six posters.",
+      "expectedAnswer": "had hung",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hang_pastPerfectContinuous_01",
+      "verb": "hang",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before the event began, she _____ posters for an hour.",
+      "expectedAnswer": "had been hanging",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "hang_presentSimple_01",
+      "verb": "hang",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ new posters in the hall each month.",
+      "expectedAnswer": "hangs",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "hang_presentContinuous_01",
+      "verb": "hang",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ new posters in the hall.",
+      "expectedAnswer": "is hanging",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "hang_presentPerfect_01",
+      "verb": "hang",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ six posters so far today.",
+      "expectedAnswer": "has hung",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hang_presentPerfectContinuous_01",
+      "verb": "hang",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ posters in the hall all afternoon.",
+      "expectedAnswer": "has been hanging",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "hang_futureSimple_01",
+      "verb": "hang",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ new posters in the hall tomorrow.",
+      "expectedAnswer": "will hang",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "hang_futureContinuous_01",
+      "verb": "hang",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At 2:00 p.m. tomorrow, she _____ posters in the hall.",
+      "expectedAnswer": "will be hanging",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "hang_futurePerfect_01",
+      "verb": "hang",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By tomorrow evening, she _____ all ten posters.",
+      "expectedAnswer": "will have hung",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hang_futurePerfectContinuous_01",
+      "verb": "hang",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By 3:00 p.m. tomorrow, she _____ posters for an hour.",
+      "expectedAnswer": "will have been hanging",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "shoot_pastSimple_01",
+      "verb": "shoot",
+      "tense": "pastSimple",
+      "subject": "they",
+      "sentence": "They _____ arrows at targets during practice last Saturday.",
+      "expectedAnswer": "shot",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "shoot_pastContinuous_01",
+      "verb": "shoot",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "sentence": "At noon yesterday, they _____ arrows at indoor targets.",
+      "expectedAnswer": "were shooting",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "shoot_pastPerfect_01",
+      "verb": "shoot",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "sentence": "Before practice ended, they _____ thirty arrows at targets.",
+      "expectedAnswer": "had shot",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "shoot_pastPerfectContinuous_01",
+      "verb": "shoot",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "sentence": "Before practice ended, they _____ arrows at targets for two hours.",
+      "expectedAnswer": "had been shooting",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "shoot_presentSimple_01",
+      "verb": "shoot",
+      "tense": "presentSimple",
+      "subject": "they",
+      "sentence": "They usually _____ arrows at targets on Saturdays.",
+      "expectedAnswer": "shoot",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "shoot_presentContinuous_01",
+      "verb": "shoot",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "sentence": "Right now, they _____ arrows at indoor targets.",
+      "expectedAnswer": "are shooting",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "shoot_presentPerfect_01",
+      "verb": "shoot",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "sentence": "They _____ sixty arrows at targets so far today.",
+      "expectedAnswer": "have shot",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "shoot_presentPerfectContinuous_01",
+      "verb": "shoot",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "sentence": "They _____ arrows at targets for the past two hours.",
+      "expectedAnswer": "have been shooting",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "shoot_futureSimple_01",
+      "verb": "shoot",
+      "tense": "futureSimple",
+      "subject": "they",
+      "sentence": "They _____ arrows at targets again next Saturday.",
+      "expectedAnswer": "will shoot",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "shoot_futureContinuous_01",
+      "verb": "shoot",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "sentence": "At noon next Saturday, they _____ arrows at indoor targets.",
+      "expectedAnswer": "will be shooting",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "shoot_futurePerfect_01",
+      "verb": "shoot",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "sentence": "By next Friday, they _____ three hundred arrows this month.",
+      "expectedAnswer": "will have shot",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "shoot_futurePerfectContinuous_01",
+      "verb": "shoot",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "sentence": "By noon next Saturday, they _____ arrows for two hours.",
+      "expectedAnswer": "will have been shooting",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "spin_pastSimple_01",
+      "verb": "spin",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ the prize wheel at the fair last Sunday.",
+      "expectedAnswer": "spun",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "spin_pastContinuous_01",
+      "verb": "spin",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At noon yesterday, she _____ the prize wheel for visitors.",
+      "expectedAnswer": "was spinning",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "spin_pastPerfect_01",
+      "verb": "spin",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before the fair closed, she _____ the prize wheel twenty times.",
+      "expectedAnswer": "had spun",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "spin_pastPerfectContinuous_01",
+      "verb": "spin",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before the fair closed, she _____ the prize wheel for nearly an hour.",
+      "expectedAnswer": "had been spinning",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "spin_presentSimple_01",
+      "verb": "spin",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She often _____ the prize wheel at community events.",
+      "expectedAnswer": "spins",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "spin_presentContinuous_01",
+      "verb": "spin",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "She _____ the prize wheel for visitors at the moment.",
+      "expectedAnswer": "is spinning",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "spin_presentPerfect_01",
+      "verb": "spin",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ the prize wheel twenty times so far today.",
+      "expectedAnswer": "has spun",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "spin_presentPerfectContinuous_01",
+      "verb": "spin",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ the prize wheel for the past half hour.",
+      "expectedAnswer": "has been spinning",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "spin_futureSimple_01",
+      "verb": "spin",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ the prize wheel again tomorrow.",
+      "expectedAnswer": "will spin",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "spin_futureContinuous_01",
+      "verb": "spin",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At noon tomorrow, she _____ the prize wheel for visitors.",
+      "expectedAnswer": "will be spinning",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "spin_futurePerfect_01",
+      "verb": "spin",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By tomorrow afternoon, she _____ the prize wheel fifty times.",
+      "expectedAnswer": "will have spun",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "spin_futurePerfectContinuous_01",
+      "verb": "spin",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By 12:30 p.m. tomorrow, she _____ the prize wheel for half an hour.",
+      "expectedAnswer": "will have been spinning",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "spread_pastSimple_01",
+      "verb": "spread",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ paint evenly across the wall last Saturday.",
+      "expectedAnswer": "spread",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "spread_pastContinuous_01",
+      "verb": "spread",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At noon yesterday, he _____ paint across the wall.",
+      "expectedAnswer": "was spreading",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "spread_pastPerfect_01",
+      "verb": "spread",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "By the time his coworker arrived, he _____ paint across half the wall.",
+      "expectedAnswer": "had spread",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "spread_pastPerfectContinuous_01",
+      "verb": "spread",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before his coworker arrived, he _____ paint across the wall for two hours.",
+      "expectedAnswer": "had been spreading",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "spread_presentSimple_01",
+      "verb": "spread",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ paint with a wide roller.",
+      "expectedAnswer": "spreads",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "spread_presentContinuous_01",
+      "verb": "spread",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ paint across the wall.",
+      "expectedAnswer": "is spreading",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "spread_presentPerfect_01",
+      "verb": "spread",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ paint across three walls so far today.",
+      "expectedAnswer": "has spread",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "spread_presentPerfectContinuous_01",
+      "verb": "spread",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ paint across the walls for the past two hours.",
+      "expectedAnswer": "has been spreading",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "spread_futureSimple_01",
+      "verb": "spread",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ more paint across the wall tomorrow.",
+      "expectedAnswer": "will spread",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "spread_futureContinuous_01",
+      "verb": "spread",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At noon tomorrow, he _____ paint across the wall.",
+      "expectedAnswer": "will be spreading",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "spread_futurePerfect_01",
+      "verb": "spread",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By tomorrow evening, he _____ paint across all four walls.",
+      "expectedAnswer": "will have spread",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "spread_futurePerfectContinuous_01",
+      "verb": "spread",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By noon tomorrow, he _____ paint across the walls for two hours.",
+      "expectedAnswer": "will have been spreading",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "hurt_pastSimple_01",
+      "verb": "hurt",
+      "tense": "pastSimple",
+      "subject": "higher shipping costs",
+      "sentence": "Higher shipping costs _____ small shops last winter.",
+      "expectedAnswer": "hurt",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "hurt_pastContinuous_01",
+      "verb": "hurt",
+      "tense": "pastContinuous",
+      "subject": "higher shipping costs",
+      "sentence": "During last year's peak season, higher costs _____ small shops.",
+      "expectedAnswer": "were hurting",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "hurt_pastPerfect_01",
+      "verb": "hurt",
+      "tense": "pastPerfect",
+      "subject": "higher shipping costs",
+      "sentence": "By the time spring ended, higher shipping costs _____ many small shops.",
+      "expectedAnswer": "had hurt",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hurt_pastPerfectContinuous_01",
+      "verb": "hurt",
+      "tense": "pastPerfectContinuous",
+      "subject": "higher shipping costs",
+      "sentence": "By the time spring ended, higher costs _____ small shops for months.",
+      "expectedAnswer": "had been hurting",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "hurt_presentSimple_01",
+      "verb": "hurt",
+      "tense": "presentSimple",
+      "subject": "higher shipping costs",
+      "sentence": "Higher shipping costs often _____ small online shops.",
+      "expectedAnswer": "hurt",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "hurt_presentContinuous_01",
+      "verb": "hurt",
+      "tense": "presentContinuous",
+      "subject": "higher shipping costs",
+      "sentence": "Higher shipping costs _____ small shops this month.",
+      "expectedAnswer": "are hurting",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "hurt_presentPerfect_01",
+      "verb": "hurt",
+      "tense": "presentPerfect",
+      "subject": "higher shipping costs",
+      "sentence": "Higher shipping costs _____ several small shops this year.",
+      "expectedAnswer": "have hurt",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hurt_presentPerfectContinuous_01",
+      "verb": "hurt",
+      "tense": "presentPerfectContinuous",
+      "subject": "higher shipping costs",
+      "sentence": "Higher shipping costs _____ small shops for the past few months.",
+      "expectedAnswer": "have been hurting",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "hurt_futureSimple_01",
+      "verb": "hurt",
+      "tense": "futureSimple",
+      "subject": "higher shipping costs",
+      "sentence": "Higher shipping costs _____ small shops again next winter.",
+      "expectedAnswer": "will hurt",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "hurt_futureContinuous_01",
+      "verb": "hurt",
+      "tense": "futureContinuous",
+      "subject": "higher shipping costs",
+      "sentence": "During next winter, higher shipping costs _____ small shops.",
+      "expectedAnswer": "will be hurting",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "hurt_futurePerfect_01",
+      "verb": "hurt",
+      "tense": "futurePerfect",
+      "subject": "higher shipping costs",
+      "sentence": "By next spring, higher costs _____ many small shops.",
+      "expectedAnswer": "will have hurt",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hurt_futurePerfectContinuous_01",
+      "verb": "hurt",
+      "tense": "futurePerfectContinuous",
+      "subject": "higher shipping costs",
+      "sentence": "By next spring, higher costs _____ small shops for six months.",
+      "expectedAnswer": "will have been hurting",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "hit_pastSimple_01",
+      "verb": "hit",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ the save button after each edit last Friday.",
+      "expectedAnswer": "hit",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "hit_pastContinuous_01",
+      "verb": "hit",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At 4:00 p.m. yesterday, she _____ the save button repeatedly.",
+      "expectedAnswer": "was hitting",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "hit_pastPerfect_01",
+      "verb": "hit",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before closing the file, she _____ the save button twice.",
+      "expectedAnswer": "had hit",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hit_pastPerfectContinuous_01",
+      "verb": "hit",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before the session ended, she _____ save after every edit for hours.",
+      "expectedAnswer": "had been hitting",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "hit_presentSimple_01",
+      "verb": "hit",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She always _____ the save button after a major edit.",
+      "expectedAnswer": "hits",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "hit_presentContinuous_01",
+      "verb": "hit",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ save after every change.",
+      "expectedAnswer": "is hitting",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "hit_presentPerfect_01",
+      "verb": "hit",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ the save button ten times so far today.",
+      "expectedAnswer": "has hit",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hit_presentPerfectContinuous_01",
+      "verb": "hit",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ save after every edit all afternoon.",
+      "expectedAnswer": "has been hitting",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "hit_futureSimple_01",
+      "verb": "hit",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ the save button after each edit tomorrow.",
+      "expectedAnswer": "will hit",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "hit_futureContinuous_01",
+      "verb": "hit",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At 4:00 p.m. tomorrow, she _____ save after every change.",
+      "expectedAnswer": "will be hitting",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "hit_futurePerfect_01",
+      "verb": "hit",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By tomorrow evening, she _____ the save button dozens of times.",
+      "expectedAnswer": "will have hit",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "hit_futurePerfectContinuous_01",
+      "verb": "hit",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By 5:00 p.m. tomorrow, she _____ save after every edit for hours.",
+      "expectedAnswer": "will have been hitting",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "cost_pastSimple_01",
+      "verb": "cost",
+      "tense": "pastSimple",
+      "subject": "the repairs",
+      "sentence": "The repairs _____ $800 last month.",
+      "expectedAnswer": "cost",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "cost_pastContinuous_01",
+      "verb": "cost",
+      "tense": "pastContinuous",
+      "subject": "the repairs",
+      "sentence": "During last month's work, the repairs _____ more each week.",
+      "expectedAnswer": "were costing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "cost_pastPerfect_01",
+      "verb": "cost",
+      "tense": "pastPerfect",
+      "subject": "the repairs",
+      "sentence": "By the time the repairs were finished, they _____ more than $800.",
+      "expectedAnswer": "had cost",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "cost_pastPerfectContinuous_01",
+      "verb": "cost",
+      "tense": "pastPerfectContinuous",
+      "subject": "the repairs",
+      "sentence": "Before the repairs ended, they _____ more each week for a month.",
+      "expectedAnswer": "had been costing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "cost_presentSimple_01",
+      "verb": "cost",
+      "tense": "presentSimple",
+      "subject": "the repairs",
+      "sentence": "The repairs usually _____ less than $1,000.",
+      "expectedAnswer": "cost",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "cost_presentContinuous_01",
+      "verb": "cost",
+      "tense": "presentContinuous",
+      "subject": "the repairs",
+      "sentence": "The repairs _____ more than expected this month.",
+      "expectedAnswer": "are costing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "cost_presentPerfect_01",
+      "verb": "cost",
+      "tense": "presentPerfect",
+      "subject": "the repairs",
+      "sentence": "The repairs _____ more than $800 so far.",
+      "expectedAnswer": "have cost",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "cost_presentPerfectContinuous_01",
+      "verb": "cost",
+      "tense": "presentPerfectContinuous",
+      "subject": "the repairs",
+      "sentence": "The repairs _____ more each week for the past month.",
+      "expectedAnswer": "have been costing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "cost_futureSimple_01",
+      "verb": "cost",
+      "tense": "futureSimple",
+      "subject": "the repairs",
+      "sentence": "The repairs _____ about $900 next month.",
+      "expectedAnswer": "will cost",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "cost_futureContinuous_01",
+      "verb": "cost",
+      "tense": "futureContinuous",
+      "subject": "the repairs",
+      "sentence": "Next month, the repairs _____ more as material prices rise.",
+      "expectedAnswer": "will be costing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "cost_futurePerfect_01",
+      "verb": "cost",
+      "tense": "futurePerfect",
+      "subject": "the repairs",
+      "sentence": "By next Friday, the repairs _____ more than $1,000.",
+      "expectedAnswer": "will have cost",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "cost_futurePerfectContinuous_01",
+      "verb": "cost",
+      "tense": "futurePerfectContinuous",
+      "subject": "the repairs",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "shut_pastSimple_01",
+      "verb": "shut",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ the studio windows before leaving last Friday.",
+      "expectedAnswer": "shut",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "shut_pastContinuous_01",
+      "verb": "shut",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At 6:00 p.m. yesterday, he _____ the studio windows.",
+      "expectedAnswer": "was shutting",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "shut_pastPerfect_01",
+      "verb": "shut",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before the rain began, he _____ every studio window.",
+      "expectedAnswer": "had shut",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "shut_pastPerfectContinuous_01",
+      "verb": "shut",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before closing time, he _____ windows for ten minutes.",
+      "expectedAnswer": "had been shutting",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "shut_presentSimple_01",
+      "verb": "shut",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He always _____ the studio windows before leaving.",
+      "expectedAnswer": "shuts",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "shut_presentContinuous_01",
+      "verb": "shut",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ the studio windows.",
+      "expectedAnswer": "is shutting",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "shut_presentPerfect_01",
+      "verb": "shut",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ all the studio windows so far today.",
+      "expectedAnswer": "has shut",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "shut_presentPerfectContinuous_01",
+      "verb": "shut",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ windows for the past ten minutes.",
+      "expectedAnswer": "has been shutting",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "shut_futureSimple_01",
+      "verb": "shut",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ the studio windows before leaving tomorrow.",
+      "expectedAnswer": "will shut",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "shut_futureContinuous_01",
+      "verb": "shut",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At 6:00 p.m. tomorrow, he _____ the studio windows.",
+      "expectedAnswer": "will be shutting",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "shut_futurePerfect_01",
+      "verb": "shut",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By 6:00 p.m. tomorrow, he _____ every studio window.",
+      "expectedAnswer": "will have shut",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "shut_futurePerfectContinuous_01",
+      "verb": "shut",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By 6:00 p.m. tomorrow, he _____ windows for ten minutes.",
+      "expectedAnswer": "will have been shutting",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "beat_pastSimple_01",
+      "verb": "beat",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ the eggs for the cake last Sunday.",
+      "expectedAnswer": "beat",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "beat_pastContinuous_01",
+      "verb": "beat",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "At noon yesterday, she _____ eggs for a cake.",
+      "expectedAnswer": "was beating",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "beat_pastPerfect_01",
+      "verb": "beat",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before adding the flour, she _____ the eggs until smooth.",
+      "expectedAnswer": "had beaten",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "beat_pastPerfectContinuous_01",
+      "verb": "beat",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before adding the flour, she _____ the eggs for five minutes.",
+      "expectedAnswer": "had been beating",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "beat_presentSimple_01",
+      "verb": "beat",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ the eggs before adding the flour.",
+      "expectedAnswer": "beats",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "beat_presentContinuous_01",
+      "verb": "beat",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ eggs for a cake.",
+      "expectedAnswer": "is beating",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "beat_presentPerfect_01",
+      "verb": "beat",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ the eggs for two cakes so far today.",
+      "expectedAnswer": "has beaten",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "beat_presentPerfectContinuous_01",
+      "verb": "beat",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ eggs for the past five minutes.",
+      "expectedAnswer": "has been beating",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "beat_futureSimple_01",
+      "verb": "beat",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ the eggs for another cake tomorrow.",
+      "expectedAnswer": "will beat",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "beat_futureContinuous_01",
+      "verb": "beat",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "At noon tomorrow, she _____ eggs for a cake.",
+      "expectedAnswer": "will be beating",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "beat_futurePerfect_01",
+      "verb": "beat",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By tomorrow afternoon, she _____ eggs for three cakes.",
+      "expectedAnswer": "will have beaten",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "beat_futurePerfectContinuous_01",
+      "verb": "beat",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "lend_pastSimple_01",
+      "verb": "lend",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ me a gardening book last Tuesday.",
+      "expectedAnswer": "lent",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "lend_pastContinuous_01",
+      "verb": "lend",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "During last month's club meetings, she _____ books to members.",
+      "expectedAnswer": "was lending",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "lend_pastPerfect_01",
+      "verb": "lend",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before she moved away, she _____ me three gardening books.",
+      "expectedAnswer": "had lent",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "lend_pastPerfectContinuous_01",
+      "verb": "lend",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before summer ended, she _____ books to members for months.",
+      "expectedAnswer": "had been lending",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "lend_presentSimple_01",
+      "verb": "lend",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She often _____ gardening books to her neighbors.",
+      "expectedAnswer": "lends",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "lend_presentContinuous_01",
+      "verb": "lend",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "This month, she _____ books to several new members.",
+      "expectedAnswer": "is lending",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "lend_presentPerfect_01",
+      "verb": "lend",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ me three books so far this year.",
+      "expectedAnswer": "has lent",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "lend_presentPerfectContinuous_01",
+      "verb": "lend",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ books to new members for the past few weeks.",
+      "expectedAnswer": "has been lending",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "lend_futureSimple_01",
+      "verb": "lend",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ me another gardening book tomorrow.",
+      "expectedAnswer": "will lend",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "lend_futureContinuous_01",
+      "verb": "lend",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "During next month's meetings, she _____ books to members.",
+      "expectedAnswer": "will be lending",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "lend_futurePerfect_01",
+      "verb": "lend",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next June, she _____ me six books this year.",
+      "expectedAnswer": "will have lent",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "lend_futurePerfectContinuous_01",
+      "verb": "lend",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "sentence": "By next June, she _____ books to members for six months.",
+      "expectedAnswer": "will have been lending",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "bend_pastSimple_01",
+      "verb": "bend",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ the wire into a circle last Saturday.",
+      "expectedAnswer": "bent",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "bend_pastContinuous_01",
+      "verb": "bend",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At 2:00 p.m. yesterday, he _____ wire for the model.",
+      "expectedAnswer": "was bending",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "bend_pastPerfect_01",
+      "verb": "bend",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before the workshop ended, he _____ six wires into circles.",
+      "expectedAnswer": "had bent",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "bend_pastPerfectContinuous_01",
+      "verb": "bend",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before the workshop ended, he _____ wire for two hours.",
+      "expectedAnswer": "had been bending",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "bend_presentSimple_01",
+      "verb": "bend",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He often _____ wire into simple shapes for models.",
+      "expectedAnswer": "bends",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "bend_presentContinuous_01",
+      "verb": "bend",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ wire into a small circle.",
+      "expectedAnswer": "is bending",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "bend_presentPerfect_01",
+      "verb": "bend",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ six wires into circles so far today.",
+      "expectedAnswer": "has bent",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "bend_presentPerfectContinuous_01",
+      "verb": "bend",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ wire into shapes for the past two hours.",
+      "expectedAnswer": "has been bending",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "bend_futureSimple_01",
+      "verb": "bend",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ more wire into circles tomorrow.",
+      "expectedAnswer": "will bend",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "bend_futureContinuous_01",
+      "verb": "bend",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At 2:00 p.m. tomorrow, he _____ wire for the model.",
+      "expectedAnswer": "will be bending",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "bend_futurePerfect_01",
+      "verb": "bend",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By tomorrow evening, he _____ ten wires into circles.",
+      "expectedAnswer": "will have bent",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "bend_futurePerfectContinuous_01",
+      "verb": "bend",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By 3:00 p.m. tomorrow, he _____ wire for two hours.",
+      "expectedAnswer": "will have been bending",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "mean_pastSimple_01",
+      "verb": "mean",
+      "tense": "pastSimple",
+      "subject": "this symbol",
+      "sentence": "On last year's map, this symbol _____ \"exit.\"",
+      "expectedAnswer": "meant",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "mean_pastContinuous_01",
+      "verb": "mean",
+      "tense": "pastContinuous",
+      "subject": "this symbol",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "mean_pastPerfect_01",
+      "verb": "mean",
+      "tense": "pastPerfect",
+      "subject": "this symbol",
+      "sentence": "For decades before the redesign, this symbol _____ \"exit.\"",
+      "expectedAnswer": "had meant",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "mean_pastPerfectContinuous_01",
+      "verb": "mean",
+      "tense": "pastPerfectContinuous",
+      "subject": "this symbol",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "mean_presentSimple_01",
+      "verb": "mean",
+      "tense": "presentSimple",
+      "subject": "this symbol",
+      "sentence": "On this map, this symbol _____ \"exit.\"",
+      "expectedAnswer": "means",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "mean_presentContinuous_01",
+      "verb": "mean",
+      "tense": "presentContinuous",
+      "subject": "this symbol",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "mean_presentPerfect_01",
+      "verb": "mean",
+      "tense": "presentPerfect",
+      "subject": "this symbol",
+      "sentence": "For decades, this symbol _____ \"exit\" on local maps.",
+      "expectedAnswer": "has meant",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "mean_presentPerfectContinuous_01",
+      "verb": "mean",
+      "tense": "presentPerfectContinuous",
+      "subject": "this symbol",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "mean_futureSimple_01",
+      "verb": "mean",
+      "tense": "futureSimple",
+      "subject": "this symbol",
+      "sentence": "On the new map, this symbol _____ \"exit.\"",
+      "expectedAnswer": "will mean",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "mean_futureContinuous_01",
+      "verb": "mean",
+      "tense": "futureContinuous",
+      "subject": "this symbol",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "mean_futurePerfect_01",
+      "verb": "mean",
+      "tense": "futurePerfect",
+      "subject": "this symbol",
+      "sentence": "By next June, this symbol _____ \"exit\" for ten years.",
+      "expectedAnswer": "will have meant",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "mean_futurePerfectContinuous_01",
+      "verb": "mean",
+      "tense": "futurePerfectContinuous",
+      "subject": "this symbol",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "sweep_pastSimple_01",
+      "verb": "sweep",
+      "tense": "pastSimple",
+      "subject": "they",
+      "sentence": "They _____ the studio floor after class last Friday.",
+      "expectedAnswer": "swept",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "sweep_pastContinuous_01",
+      "verb": "sweep",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "sentence": "At 6:00 p.m. yesterday, they _____ the studio floor.",
+      "expectedAnswer": "were sweeping",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "sweep_pastPerfect_01",
+      "verb": "sweep",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "sentence": "Before everyone left, they _____ every studio floor.",
+      "expectedAnswer": "had swept",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sweep_pastPerfectContinuous_01",
+      "verb": "sweep",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "sentence": "Before the studio closed, they _____ floors for half an hour.",
+      "expectedAnswer": "had been sweeping",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "sweep_presentSimple_01",
+      "verb": "sweep",
+      "tense": "presentSimple",
+      "subject": "they",
+      "sentence": "They usually _____ the studio floor after class.",
+      "expectedAnswer": "sweep",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "sweep_presentContinuous_01",
+      "verb": "sweep",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "sentence": "Right now, they _____ the studio floor.",
+      "expectedAnswer": "are sweeping",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "sweep_presentPerfect_01",
+      "verb": "sweep",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "sentence": "They _____ all three floors so far today.",
+      "expectedAnswer": "have swept",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sweep_presentPerfectContinuous_01",
+      "verb": "sweep",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "sentence": "They _____ floors for the past half hour.",
+      "expectedAnswer": "have been sweeping",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "sweep_futureSimple_01",
+      "verb": "sweep",
+      "tense": "futureSimple",
+      "subject": "they",
+      "sentence": "They _____ the studio floor after class tomorrow.",
+      "expectedAnswer": "will sweep",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "sweep_futureContinuous_01",
+      "verb": "sweep",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "sentence": "At 6:00 p.m. tomorrow, they _____ the studio floor.",
+      "expectedAnswer": "will be sweeping",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "sweep_futurePerfect_01",
+      "verb": "sweep",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "sentence": "By 6:30 p.m. tomorrow, they _____ all three floors.",
+      "expectedAnswer": "will have swept",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sweep_futurePerfectContinuous_01",
+      "verb": "sweep",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "sentence": "By 6:30 p.m. tomorrow, they _____ floors for half an hour.",
+      "expectedAnswer": "will have been sweeping",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "sleep_pastSimple_01",
+      "verb": "sleep",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ in the guest room last Saturday night.",
+      "expectedAnswer": "slept",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "sleep_pastContinuous_01",
+      "verb": "sleep",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At midnight last night, he _____ in the guest room.",
+      "expectedAnswer": "was sleeping",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "sleep_pastPerfect_01",
+      "verb": "sleep",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before the hotel closed for renovations, he _____ there twice.",
+      "expectedAnswer": "had slept",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sleep_pastPerfectContinuous_01",
+      "verb": "sleep",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before the renovation ended, he _____ there for several weeks.",
+      "expectedAnswer": "had been sleeping",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "sleep_presentSimple_01",
+      "verb": "sleep",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ in the guest room when family visits.",
+      "expectedAnswer": "sleeps",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "sleep_presentContinuous_01",
+      "verb": "sleep",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "This week, he _____ in the guest room while his room is painted.",
+      "expectedAnswer": "is sleeping",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "sleep_presentPerfect_01",
+      "verb": "sleep",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ there three times so far this month.",
+      "expectedAnswer": "has slept",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sleep_presentPerfectContinuous_01",
+      "verb": "sleep",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ in the guest room for the past week.",
+      "expectedAnswer": "has been sleeping",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "sleep_futureSimple_01",
+      "verb": "sleep",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ in the guest room again tomorrow night.",
+      "expectedAnswer": "will sleep",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "sleep_futureContinuous_01",
+      "verb": "sleep",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At midnight tomorrow, he _____ in the guest room.",
+      "expectedAnswer": "will be sleeping",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "sleep_futurePerfect_01",
+      "verb": "sleep",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ there five nights this month.",
+      "expectedAnswer": "will have slept",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "sleep_futurePerfectContinuous_01",
+      "verb": "sleep",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ in the guest room for two weeks.",
+      "expectedAnswer": "will have been sleeping",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "creep_pastSimple_01",
+      "verb": "creep",
+      "tense": "pastSimple",
+      "subject": "sunlight",
+      "sentence": "Sunlight _____ across the studio floor early last Monday.",
+      "expectedAnswer": "crept",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "creep_pastContinuous_01",
+      "verb": "creep",
+      "tense": "pastContinuous",
+      "subject": "sunlight",
+      "sentence": "At dawn yesterday, sunlight _____ across the studio floor.",
+      "expectedAnswer": "was creeping",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "creep_pastPerfect_01",
+      "verb": "creep",
+      "tense": "pastPerfect",
+      "subject": "sunlight",
+      "sentence": "By the time he woke up, sunlight _____ across half the floor.",
+      "expectedAnswer": "had crept",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "creep_pastPerfectContinuous_01",
+      "verb": "creep",
+      "tense": "pastPerfectContinuous",
+      "subject": "sunlight",
+      "sentence": "By the time he woke up, sunlight _____ across the floor for two hours.",
+      "expectedAnswer": "had been creeping",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "creep_presentSimple_01",
+      "verb": "creep",
+      "tense": "presentSimple",
+      "subject": "sunlight",
+      "sentence": "Sunlight often _____ across the studio floor at dawn.",
+      "expectedAnswer": "creeps",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "creep_presentContinuous_01",
+      "verb": "creep",
+      "tense": "presentContinuous",
+      "subject": "sunlight",
+      "sentence": "Right now, sunlight _____ across the studio floor.",
+      "expectedAnswer": "is creeping",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "creep_presentPerfect_01",
+      "verb": "creep",
+      "tense": "presentPerfect",
+      "subject": "sunlight",
+      "sentence": "Sunlight _____ across the whole floor several times this week.",
+      "expectedAnswer": "has crept",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "creep_presentPerfectContinuous_01",
+      "verb": "creep",
+      "tense": "presentPerfectContinuous",
+      "subject": "sunlight",
+      "sentence": "Sunlight _____ across the floor since dawn.",
+      "expectedAnswer": "has been creeping",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "creep_futureSimple_01",
+      "verb": "creep",
+      "tense": "futureSimple",
+      "subject": "sunlight",
+      "sentence": "Sunlight _____ across the studio floor again tomorrow.",
+      "expectedAnswer": "will creep",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "creep_futureContinuous_01",
+      "verb": "creep",
+      "tense": "futureContinuous",
+      "subject": "sunlight",
+      "sentence": "At dawn tomorrow, sunlight _____ across the studio floor.",
+      "expectedAnswer": "will be creeping",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "creep_futurePerfect_01",
+      "verb": "creep",
+      "tense": "futurePerfect",
+      "subject": "sunlight",
+      "sentence": "By 8:00 a.m. tomorrow, sunlight _____ across the whole floor.",
+      "expectedAnswer": "will have crept",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "creep_futurePerfectContinuous_01",
+      "verb": "creep",
+      "tense": "futurePerfectContinuous",
+      "subject": "sunlight",
+      "sentence": "By 8:00 a.m. tomorrow, sunlight _____ across the floor for two hours.",
+      "expectedAnswer": "will have been creeping",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "weep_pastSimple_01",
+      "verb": "weep",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ during the moving final scene last Friday.",
+      "expectedAnswer": "wept",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "weep_pastContinuous_01",
+      "verb": "weep",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "During yesterday's final scene, she _____ quietly.",
+      "expectedAnswer": "was weeping",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "weep_pastPerfect_01",
+      "verb": "weep",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "Before the credits rolled, she _____ twice.",
+      "expectedAnswer": "had wept",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "weep_pastPerfectContinuous_01",
+      "verb": "weep",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before the film ended, she _____ quietly for several minutes.",
+      "expectedAnswer": "had been weeping",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "weep_presentSimple_01",
+      "verb": "weep",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She sometimes _____ during especially moving films.",
+      "expectedAnswer": "weeps",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "weep_presentContinuous_01",
+      "verb": "weep",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "Right now, she _____ during the film's final scene.",
+      "expectedAnswer": "is weeping",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "weep_presentPerfect_01",
+      "verb": "weep",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ during two films so far this month.",
+      "expectedAnswer": "has wept",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "weep_presentPerfectContinuous_01",
+      "verb": "weep",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ through the last few minutes of the film.",
+      "expectedAnswer": "has been weeping",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "weep_futureSimple_01",
+      "verb": "weep",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ again if tomorrow's film is equally moving.",
+      "expectedAnswer": "will weep",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "weep_futureContinuous_01",
+      "verb": "weep",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "During tomorrow's final scene, she _____ quietly.",
+      "expectedAnswer": "will be weeping",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "weep_futurePerfect_01",
+      "verb": "weep",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ during three films this month.",
+      "expectedAnswer": "will have wept",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "weep_futurePerfectContinuous_01",
+      "verb": "weep",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected."
+    },
+    {
+      "id": "deal_pastSimple_01",
+      "verb": "deal",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ with twenty customer requests last Monday.",
+      "expectedAnswer": "dealt",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "deal_pastContinuous_01",
+      "verb": "deal",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "At 10:00 a.m. yesterday, he _____ with customer requests.",
+      "expectedAnswer": "was dealing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "deal_pastPerfect_01",
+      "verb": "deal",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before the afternoon shift began, he _____ with ten customer requests.",
+      "expectedAnswer": "had dealt",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "deal_pastPerfectContinuous_01",
+      "verb": "deal",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before the afternoon shift began, he _____ with requests for three hours.",
+      "expectedAnswer": "had been dealing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "deal_presentSimple_01",
+      "verb": "deal",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ with customer requests in the morning.",
+      "expectedAnswer": "deals",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "deal_presentContinuous_01",
+      "verb": "deal",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "Right now, he _____ with a difficult customer request.",
+      "expectedAnswer": "is dealing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "deal_presentPerfect_01",
+      "verb": "deal",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ with thirty requests so far this week.",
+      "expectedAnswer": "has dealt",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "deal_presentPerfectContinuous_01",
+      "verb": "deal",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ with customer requests all morning.",
+      "expectedAnswer": "has been dealing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "deal_futureSimple_01",
+      "verb": "deal",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ with customer requests again tomorrow.",
+      "expectedAnswer": "will deal",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "deal_futureContinuous_01",
+      "verb": "deal",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "At 10:00 a.m. tomorrow, he _____ with customer requests.",
+      "expectedAnswer": "will be dealing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "deal_futurePerfect_01",
+      "verb": "deal",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ with fifty requests this week.",
+      "expectedAnswer": "will have dealt",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "deal_futurePerfectContinuous_01",
+      "verb": "deal",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By noon tomorrow, he _____ with customer requests for three hours.",
+      "expectedAnswer": "will have been dealing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "forbid_pastSimple_01",
+      "verb": "forbid",
+      "tense": "pastSimple",
+      "subject": "the school",
+      "sentence": "The school _____ phones during exams last semester.",
+      "expectedAnswer": "forbade",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "forbid_pastContinuous_01",
+      "verb": "forbid",
+      "tense": "pastContinuous",
+      "subject": "the school",
+      "sentence": "During last term, the school _____ phones at more events.",
+      "expectedAnswer": "was forbidding",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "forbid_pastPerfect_01",
+      "verb": "forbid",
+      "tense": "pastPerfect",
+      "subject": "the school",
+      "sentence": "Before the school changed its policy, it _____ phones at every exam.",
+      "expectedAnswer": "had forbidden",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forbid_pastPerfectContinuous_01",
+      "verb": "forbid",
+      "tense": "pastPerfectContinuous",
+      "subject": "the school",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "forbid_presentSimple_01",
+      "verb": "forbid",
+      "tense": "presentSimple",
+      "subject": "the school",
+      "sentence": "The school _____ phones during exams.",
+      "expectedAnswer": "forbids",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "forbid_presentContinuous_01",
+      "verb": "forbid",
+      "tense": "presentContinuous",
+      "subject": "the school",
+      "sentence": "This term, the school _____ phones at more events.",
+      "expectedAnswer": "is forbidding",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "forbid_presentPerfect_01",
+      "verb": "forbid",
+      "tense": "presentPerfect",
+      "subject": "the school",
+      "sentence": "The school _____ phones at every exam so far this year.",
+      "expectedAnswer": "has forbidden",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forbid_presentPerfectContinuous_01",
+      "verb": "forbid",
+      "tense": "presentPerfectContinuous",
+      "subject": "the school",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "forbid_futureSimple_01",
+      "verb": "forbid",
+      "tense": "futureSimple",
+      "subject": "the school",
+      "sentence": "The school _____ phones during next week's exams.",
+      "expectedAnswer": "will forbid",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "forbid_futureContinuous_01",
+      "verb": "forbid",
+      "tense": "futureContinuous",
+      "subject": "the school",
+      "sentence": "Next term, the school _____ phones at more events.",
+      "expectedAnswer": "will be forbidding",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "forbid_futurePerfect_01",
+      "verb": "forbid",
+      "tense": "futurePerfect",
+      "subject": "the school",
+      "sentence": "By next June, the school _____ phones at twenty exams.",
+      "expectedAnswer": "will have forbidden",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forbid_futurePerfectContinuous_01",
+      "verb": "forbid",
+      "tense": "futurePerfectContinuous",
+      "subject": "the school",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "forgive_pastSimple_01",
+      "verb": "forgive",
+      "tense": "pastSimple",
+      "subject": "she",
+      "sentence": "She _____ my small mistake after Monday's meeting.",
+      "expectedAnswer": "forgave",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "forgive_pastContinuous_01",
+      "verb": "forgive",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "sentence": "During last month's project, she _____ small mistakes more easily.",
+      "expectedAnswer": "was forgiving",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "forgive_pastPerfect_01",
+      "verb": "forgive",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "sentence": "By the time the project ended, she _____ several small mistakes.",
+      "expectedAnswer": "had forgiven",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forgive_pastPerfectContinuous_01",
+      "verb": "forgive",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "sentence": "Before the project ended, she _____ small mistakes for weeks.",
+      "expectedAnswer": "had been forgiving",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "forgive_presentSimple_01",
+      "verb": "forgive",
+      "tense": "presentSimple",
+      "subject": "she",
+      "sentence": "She usually _____ small mistakes quickly.",
+      "expectedAnswer": "forgives",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "forgive_presentContinuous_01",
+      "verb": "forgive",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "sentence": "These days, she _____ small mistakes more easily.",
+      "expectedAnswer": "is forgiving",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "forgive_presentPerfect_01",
+      "verb": "forgive",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "sentence": "She _____ several small mistakes this month.",
+      "expectedAnswer": "has forgiven",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forgive_presentPerfectContinuous_01",
+      "verb": "forgive",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "sentence": "She _____ small mistakes more easily lately.",
+      "expectedAnswer": "has been forgiving",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "forgive_futureSimple_01",
+      "verb": "forgive",
+      "tense": "futureSimple",
+      "subject": "she",
+      "sentence": "She _____ another small mistake if it happens tomorrow.",
+      "expectedAnswer": "will forgive",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "forgive_futureContinuous_01",
+      "verb": "forgive",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "sentence": "During next month's project, she _____ small mistakes more easily.",
+      "expectedAnswer": "will be forgiving",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "forgive_futurePerfect_01",
+      "verb": "forgive",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "sentence": "By next Friday, she _____ several small mistakes this month.",
+      "expectedAnswer": "will have forgiven",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "forgive_futurePerfectContinuous_01",
+      "verb": "forgive",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "withdraw_pastSimple_01",
+      "verb": "withdraw",
+      "tense": "pastSimple",
+      "subject": "he",
+      "sentence": "He _____ $40 from the ATM last Tuesday.",
+      "expectedAnswer": "withdrew",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "withdraw_pastContinuous_01",
+      "verb": "withdraw",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "sentence": "During last month's trip, he _____ small amounts each week.",
+      "expectedAnswer": "was withdrawing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "withdraw_pastPerfect_01",
+      "verb": "withdraw",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "sentence": "Before he left for the trip, he _____ cash from that ATM twice.",
+      "expectedAnswer": "had withdrawn",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "withdraw_pastPerfectContinuous_01",
+      "verb": "withdraw",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "sentence": "Before the trip ended, he _____ small amounts for several weeks.",
+      "expectedAnswer": "had been withdrawing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "withdraw_presentSimple_01",
+      "verb": "withdraw",
+      "tense": "presentSimple",
+      "subject": "he",
+      "sentence": "He usually _____ a small amount of cash on Fridays.",
+      "expectedAnswer": "withdraws",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "withdraw_presentContinuous_01",
+      "verb": "withdraw",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "sentence": "This month, he _____ smaller amounts than usual.",
+      "expectedAnswer": "is withdrawing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "withdraw_presentPerfect_01",
+      "verb": "withdraw",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "sentence": "He _____ cash from that ATM three times this month.",
+      "expectedAnswer": "has withdrawn",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "withdraw_presentPerfectContinuous_01",
+      "verb": "withdraw",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "sentence": "He _____ small amounts each week for the past month.",
+      "expectedAnswer": "has been withdrawing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "withdraw_futureSimple_01",
+      "verb": "withdraw",
+      "tense": "futureSimple",
+      "subject": "he",
+      "sentence": "He _____ another $40 tomorrow.",
+      "expectedAnswer": "will withdraw",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "withdraw_futureContinuous_01",
+      "verb": "withdraw",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "sentence": "During next month's trip, he _____ small amounts each week.",
+      "expectedAnswer": "will be withdrawing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "withdraw_futurePerfect_01",
+      "verb": "withdraw",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ cash from that ATM four times.",
+      "expectedAnswer": "will have withdrawn",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "withdraw_futurePerfectContinuous_01",
+      "verb": "withdraw",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "sentence": "By next Friday, he _____ small amounts weekly for two months.",
+      "expectedAnswer": "will have been withdrawing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "withstand_pastSimple_01",
+      "verb": "withstand",
+      "tense": "pastSimple",
+      "subject": "the fabric",
+      "sentence": "The fabric _____ heavy daily use throughout last year.",
+      "expectedAnswer": "withstood",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "withstand_pastContinuous_01",
+      "verb": "withstand",
+      "tense": "pastContinuous",
+      "subject": "the fabric",
+      "sentence": "During last year's test, the fabric _____ heavy daily use.",
+      "expectedAnswer": "was withstanding",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "withstand_pastPerfect_01",
+      "verb": "withstand",
+      "tense": "pastPerfect",
+      "subject": "the fabric",
+      "sentence": "By the time it was replaced, the fabric _____ a full year of daily use.",
+      "expectedAnswer": "had withstood",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "withstand_pastPerfectContinuous_01",
+      "verb": "withstand",
+      "tense": "pastPerfectContinuous",
+      "subject": "the fabric",
+      "sentence": "By the time it was replaced, the fabric _____ heavy use for a full year.",
+      "expectedAnswer": "had been withstanding",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "withstand_presentSimple_01",
+      "verb": "withstand",
+      "tense": "presentSimple",
+      "subject": "the fabric",
+      "sentence": "The fabric _____ heavy daily use very well.",
+      "expectedAnswer": "withstands",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "withstand_presentContinuous_01",
+      "verb": "withstand",
+      "tense": "presentContinuous",
+      "subject": "the fabric",
+      "sentence": "The fabric _____ heavy use well during this month's test.",
+      "expectedAnswer": "is withstanding",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "withstand_presentPerfect_01",
+      "verb": "withstand",
+      "tense": "presentPerfect",
+      "subject": "the fabric",
+      "sentence": "The fabric _____ six months of daily use so far.",
+      "expectedAnswer": "has withstood",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "withstand_presentPerfectContinuous_01",
+      "verb": "withstand",
+      "tense": "presentPerfectContinuous",
+      "subject": "the fabric",
+      "sentence": "The fabric _____ heavy daily use for the past six months.",
+      "expectedAnswer": "has been withstanding",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "withstand_futureSimple_01",
+      "verb": "withstand",
+      "tense": "futureSimple",
+      "subject": "the fabric",
+      "sentence": "The fabric _____ heavy daily use during next year's test.",
+      "expectedAnswer": "will withstand",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "withstand_futureContinuous_01",
+      "verb": "withstand",
+      "tense": "futureContinuous",
+      "subject": "the fabric",
+      "sentence": "Throughout next month, the fabric _____ heavy daily use.",
+      "expectedAnswer": "will be withstanding",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "withstand_futurePerfect_01",
+      "verb": "withstand",
+      "tense": "futurePerfect",
+      "subject": "the fabric",
+      "sentence": "By next December, the fabric _____ a full year of daily use.",
+      "expectedAnswer": "will have withstood",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "withstand_futurePerfectContinuous_01",
+      "verb": "withstand",
+      "tense": "futurePerfectContinuous",
+      "subject": "the fabric",
+      "sentence": "By next December, the fabric _____ heavy use for a full year.",
+      "expectedAnswer": "will have been withstanding",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "mislead_pastSimple_01",
+      "verb": "mislead",
+      "tense": "pastSimple",
+      "subject": "the old map",
+      "sentence": "The old map _____ several visitors last weekend.",
+      "expectedAnswer": "misled",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "mislead_pastContinuous_01",
+      "verb": "mislead",
+      "tense": "pastContinuous",
+      "subject": "the old map",
+      "sentence": "During last month's event, the old map _____ many visitors.",
+      "expectedAnswer": "was misleading",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "mislead_pastPerfect_01",
+      "verb": "mislead",
+      "tense": "pastPerfect",
+      "subject": "the old map",
+      "sentence": "Before it was replaced, the old map _____ dozens of visitors.",
+      "expectedAnswer": "had misled",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "mislead_pastPerfectContinuous_01",
+      "verb": "mislead",
+      "tense": "pastPerfectContinuous",
+      "subject": "the old map",
+      "sentence": "Before replacement, the old map _____ visitors for months.",
+      "expectedAnswer": "had been misleading",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "mislead_presentSimple_01",
+      "verb": "mislead",
+      "tense": "presentSimple",
+      "subject": "the old map",
+      "sentence": "The old map often _____ visitors near the station.",
+      "expectedAnswer": "misleads",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "mislead_presentContinuous_01",
+      "verb": "mislead",
+      "tense": "presentContinuous",
+      "subject": "the old map",
+      "sentence": "The old map _____ visitors more often this month.",
+      "expectedAnswer": "is misleading",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "mislead_presentPerfect_01",
+      "verb": "mislead",
+      "tense": "presentPerfect",
+      "subject": "the old map",
+      "sentence": "The old map _____ several visitors this week.",
+      "expectedAnswer": "has misled",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "mislead_presentPerfectContinuous_01",
+      "verb": "mislead",
+      "tense": "presentPerfectContinuous",
+      "subject": "the old map",
+      "sentence": "The old map _____ visitors for the past few months.",
+      "expectedAnswer": "has been misleading",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "mislead_futureSimple_01",
+      "verb": "mislead",
+      "tense": "futureSimple",
+      "subject": "the old map",
+      "sentence": "The old map _____ more visitors during next week's event.",
+      "expectedAnswer": "will mislead",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "mislead_futureContinuous_01",
+      "verb": "mislead",
+      "tense": "futureContinuous",
+      "subject": "the old map",
+      "sentence": "During next week's event, the old map _____ visitors again.",
+      "expectedAnswer": "will be misleading",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "mislead_futurePerfect_01",
+      "verb": "mislead",
+      "tense": "futurePerfect",
+      "subject": "the old map",
+      "sentence": "By next Friday, the old map _____ dozens of visitors this month.",
+      "expectedAnswer": "will have misled",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "mislead_futurePerfectContinuous_01",
+      "verb": "mislead",
+      "tense": "futurePerfectContinuous",
+      "subject": "the old map",
+      "sentence": "By next Friday, the old map _____ visitors for four months.",
+      "expectedAnswer": "will have been misleading",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "overcome_pastSimple_01",
+      "verb": "overcome",
+      "tense": "pastSimple",
+      "subject": "the team",
+      "sentence": "The team _____ several technical problems last Thursday.",
+      "expectedAnswer": "overcame",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "overcome_pastContinuous_01",
+      "verb": "overcome",
+      "tense": "pastContinuous",
+      "subject": "the team",
+      "sentence": "During yesterday's test, the team _____ one problem after another.",
+      "expectedAnswer": "was overcoming",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "overcome_pastPerfect_01",
+      "verb": "overcome",
+      "tense": "pastPerfect",
+      "subject": "the team",
+      "sentence": "Before the demo began, the team _____ three major problems.",
+      "expectedAnswer": "had overcome",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "overcome_pastPerfectContinuous_01",
+      "verb": "overcome",
+      "tense": "pastPerfectContinuous",
+      "subject": "the team",
+      "sentence": "Before the demo, the team _____ technical problems for weeks.",
+      "expectedAnswer": "had been overcoming",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "overcome_presentSimple_01",
+      "verb": "overcome",
+      "tense": "presentSimple",
+      "subject": "the team",
+      "sentence": "The team usually _____ technical problems quickly.",
+      "expectedAnswer": "overcomes",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "overcome_presentContinuous_01",
+      "verb": "overcome",
+      "tense": "presentContinuous",
+      "subject": "the team",
+      "sentence": "Right now, the team _____ a difficult technical problem.",
+      "expectedAnswer": "is overcoming",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "overcome_presentPerfect_01",
+      "verb": "overcome",
+      "tense": "presentPerfect",
+      "subject": "the team",
+      "sentence": "The team _____ five major problems so far this month.",
+      "expectedAnswer": "has overcome",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "overcome_presentPerfectContinuous_01",
+      "verb": "overcome",
+      "tense": "presentPerfectContinuous",
+      "subject": "the team",
+      "sentence": "The team _____ technical problems all week.",
+      "expectedAnswer": "has been overcoming",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "overcome_futureSimple_01",
+      "verb": "overcome",
+      "tense": "futureSimple",
+      "subject": "the team",
+      "sentence": "The team _____ the remaining problem tomorrow.",
+      "expectedAnswer": "will overcome",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "overcome_futureContinuous_01",
+      "verb": "overcome",
+      "tense": "futureContinuous",
+      "subject": "the team",
+      "sentence": "During tomorrow's test, the team _____ new technical problems.",
+      "expectedAnswer": "will be overcoming",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "overcome_futurePerfect_01",
+      "verb": "overcome",
+      "tense": "futurePerfect",
+      "subject": "the team",
+      "sentence": "By next Friday, the team _____ all the major problems.",
+      "expectedAnswer": "will have overcome",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "overcome_futurePerfectContinuous_01",
+      "verb": "overcome",
+      "tense": "futurePerfectContinuous",
+      "subject": "the team",
+      "sentence": "By next Friday, the team _____ technical problems for a month.",
+      "expectedAnswer": "will have been overcoming",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "undergo_pastSimple_01",
+      "verb": "undergo",
+      "tense": "pastSimple",
+      "subject": "the old theater",
+      "sentence": "The old theater _____ major renovations last year.",
+      "expectedAnswer": "underwent",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "undergo_pastContinuous_01",
+      "verb": "undergo",
+      "tense": "pastContinuous",
+      "subject": "the old theater",
+      "sentence": "Throughout last summer, the old theater _____ renovations.",
+      "expectedAnswer": "was undergoing",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "undergo_pastPerfect_01",
+      "verb": "undergo",
+      "tense": "pastPerfect",
+      "subject": "the old theater",
+      "sentence": "By the time it reopened, the old theater _____ two major renovations.",
+      "expectedAnswer": "had undergone",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "undergo_pastPerfectContinuous_01",
+      "verb": "undergo",
+      "tense": "pastPerfectContinuous",
+      "subject": "the old theater",
+      "sentence": "By the time it reopened, the theater _____ renovations for six months.",
+      "expectedAnswer": "had been undergoing",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "undergo_presentSimple_01",
+      "verb": "undergo",
+      "tense": "presentSimple",
+      "subject": "the old theater",
+      "sentence": "The old theater _____ a full inspection every spring.",
+      "expectedAnswer": "undergoes",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "undergo_presentContinuous_01",
+      "verb": "undergo",
+      "tense": "presentContinuous",
+      "subject": "the old theater",
+      "sentence": "The old theater _____ major renovations this month.",
+      "expectedAnswer": "is undergoing",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "undergo_presentPerfect_01",
+      "verb": "undergo",
+      "tense": "presentPerfect",
+      "subject": "the old theater",
+      "sentence": "The old theater _____ two inspections so far this year.",
+      "expectedAnswer": "has undergone",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "undergo_presentPerfectContinuous_01",
+      "verb": "undergo",
+      "tense": "presentPerfectContinuous",
+      "subject": "the old theater",
+      "sentence": "The old theater _____ renovations for the past three months.",
+      "expectedAnswer": "has been undergoing",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "undergo_futureSimple_01",
+      "verb": "undergo",
+      "tense": "futureSimple",
+      "subject": "the old theater",
+      "sentence": "The old theater _____ another inspection next spring.",
+      "expectedAnswer": "will undergo",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "undergo_futureContinuous_01",
+      "verb": "undergo",
+      "tense": "futureContinuous",
+      "subject": "the old theater",
+      "sentence": "Throughout next summer, the old theater _____ renovations.",
+      "expectedAnswer": "will be undergoing",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "undergo_futurePerfect_01",
+      "verb": "undergo",
+      "tense": "futurePerfect",
+      "subject": "the old theater",
+      "sentence": "By next December, the old theater _____ two more inspections.",
+      "expectedAnswer": "will have undergone",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "undergo_futurePerfectContinuous_01",
+      "verb": "undergo",
+      "tense": "futurePerfectContinuous",
+      "subject": "the old theater",
+      "sentence": "By next December, the old theater _____ renovations for six months.",
+      "expectedAnswer": "will have been undergoing",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    },
+    {
+      "id": "upset_pastSimple_01",
+      "verb": "upset",
+      "tense": "pastSimple",
+      "subject": "the construction noise",
+      "sentence": "The construction noise _____ the office schedule last Monday.",
+      "expectedAnswer": "upset",
+      "practiceTargets": [
+        "pastSimple",
+        "v2"
+      ]
+    },
+    {
+      "id": "upset_pastContinuous_01",
+      "verb": "upset",
+      "tense": "pastContinuous",
+      "subject": "the construction noise",
+      "sentence": "During last week's work, the noise _____ the office schedule.",
+      "expectedAnswer": "was upsetting",
+      "practiceTargets": [
+        "pastContinuous"
+      ]
+    },
+    {
+      "id": "upset_pastPerfect_01",
+      "verb": "upset",
+      "tense": "pastPerfect",
+      "subject": "the construction noise",
+      "sentence": "Before work paused, the noise _____ the schedule several times.",
+      "expectedAnswer": "had upset",
+      "practiceTargets": [
+        "pastPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "upset_pastPerfectContinuous_01",
+      "verb": "upset",
+      "tense": "pastPerfectContinuous",
+      "subject": "the construction noise",
+      "sentence": "Before work paused, the noise _____ the schedule for weeks.",
+      "expectedAnswer": "had been upsetting",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ]
+    },
+    {
+      "id": "upset_presentSimple_01",
+      "verb": "upset",
+      "tense": "presentSimple",
+      "subject": "the construction noise",
+      "sentence": "Construction noise often _____ the office schedule.",
+      "expectedAnswer": "upsets",
+      "practiceTargets": [
+        "presentSimple"
+      ]
+    },
+    {
+      "id": "upset_presentContinuous_01",
+      "verb": "upset",
+      "tense": "presentContinuous",
+      "subject": "the construction noise",
+      "sentence": "The construction noise _____ the office schedule this week.",
+      "expectedAnswer": "is upsetting",
+      "practiceTargets": [
+        "presentContinuous"
+      ]
+    },
+    {
+      "id": "upset_presentPerfect_01",
+      "verb": "upset",
+      "tense": "presentPerfect",
+      "subject": "the construction noise",
+      "sentence": "The noise _____ the schedule several times this month.",
+      "expectedAnswer": "has upset",
+      "practiceTargets": [
+        "presentPerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "upset_presentPerfectContinuous_01",
+      "verb": "upset",
+      "tense": "presentPerfectContinuous",
+      "subject": "the construction noise",
+      "sentence": "The noise _____ the office schedule for the past few weeks.",
+      "expectedAnswer": "has been upsetting",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ]
+    },
+    {
+      "id": "upset_futureSimple_01",
+      "verb": "upset",
+      "tense": "futureSimple",
+      "subject": "the construction noise",
+      "sentence": "The construction noise _____ the schedule again tomorrow.",
+      "expectedAnswer": "will upset",
+      "practiceTargets": [
+        "futureSimple"
+      ]
+    },
+    {
+      "id": "upset_futureContinuous_01",
+      "verb": "upset",
+      "tense": "futureContinuous",
+      "subject": "the construction noise",
+      "sentence": "During next week's work, the noise _____ the office schedule.",
+      "expectedAnswer": "will be upsetting",
+      "practiceTargets": [
+        "futureContinuous"
+      ]
+    },
+    {
+      "id": "upset_futurePerfect_01",
+      "verb": "upset",
+      "tense": "futurePerfect",
+      "subject": "the construction noise",
+      "sentence": "By next Friday, the noise _____ the schedule several times.",
+      "expectedAnswer": "will have upset",
+      "practiceTargets": [
+        "futurePerfect",
+        "v3"
+      ]
+    },
+    {
+      "id": "upset_futurePerfectContinuous_01",
+      "verb": "upset",
+      "tense": "futurePerfectContinuous",
+      "subject": "the construction noise",
+      "sentence": "By next Friday, the noise _____ the office schedule for a month.",
+      "expectedAnswer": "will have been upsetting",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ]
+    }
+  ],
+  "recordCount": 600,
+  "exerciseCount": 554,
+  "notRecommendedCount": 46
+}

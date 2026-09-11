@@ -1,0 +1,48 @@
+Task: Fix Mistakes Review flow after skipping all mistakes
+
+The Skip button in Mistakes Review now works correctly, but there is still a flow bug:
+
+When the user enters Mistakes Review and starts practicing their existing mistakes, they should be able to go through the mistake list only once.
+
+Required behavior
+User enters Mistakes Review from the Mistakes screen.
+The current mistake is shown normally.
+If the user answers it, proceed to the next mistake as usual.
+If the user presses Skip, remove/mark that mistake as skipped for the current Mistakes Review session and proceed to the next mistake.
+Most important: when there are no more mistakes left to practice — whether they were answered or skipped — the app must automatically leave Mistakes Review and switch to Full Conjugation.
+The user must NOT be able to cycle back to the beginning of the same mistake list by repeatedly pressing Skip.
+Once the last mistake has been skipped, immediately generate/show the next Full Conjugation exercise.
+The top-left mode selector must also update immediately:
+Mistakes Review → Full Conjugation
+From that point onward, the user is in the normal Full Conjugation session and should receive the exercises according to the existing Full Conjugation configuration, including the currently selected:
+tense selection
+Context Mode
+Letter Builder
+other existing Training Mode settings.
+Important
+
+Please inspect the existing Mistakes Review/session state logic to find why the mistake queue is being recreated or reused after it becomes empty.
+
+Do not redesign the Mistakes system and do not change the existing behavior of:
+
+Skip itself
+mistake recording
+daily error counters
+Daily Progress
+SRS
+Full Conjugation generation
+Context Mode
+Letter Builder
+
+The goal is specifically to ensure:
+
+Mistakes Review = one pass through the current mistake queue → queue exhausted → automatic transition to Full Conjugation.
+
+Please test these flows explicitly:
+
+1 mistake → Skip → immediately switch to Full Conjugation.
+3 mistakes → Skip all 3 → Full Conjugation.
+3 mistakes → answer some + Skip the rest → Full Conjugation after the last one.
+Skip must never return the user to an already skipped mistake.
+Verify that the top-left selector changes from Mistakes Review to Full Conjugation at the exact moment the mistake queue is exhausted.
+Verify that Context Mode and Letter Builder continue working normally after the transition.

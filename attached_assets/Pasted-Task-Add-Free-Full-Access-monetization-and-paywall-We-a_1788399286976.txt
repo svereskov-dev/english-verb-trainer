@@ -1,0 +1,186 @@
+Task: Add Free / Full Access monetization and paywall
+
+We are introducing a one-time Full Access purchase to the app.
+
+The purchase is not a subscription. The user pays once and permanently unlocks all premium learning content.
+
+1. Free content
+
+These must remain fully available without purchase:
+
+Present Simple
+Past Simple
+Future Simple
+regular Practice mode
+Context sentences
+Letter Builder
+Mistakes Review
+statistics / progress / SRS
+guides and other currently free educational content
+
+Do not reduce the functionality of these free modes.
+
+2. Premium content
+
+Full Access unlocks:
+
+Present Continuous
+Past Continuous
+Future Continuous
+Present Perfect
+Past Perfect
+Future Perfect
+Present Perfect Continuous
+Past Perfect Continuous
+Future Perfect Continuous
+Irregular Verb Forms: Past Simple (V2)
+Irregular Verb Forms: Past Participle (V3)
+Irregular Verb Forms: Mixed
+Full Conjugation / All Tenses
+
+Any mixed preset that includes premium tenses must also require Full Access.
+
+3. Stable entitlement
+
+Introduce a semantic entitlement such as:
+
+hasFullAccess
+
+Do not determine premium access from button labels, translated strings, UI text, or local presentation state.
+
+All premium checks should use the same centralized entitlement logic.
+
+4. Training Mode
+
+Show premium presets in the existing Training Mode screen, but visually mark them as locked.
+
+Free Simple presets must remain selectable normally.
+
+When a free user taps a locked preset:
+
+do not start training;
+open the Full Access paywall.
+
+Do not completely hide premium presets. The user should be able to see what Full Access unlocks.
+
+5. Settings
+
+Add a prominent button to Settings using the app's existing primary blue/purple brand color.
+
+Text for a free user:
+
+Открыть полный доступ
+
+Do not call it a subscription.
+
+When Full Access is already owned, replace this with a green non-promotional state such as:
+
+✓ Полный доступ открыт
+
+The purchased state must not open the sales paywall.
+
+6. Paywall
+
+Create one reusable Full Access modal/screen.
+
+Initial Russian copy:
+
+Полный доступ навсегда
+
+Открой все времена английского языка, формы неправильных глаголов и режим полной тренировки.
+
+[localized Google Play price] · один платёж
+
+Primary button:
+
+Открыть полный доступ — [localized price]
+
+Secondary action:
+
+Восстановить покупку
+
+Also provide a normal close button.
+
+Do not hardcode $4.99 in UI strings.
+
+Read and display the localized product price supplied by Google Play Billing.
+
+7. Google Play purchase
+
+Prepare the app for a non-consumable / one-time Google Play product representing permanent Full Access.
+
+Use a stable product ID, for example:
+
+full_access
+
+The implementation must support:
+
+purchase;
+successful entitlement activation;
+cancelled purchase;
+failed purchase;
+pending purchase;
+restoring/re-querying an existing purchase;
+app restart;
+reinstall / same Google account where supported by Google Play purchase restoration.
+
+Do not rely only on a locally stored boolean to prove that the purchase exists.
+
+Local state may cache entitlement for UI/performance, but Google Play purchase state must be the source of truth when purchase information is available.
+
+8. Automatic promotional paywall
+
+Add a lightweight local scheduling mechanism for free users.
+
+Requirements:
+
+NEVER automatically show the promotional paywall on the first calendar day the app is used.
+Record the first-use date.
+The first automatic promotional paywall may appear only after at least 2 full days have passed since first use.
+After that, show it no more often than once every 3 days.
+Show it at most once per app launch.
+Never show it to a user who already owns Full Access.
+Store the timestamp/date of the last automatic paywall display.
+
+Opening a premium feature manually is independent of this cooldown: tapping locked premium content should always be allowed to open the paywall.
+
+9. Important UX rule
+
+The user must be able to experience the complete training mechanics using the three free Simple tenses.
+
+Context sentences, Letter Builder and Mistakes Review must NOT be paywalled.
+
+We are monetizing additional grammar content, not the quality of the learning experience.
+
+10. Architecture
+
+Keep the implementation ready for localization.
+
+Do not scatter checks such as:
+
+if (preset.label === "...")
+
+Prefer stable semantic fields / IDs and centralized helpers such as:
+
+isPremiumPreset(...)
+
+hasFullAccess
+
+canAccessTrainingPreset(...)
+
+Keep purchase state, paywall UI, and grammar-content access logic separated.
+
+11. Before changing code
+
+First inspect the current project and report:
+
+which files/components will need to change;
+whether Google Play Billing / Capacitor purchase support already exists;
+which package/plugin you propose using for Android purchases;
+how entitlement restoration will work;
+how you will prevent the automatic paywall from appearing on the first day;
+whether any current persisted session could reference a newly premium preset and what should happen to such a session for a free user.
+
+Do not implement anything yet.
+
+Wait for approval after this audit.

@@ -1,0 +1,102 @@
+Please fix the Training Mode UI behavior for the "Review Mistakes" mode.
+
+CURRENT PROBLEM:
+
+Inside the Training Mode modal, when the user selects "Review Mistakes", the Context sentences and Letter Builder toggles remain in their previous state and remain interactive.
+
+This is incorrect.
+
+We already decided that Review Mistakes must always use a fixed exercise format:
+
+- Context sentences = OFF
+- Letter Builder = ON
+
+The user must not be able to change these settings while Review Mistakes is selected.
+
+REQUIRED BEHAVIOR:
+
+1. When the user selects "Review Mistakes" in the Training Mode modal:
+
+   IMMEDIATELY:
+   - Context sentences toggle → OFF
+   - Letter Builder toggle → ON
+   - Both toggles become disabled/non-interactive
+   - The disabled state should be visually obvious (greyed out/reduced opacity)
+
+   This must happen immediately when "Review Mistakes" is selected, without requiring the user to press "To Training".
+
+2. If the user then switches from "Review Mistakes" to ANY OTHER training mode:
+
+   IMMEDIATELY:
+   - Context sentences toggle becomes enabled again
+   - Letter Builder toggle becomes enabled again
+   - Both toggles return to their normal visual appearance
+   - Their normal functionality is restored
+
+3. This must work when switching back and forth repeatedly:
+
+   Review Mistakes
+   → toggles immediately become:
+      Context sentences = OFF / disabled
+      Letter Builder = ON / disabled
+
+   Then:
+
+   Any other mode
+   → toggles immediately become:
+      Context sentences = enabled
+      Letter Builder = enabled
+
+   Then:
+
+   Review Mistakes again
+   → immediately force:
+      Context sentences = OFF / disabled
+      Letter Builder = ON / disabled
+
+IMPORTANT:
+
+The state should be determined by the currently selected Training Mode, not only when the user presses "To Training".
+
+In other words:
+
+selectedTrainingMode === "Review Mistakes"
+    → Context sentences = OFF + disabled
+    → Letter Builder = ON + disabled
+
+selectedTrainingMode !== "Review Mistakes"
+    → Context sentences = enabled
+    → Letter Builder = enabled
+
+The UI must update immediately when the selected mode changes.
+
+IMPORTANT UX DETAIL:
+
+When Review Mistakes is selected, the user should clearly understand that these settings are intentionally locked.
+
+For example:
+
+Context sentences
+[ OFF / disabled ]
+
+Letter Builder
+[ ON / disabled ]
+
+Use the existing toggle design, just apply a disabled/greyed-out appearance. Do not redesign the controls.
+
+IMPORTANT LOGIC REQUIREMENTS:
+
+- Do NOT create a separate complicated state system just for the toggles.
+- The selected Training Mode should be the source of truth for whether the toggles are available.
+- Do not allow a previous toggle state to override the Review Mistakes requirements.
+- Do not preserve "Context sentences = ON" when entering Review Mistakes.
+- Do not preserve "Letter Builder = OFF" when entering Review Mistakes.
+- Review Mistakes must ALWAYS enter with Context sentences OFF and Letter Builder ON.
+
+When switching to another training mode, the toggles must become available immediately.
+
+Do not change the behavior of Context sentences or Letter Builder in any other training mode.
+
+Do not modify the existing Review Mistakes flow, Skip behavior, mistake cycle, or transition to Full Conjugation.
+
+Please inspect the current Training Mode state management and implement this at the point where the selected training mode changes, rather than only applying the settings after the user presses "To Training".

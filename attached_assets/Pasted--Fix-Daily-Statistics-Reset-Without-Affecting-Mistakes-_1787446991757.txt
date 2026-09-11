@@ -1,0 +1,160 @@
+# Fix Daily Statistics Reset Without Affecting Mistakes
+
+Please fix the Home screen's daily statistics so that **Daily Progress, Correct answers, and Incorrect answers all belong to the same daily cycle**.
+
+## Current problem
+
+After using the app for several days, the following behavior occurs:
+
+* Daily Progress correctly resets to `0 / daily goal` at the beginning of a new day.
+* However, the `Correct` and `Incorrect` counters on the Home screen continue accumulating results from previous days.
+
+This creates an inconsistent UI:
+
+```text
+Daily Progress: 0 / 20
+Correct: 47
+Incorrect: 13
+```
+
+The user naturally expects all three values to represent the **same current-day session**.
+
+## Required behavior
+
+At the beginning of each new calendar day, the Home screen must show:
+
+* **Daily Progress** → reset for the new day
+* **Correct** → reset to `0`
+* **Incorrect** → reset to `0`
+
+For example, if yesterday ended with:
+
+```text
+Daily Progress: 20 / 20
+Correct: 17
+Incorrect: 3
+```
+
+then on the next day the Home screen should show:
+
+```text
+Daily Progress: 0 / 20
+Correct: 0
+Incorrect: 0
+```
+
+As the user practices during the new day, all three values should increase together according to the existing logic.
+
+## Important: DO NOT reset the Mistakes list
+
+This is critical.
+
+The **Mistakes list is NOT part of the daily statistics cycle**.
+
+Keep the previously established behavior:
+
+A mistake recorded yesterday must remain available in the `Mistakes` section today unless:
+
+1. the user successfully works through/resolves that mistake according to the existing Mistakes Review logic; or
+2. the user explicitly uses the existing **Clear/Delete Mistakes** action.
+
+The transition to a new calendar day must **NOT delete or reset the Mistakes list**.
+
+### Example
+
+Yesterday:
+
+```text
+Correct: 15
+Incorrect: 4
+Daily Progress: 19 / 20
+
+Mistakes:
+- sink
+- write
+- take
+- etc.
+```
+
+Next day:
+
+```text
+Correct: 0
+Incorrect: 0
+Daily Progress: 0 / 20
+
+Mistakes:
+- sink
+- write
+- take
+- etc.
+```
+
+The daily counters reset, but the mistakes remain.
+
+## Data model / implementation requirement
+
+Please inspect the existing persistence logic and identify why `Correct` and `Incorrect` are currently accumulating across days while `Daily Progress` resets correctly.
+
+Do NOT simply delete the stored statistics globally.
+
+Instead, make sure the Home screen reads or derives:
+
+* `dailyProgress`
+* `dailyCorrect`
+* `dailyIncorrect`
+
+from the **current calendar day's statistics**.
+
+If the application already has a daily date/key associated with Daily Progress, use the same daily-cycle concept for Correct/Incorrect rather than introducing a separate incompatible reset mechanism.
+
+## Important distinction
+
+There should effectively be two independent persistence concepts:
+
+### Daily statistics
+
+Reset automatically when the calendar day changes:
+
+* Daily Progress
+* Correct answers
+* Incorrect answers
+
+### Mistakes
+
+Persist across days:
+
+* mistake records
+* Mistakes Review queue
+* unresolved mistakes
+
+Only explicit resolution or the existing manual "Clear/Delete Mistakes" action should remove mistakes.
+
+## Backward compatibility
+
+Please consider users who already have accumulated Correct/Incorrect statistics from previous days.
+
+On the first launch after this fix, the Home screen should not continue displaying stale historical totals as today's statistics.
+
+The implementation should correctly establish the current day's statistics without deleting unrelated data such as:
+
+* Mistakes
+* SRS data
+* vocabulary/progress data
+* training settings
+* daily goal
+
+## Acceptance criteria
+
+* [ ] Daily Progress resets at the start of a new day.
+* [ ] Correct counter resets to `0` at the start of a new day.
+* [ ] Incorrect counter resets to `0` at the start of a new day.
+* [ ] Correct and Incorrect always represent the same calendar day as Daily Progress.
+* [ ] New answers correctly increment today's counters.
+* [ ] Mistakes persist across the midnight/day boundary.
+* [ ] Mistakes are removed only through the existing resolution/clear mechanisms.
+* [ ] Clearing the Mistakes list does NOT modify today's Correct/Incorrect counters or Daily Progress.
+* [ ] Resetting the daily statistics does NOT modify the Mistakes list.
+* [ ] No regression in Mistakes Review, Full Conjugation, Context Mode, or Letter Builder.
+
+Please inspect the existing DB/statistics implementation before changing anything, because the key requirement is to **separate the daily statistics lifecycle from the persistent Mistakes lifecycle**, not to create a global reset.

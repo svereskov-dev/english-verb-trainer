@@ -1,22 +1,35 @@
 /**
- * Cross-platform cleanup: remove the Capacitor-generated splash.png from the
- * unqualified drawable/ bucket so it can never collide with our splash.xml.
+ * Cross-platform cleanup: remove every Capacitor-generated splash.png so the
+ * canonical drawable/splash.xml is used for all orientations and densities.
  *
- * Both splash.png and splash.xml would resolve to @drawable/splash, which is a
- * duplicate-resource build error. XML takes precedence for us, so the PNG must
- * always be gone. This script runs before and after `cap sync` to keep the
- * pipeline idempotent even if a future Capacitor or plugin version recreates it.
+ * The qualified drawable-port-* / drawable-land-* PNGs can silently override
+ * the XML and previously showed Capacitor's old white logo. This script runs
+ * before and after `cap sync` so those stale variants cannot return.
  */
 
 const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const conflictingPng = path.join(root, 'android/app/src/main/res/drawable/splash.png');
+const resDir = path.join(root, 'android/app/src/main/res');
+const drawableDirs = fs.existsSync(resDir)
+  ? fs.readdirSync(resDir)
+      .filter(name => name === 'drawable' || /^drawable-(?:port|land)-/.test(name))
+      .map(name => path.join(resDir, name))
+  : [];
 
-if (fs.existsSync(conflictingPng)) {
-  fs.unlinkSync(conflictingPng);
-  console.log('Removed drawable/splash.png (keeps drawable/splash.xml authoritative)');
-} else {
-  console.log('drawable/splash.png already absent — no conflict');
+let removed = 0;
+for (const drawableDir of drawableDirs) {
+  const splashPng = path.join(drawableDir, 'splash.png');
+  if (fs.existsSync(splashPng)) {
+    fs.unlinkSync(splashPng);
+    removed += 1;
+    console.log(`Removed ${path.relative(resDir, splashPng)}`);
+  }
 }
+
+console.log(
+  removed > 0
+    ? `Removed ${removed} generated splash PNG variant(s); drawable/splash.xml is authoritative.`
+    : 'Generated splash PNG variants already absent; drawable/splash.xml is authoritative.',
+);

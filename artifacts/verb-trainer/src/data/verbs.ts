@@ -296,6 +296,11 @@ const regularList = [
   "upload", "verify", "view", "zip", "zoom",
 ];
 
+// American English spelling exceptions for regular past forms.
+const regularPastOverrides: Record<string, string> = {
+  travel: "traveled",
+};
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 /**
@@ -312,6 +317,8 @@ export const neverDouble = new Set([
   "consider", "discover", "remember",
   // -et / -op / -el / -us endings (unstressed)
   "target", "visit", "develop", "focus",
+  // American English keeps a single l in inflected forms.
+  "travel",
   // stems with an internal double consonant — isCVC fires on the final C-V-C
   // run of what is actually an unstressed syllable (e.g. mat·ter, not mat·TER)
   "matter",
@@ -384,7 +391,7 @@ export const irregularVerbs: Verb[] = irregularList.map(item => {
 });
 
 export const regularVerbs: Verb[] = regularList.map(infinitive => {
-  const past = getRegularPast(infinitive);
+  const past = regularPastOverrides[infinitive] ?? getRegularPast(infinitive);
   const ipa = regularIPA[infinitive];
 
   return {

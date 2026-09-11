@@ -1,0 +1,87 @@
+Task: Audit Context Mode sentence generation
+
+Do not change any code yet.
+
+We found several context exercises that are grammatically possible at a surface level but lexically or semantically unnatural, for example:
+
+The box _____ all the tools needed for the repair. with involve
+You _____ everything before the deadline. with impact
+One day, he _____ a successful professional in their field. with answer will have been
+
+The concern is that Context Mode may be combining verbs with generic sentence templates that do not respect normal English collocations, verb meanings, argument structure, or tense usage.
+
+Please audit how Context Mode currently generates/selects sentences.
+
+Please report:
+Which files contain:
+context sentence data;
+sentence templates;
+verb-to-context mappings;
+tense-specific context logic.
+Explain the exact generation flow:
+how a verb is selected;
+how a tense/form is selected;
+how a sentence/context is selected;
+whether the sentence was written specifically for that verb or is a reusable generic template.
+Explain specifically how these examples could be generated:
+The box ___ all the tools needed for the repair. + involve
+You ___ everything before the deadline. + impact
+One day, he ___ a successful professional in their field. + be → will have been
+Determine whether the current system checks:
+verb meaning;
+transitivity / argument structure;
+required prepositions;
+subject compatibility;
+object compatibility;
+common collocations;
+tense appropriateness;
+semantic plausibility.
+Estimate the scale of the problem:
+how many verbs currently use shared/generic templates;
+how many context sentences exist;
+whether one sentence template can be paired with many unrelated verbs;
+whether the issue is isolated or architectural.
+Check whether there are already verb-specific context sentences in the dataset and, if so, whether the generator sometimes ignores them or falls back to generic templates.
+Identify all fallback behavior.
+What happens when no suitable sentence exists for a verb/tense?
+Does the system generate a generic sentence anyway?
+Does it reuse another sentence?
+Recommend the safest architecture for Context Mode.
+
+Compare at least these approaches:
+
+A. Verb-specific curated sentences
+
+each verb has vetted contexts;
+
+B. Semantic template groups
+
+templates are restricted to compatible verb classes/meanings;
+
+C. Current generic-template approach with validation
+
+D. Disable Context Mode until enough vetted data exists
+
+For each, estimate implementation complexity, maintenance cost, and risk of teaching unnatural English.
+
+Tell us whether you believe the current Context Mode is safe enough to ship as-is.
+
+Be explicit:
+
+safe to ship
+needs targeted fixes
+needs architectural change
+or should be disabled for release
+If you recommend changes, propose a staged plan:
+minimum safe fix before release;
+better medium-term solution;
+ideal long-term solution.
+Important
+
+Do not implement fixes yet.
+
+Do not rewrite the sentence dataset yet.
+
+Do not remove Context Mode yet.
+
+This task is analysis only. We want to understand whether the problem is isolated or structural before deciding what to change.

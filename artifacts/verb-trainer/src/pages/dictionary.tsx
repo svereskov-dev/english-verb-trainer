@@ -38,8 +38,8 @@ export default function Dictionary() {
   }, [search, sorted, verbFilter]);
 
   return (
-    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
-      <div className="w-full max-w-md mx-auto p-6">
+    <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
+      <div className="w-full max-w-md mx-auto p-6 flex-1 min-h-0 flex flex-col">
         <h1 className="text-2xl font-bold mb-1">Dictionary</h1>
         <p className="text-muted-foreground text-sm mb-4">
           {verbs.length} verbs
@@ -84,33 +84,35 @@ export default function Dictionary() {
           spellCheck={false}
         />
 
-        {filtered.length === 0 ? (
-          <p className="text-center text-muted-foreground py-10">
-            No verbs found for "{search}"
-          </p>
-        ) : (
-          <div className="space-y-1">
-            {filtered.map(verb => (
-              <Link key={verb.infinitive} href={`/dictionary/${verb.infinitive}`}>
-                <div className="flex items-center justify-between rounded-xl px-4 py-3 hover:bg-muted transition-colors cursor-pointer">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-lg font-semibold">{verb.infinitive}</span>
-                    {verb.translation && (
-                      <span className="text-muted-foreground text-sm">
-                        {verb.translation}
+        <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hidden">
+          {filtered.length === 0 ? (
+            <p className="text-center text-muted-foreground py-10">
+              No verbs found for "{search}"
+            </p>
+          ) : (
+            <div className="space-y-1 pb-4">
+              {filtered.map(verb => (
+                <Link key={verb.infinitive} href={`/dictionary/${verb.infinitive}`}>
+                  <div className="flex items-center justify-between rounded-xl px-4 py-3 hover:bg-muted transition-colors cursor-pointer">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg font-semibold">{verb.infinitive}</span>
+                      {verb.translation && (
+                        <span className="text-muted-foreground text-sm">
+                          {verb.translation}
+                        </span>
+                      )}
+                    </div>
+                    {verb.isIrregular && (
+                      <span className="text-xs text-muted-foreground shrink-0 ml-2">
+                        irregular
                       </span>
                     )}
                   </div>
-                  {verb.isIrregular && (
-                    <span className="text-xs text-muted-foreground shrink-0 ml-2">
-                      irregular
-                    </span>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
       <BottomNav />
     </div>

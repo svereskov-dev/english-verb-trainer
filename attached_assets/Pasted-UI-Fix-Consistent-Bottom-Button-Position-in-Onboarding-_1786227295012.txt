@@ -1,0 +1,100 @@
+UI Fix: Consistent Bottom Button Position in Onboarding and Repeat Guide
+
+Please fix the vertical positioning of the bottom action button across all onboarding-related screens.
+
+Problem
+
+Currently, the bottom button changes its vertical position from screen to screen.
+
+For example:
+
+Next / Далее
+Return to training / Вернуться к обучению
+Start Training / Начать обучение
+
+They appear at slightly different heights depending on how much content is present on the particular screen.
+
+This makes the onboarding feel visually unstable.
+
+Required behavior
+
+All onboarding screens must use the same fixed bottom action area.
+
+This applies to:
+
+All 4 original Onboarding screens
+Both Repeat Guide screens (the screens 2 and 3 that can be opened from Settings)
+
+The primary bottom button must occupy exactly the same vertical position on all of these screens.
+
+Conceptually:
+
+┌─────────────────────────┐
+│                         │
+│       SCREEN CONTENT    │
+│                         │
+│                         │
+│                         │
+│                         │
+│      page indicators    │
+│                         │
+│ ┌─────────────────────┐ │
+│ │       ACTION        │ │
+│ │       BUTTON        │ │
+│ └─────────────────────┘ │
+└─────────────────────────┘
+Important implementation detail
+
+Please do not position the button naturally after the content.
+
+Instead, create a shared/fixed bottom action area for these screens, so that the button position is determined by the screen layout rather than by the amount of text/content above it.
+
+Ideally:
+
+content area = flexible;
+page indicator/navigation controls = fixed bottom section;
+primary action button = fixed at the same Y-position;
+safe-area/bottom navigation handling should remain correct on phones with gesture navigation.
+Page indicators
+
+The page indicators should also remain at a consistent position relative to the button.
+
+For example:
+
+        •  ━  •  •
+
+┌───────────────────────┐
+│        Далее          │
+└───────────────────────┘
+
+The distance between:
+
+page indicators → button
+
+should remain consistent across all screens.
+
+Do not change
+
+Please do NOT modify:
+
+onboarding text;
+illustrations/content;
+number of screens;
+navigation logic;
+Repeat Guide functionality;
+button labels;
+swipe/navigation behavior;
+visual design of the buttons.
+
+This is strictly a layout consistency fix.
+
+Acceptance criteria
+ All 4 original onboarding screens have the primary button at exactly the same vertical position.
+ Both Repeat Guide screens use the same bottom-button position.
+ Далее, Начать обучение and Вернуться к обучению all occupy the same button area.
+ Page indicators are aligned consistently above the button.
+ Different amounts of text/content on a screen must NOT move the button.
+ Layout works correctly on different phone screen heights and respects the bottom safe area.
+ No unnecessary changes to the existing onboarding design.
+
+Please implement this through a shared onboarding/repeat-guide layout component or shared bottom-action container rather than adding individual per-screen offsets.

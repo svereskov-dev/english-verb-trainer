@@ -5,13 +5,17 @@ export function getIngForm(verb: string): string {
   if (verb === "be") return "being";
   const v = verb.toLowerCase();
   if (v.endsWith("ie")) return v.slice(0, -2) + "ying";
-  if (v.endsWith("e") && v !== "see" && v !== "flee" && v !== "agree") return v.slice(0, -1) + "ing";
+  // A final silent e is dropped, but the e in an -ee ending is pronounced
+  // and retained: make → making, see → seeing, disagree → disagreeing.
+  if (v.endsWith("e") && !v.endsWith("ee")) return v.slice(0, -1) + "ing";
 
   const vowels = "aeiou";
   if (v.length >= 3 && !neverDouble.has(v)) {
-    const c1 = v[v.length - 3];
-    const v2 = v[v.length - 2];
-    const c2 = v[v.length - 1];
+    // Treat "qu" as one consonant for final CVC detection (quit → quitting).
+    const cvcWord = v.replace(/qu(?=[aeiou][^aeiouwxy]$)/, "q");
+    const c1 = cvcWord[cvcWord.length - 3];
+    const v2 = cvcWord[cvcWord.length - 2];
+    const c2 = cvcWord[cvcWord.length - 1];
     if (!vowels.includes(c1) && vowels.includes(v2) && !vowels.includes(c2) && c2 !== "w" && c2 !== "x" && c2 !== "y") {
       return v + c2 + "ing";
     }

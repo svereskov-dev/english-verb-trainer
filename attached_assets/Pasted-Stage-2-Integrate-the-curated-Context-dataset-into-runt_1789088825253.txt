@@ -1,0 +1,309 @@
+Stage 2 — Integrate the curated Context dataset into runtime
+
+Stage 1 and Stage 1.5 are approved.
+
+The curated dataset is validated:
+
+4,020 total records
+3,352 active exercises
+668 notRecommended
+335 unique verbs
+0 duplicate IDs
+0 unknown verbs
+0 invalid tense IDs
+0 invalid practice targets
+0 V2/V3 inconsistencies
+0 subject/agreement/form inconsistencies
+
+Now integrate the curated dataset into Context Mode runtime.
+
+The goal is:
+
+The curated dataset must become the only source of Context Mode sentences.
+
+Do not redesign unrelated training logic.
+
+1. Make the curated dataset the only Context Mode sentence source
+
+Context Mode must use:
+
+src/data/contextExercises.ts
+
+and its validated index as the sole source of contextual sentences.
+
+The app must never generate or select a Context Mode sentence from:
+
+old generic templates;
+old automatically generated sentence data;
+old fallback Context examples;
+any runtime sentence-generation helper.
+
+The exact curated sentence and expectedAnswer must be used without modification.
+
+Do not paraphrase, normalize, rebuild, or regenerate them at runtime.
+
+2. Preserve the canonical verb dictionary
+
+src/data/verbs.ts remains the canonical source for:
+
+infinitive;
+Russian translation;
+V2;
+V3;
+isIrregular;
+frequency rank;
+existing grammatical metadata.
+
+Context records are linked to dictionary entries by:
+
+contextRecord.verb === verb.infinitive
+
+Do not create a parallel verb dictionary.
+
+3. Runtime lookup
+
+Use the prebuilt typed Context index.
+
+The runtime lookup should conceptually work as:
+
+verb -> requested practice target -> curated active record
+
+Do not scan all 4,020 records for every exercise if the existing index already supports direct lookup.
+
+Do not infer tense from sentence text.
+
+Use:
+
+tense
+practiceTargets
+
+as stored.
+
+4. notRecommended behavior
+
+notRecommended means:
+
+there is intentionally no curated Context exercise for that verb + target combination.
+
+If the requested Context combination is notRecommended:
+
+do not generate a Context replacement;
+do not use an old template;
+do not substitute another Context tense;
+do not silently change the requested practice target.
+
+Instead, use the app's existing non-context exercise type for that verb/target.
+
+The learner should still be able to practice the verb; only the contextual sentence is unavailable.
+
+Preserve normal SRS/progress/session behavior for this fallback.
+
+5. Tense practice
+
+Preserve all existing tense presets and grouping.
+
+The twelve supported Context tense IDs remain:
+
+pastSimple
+pastContinuous
+pastPerfect
+pastPerfectContinuous
+presentSimple
+presentContinuous
+presentPerfect
+presentPerfectContinuous
+futureSimple
+futureContinuous
+futurePerfect
+futurePerfectContinuous
+
+When a session requests a specific tense, Context Mode may use only records whose practiceTargets include that tense.
+
+6. Irregular V2/V3 modes
+
+Preserve:
+
+V2;
+V3;
+Mixed irregular practice;
+existing regular/irregular distinction.
+
+For Context Mode, practiceTargets is authoritative.
+
+Examples:
+
+["pastSimple", "v2"]
+
+means the record can be used for both:
+
+Past Simple Context practice;
+V2 Context practice.
+
+["presentPerfect", "v3"]
+
+means it can be used for:
+
+Present Perfect Context practice;
+V3 Context practice.
+
+Do not infer V2/V3 membership from auxiliaries.
+
+Perfect Continuous records must not become V3 exercises simply because they contain been.
+
+7. Mixed tense / mixed irregular presets
+
+Preserve existing mixed-session behavior.
+
+For a mixed tense session:
+
+select only from valid curated Context targets included in that preset;
+exclude notRecommended Context combinations from the contextual pool;
+if the selected verb has no curated Context record for the requested target, use the normal non-context fallback described above.
+
+For mixed irregular practice:
+
+use only records explicitly tagged with v2 or v3;
+preserve the existing balance/randomization logic unless integration strictly requires a change.
+8. Preserve answer validation
+
+For an active curated Context exercise:
+
+use its stored:
+
+expectedAnswer
+
+as the authoritative answer for that exercise.
+
+Do not regenerate the expected Context answer from the conjugation engine during normal exercise presentation.
+
+The conjugation engine may still be used elsewhere in the app where it is currently required.
+
+This is important because the curated answer already contains the exact finite phrase the learner is expected to enter.
+
+9. Mistakes Review
+
+Ensure Mistakes Review can reproduce the exact curated Context exercise that the learner originally answered incorrectly.
+
+Prefer restoring it by stable curated exercise id.
+
+It must preserve:
+
+sentence;
+expected answer;
+verb;
+tense;
+practice target.
+
+Do not reconstruct a different Context sentence from the same verb and tense.
+
+If current mistake persistence does not store enough information to restore the exact curated exercise, make the smallest necessary persistence change.
+
+Do not redesign the overall Mistakes system.
+
+10. Session persistence
+
+Existing sessions must continue to work.
+
+If a Context exercise is persisted/restored, prefer storing or restoring its stable curated exercise ID rather than relying on sentence text.
+
+Do not persist presentation-only labels.
+
+Preserve existing localization-safe semantic IDs.
+
+11. SRS and progress
+
+Do not redesign SRS in this task.
+
+Preserve the current progress/SRS behavior.
+
+A curated Context exercise should participate in progress tracking in the same way the corresponding exercise type currently does.
+
+Do not introduce a new independent SRS system for Context Mode.
+
+12. Remove old Context fallback from runtime
+
+Identify every runtime path that can currently produce an old/generated Context sentence.
+
+Disable those paths from Context Mode selection.
+
+Old files may remain temporarily if they are still imported elsewhere, but after Stage 2:
+
+no old Context template or generated Context sentence may be reachable in normal runtime selection.
+
+Do not delete old files yet unless deletion is obviously safe and they are completely unused.
+
+We will do dead-code cleanup separately after verification.
+
+13. Add integration tests
+
+Add tests proving at least the following:
+
+a normal curated tense record is selected by verb + tense;
+the exact stored sentence is returned;
+the exact stored expectedAnswer is returned;
+a notRecommended combination does not use a generic Context fallback;
+a notRecommended combination falls back to the intended non-context exercise type;
+an irregular Past Simple record tagged v2 is selectable in V2 mode;
+a valid Perfect Simple record tagged v3 is selectable in V3 mode;
+Perfect Continuous does not enter V3 mode merely because of been;
+Mixed irregular mode uses the explicit V2/V3 targets;
+Mistakes Review restores the same curated exercise ID and exact sentence;
+no old template/generated Context path is used by the selector.
+
+Add tests for both regular and irregular verbs.
+
+14. Runtime audit
+
+Search the codebase for:
+
+old Context templates;
+old context sentence generators;
+old fallback functions;
+imports of contextTemplates;
+imports of legacy gapFillSentences;
+any branch that creates Context sentences dynamically.
+
+Report which paths still exist and whether they are reachable.
+
+Do not delete them yet unless necessary for correctness.
+
+15. Verification
+
+Run:
+
+typecheck;
+all existing tests;
+conjugation regression tests;
+Context dataset validator;
+new Context integration tests.
+
+Also manually verify representative runtime cases:
+
+regular verb + tense;
+irregular verb + Past Simple/V2;
+irregular verb + Perfect/V3;
+notRecommended fallback;
+Mixed tense mode;
+Mixed irregular mode;
+Mistakes Review.
+16. Final Stage 2 report
+
+When complete, report:
+
+files added;
+files modified;
+Context selector flow before and after;
+how curated lookup works;
+how notRecommended fallback works;
+how V2/V3 Context selection works;
+how Mixed mode works;
+how Mistakes Review restores curated exercises;
+whether session persistence changed;
+all old Context-generation paths still present;
+whether any of those old paths remain runtime-reachable;
+test totals;
+any remaining risks or TODOs.
+
+Do not perform dead-code cleanup as part of this stage unless required for correctness.
+
+Stop after the report.

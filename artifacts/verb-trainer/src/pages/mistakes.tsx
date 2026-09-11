@@ -17,6 +17,26 @@ import {
 import { getAllProgress, saveProgress } from "../db/progress";
 import { ProgressRecord } from "../engine/srs";
 import { verbs } from "../data/verbs";
+import { exerciseFromMistakeId } from "../engine/exercises";
+import { getActiveMistakeRecords } from "../engine/reviewQueue";
+import { getTenseLabel } from "../data/grammar";
+
+function describeMistake(record: ProgressRecord): string {
+  const exercise = exerciseFromMistakeId(record.id);
+  if (!exercise) return "Saved exercise";
+  if (exercise.type === "irregular") {
+    return exercise.question.askFor === "past"
+      ? `${getTenseLabel("pastSimple")} (V2)`
+      : "Past Participle (V3)";
+  }
+
+  const tense = getTenseLabel(exercise.question.tense);
+  if (exercise.type === "gapfill") {
+    const subject = exercise.question.displaySubject ?? exercise.question.subject;
+    return `Context · ${tense}${subject ? ` · ${subject}` : ""}`;
+  }
+  return `${tense}${exercise.question.subject ? ` · ${exercise.question.subject}` : ""}`;
+}
 
 export default function Mistakes() {
   const [records, setRecords] = useState<ProgressRecord[]>([]);
@@ -28,8 +48,7 @@ export default function Mistakes() {
       // Mistakes persist indefinitely — a verb stays here until it is
       // answered correctly in Mistakes Review (lastFailureDate → 0) or
       // the user manually clears the list. No midnight reset.
-      const mistakes = all
-        .filter(r => r.lastFailureDate > 0)
+      const mistakes = getActiveMistakeRecords(all)
         .sort((a, b) => b.failureCount - a.failureCount);
       setRecords(mistakes);
       setLoading(false);
@@ -54,15 +73,10 @@ export default function Mistakes() {
     }
   }, [loadMistakes]);
 
-  const uniqueVerbs = [...new Set(records.map(r => r.verbInfinitive))];
-
   const handlePractice = () => {
     sessionStorage.setItem(
       "mistakeReview",
       JSON.stringify({
-        verbs: uniqueVerbs,
-        // Pass the full record IDs so Practice can reconstruct the exact
-        // exercises (same verb + type + tense/form that was originally missed).
         mistakeIds: records.map(r => r.id),
         mode: "review",
       })
@@ -83,8 +97,8 @@ export default function Mistakes() {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
-      <div className="w-full max-w-md mx-auto p-6">
+    <div className="h-[100dvh] overflow-hidden bg-background nav-safe-pad pt-safe flex flex-col">
+      <div className="w-full max-w-md mx-auto p-6 flex-1 min-h-0 flex flex-col">
         <h1 className="text-2xl font-bold mb-1">Mistakes</h1>
         <p className="text-muted-foreground text-sm mb-6">
           Items you've answered incorrectly
@@ -99,80 +113,94 @@ export default function Mistakes() {
             <p className="text-muted-foreground text-sm">
               Keep practicing — items you miss will appear here.
             </p>
-            <Button variant="outline" className="mt-4" onClick={handlePractice}>
+            <Button variant="secondary" className="mt-4" onClick={handlePractice}>
               Start Practice
             </Button>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="flex-1 min-h-0 flex flex-col">
             {/* Summary + CTA */}
-            <div className="rounded-xl border border-border p-4 flex items-center justify-between">
-              <div>
-                <p className="font-semibold">{uniqueVerbs.length} verb{uniqueVerbs.length !== 1 ? "s" : ""} to review</p>
-              </div>
-              <Button size="sm" onClick={handlePractice}>Practice →</Button>
-            </div>
-
-            {/* Mistake list — grouped by unique verb. Tap to open verb details. */}
-            {uniqueVerbs.map(inf => {
-              const verb = verbs.find(v => v.infinitive === inf);
-              return (
-                <div
-                  key={inf}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => navigate(`/dictionary/${inf}`)}
-                  onKeyDown={e => e.key === "Enter" && navigate(`/dictionary/${inf}`)}
-                  className="flex items-center rounded-xl border border-border px-4 py-3 gap-3 cursor-pointer hover:bg-muted/50 active:bg-muted transition-colors"
-                >
-                  <div className="min-w-0 flex items-baseline gap-2 flex-wrap flex-1">
-                    <span className="font-semibold">{inf}</span>
-                    {verb?.translation && (
-                      <span className="text-muted-foreground text-sm truncate">
-                        {verb.translation}
-                      </span>
-                    )}
-                  </div>
-                  <ChevronRight size={16} className="text-muted-foreground flex-shrink-0" />
+            <div className="shrink-0 space-y-4">
+              <div className="rounded-xl border border-border p-4 flex items-center justify-between">
+                <div>
+                  <p className="font-semibold">{records.length} exercise{records.length !== 1 ? "s" : ""} to review</p>
                 </div>
-              );
-            })}
+                <Button size="compact" onClick={handlePractice}>Practice →</Button>
+              </div>
 
-            {records.length > 60 && (
-              <p className="text-center text-muted-foreground text-sm py-2">
-                Showing top 60 of {records.length}
-              </p>
-            )}
-
-            {/* Clear Mistakes — removes review queue only, never touches stats */}
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full text-muted-foreground hover:text-destructive hover:bg-destructive/10 mt-2"
-                >
-                  Clear Mistakes
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Clear all mistakes?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This removes {uniqueVerbs.length} verb{uniqueVerbs.length !== 1 ? "s" : ""} from your
-                    review queue. Your practice statistics, progress, and streaks will not change.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction
-                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                    onClick={handleClearMistakes}
+              {/* Clear Mistakes — elevated secondary style, between summary and list */}
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    variant="secondary"
+                    className="w-full"
                   >
                     Clear Mistakes
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border-border/80 bg-card p-7 text-center shadow-2xl sm:max-w-sm">
+                  <AlertDialogHeader className="space-y-3 !text-center">
+                    <AlertDialogTitle className="text-center text-xl font-bold tracking-tight">
+                      Clear all mistakes?
+                    </AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <AlertDialogDescription className="sr-only">
+                    Confirm whether to permanently clear all saved mistakes.
+                  </AlertDialogDescription>
+                  <AlertDialogFooter className="!flex-row !justify-center !space-x-0 gap-3">
+                    <AlertDialogCancel className="mt-0">
+                      No
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      variant="destructive"
+                      onClick={handleClearMistakes}
+                    >
+                      Yes
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+
+            <div className="mt-4 flex-1 min-h-0 overflow-y-auto scrollbar-hidden">
+              {/* Each row is one exact exercise. Tap to open the verb details. */}
+              <div className="space-y-4 pb-4">
+                {records.slice(0, 60).map(record => {
+                  const verb = verbs.find(v => v.infinitive === record.verbInfinitive);
+                  return (
+                    <div
+                      key={record.id}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => navigate(`/dictionary/${record.verbInfinitive}`)}
+                      onKeyDown={e => e.key === "Enter" && navigate(`/dictionary/${record.verbInfinitive}`)}
+                      className="flex items-center rounded-xl border border-border px-4 py-3 gap-3 cursor-pointer hover:bg-muted/50 active:bg-muted transition-colors"
+                    >
+                      <div className="min-w-0 flex flex-col gap-0.5 flex-1">
+                        <div className="flex items-baseline gap-2 flex-wrap">
+                          <span className="font-semibold">{record.verbInfinitive}</span>
+                          {verb?.translation && (
+                            <span className="text-muted-foreground text-sm truncate">
+                              {verb.translation}
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-muted-foreground text-sm">
+                          {describeMistake(record)}
+                        </span>
+                      </div>
+                      <ChevronRight size={16} className="text-muted-foreground flex-shrink-0" />
+                    </div>
+                  );
+                })}
+
+                {records.length > 60 && (
+                  <p className="text-center text-muted-foreground text-sm py-2">
+                    Showing top 60 of {records.length}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>

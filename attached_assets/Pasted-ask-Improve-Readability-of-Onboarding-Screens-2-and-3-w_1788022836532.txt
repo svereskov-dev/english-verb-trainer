@@ -1,0 +1,182 @@
+ask — Improve Readability of Onboarding Screens 2 and 3 with Scrollable Content
+Goal
+
+Increase the readability of the explanatory text on onboarding screens 2 and 3.
+
+The current descriptions under each numbered item are too small and can be difficult to read, especially on smaller devices or for users who prefer larger text.
+
+We want to increase the explanatory text size without sacrificing access to all onboarding content.
+
+Core approach
+
+Do not try to force all content onto a single fixed viewport.
+
+Instead:
+
+increase the font size of the explanatory text;
+keep the important top and bottom UI areas fixed;
+make the central informational content independently scrollable when necessary.
+
+This should apply to both onboarding screen 2 and onboarding screen 3.
+
+Screen 2 — Training Screen Guide
+
+Current structure:
+
+title: "Экран тренировки";
+Training Screen illustration;
+three numbered explanatory sections;
+bottom navigation area with:
+back arrow;
+pagination dots;
+"Далее" button.
+Required layout
+Fixed top section
+
+Keep the following area fixed:
+
+page title;
+Training Screen illustration.
+
+This visual reference should remain visible while reading the explanations.
+
+Scrollable content section
+
+The numbered explanatory content should be placed inside a vertically scrollable area:
+
+Training Mode
+English Tenses
+Поле с заданием
+
+Increase the font size of the explanatory descriptions under these headings.
+
+The goal is noticeably better readability. Do not increase the size excessively, but avoid the current small, dense appearance.
+
+The scroll area should naturally allow the user to access all content on smaller screens.
+
+Fixed bottom section
+
+Keep the following elements fixed at the bottom:
+
+back arrow;
+pagination dots;
+primary action button ("Далее").
+
+These elements must remain accessible without requiring the user to scroll to the bottom of the informational content.
+
+Screen 3 — App Navigation Guide
+
+Apply the same principle to onboarding screen 3.
+
+Fixed top section
+
+Keep:
+
+page title;
+navigation illustration.
+Scrollable content section
+
+Make the explanatory list of application sections vertically scrollable:
+
+Home;
+Practice;
+Mistakes;
+Dictionary;
+Settings.
+
+Increase the font size of the explanatory descriptions to improve readability.
+
+Fixed bottom section
+
+Keep:
+
+back arrow;
+pagination dots;
+primary action button ("Далее").
+
+fixed and consistently positioned.
+
+Responsive behavior
+
+This is important:
+
+The scrollable area should only scroll when the available screen height requires it.
+
+On larger devices where all content fits:
+
+the layout should still look natural;
+content should not be artificially constrained;
+unnecessary empty scrolling should not be introduced.
+
+On smaller devices:
+
+explanatory text must remain readable;
+no content should be clipped;
+the user must be able to scroll through the informational section;
+the top illustration and bottom navigation must remain accessible.
+Layout requirements
+
+Use a proper flexible layout structure rather than absolute positioning.
+
+Recommended conceptual structure:
+
+Page
+│
+├── Fixed Top Section
+│   ├── Title
+│   └── Illustration
+│
+├── Flexible / Scrollable Content Area
+│   └── Numbered explanations
+│
+└── Fixed Bottom Navigation
+    ├── Back arrow
+    ├── Pagination dots
+    └── Primary button
+
+The middle area should use the remaining available viewport height.
+
+Avoid hardcoded pixel heights that could break on different phones.
+
+Do not change
+
+Do not change:
+
+onboarding text content;
+onboarding page order;
+illustrations;
+pagination behavior;
+swipe navigation;
+back navigation behavior;
+button styling;
+button position consistency established in previous tasks.
+
+This task is specifically about:
+
+improving explanatory text readability;
+making the informational content scrollable;
+preserving stable top and bottom navigation areas.
+Acceptance criteria
+Screen 2
+Explanatory text is noticeably larger and easier to read.
+All three explanations remain accessible on small screens.
+The explanation area can scroll vertically if necessary.
+Training Screen illustration remains fixed.
+Bottom navigation remains fixed.
+"Далее" button does not move when scrolling.
+Screen 3
+Explanatory text is noticeably larger and easier to read.
+All five explanations remain accessible.
+The explanation area can scroll vertically if necessary.
+Navigation illustration remains fixed.
+Bottom navigation remains fixed.
+"Далее" button does not move when scrolling.
+Device testing
+
+Verify on at least:
+
+a compact/small phone viewport;
+a standard phone viewport;
+a larger phone viewport.
+
+Also verify that no content becomes hidden behind the bottom navigation area.

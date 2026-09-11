@@ -31,7 +31,7 @@ tsconfig.json
 |------|---------|------|
 | Node.js | 20 LTS+ | https://nodejs.org |
 | pnpm | 9+ | `npm i -g pnpm` |
-| Java JDK | 17 | https://adoptium.net |
+| Java JDK | 21 | https://adoptium.net |
 | Android Studio | Ladybug 2024.2+ | https://developer.android.com/studio |
 
 After installing Android Studio, set `ANDROID_HOME`:
@@ -58,6 +58,12 @@ pnpm run cap:open
 ```
 
 Then in Android Studio: **Build → Build APK(s)**.
+
+If Android Studio shows **Invalid Gradle JDK configuration**, choose
+**Use Embedded JDK**, or open **File → Settings → Build, Execution, Deployment →
+Build Tools → Gradle** and set **Gradle JDK** to **Embedded JDK (Java 21)**.
+The JDK path is machine-specific and is intentionally generated locally rather
+than included in the archive.
 
 That's it — no manual edits, no copying files, and no Unix shell required. All
 three commands run from the project root; the `cap:open` script delegates to the

@@ -1,7 +1,7 @@
 /**
  * Cross-platform Android adaptive icon generator.
  *
- * Converts the SVG sources in assets/ into the mipmap PNGs required by
+ * Converts the canonical assets/app-icon.png artwork into the mipmap PNGs required by
  * Android, at all standard densities. Works on Windows, macOS, and Linux as
  * long as ImageMagick 7+ is installed (uses `magick` if available, otherwise
  * `convert`).
@@ -18,7 +18,7 @@ const root = path.resolve(__dirname, '..');
 const androidRes = path.join(root, 'android', 'app', 'src', 'main', 'res');
 const assetsDir = path.join(root, 'assets');
 
-// The single source-of-truth app icon (wave + book) exported from the Canvas.
+// The single source-of-truth app icon (wave + book), also used by onboarding.
 const appIconPng = path.join(assetsDir, 'app-icon.png');
 
 const densities = [
@@ -44,7 +44,7 @@ function findImageMagick() {
 // ---------------------------------------------------------------------------
 // Check whether rasterisation is needed:
 //   - All output PNGs already exist  AND
-//   - Neither SVG source is newer than the oldest existing PNG
+//   - Neither the source artwork nor this generator is newer than the outputs
 // If so, skip (ImageMagick may not be available on Windows).
 // ---------------------------------------------------------------------------
 function allPngsExist() {
@@ -60,7 +60,10 @@ function allPngsExist() {
 }
 
 function sourceNewerThanPngs() {
-  const srcMtime = fs.statSync(appIconPng).mtimeMs;
+  const srcMtime = Math.max(
+    fs.statSync(appIconPng).mtimeMs,
+    fs.statSync(__filename).mtimeMs,
+  );
   for (const d of densities) {
     const mipmap = path.join(androidRes, `mipmap-${d.name}`);
     const pngMtime = fs.statSync(path.join(mipmap, 'ic_launcher.png')).mtimeMs;
@@ -74,7 +77,7 @@ if (allPngsExist() && !sourceNewerThanPngs()) {
   process.exit(0);
 }
 
-// PNGs are missing or SVGs changed — rasterisation required.
+// PNGs are missing or the source/generator changed — rasterisation required.
 let im;
 try {
   im = findImageMagick();
@@ -86,14 +89,15 @@ try {
   process.exit(0);
 }
 
-function convertPng(input, output, size) {
-  const args = [
+function convertPng(input, output, canvasSize, artworkSize = canvasSize) {
+  execFileSync(im, [
     input,
-    '-resize', `${size}x${size}`,
+    '-resize', `${artworkSize}x${artworkSize}`,
     '-background', 'none',
+    '-gravity', 'center',
+    '-extent', `${canvasSize}x${canvasSize}`,
     output,
-  ];
-  execFileSync(im, args, { stdio: 'inherit' });
+  ], { stdio: 'inherit' });
 }
 
 for (const d of densities) {
@@ -102,10 +106,11 @@ for (const d of densities) {
     fs.mkdirSync(mipmap, { recursive: true });
   }
 
-  // Adaptive icon foreground (108dp canvas) — the full icon is used here,
-  // matched by the background color in ic_launcher_background.xml.
+  // Adaptive icon foreground (108dp canvas). Android launchers and the Android
+  // 12+ splash screen crop this canvas to different masks, so keep the complete
+  // canonical icon inside the 72dp safe area instead of zooming/cropping it.
   const fgOut = path.join(mipmap, 'ic_launcher_foreground.png');
-  convertPng(appIconPng, fgOut, d.fg);
+  convertPng(appIconPng, fgOut, d.fg, Math.round(d.fg * 2 / 3));
   console.log(`Generated ${fgOut}`);
 
   // Legacy launcher icon (48dp canvas)

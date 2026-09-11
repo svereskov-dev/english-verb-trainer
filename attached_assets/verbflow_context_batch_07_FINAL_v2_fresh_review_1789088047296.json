@@ -1,0 +1,4639 @@
+{
+  "dataset": "VerbFlow context exercises",
+  "variant": "American English",
+  "batch": 7,
+  "frequencyRankRange": [
+    301,
+    335
+  ],
+  "verbRange": [
+    "press",
+    "zoom"
+  ],
+  "schemaVersion": 1,
+  "recordCount": 420,
+  "exerciseCount": 364,
+  "notRecommendedCount": 56,
+  "records": [
+    {
+      "id": "press_pastSimple_01",
+      "verb": "press",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "Last night, she _____ the green button after the light came on.",
+      "expectedAnswer": "pressed"
+    },
+    {
+      "id": "press_pastContinuous_01",
+      "verb": "press",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 9:00 a.m. yesterday, she _____ buttons on the control panel.",
+      "expectedAnswer": "was pressing"
+    },
+    {
+      "id": "press_pastPerfect_01",
+      "verb": "press",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the machine started, she _____ the green button twice.",
+      "expectedAnswer": "had pressed"
+    },
+    {
+      "id": "press_pastPerfectContinuous_01",
+      "verb": "press",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "press_presentSimple_01",
+      "verb": "press",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She usually _____ this button to start the machine.",
+      "expectedAnswer": "presses"
+    },
+    {
+      "id": "press_presentContinuous_01",
+      "verb": "press",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ the button beside the screen at the moment.",
+      "expectedAnswer": "is pressing"
+    },
+    {
+      "id": "press_presentPerfect_01",
+      "verb": "press",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ the green button three times today.",
+      "expectedAnswer": "has pressed"
+    },
+    {
+      "id": "press_presentPerfectContinuous_01",
+      "verb": "press",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "press_futureSimple_01",
+      "verb": "press",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the green button when the light turns on.",
+      "expectedAnswer": "will press"
+    },
+    {
+      "id": "press_futureContinuous_01",
+      "verb": "press",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 9:00 a.m. tomorrow, she _____ buttons during the test.",
+      "expectedAnswer": "will be pressing"
+    },
+    {
+      "id": "press_futurePerfect_01",
+      "verb": "press",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By the end of the test, she _____ every button on the panel.",
+      "expectedAnswer": "will have pressed"
+    },
+    {
+      "id": "press_futurePerfectContinuous_01",
+      "verb": "press",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "process_pastSimple_01",
+      "verb": "process",
+      "tense": "pastSimple",
+      "subject": "the system",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "Last night, the system _____ all the new files.",
+      "expectedAnswer": "processed"
+    },
+    {
+      "id": "process_pastContinuous_01",
+      "verb": "process",
+      "tense": "pastContinuous",
+      "subject": "the system",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At midnight, the system _____ a large batch of files.",
+      "expectedAnswer": "was processing"
+    },
+    {
+      "id": "process_pastPerfect_01",
+      "verb": "process",
+      "tense": "pastPerfect",
+      "subject": "the system",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the office opened, the system _____ all the new files.",
+      "expectedAnswer": "had processed"
+    },
+    {
+      "id": "process_pastPerfectContinuous_01",
+      "verb": "process",
+      "tense": "pastPerfectContinuous",
+      "subject": "the system",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the office opened, the system _____ files for six hours.",
+      "expectedAnswer": "had been processing"
+    },
+    {
+      "id": "process_presentSimple_01",
+      "verb": "process",
+      "tense": "presentSimple",
+      "subject": "the system",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "The system _____ new files every hour.",
+      "expectedAnswer": "processes"
+    },
+    {
+      "id": "process_presentContinuous_01",
+      "verb": "process",
+      "tense": "presentContinuous",
+      "subject": "the system",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "The system _____ a large batch of files at the moment.",
+      "expectedAnswer": "is processing"
+    },
+    {
+      "id": "process_presentPerfect_01",
+      "verb": "process",
+      "tense": "presentPerfect",
+      "subject": "the system",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "The system _____ 500 files so far today.",
+      "expectedAnswer": "has processed"
+    },
+    {
+      "id": "process_presentPerfectContinuous_01",
+      "verb": "process",
+      "tense": "presentPerfectContinuous",
+      "subject": "the system",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "The system _____ files continuously since midnight.",
+      "expectedAnswer": "has been processing"
+    },
+    {
+      "id": "process_futureSimple_01",
+      "verb": "process",
+      "tense": "futureSimple",
+      "subject": "the system",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The system _____ the new files tonight.",
+      "expectedAnswer": "will process"
+    },
+    {
+      "id": "process_futureContinuous_01",
+      "verb": "process",
+      "tense": "futureContinuous",
+      "subject": "the system",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At midnight tonight, the system _____ the next batch of files.",
+      "expectedAnswer": "will be processing"
+    },
+    {
+      "id": "process_futurePerfect_01",
+      "verb": "process",
+      "tense": "futurePerfect",
+      "subject": "the system",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By morning, the system _____ all the new files.",
+      "expectedAnswer": "will have processed"
+    },
+    {
+      "id": "process_futurePerfectContinuous_01",
+      "verb": "process",
+      "tense": "futurePerfectContinuous",
+      "subject": "the system",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By 6:00 a.m. tomorrow, the system _____ files for eight hours.",
+      "expectedAnswer": "will have been processing"
+    },
+    {
+      "id": "protect_pastSimple_01",
+      "verb": "protect",
+      "tense": "pastSimple",
+      "subject": "his older brother",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "His older brother _____ him from bullies when they were children.",
+      "expectedAnswer": "protected"
+    },
+    {
+      "id": "protect_pastContinuous_01",
+      "verb": "protect",
+      "tense": "pastContinuous",
+      "subject": "the shutters",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "During the storm, the shutters _____ the windows from flying debris.",
+      "expectedAnswer": "were protecting"
+    },
+    {
+      "id": "protect_pastPerfect_01",
+      "verb": "protect",
+      "tense": "pastPerfect",
+      "subject": "the shelter",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "By the time help arrived, the shelter _____ the hikers through the storm.",
+      "expectedAnswer": "had protected"
+    },
+    {
+      "id": "protect_pastPerfectContinuous_01",
+      "verb": "protect",
+      "tense": "pastPerfectContinuous",
+      "subject": "the cover",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "protect_presentSimple_01",
+      "verb": "protect",
+      "tense": "presentSimple",
+      "subject": "this case",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "This case _____ the phone from scratches and small drops.",
+      "expectedAnswer": "protects"
+    },
+    {
+      "id": "protect_presentContinuous_01",
+      "verb": "protect",
+      "tense": "presentContinuous",
+      "subject": "the awning",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "The awning _____ the tables from the rain at the moment.",
+      "expectedAnswer": "is protecting"
+    },
+    {
+      "id": "protect_presentPerfect_01",
+      "verb": "protect",
+      "tense": "presentPerfect",
+      "subject": "this case",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "This case _____ the phone well for more than two years.",
+      "expectedAnswer": "has protected"
+    },
+    {
+      "id": "protect_presentPerfectContinuous_01",
+      "verb": "protect",
+      "tense": "presentPerfectContinuous",
+      "subject": "the cover",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "protect_futureSimple_01",
+      "verb": "protect",
+      "tense": "futureSimple",
+      "subject": "the cover",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The cover _____ the furniture during tomorrow's move.",
+      "expectedAnswer": "will protect"
+    },
+    {
+      "id": "protect_futureContinuous_01",
+      "verb": "protect",
+      "tense": "futureContinuous",
+      "subject": "blankets",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "During the move tomorrow, blankets _____ the furniture from scratches.",
+      "expectedAnswer": "will be protecting"
+    },
+    {
+      "id": "protect_futurePerfect_01",
+      "verb": "protect",
+      "tense": "futurePerfect",
+      "subject": "the cover",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "protect_futurePerfectContinuous_01",
+      "verb": "protect",
+      "tense": "futurePerfectContinuous",
+      "subject": "the cover",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "publish_pastSimple_01",
+      "verb": "publish",
+      "tense": "pastSimple",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "The magazine _____ the interview last Friday.",
+      "expectedAnswer": "published"
+    },
+    {
+      "id": "publish_pastContinuous_01",
+      "verb": "publish",
+      "tense": "pastContinuous",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At noon yesterday, the magazine _____ several new articles.",
+      "expectedAnswer": "was publishing"
+    },
+    {
+      "id": "publish_pastPerfect_01",
+      "verb": "publish",
+      "tense": "pastPerfect",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the author shared the link, the magazine _____ the interview.",
+      "expectedAnswer": "had published"
+    },
+    {
+      "id": "publish_pastPerfectContinuous_01",
+      "verb": "publish",
+      "tense": "pastPerfectContinuous",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the redesign, the magazine _____ weekly essays for years.",
+      "expectedAnswer": "had been publishing"
+    },
+    {
+      "id": "publish_presentSimple_01",
+      "verb": "publish",
+      "tense": "presentSimple",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "The magazine _____ new interviews every Friday.",
+      "expectedAnswer": "publishes"
+    },
+    {
+      "id": "publish_presentContinuous_01",
+      "verb": "publish",
+      "tense": "presentContinuous",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This week, the magazine _____ a series of short essays.",
+      "expectedAnswer": "is publishing"
+    },
+    {
+      "id": "publish_presentPerfect_01",
+      "verb": "publish",
+      "tense": "presentPerfect",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "The magazine _____ four interviews this month.",
+      "expectedAnswer": "has published"
+    },
+    {
+      "id": "publish_presentPerfectContinuous_01",
+      "verb": "publish",
+      "tense": "presentPerfectContinuous",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "The magazine _____ weekly essays since January.",
+      "expectedAnswer": "has been publishing"
+    },
+    {
+      "id": "publish_futureSimple_01",
+      "verb": "publish",
+      "tense": "futureSimple",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The magazine _____ the new interview next Friday.",
+      "expectedAnswer": "will publish"
+    },
+    {
+      "id": "publish_futureContinuous_01",
+      "verb": "publish",
+      "tense": "futureContinuous",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Next month, the magazine _____ a new essay series.",
+      "expectedAnswer": "will be publishing"
+    },
+    {
+      "id": "publish_futurePerfect_01",
+      "verb": "publish",
+      "tense": "futurePerfect",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, the magazine _____ all three interviews.",
+      "expectedAnswer": "will have published"
+    },
+    {
+      "id": "publish_futurePerfectContinuous_01",
+      "verb": "publish",
+      "tense": "futurePerfectContinuous",
+      "subject": "the magazine",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By June, the magazine _____ weekly essays for six months.",
+      "expectedAnswer": "will have been publishing"
+    },
+    {
+      "id": "record_pastSimple_01",
+      "verb": "record",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ the lecture last Thursday.",
+      "expectedAnswer": "recorded"
+    },
+    {
+      "id": "record_pastContinuous_01",
+      "verb": "record",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 3:00 p.m. yesterday, she _____ the final part of the lecture.",
+      "expectedAnswer": "was recording"
+    },
+    {
+      "id": "record_pastPerfect_01",
+      "verb": "record",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the battery died, she _____ the introduction to the lecture.",
+      "expectedAnswer": "had recorded"
+    },
+    {
+      "id": "record_pastPerfectContinuous_01",
+      "verb": "record",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the battery died, she _____ the lecture for an hour.",
+      "expectedAnswer": "had been recording"
+    },
+    {
+      "id": "record_presentSimple_01",
+      "verb": "record",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She often _____ lectures for later review.",
+      "expectedAnswer": "records"
+    },
+    {
+      "id": "record_presentContinuous_01",
+      "verb": "record",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ a short interview in the studio at the moment.",
+      "expectedAnswer": "is recording"
+    },
+    {
+      "id": "record_presentPerfect_01",
+      "verb": "record",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ three interviews this week.",
+      "expectedAnswer": "has recorded"
+    },
+    {
+      "id": "record_presentPerfectContinuous_01",
+      "verb": "record",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ interviews all morning.",
+      "expectedAnswer": "has been recording"
+    },
+    {
+      "id": "record_futureSimple_01",
+      "verb": "record",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the next lecture tomorrow.",
+      "expectedAnswer": "will record"
+    },
+    {
+      "id": "record_futureContinuous_01",
+      "verb": "record",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 3:00 p.m. tomorrow, she _____ another interview.",
+      "expectedAnswer": "will be recording"
+    },
+    {
+      "id": "record_futurePerfect_01",
+      "verb": "record",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, she _____ all five interviews.",
+      "expectedAnswer": "will have recorded"
+    },
+    {
+      "id": "record_futurePerfectContinuous_01",
+      "verb": "record",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By noon tomorrow, she _____ interviews for three hours.",
+      "expectedAnswer": "will have been recording"
+    },
+    {
+      "id": "release_pastSimple_01",
+      "verb": "release",
+      "tense": "pastSimple",
+      "subject": "the company",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "The company _____ the update last Monday.",
+      "expectedAnswer": "released"
+    },
+    {
+      "id": "release_pastContinuous_01",
+      "verb": "release",
+      "tense": "pastContinuous",
+      "subject": "the company",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "During last week's event, the company _____ several new features.",
+      "expectedAnswer": "was releasing"
+    },
+    {
+      "id": "release_pastPerfect_01",
+      "verb": "release",
+      "tense": "pastPerfect",
+      "subject": "the company",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before users logged in, the company _____ the update.",
+      "expectedAnswer": "had released"
+    },
+    {
+      "id": "release_pastPerfectContinuous_01",
+      "verb": "release",
+      "tense": "pastPerfectContinuous",
+      "subject": "the company",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "release_presentSimple_01",
+      "verb": "release",
+      "tense": "presentSimple",
+      "subject": "the company",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "The company _____ a major update every spring.",
+      "expectedAnswer": "releases"
+    },
+    {
+      "id": "release_presentContinuous_01",
+      "verb": "release",
+      "tense": "presentContinuous",
+      "subject": "the company",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This week, the company _____ a series of small updates.",
+      "expectedAnswer": "is releasing"
+    },
+    {
+      "id": "release_presentPerfect_01",
+      "verb": "release",
+      "tense": "presentPerfect",
+      "subject": "the company",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "The company _____ three updates this year.",
+      "expectedAnswer": "has released"
+    },
+    {
+      "id": "release_presentPerfectContinuous_01",
+      "verb": "release",
+      "tense": "presentPerfectContinuous",
+      "subject": "the company",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "The company _____ small updates regularly since January.",
+      "expectedAnswer": "has been releasing"
+    },
+    {
+      "id": "release_futureSimple_01",
+      "verb": "release",
+      "tense": "futureSimple",
+      "subject": "the company",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The company _____ the next update in October.",
+      "expectedAnswer": "will release"
+    },
+    {
+      "id": "release_futureContinuous_01",
+      "verb": "release",
+      "tense": "futureContinuous",
+      "subject": "the company",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "This fall, the company _____ several new features.",
+      "expectedAnswer": "will be releasing"
+    },
+    {
+      "id": "release_futurePerfect_01",
+      "verb": "release",
+      "tense": "futurePerfect",
+      "subject": "the company",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, the company _____ the final update.",
+      "expectedAnswer": "will have released"
+    },
+    {
+      "id": "release_futurePerfectContinuous_01",
+      "verb": "release",
+      "tense": "futurePerfectContinuous",
+      "subject": "the company",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "remove_pastSimple_01",
+      "verb": "remove",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "He _____ a paint stain from his jeans last Saturday.",
+      "expectedAnswer": "removed"
+    },
+    {
+      "id": "remove_pastContinuous_01",
+      "verb": "remove",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 11:00 a.m. yesterday, he _____ old paint from a wooden chair.",
+      "expectedAnswer": "was removing"
+    },
+    {
+      "id": "remove_pastPerfect_01",
+      "verb": "remove",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the guests arrived, he _____ the stain from the sofa.",
+      "expectedAnswer": "had removed"
+    },
+    {
+      "id": "remove_pastPerfectContinuous_01",
+      "verb": "remove",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before he stopped for lunch, he _____ old paint for two hours.",
+      "expectedAnswer": "had been removing"
+    },
+    {
+      "id": "remove_presentSimple_01",
+      "verb": "remove",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He usually _____ stains as soon as he notices them.",
+      "expectedAnswer": "removes"
+    },
+    {
+      "id": "remove_presentContinuous_01",
+      "verb": "remove",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "He _____ a coffee stain from the sofa at the moment.",
+      "expectedAnswer": "is removing"
+    },
+    {
+      "id": "remove_presentPerfect_01",
+      "verb": "remove",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ three stains from the sofa so far today.",
+      "expectedAnswer": "has removed"
+    },
+    {
+      "id": "remove_presentPerfectContinuous_01",
+      "verb": "remove",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "He _____ old paint from the chair all morning.",
+      "expectedAnswer": "has been removing"
+    },
+    {
+      "id": "remove_futureSimple_01",
+      "verb": "remove",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "He _____ the paint stain from his jeans tomorrow.",
+      "expectedAnswer": "will remove"
+    },
+    {
+      "id": "remove_futureContinuous_01",
+      "verb": "remove",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Tomorrow morning, he _____ old paint from the chair.",
+      "expectedAnswer": "will be removing"
+    },
+    {
+      "id": "remove_futurePerfect_01",
+      "verb": "remove",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By noon tomorrow, he _____ all the old paint from the chair.",
+      "expectedAnswer": "will have removed"
+    },
+    {
+      "id": "remove_futurePerfectContinuous_01",
+      "verb": "remove",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By noon tomorrow, he _____ old paint from the chair for three hours.",
+      "expectedAnswer": "will have been removing"
+    },
+    {
+      "id": "rent_pastSimple_01",
+      "verb": "rent",
+      "tense": "pastSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "They _____ a small apartment near the station last year.",
+      "expectedAnswer": "rented"
+    },
+    {
+      "id": "rent_pastContinuous_01",
+      "verb": "rent",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "In 2024, they _____ an apartment near the station.",
+      "expectedAnswer": "were renting"
+    },
+    {
+      "id": "rent_pastPerfect_01",
+      "verb": "rent",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before buying a home, they _____ three different apartments.",
+      "expectedAnswer": "had rented"
+    },
+    {
+      "id": "rent_pastPerfectContinuous_01",
+      "verb": "rent",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before buying a home, they _____ the same apartment for two years.",
+      "expectedAnswer": "had been renting"
+    },
+    {
+      "id": "rent_presentSimple_01",
+      "verb": "rent",
+      "tense": "presentSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "They usually _____ an apartment when they stay in the city.",
+      "expectedAnswer": "rent"
+    },
+    {
+      "id": "rent_presentContinuous_01",
+      "verb": "rent",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This month, they _____ a small apartment downtown.",
+      "expectedAnswer": "are renting"
+    },
+    {
+      "id": "rent_presentPerfect_01",
+      "verb": "rent",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "They _____ three apartments in this city so far.",
+      "expectedAnswer": "have rented"
+    },
+    {
+      "id": "rent_presentPerfectContinuous_01",
+      "verb": "rent",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "They _____ this apartment since January.",
+      "expectedAnswer": "have been renting"
+    },
+    {
+      "id": "rent_futureSimple_01",
+      "verb": "rent",
+      "tense": "futureSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "They _____ a larger apartment next summer.",
+      "expectedAnswer": "will rent"
+    },
+    {
+      "id": "rent_futureContinuous_01",
+      "verb": "rent",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "This time next year, they _____ an apartment near the coast.",
+      "expectedAnswer": "will be renting"
+    },
+    {
+      "id": "rent_futurePerfect_01",
+      "verb": "rent",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By next summer, they _____ apartments in four different cities.",
+      "expectedAnswer": "will have rented"
+    },
+    {
+      "id": "rent_futurePerfectContinuous_01",
+      "verb": "rent",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By June, they _____ this apartment for eighteen months.",
+      "expectedAnswer": "will have been renting"
+    },
+    {
+      "id": "repeat_pastSimple_01",
+      "verb": "repeat",
+      "tense": "pastSimple",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "The teacher _____ the instructions after the bell rang.",
+      "expectedAnswer": "repeated"
+    },
+    {
+      "id": "repeat_pastContinuous_01",
+      "verb": "repeat",
+      "tense": "pastContinuous",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "During the lesson, the teacher _____ the same phrase slowly.",
+      "expectedAnswer": "was repeating"
+    },
+    {
+      "id": "repeat_pastPerfect_01",
+      "verb": "repeat",
+      "tense": "pastPerfect",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the test began, the teacher _____ the key instruction twice.",
+      "expectedAnswer": "had repeated"
+    },
+    {
+      "id": "repeat_pastPerfectContinuous_01",
+      "verb": "repeat",
+      "tense": "pastPerfectContinuous",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "repeat_presentSimple_01",
+      "verb": "repeat",
+      "tense": "presentSimple",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "The teacher often _____ important instructions.",
+      "expectedAnswer": "repeats"
+    },
+    {
+      "id": "repeat_presentContinuous_01",
+      "verb": "repeat",
+      "tense": "presentContinuous",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "The teacher _____ the final instruction at the moment.",
+      "expectedAnswer": "is repeating"
+    },
+    {
+      "id": "repeat_presentPerfect_01",
+      "verb": "repeat",
+      "tense": "presentPerfect",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "The teacher _____ that instruction three times today.",
+      "expectedAnswer": "has repeated"
+    },
+    {
+      "id": "repeat_presentPerfectContinuous_01",
+      "verb": "repeat",
+      "tense": "presentPerfectContinuous",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "repeat_futureSimple_01",
+      "verb": "repeat",
+      "tense": "futureSimple",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The teacher _____ the instructions before tomorrow's test.",
+      "expectedAnswer": "will repeat"
+    },
+    {
+      "id": "repeat_futureContinuous_01",
+      "verb": "repeat",
+      "tense": "futureContinuous",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "During tomorrow's lesson, the teacher _____ the new phrases.",
+      "expectedAnswer": "will be repeating"
+    },
+    {
+      "id": "repeat_futurePerfect_01",
+      "verb": "repeat",
+      "tense": "futurePerfect",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By tomorrow's test, the teacher _____ each key instruction twice.",
+      "expectedAnswer": "will have repeated"
+    },
+    {
+      "id": "repeat_futurePerfectContinuous_01",
+      "verb": "repeat",
+      "tense": "futurePerfectContinuous",
+      "subject": "the teacher",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "replace_pastSimple_01",
+      "verb": "replace",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ the broken lamp last weekend.",
+      "expectedAnswer": "replaced"
+    },
+    {
+      "id": "replace_pastContinuous_01",
+      "verb": "replace",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At noon yesterday, she _____ old bulbs in the hallway.",
+      "expectedAnswer": "was replacing"
+    },
+    {
+      "id": "replace_pastPerfect_01",
+      "verb": "replace",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the guests arrived, she _____ the broken lamp.",
+      "expectedAnswer": "had replaced"
+    },
+    {
+      "id": "replace_pastPerfectContinuous_01",
+      "verb": "replace",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before she stopped for lunch, she _____ old bulbs for two hours.",
+      "expectedAnswer": "had been replacing"
+    },
+    {
+      "id": "replace_presentSimple_01",
+      "verb": "replace",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She usually _____ worn parts before they fail.",
+      "expectedAnswer": "replaces"
+    },
+    {
+      "id": "replace_presentContinuous_01",
+      "verb": "replace",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ an old bulb in the kitchen at the moment.",
+      "expectedAnswer": "is replacing"
+    },
+    {
+      "id": "replace_presentPerfect_01",
+      "verb": "replace",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ six old bulbs this week.",
+      "expectedAnswer": "has replaced"
+    },
+    {
+      "id": "replace_presentPerfectContinuous_01",
+      "verb": "replace",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ old bulbs all morning.",
+      "expectedAnswer": "has been replacing"
+    },
+    {
+      "id": "replace_futureSimple_01",
+      "verb": "replace",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the hallway light tomorrow.",
+      "expectedAnswer": "will replace"
+    },
+    {
+      "id": "replace_futureContinuous_01",
+      "verb": "replace",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At noon tomorrow, she _____ the last old bulbs.",
+      "expectedAnswer": "will be replacing"
+    },
+    {
+      "id": "replace_futurePerfect_01",
+      "verb": "replace",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, she _____ all the old bulbs.",
+      "expectedAnswer": "will have replaced"
+    },
+    {
+      "id": "replace_futurePerfectContinuous_01",
+      "verb": "replace",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By noon tomorrow, she _____ old bulbs for three hours.",
+      "expectedAnswer": "will have been replacing"
+    },
+    {
+      "id": "request_pastSimple_01",
+      "verb": "request",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "He _____ a copy of the report last Monday.",
+      "expectedAnswer": "requested"
+    },
+    {
+      "id": "request_pastContinuous_01",
+      "verb": "request",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "request_pastPerfect_01",
+      "verb": "request",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "By the time the office replied, he _____ a copy of the report twice.",
+      "expectedAnswer": "had requested"
+    },
+    {
+      "id": "request_pastPerfectContinuous_01",
+      "verb": "request",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "request_presentSimple_01",
+      "verb": "request",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He often _____ copies of important documents.",
+      "expectedAnswer": "requests"
+    },
+    {
+      "id": "request_presentContinuous_01",
+      "verb": "request",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "request_presentPerfect_01",
+      "verb": "request",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ three documents this week.",
+      "expectedAnswer": "has requested"
+    },
+    {
+      "id": "request_presentPerfectContinuous_01",
+      "verb": "request",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "request_futureSimple_01",
+      "verb": "request",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "He _____ a copy of the final report tomorrow.",
+      "expectedAnswer": "will request"
+    },
+    {
+      "id": "request_futureContinuous_01",
+      "verb": "request",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "request_futurePerfect_01",
+      "verb": "request",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, he _____ all the documents he needs.",
+      "expectedAnswer": "will have requested"
+    },
+    {
+      "id": "request_futurePerfectContinuous_01",
+      "verb": "request",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "research_pastSimple_01",
+      "verb": "research",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ the neighborhood's history last month.",
+      "expectedAnswer": "researched"
+    },
+    {
+      "id": "research_pastContinuous_01",
+      "verb": "research",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "Throughout last week, she _____ the history of the old theater.",
+      "expectedAnswer": "was researching"
+    },
+    {
+      "id": "research_pastPerfect_01",
+      "verb": "research",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before writing the article, she _____ the theater's history in detail.",
+      "expectedAnswer": "had researched"
+    },
+    {
+      "id": "research_pastPerfectContinuous_01",
+      "verb": "research",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before writing the article, she _____ the topic for several weeks.",
+      "expectedAnswer": "had been researching"
+    },
+    {
+      "id": "research_presentSimple_01",
+      "verb": "research",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She often _____ local history for her articles.",
+      "expectedAnswer": "researches"
+    },
+    {
+      "id": "research_presentContinuous_01",
+      "verb": "research",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This week, she _____ the history of the old theater.",
+      "expectedAnswer": "is researching"
+    },
+    {
+      "id": "research_presentPerfect_01",
+      "verb": "research",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ three local archives this month.",
+      "expectedAnswer": "has researched"
+    },
+    {
+      "id": "research_presentPerfectContinuous_01",
+      "verb": "research",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ the theater's history for the past two weeks.",
+      "expectedAnswer": "has been researching"
+    },
+    {
+      "id": "research_futureSimple_01",
+      "verb": "research",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the neighborhood archives next week.",
+      "expectedAnswer": "will research"
+    },
+    {
+      "id": "research_futureContinuous_01",
+      "verb": "research",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Next week, she _____ the history of several old buildings.",
+      "expectedAnswer": "will be researching"
+    },
+    {
+      "id": "research_futurePerfect_01",
+      "verb": "research",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, she _____ all three archives.",
+      "expectedAnswer": "will have researched"
+    },
+    {
+      "id": "research_futurePerfectContinuous_01",
+      "verb": "research",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By Friday, she _____ the topic for three weeks.",
+      "expectedAnswer": "will have been researching"
+    },
+    {
+      "id": "respond_pastSimple_01",
+      "verb": "respond",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ to the email after lunch last Friday.",
+      "expectedAnswer": "responded"
+    },
+    {
+      "id": "respond_pastContinuous_01",
+      "verb": "respond",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 4:00 p.m. yesterday, she _____ to messages from readers.",
+      "expectedAnswer": "was responding"
+    },
+    {
+      "id": "respond_pastPerfect_01",
+      "verb": "respond",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the office closed, she _____ to all urgent emails.",
+      "expectedAnswer": "had responded"
+    },
+    {
+      "id": "respond_pastPerfectContinuous_01",
+      "verb": "respond",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the office closed, she _____ to emails for two hours.",
+      "expectedAnswer": "had been responding"
+    },
+    {
+      "id": "respond_presentSimple_01",
+      "verb": "respond",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She usually _____ to reader emails within a day.",
+      "expectedAnswer": "responds"
+    },
+    {
+      "id": "respond_presentContinuous_01",
+      "verb": "respond",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ to a reader's question at the moment.",
+      "expectedAnswer": "is responding"
+    },
+    {
+      "id": "respond_presentPerfect_01",
+      "verb": "respond",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ to twelve emails so far today.",
+      "expectedAnswer": "has responded"
+    },
+    {
+      "id": "respond_presentPerfectContinuous_01",
+      "verb": "respond",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ to reader emails all afternoon.",
+      "expectedAnswer": "has been responding"
+    },
+    {
+      "id": "respond_futureSimple_01",
+      "verb": "respond",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ to the remaining emails tomorrow.",
+      "expectedAnswer": "will respond"
+    },
+    {
+      "id": "respond_futureContinuous_01",
+      "verb": "respond",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 4:00 p.m. tomorrow, she _____ to reader messages.",
+      "expectedAnswer": "will be responding"
+    },
+    {
+      "id": "respond_futurePerfect_01",
+      "verb": "respond",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 6:00 p.m. tomorrow, she _____ to every urgent email.",
+      "expectedAnswer": "will have responded"
+    },
+    {
+      "id": "respond_futurePerfectContinuous_01",
+      "verb": "respond",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By 6:00 p.m. tomorrow, she _____ to emails for three hours.",
+      "expectedAnswer": "will have been responding"
+    },
+    {
+      "id": "review_pastSimple_01",
+      "verb": "review",
+      "tense": "pastSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "They _____ the proposal last Thursday.",
+      "expectedAnswer": "reviewed"
+    },
+    {
+      "id": "review_pastContinuous_01",
+      "verb": "review",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 2:00 p.m. yesterday, they _____ the final proposal.",
+      "expectedAnswer": "were reviewing"
+    },
+    {
+      "id": "review_pastPerfect_01",
+      "verb": "review",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the vote began, they _____ the full proposal.",
+      "expectedAnswer": "had reviewed"
+    },
+    {
+      "id": "review_pastPerfectContinuous_01",
+      "verb": "review",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the vote began, they _____ the proposal for two hours.",
+      "expectedAnswer": "had been reviewing"
+    },
+    {
+      "id": "review_presentSimple_01",
+      "verb": "review",
+      "tense": "presentSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "They usually _____ proposals before the weekly meeting.",
+      "expectedAnswer": "review"
+    },
+    {
+      "id": "review_presentContinuous_01",
+      "verb": "review",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "They _____ the final proposal at the moment.",
+      "expectedAnswer": "are reviewing"
+    },
+    {
+      "id": "review_presentPerfect_01",
+      "verb": "review",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "They _____ four proposals this month.",
+      "expectedAnswer": "have reviewed"
+    },
+    {
+      "id": "review_presentPerfectContinuous_01",
+      "verb": "review",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "They _____ proposals all morning.",
+      "expectedAnswer": "have been reviewing"
+    },
+    {
+      "id": "review_futureSimple_01",
+      "verb": "review",
+      "tense": "futureSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "Tomorrow, they _____ the budget proposal.",
+      "expectedAnswer": "will review"
+    },
+    {
+      "id": "review_futureContinuous_01",
+      "verb": "review",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 2:00 p.m. tomorrow, they _____ the budget proposal.",
+      "expectedAnswer": "will be reviewing"
+    },
+    {
+      "id": "review_futurePerfect_01",
+      "verb": "review",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, they _____ all six proposals.",
+      "expectedAnswer": "will have reviewed"
+    },
+    {
+      "id": "review_futurePerfectContinuous_01",
+      "verb": "review",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By noon tomorrow, they _____ proposals for three hours.",
+      "expectedAnswer": "will have been reviewing"
+    },
+    {
+      "id": "select_pastSimple_01",
+      "verb": "select",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ three photos for the article last Friday.",
+      "expectedAnswer": "selected"
+    },
+    {
+      "id": "select_pastContinuous_01",
+      "verb": "select",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At noon yesterday, she _____ photos for the article.",
+      "expectedAnswer": "was selecting"
+    },
+    {
+      "id": "select_pastPerfect_01",
+      "verb": "select",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the designer arrived, she _____ the final three photos.",
+      "expectedAnswer": "had selected"
+    },
+    {
+      "id": "select_pastPerfectContinuous_01",
+      "verb": "select",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "select_presentSimple_01",
+      "verb": "select",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She usually _____ photos with simple backgrounds.",
+      "expectedAnswer": "selects"
+    },
+    {
+      "id": "select_presentContinuous_01",
+      "verb": "select",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ photos for the new article at the moment.",
+      "expectedAnswer": "is selecting"
+    },
+    {
+      "id": "select_presentPerfect_01",
+      "verb": "select",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ twelve photos this week.",
+      "expectedAnswer": "has selected"
+    },
+    {
+      "id": "select_presentPerfectContinuous_01",
+      "verb": "select",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "select_futureSimple_01",
+      "verb": "select",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the final images tomorrow.",
+      "expectedAnswer": "will select"
+    },
+    {
+      "id": "select_futureContinuous_01",
+      "verb": "select",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At noon tomorrow, she _____ images for the next article.",
+      "expectedAnswer": "will be selecting"
+    },
+    {
+      "id": "select_futurePerfect_01",
+      "verb": "select",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 2:00 p.m. tomorrow, she _____ all the final images.",
+      "expectedAnswer": "will have selected"
+    },
+    {
+      "id": "select_futurePerfectContinuous_01",
+      "verb": "select",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "sign_pastSimple_01",
+      "verb": "sign",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "He _____ the contract last Tuesday.",
+      "expectedAnswer": "signed"
+    },
+    {
+      "id": "sign_pastContinuous_01",
+      "verb": "sign",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 11:00 a.m. yesterday, he _____ documents at the front desk.",
+      "expectedAnswer": "was signing"
+    },
+    {
+      "id": "sign_pastPerfect_01",
+      "verb": "sign",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "By the time the meeting ended, he _____ the final contract.",
+      "expectedAnswer": "had signed"
+    },
+    {
+      "id": "sign_pastPerfectContinuous_01",
+      "verb": "sign",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "sign_presentSimple_01",
+      "verb": "sign",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He usually _____ documents with a black pen.",
+      "expectedAnswer": "signs"
+    },
+    {
+      "id": "sign_presentContinuous_01",
+      "verb": "sign",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "He _____ the final page of the contract at the moment.",
+      "expectedAnswer": "is signing"
+    },
+    {
+      "id": "sign_presentPerfect_01",
+      "verb": "sign",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ four documents so far today.",
+      "expectedAnswer": "has signed"
+    },
+    {
+      "id": "sign_presentPerfectContinuous_01",
+      "verb": "sign",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "sign_futureSimple_01",
+      "verb": "sign",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "He _____ the new contract tomorrow.",
+      "expectedAnswer": "will sign"
+    },
+    {
+      "id": "sign_futureContinuous_01",
+      "verb": "sign",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 11:00 a.m. tomorrow, he _____ the remaining documents.",
+      "expectedAnswer": "will be signing"
+    },
+    {
+      "id": "sign_futurePerfect_01",
+      "verb": "sign",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By noon tomorrow, he _____ all the documents.",
+      "expectedAnswer": "will have signed"
+    },
+    {
+      "id": "sign_futurePerfectContinuous_01",
+      "verb": "sign",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "skip_pastSimple_01",
+      "verb": "skip",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "Last night, she _____ the introduction and read the first chapter.",
+      "expectedAnswer": "skipped"
+    },
+    {
+      "id": "skip_pastContinuous_01",
+      "verb": "skip",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "skip_pastPerfect_01",
+      "verb": "skip",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the discussion began, she _____ two short sections.",
+      "expectedAnswer": "had skipped"
+    },
+    {
+      "id": "skip_pastPerfectContinuous_01",
+      "verb": "skip",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "skip_presentSimple_01",
+      "verb": "skip",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She sometimes _____ introductions when she knows the topic.",
+      "expectedAnswer": "skips"
+    },
+    {
+      "id": "skip_presentContinuous_01",
+      "verb": "skip",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "skip_presentPerfect_01",
+      "verb": "skip",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ two sections so far today.",
+      "expectedAnswer": "has skipped"
+    },
+    {
+      "id": "skip_presentPerfectContinuous_01",
+      "verb": "skip",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "skip_futureSimple_01",
+      "verb": "skip",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the optional chapter tomorrow.",
+      "expectedAnswer": "will skip"
+    },
+    {
+      "id": "skip_futureContinuous_01",
+      "verb": "skip",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "skip_futurePerfect_01",
+      "verb": "skip",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "skip_futurePerfectContinuous_01",
+      "verb": "skip",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "solve_pastSimple_01",
+      "verb": "solve",
+      "tense": "pastSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "They _____ the puzzle after dinner last night.",
+      "expectedAnswer": "solved"
+    },
+    {
+      "id": "solve_pastContinuous_01",
+      "verb": "solve",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 8:00 p.m. yesterday, they _____ a difficult puzzle.",
+      "expectedAnswer": "were solving"
+    },
+    {
+      "id": "solve_pastPerfect_01",
+      "verb": "solve",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the timer ended, they _____ all three problems.",
+      "expectedAnswer": "had solved"
+    },
+    {
+      "id": "solve_pastPerfectContinuous_01",
+      "verb": "solve",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the timer ended, they _____ problems for nearly an hour.",
+      "expectedAnswer": "had been solving"
+    },
+    {
+      "id": "solve_presentSimple_01",
+      "verb": "solve",
+      "tense": "presentSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "They often _____ logic puzzles together.",
+      "expectedAnswer": "solve"
+    },
+    {
+      "id": "solve_presentContinuous_01",
+      "verb": "solve",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "They _____ the last problem at the moment.",
+      "expectedAnswer": "are solving"
+    },
+    {
+      "id": "solve_presentPerfect_01",
+      "verb": "solve",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "They _____ five problems so far today.",
+      "expectedAnswer": "have solved"
+    },
+    {
+      "id": "solve_presentPerfectContinuous_01",
+      "verb": "solve",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "They _____ problems for the past hour.",
+      "expectedAnswer": "have been solving"
+    },
+    {
+      "id": "solve_futureSimple_01",
+      "verb": "solve",
+      "tense": "futureSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "They _____ the next puzzle tomorrow.",
+      "expectedAnswer": "will solve"
+    },
+    {
+      "id": "solve_futureContinuous_01",
+      "verb": "solve",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 8:00 p.m. tomorrow, they _____ another puzzle.",
+      "expectedAnswer": "will be solving"
+    },
+    {
+      "id": "solve_futurePerfect_01",
+      "verb": "solve",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 9:00 p.m. tomorrow, they _____ all six problems.",
+      "expectedAnswer": "will have solved"
+    },
+    {
+      "id": "solve_futurePerfectContinuous_01",
+      "verb": "solve",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By 9:00 p.m. tomorrow, they _____ problems for two hours.",
+      "expectedAnswer": "will have been solving"
+    },
+    {
+      "id": "sort_pastSimple_01",
+      "verb": "sort",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "He _____ the old photographs by date last weekend.",
+      "expectedAnswer": "sorted"
+    },
+    {
+      "id": "sort_pastContinuous_01",
+      "verb": "sort",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At noon yesterday, he _____ photographs into folders.",
+      "expectedAnswer": "was sorting"
+    },
+    {
+      "id": "sort_pastPerfect_01",
+      "verb": "sort",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the archive closed, he _____ all the photographs by date.",
+      "expectedAnswer": "had sorted"
+    },
+    {
+      "id": "sort_pastPerfectContinuous_01",
+      "verb": "sort",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the archive closed, he _____ photographs for three hours.",
+      "expectedAnswer": "had been sorting"
+    },
+    {
+      "id": "sort_presentSimple_01",
+      "verb": "sort",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He usually _____ photographs by year.",
+      "expectedAnswer": "sorts"
+    },
+    {
+      "id": "sort_presentContinuous_01",
+      "verb": "sort",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "He _____ photographs into folders at the moment.",
+      "expectedAnswer": "is sorting"
+    },
+    {
+      "id": "sort_presentPerfect_01",
+      "verb": "sort",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ six folders of photographs this week.",
+      "expectedAnswer": "has sorted"
+    },
+    {
+      "id": "sort_presentPerfectContinuous_01",
+      "verb": "sort",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "He _____ photographs all morning.",
+      "expectedAnswer": "has been sorting"
+    },
+    {
+      "id": "sort_futureSimple_01",
+      "verb": "sort",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "He _____ the last folder tomorrow.",
+      "expectedAnswer": "will sort"
+    },
+    {
+      "id": "sort_futureContinuous_01",
+      "verb": "sort",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At noon tomorrow, he _____ the final batch of photographs.",
+      "expectedAnswer": "will be sorting"
+    },
+    {
+      "id": "sort_futurePerfect_01",
+      "verb": "sort",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, he _____ the entire collection.",
+      "expectedAnswer": "will have sorted"
+    },
+    {
+      "id": "sort_futurePerfectContinuous_01",
+      "verb": "sort",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By noon tomorrow, he _____ photographs for three hours.",
+      "expectedAnswer": "will have been sorting"
+    },
+    {
+      "id": "store_pastSimple_01",
+      "verb": "store",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "As a teenager, she _____ her childhood photos in a wooden box.",
+      "expectedAnswer": "stored"
+    },
+    {
+      "id": "store_pastContinuous_01",
+      "verb": "store",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "In college, she _____ old textbooks under her bed.",
+      "expectedAnswer": "was storing"
+    },
+    {
+      "id": "store_pastPerfect_01",
+      "verb": "store",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before she moved, she _____ her diaries in a locked drawer.",
+      "expectedAnswer": "had stored"
+    },
+    {
+      "id": "store_pastPerfectContinuous_01",
+      "verb": "store",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before she moved, she _____ old diaries there for ten years.",
+      "expectedAnswer": "had been storing"
+    },
+    {
+      "id": "store_presentSimple_01",
+      "verb": "store",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She _____ her childhood photos in a wooden box.",
+      "expectedAnswer": "stores"
+    },
+    {
+      "id": "store_presentContinuous_01",
+      "verb": "store",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This month, she _____ her books at her sister's apartment.",
+      "expectedAnswer": "is storing"
+    },
+    {
+      "id": "store_presentPerfect_01",
+      "verb": "store",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ three boxes of family photos this month.",
+      "expectedAnswer": "has stored"
+    },
+    {
+      "id": "store_presentPerfectContinuous_01",
+      "verb": "store",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ old schoolbooks in the spare room since January.",
+      "expectedAnswer": "has been storing"
+    },
+    {
+      "id": "store_futureSimple_01",
+      "verb": "store",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the old diaries in a safer place after the move.",
+      "expectedAnswer": "will store"
+    },
+    {
+      "id": "store_futureContinuous_01",
+      "verb": "store",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Next month, she _____ her books at her sister's apartment.",
+      "expectedAnswer": "will be storing"
+    },
+    {
+      "id": "store_futurePerfect_01",
+      "verb": "store",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By June, she _____ all the family photos in archival boxes.",
+      "expectedAnswer": "will have stored"
+    },
+    {
+      "id": "store_futurePerfectContinuous_01",
+      "verb": "store",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By June, she _____ her books there for a full year.",
+      "expectedAnswer": "will have been storing"
+    },
+    {
+      "id": "subscribe_pastSimple_01",
+      "verb": "subscribe",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ to the magazine last spring.",
+      "expectedAnswer": "subscribed"
+    },
+    {
+      "id": "subscribe_pastContinuous_01",
+      "verb": "subscribe",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "subscribe_pastPerfect_01",
+      "verb": "subscribe",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the first issue arrived, she _____ to the magazine.",
+      "expectedAnswer": "had subscribed"
+    },
+    {
+      "id": "subscribe_pastPerfectContinuous_01",
+      "verb": "subscribe",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "subscribe_presentSimple_01",
+      "verb": "subscribe",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She usually _____ to magazines she reads regularly.",
+      "expectedAnswer": "subscribes"
+    },
+    {
+      "id": "subscribe_presentContinuous_01",
+      "verb": "subscribe",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "subscribe_presentPerfect_01",
+      "verb": "subscribe",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ to three newsletters this year.",
+      "expectedAnswer": "has subscribed"
+    },
+    {
+      "id": "subscribe_presentPerfectContinuous_01",
+      "verb": "subscribe",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "subscribe_futureSimple_01",
+      "verb": "subscribe",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ to the new newsletter tomorrow.",
+      "expectedAnswer": "will subscribe"
+    },
+    {
+      "id": "subscribe_futureContinuous_01",
+      "verb": "subscribe",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "subscribe_futurePerfect_01",
+      "verb": "subscribe",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "subscribe_futurePerfectContinuous_01",
+      "verb": "subscribe",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "switch_pastSimple_01",
+      "verb": "switch",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "Last night, he _____ the lamp off before leaving the room.",
+      "expectedAnswer": "switched"
+    },
+    {
+      "id": "switch_pastContinuous_01",
+      "verb": "switch",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "When I arrived, he _____ the lights on one by one.",
+      "expectedAnswer": "was switching"
+    },
+    {
+      "id": "switch_pastPerfect_01",
+      "verb": "switch",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before he left, he _____ all the lights off.",
+      "expectedAnswer": "had switched"
+    },
+    {
+      "id": "switch_pastPerfectContinuous_01",
+      "verb": "switch",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "switch_presentSimple_01",
+      "verb": "switch",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He usually _____ the hallway light off before bed.",
+      "expectedAnswer": "switches"
+    },
+    {
+      "id": "switch_presentContinuous_01",
+      "verb": "switch",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "He _____ the lights on for the evening at the moment.",
+      "expectedAnswer": "is switching"
+    },
+    {
+      "id": "switch_presentPerfect_01",
+      "verb": "switch",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ the lights on and off several times today.",
+      "expectedAnswer": "has switched"
+    },
+    {
+      "id": "switch_presentPerfectContinuous_01",
+      "verb": "switch",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "switch_futureSimple_01",
+      "verb": "switch",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "Tomorrow at sunset, he _____ the outside lights on.",
+      "expectedAnswer": "will switch"
+    },
+    {
+      "id": "switch_futureContinuous_01",
+      "verb": "switch",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At sunset tomorrow, he _____ the outside lights on.",
+      "expectedAnswer": "will be switching"
+    },
+    {
+      "id": "switch_futurePerfect_01",
+      "verb": "switch",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 8:00 p.m. tomorrow, he _____ all the outside lights on.",
+      "expectedAnswer": "will have switched"
+    },
+    {
+      "id": "switch_futurePerfectContinuous_01",
+      "verb": "switch",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "target_pastSimple_01",
+      "verb": "target",
+      "tense": "pastSimple",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "The campaign _____ young readers last year.",
+      "expectedAnswer": "targeted"
+    },
+    {
+      "id": "target_pastContinuous_01",
+      "verb": "target",
+      "tense": "pastContinuous",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "Last summer, the campaign _____ readers under thirty.",
+      "expectedAnswer": "was targeting"
+    },
+    {
+      "id": "target_pastPerfect_01",
+      "verb": "target",
+      "tense": "pastPerfect",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the strategy changed, the campaign _____ young readers.",
+      "expectedAnswer": "had targeted"
+    },
+    {
+      "id": "target_pastPerfectContinuous_01",
+      "verb": "target",
+      "tense": "pastPerfectContinuous",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the strategy changed, the campaign _____ young readers for months.",
+      "expectedAnswer": "had been targeting"
+    },
+    {
+      "id": "target_presentSimple_01",
+      "verb": "target",
+      "tense": "presentSimple",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "The campaign mainly _____ young readers.",
+      "expectedAnswer": "targets"
+    },
+    {
+      "id": "target_presentContinuous_01",
+      "verb": "target",
+      "tense": "presentContinuous",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This month, the campaign _____ first-time readers.",
+      "expectedAnswer": "is targeting"
+    },
+    {
+      "id": "target_presentPerfect_01",
+      "verb": "target",
+      "tense": "presentPerfect",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "The campaign _____ three different age groups this year.",
+      "expectedAnswer": "has targeted"
+    },
+    {
+      "id": "target_presentPerfectContinuous_01",
+      "verb": "target",
+      "tense": "presentPerfectContinuous",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "The campaign _____ first-time readers since June.",
+      "expectedAnswer": "has been targeting"
+    },
+    {
+      "id": "target_futureSimple_01",
+      "verb": "target",
+      "tense": "futureSimple",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The campaign _____ college students next month.",
+      "expectedAnswer": "will target"
+    },
+    {
+      "id": "target_futureContinuous_01",
+      "verb": "target",
+      "tense": "futureContinuous",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Next month, the campaign _____ college students across the city.",
+      "expectedAnswer": "will be targeting"
+    },
+    {
+      "id": "target_futurePerfect_01",
+      "verb": "target",
+      "tense": "futurePerfect",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By December, the campaign _____ four age groups.",
+      "expectedAnswer": "will have targeted"
+    },
+    {
+      "id": "target_futurePerfectContinuous_01",
+      "verb": "target",
+      "tense": "futurePerfectContinuous",
+      "subject": "the campaign",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By December, the campaign _____ college students for six months.",
+      "expectedAnswer": "will have been targeting"
+    },
+    {
+      "id": "test_pastSimple_01",
+      "verb": "test",
+      "tense": "pastSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "They _____ the new feature last Friday.",
+      "expectedAnswer": "tested"
+    },
+    {
+      "id": "test_pastContinuous_01",
+      "verb": "test",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 2:00 p.m. yesterday, they _____ the new feature.",
+      "expectedAnswer": "were testing"
+    },
+    {
+      "id": "test_pastPerfect_01",
+      "verb": "test",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the update launched, they _____ the feature on three devices.",
+      "expectedAnswer": "had tested"
+    },
+    {
+      "id": "test_pastPerfectContinuous_01",
+      "verb": "test",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before launch, they _____ the feature for two weeks.",
+      "expectedAnswer": "had been testing"
+    },
+    {
+      "id": "test_presentSimple_01",
+      "verb": "test",
+      "tense": "presentSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "They usually _____ new features before each release.",
+      "expectedAnswer": "test"
+    },
+    {
+      "id": "test_presentContinuous_01",
+      "verb": "test",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "They _____ the new search feature this week.",
+      "expectedAnswer": "are testing"
+    },
+    {
+      "id": "test_presentPerfect_01",
+      "verb": "test",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "They _____ the feature on five devices this week.",
+      "expectedAnswer": "have tested"
+    },
+    {
+      "id": "test_presentPerfectContinuous_01",
+      "verb": "test",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "They _____ the new feature since Monday.",
+      "expectedAnswer": "have been testing"
+    },
+    {
+      "id": "test_futureSimple_01",
+      "verb": "test",
+      "tense": "futureSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "They _____ the final version tomorrow.",
+      "expectedAnswer": "will test"
+    },
+    {
+      "id": "test_futureContinuous_01",
+      "verb": "test",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 2:00 p.m. tomorrow, they _____ the final version.",
+      "expectedAnswer": "will be testing"
+    },
+    {
+      "id": "test_futurePerfect_01",
+      "verb": "test",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, they _____ the feature on ten devices.",
+      "expectedAnswer": "will have tested"
+    },
+    {
+      "id": "test_futurePerfectContinuous_01",
+      "verb": "test",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By Friday, they _____ the feature for three weeks.",
+      "expectedAnswer": "will have been testing"
+    },
+    {
+      "id": "track_pastSimple_01",
+      "verb": "track",
+      "tense": "pastSimple",
+      "subject": "the app",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "The app _____ daily activity throughout last month.",
+      "expectedAnswer": "tracked"
+    },
+    {
+      "id": "track_pastContinuous_01",
+      "verb": "track",
+      "tense": "pastContinuous",
+      "subject": "the app",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "During last week, the app _____ activity in the background.",
+      "expectedAnswer": "was tracking"
+    },
+    {
+      "id": "track_pastPerfect_01",
+      "verb": "track",
+      "tense": "pastPerfect",
+      "subject": "the app",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the update, the app _____ thirty days of activity.",
+      "expectedAnswer": "had tracked"
+    },
+    {
+      "id": "track_pastPerfectContinuous_01",
+      "verb": "track",
+      "tense": "pastPerfectContinuous",
+      "subject": "the app",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the update, the app _____ activity for a full month.",
+      "expectedAnswer": "had been tracking"
+    },
+    {
+      "id": "track_presentSimple_01",
+      "verb": "track",
+      "tense": "presentSimple",
+      "subject": "the app",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "The app _____ daily activity in the background.",
+      "expectedAnswer": "tracks"
+    },
+    {
+      "id": "track_presentContinuous_01",
+      "verb": "track",
+      "tense": "presentContinuous",
+      "subject": "the app",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "The app _____ today's activity at the moment.",
+      "expectedAnswer": "is tracking"
+    },
+    {
+      "id": "track_presentPerfect_01",
+      "verb": "track",
+      "tense": "presentPerfect",
+      "subject": "the app",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "The app _____ activity every day this month.",
+      "expectedAnswer": "has tracked"
+    },
+    {
+      "id": "track_presentPerfectContinuous_01",
+      "verb": "track",
+      "tense": "presentPerfectContinuous",
+      "subject": "the app",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "The app _____ activity continuously since Monday.",
+      "expectedAnswer": "has been tracking"
+    },
+    {
+      "id": "track_futureSimple_01",
+      "verb": "track",
+      "tense": "futureSimple",
+      "subject": "the app",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The app _____ activity again tomorrow.",
+      "expectedAnswer": "will track"
+    },
+    {
+      "id": "track_futureContinuous_01",
+      "verb": "track",
+      "tense": "futureContinuous",
+      "subject": "the app",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Tomorrow afternoon, the app _____ activity in the background.",
+      "expectedAnswer": "will be tracking"
+    },
+    {
+      "id": "track_futurePerfect_01",
+      "verb": "track",
+      "tense": "futurePerfect",
+      "subject": "the app",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, the app _____ a full week of activity.",
+      "expectedAnswer": "will have tracked"
+    },
+    {
+      "id": "track_futurePerfectContinuous_01",
+      "verb": "track",
+      "tense": "futurePerfectContinuous",
+      "subject": "the app",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By Friday, the app _____ activity for a full week.",
+      "expectedAnswer": "will have been tracking"
+    },
+    {
+      "id": "transfer_pastSimple_01",
+      "verb": "transfer",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ the photos to a new drive last weekend.",
+      "expectedAnswer": "transferred"
+    },
+    {
+      "id": "transfer_pastContinuous_01",
+      "verb": "transfer",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At noon yesterday, she _____ photos to a new drive.",
+      "expectedAnswer": "was transferring"
+    },
+    {
+      "id": "transfer_pastPerfect_01",
+      "verb": "transfer",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the old drive failed, she _____ all the important photos.",
+      "expectedAnswer": "had transferred"
+    },
+    {
+      "id": "transfer_pastPerfectContinuous_01",
+      "verb": "transfer",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the old drive failed, she _____ files for two hours.",
+      "expectedAnswer": "had been transferring"
+    },
+    {
+      "id": "transfer_presentSimple_01",
+      "verb": "transfer",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She often _____ large files to an external drive.",
+      "expectedAnswer": "transfers"
+    },
+    {
+      "id": "transfer_presentContinuous_01",
+      "verb": "transfer",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ photos to a new drive at the moment.",
+      "expectedAnswer": "is transferring"
+    },
+    {
+      "id": "transfer_presentPerfect_01",
+      "verb": "transfer",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ three folders so far today.",
+      "expectedAnswer": "has transferred"
+    },
+    {
+      "id": "transfer_presentPerfectContinuous_01",
+      "verb": "transfer",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ files for the past hour.",
+      "expectedAnswer": "has been transferring"
+    },
+    {
+      "id": "transfer_futureSimple_01",
+      "verb": "transfer",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the remaining photos to the new drive tomorrow.",
+      "expectedAnswer": "will transfer"
+    },
+    {
+      "id": "transfer_futureContinuous_01",
+      "verb": "transfer",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Tomorrow afternoon, she _____ photos to the new drive.",
+      "expectedAnswer": "will be transferring"
+    },
+    {
+      "id": "transfer_futurePerfect_01",
+      "verb": "transfer",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 2:00 p.m. tomorrow, she _____ all the photos to the new drive.",
+      "expectedAnswer": "will have transferred"
+    },
+    {
+      "id": "transfer_futurePerfectContinuous_01",
+      "verb": "transfer",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "transform_pastSimple_01",
+      "verb": "transform",
+      "tense": "pastSimple",
+      "subject": "the team",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "The team _____ the old hall last year.",
+      "expectedAnswer": "transformed"
+    },
+    {
+      "id": "transform_pastContinuous_01",
+      "verb": "transform",
+      "tense": "pastContinuous",
+      "subject": "the team",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "Throughout last summer, the team _____ the old hall.",
+      "expectedAnswer": "was transforming"
+    },
+    {
+      "id": "transform_pastPerfect_01",
+      "verb": "transform",
+      "tense": "pastPerfect",
+      "subject": "the team",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "By the time the building reopened, the team _____ the old hall.",
+      "expectedAnswer": "had transformed"
+    },
+    {
+      "id": "transform_pastPerfectContinuous_01",
+      "verb": "transform",
+      "tense": "pastPerfectContinuous",
+      "subject": "the team",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before reopening, the team _____ the hall for six months.",
+      "expectedAnswer": "had been transforming"
+    },
+    {
+      "id": "transform_presentSimple_01",
+      "verb": "transform",
+      "tense": "presentSimple",
+      "subject": "the team",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "The team often _____ old spaces completely.",
+      "expectedAnswer": "transforms"
+    },
+    {
+      "id": "transform_presentContinuous_01",
+      "verb": "transform",
+      "tense": "presentContinuous",
+      "subject": "the team",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This year, the team _____ the old hall.",
+      "expectedAnswer": "is transforming"
+    },
+    {
+      "id": "transform_presentPerfect_01",
+      "verb": "transform",
+      "tense": "presentPerfect",
+      "subject": "the team",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "The team _____ three rooms so far.",
+      "expectedAnswer": "has transformed"
+    },
+    {
+      "id": "transform_presentPerfectContinuous_01",
+      "verb": "transform",
+      "tense": "presentPerfectContinuous",
+      "subject": "the team",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "The team _____ the building for the past six months.",
+      "expectedAnswer": "has been transforming"
+    },
+    {
+      "id": "transform_futureSimple_01",
+      "verb": "transform",
+      "tense": "futureSimple",
+      "subject": "the team",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "The team _____ the entrance next year.",
+      "expectedAnswer": "will transform"
+    },
+    {
+      "id": "transform_futureContinuous_01",
+      "verb": "transform",
+      "tense": "futureContinuous",
+      "subject": "the team",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Next year, the team _____ the main entrance.",
+      "expectedAnswer": "will be transforming"
+    },
+    {
+      "id": "transform_futurePerfect_01",
+      "verb": "transform",
+      "tense": "futurePerfect",
+      "subject": "the team",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By next June, the team _____ the entire ground floor.",
+      "expectedAnswer": "will have transformed"
+    },
+    {
+      "id": "transform_futurePerfectContinuous_01",
+      "verb": "transform",
+      "tense": "futurePerfectContinuous",
+      "subject": "the team",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By June, the team _____ the building for a year.",
+      "expectedAnswer": "will have been transforming"
+    },
+    {
+      "id": "translate_pastSimple_01",
+      "verb": "translate",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ the short story last month.",
+      "expectedAnswer": "translated"
+    },
+    {
+      "id": "translate_pastContinuous_01",
+      "verb": "translate",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "Throughout last week, she _____ the final chapter.",
+      "expectedAnswer": "was translating"
+    },
+    {
+      "id": "translate_pastPerfect_01",
+      "verb": "translate",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the editor called, she _____ the first three chapters.",
+      "expectedAnswer": "had translated"
+    },
+    {
+      "id": "translate_pastPerfectContinuous_01",
+      "verb": "translate",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the editor called, she _____ the novel for several weeks.",
+      "expectedAnswer": "had been translating"
+    },
+    {
+      "id": "translate_presentSimple_01",
+      "verb": "translate",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She often _____ short stories from Spanish.",
+      "expectedAnswer": "translates"
+    },
+    {
+      "id": "translate_presentContinuous_01",
+      "verb": "translate",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "This week, she _____ the final chapter.",
+      "expectedAnswer": "is translating"
+    },
+    {
+      "id": "translate_presentPerfect_01",
+      "verb": "translate",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ three stories this month.",
+      "expectedAnswer": "has translated"
+    },
+    {
+      "id": "translate_presentPerfectContinuous_01",
+      "verb": "translate",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ the novel for the past three weeks.",
+      "expectedAnswer": "has been translating"
+    },
+    {
+      "id": "translate_futureSimple_01",
+      "verb": "translate",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the last chapter next week.",
+      "expectedAnswer": "will translate"
+    },
+    {
+      "id": "translate_futureContinuous_01",
+      "verb": "translate",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "Next week, she _____ the final chapter.",
+      "expectedAnswer": "will be translating"
+    },
+    {
+      "id": "translate_futurePerfect_01",
+      "verb": "translate",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, she _____ the whole story.",
+      "expectedAnswer": "will have translated"
+    },
+    {
+      "id": "translate_futurePerfectContinuous_01",
+      "verb": "translate",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By Friday, she _____ the novel for a month.",
+      "expectedAnswer": "will have been translating"
+    },
+    {
+      "id": "type_pastSimple_01",
+      "verb": "type",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "He _____ the letter after dinner last night.",
+      "expectedAnswer": "typed"
+    },
+    {
+      "id": "type_pastContinuous_01",
+      "verb": "type",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 9:00 p.m. yesterday, he _____ the final page.",
+      "expectedAnswer": "was typing"
+    },
+    {
+      "id": "type_pastPerfect_01",
+      "verb": "type",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the printer stopped, he _____ the whole letter.",
+      "expectedAnswer": "had typed"
+    },
+    {
+      "id": "type_pastPerfectContinuous_01",
+      "verb": "type",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the printer stopped, he _____ for nearly an hour.",
+      "expectedAnswer": "had been typing"
+    },
+    {
+      "id": "type_presentSimple_01",
+      "verb": "type",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He usually _____ notes during long meetings.",
+      "expectedAnswer": "types"
+    },
+    {
+      "id": "type_presentContinuous_01",
+      "verb": "type",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "He _____ the final page at the moment.",
+      "expectedAnswer": "is typing"
+    },
+    {
+      "id": "type_presentPerfect_01",
+      "verb": "type",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ six pages so far today.",
+      "expectedAnswer": "has typed"
+    },
+    {
+      "id": "type_presentPerfectContinuous_01",
+      "verb": "type",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "He _____ for the past two hours.",
+      "expectedAnswer": "has been typing"
+    },
+    {
+      "id": "type_futureSimple_01",
+      "verb": "type",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "He _____ the final letter tomorrow.",
+      "expectedAnswer": "will type"
+    },
+    {
+      "id": "type_futureContinuous_01",
+      "verb": "type",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 9:00 p.m. tomorrow, he _____ the final draft.",
+      "expectedAnswer": "will be typing"
+    },
+    {
+      "id": "type_futurePerfect_01",
+      "verb": "type",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 10:00 p.m. tomorrow, he _____ all ten pages.",
+      "expectedAnswer": "will have typed"
+    },
+    {
+      "id": "type_futurePerfectContinuous_01",
+      "verb": "type",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By 10:00 p.m. tomorrow, he _____ for three hours.",
+      "expectedAnswer": "will have been typing"
+    },
+    {
+      "id": "update_pastSimple_01",
+      "verb": "update",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ the website last Friday.",
+      "expectedAnswer": "updated"
+    },
+    {
+      "id": "update_pastContinuous_01",
+      "verb": "update",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At noon yesterday, she _____ the events page.",
+      "expectedAnswer": "was updating"
+    },
+    {
+      "id": "update_pastPerfect_01",
+      "verb": "update",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the announcement went live, she _____ the website.",
+      "expectedAnswer": "had updated"
+    },
+    {
+      "id": "update_pastPerfectContinuous_01",
+      "verb": "update",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before launch, she _____ the website for two hours.",
+      "expectedAnswer": "had been updating"
+    },
+    {
+      "id": "update_presentSimple_01",
+      "verb": "update",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She usually _____ the events page every Monday.",
+      "expectedAnswer": "updates"
+    },
+    {
+      "id": "update_presentContinuous_01",
+      "verb": "update",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ the events page at the moment.",
+      "expectedAnswer": "is updating"
+    },
+    {
+      "id": "update_presentPerfect_01",
+      "verb": "update",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ four pages this week.",
+      "expectedAnswer": "has updated"
+    },
+    {
+      "id": "update_presentPerfectContinuous_01",
+      "verb": "update",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "She _____ the website all morning.",
+      "expectedAnswer": "has been updating"
+    },
+    {
+      "id": "update_futureSimple_01",
+      "verb": "update",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the homepage tomorrow.",
+      "expectedAnswer": "will update"
+    },
+    {
+      "id": "update_futureContinuous_01",
+      "verb": "update",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At noon tomorrow, she _____ the homepage.",
+      "expectedAnswer": "will be updating"
+    },
+    {
+      "id": "update_futurePerfect_01",
+      "verb": "update",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 2:00 p.m. tomorrow, she _____ all five pages.",
+      "expectedAnswer": "will have updated"
+    },
+    {
+      "id": "update_futurePerfectContinuous_01",
+      "verb": "update",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By 2:00 p.m., she _____ the website for three hours.",
+      "expectedAnswer": "will have been updating"
+    },
+    {
+      "id": "upload_pastSimple_01",
+      "verb": "upload",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "He _____ the photos to the website last Friday.",
+      "expectedAnswer": "uploaded"
+    },
+    {
+      "id": "upload_pastContinuous_01",
+      "verb": "upload",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 10:00 a.m. yesterday, he _____ photos to the website.",
+      "expectedAnswer": "was uploading"
+    },
+    {
+      "id": "upload_pastPerfect_01",
+      "verb": "upload",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the page went live, he _____ all the new photos.",
+      "expectedAnswer": "had uploaded"
+    },
+    {
+      "id": "upload_pastPerfectContinuous_01",
+      "verb": "upload",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "sentence": "Before the page went live, he _____ photos for two hours.",
+      "expectedAnswer": "had been uploading"
+    },
+    {
+      "id": "upload_presentSimple_01",
+      "verb": "upload",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He often _____ new photos to the website.",
+      "expectedAnswer": "uploads"
+    },
+    {
+      "id": "upload_presentContinuous_01",
+      "verb": "upload",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "He _____ new photos to the website at the moment.",
+      "expectedAnswer": "is uploading"
+    },
+    {
+      "id": "upload_presentPerfect_01",
+      "verb": "upload",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ twenty photos this week.",
+      "expectedAnswer": "has uploaded"
+    },
+    {
+      "id": "upload_presentPerfectContinuous_01",
+      "verb": "upload",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "sentence": "He _____ photos all morning.",
+      "expectedAnswer": "has been uploading"
+    },
+    {
+      "id": "upload_futureSimple_01",
+      "verb": "upload",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "He _____ the remaining photos tomorrow.",
+      "expectedAnswer": "will upload"
+    },
+    {
+      "id": "upload_futureContinuous_01",
+      "verb": "upload",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 10:00 a.m. tomorrow, he _____ the final photos.",
+      "expectedAnswer": "will be uploading"
+    },
+    {
+      "id": "upload_futurePerfect_01",
+      "verb": "upload",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By noon tomorrow, he _____ all the new photos.",
+      "expectedAnswer": "will have uploaded"
+    },
+    {
+      "id": "upload_futurePerfectContinuous_01",
+      "verb": "upload",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "sentence": "By noon tomorrow, he _____ photos for three hours.",
+      "expectedAnswer": "will have been uploading"
+    },
+    {
+      "id": "verify_pastSimple_01",
+      "verb": "verify",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "Yesterday, she _____ the address before sending the package.",
+      "expectedAnswer": "verified"
+    },
+    {
+      "id": "verify_pastContinuous_01",
+      "verb": "verify",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 3:00 p.m. yesterday, she _____ the final list of addresses.",
+      "expectedAnswer": "was verifying"
+    },
+    {
+      "id": "verify_pastPerfect_01",
+      "verb": "verify",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the package was sent, she _____ the address twice.",
+      "expectedAnswer": "had verified"
+    },
+    {
+      "id": "verify_pastPerfectContinuous_01",
+      "verb": "verify",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "verify_presentSimple_01",
+      "verb": "verify",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She always _____ addresses before sending packages.",
+      "expectedAnswer": "verifies"
+    },
+    {
+      "id": "verify_presentContinuous_01",
+      "verb": "verify",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ the final address at the moment.",
+      "expectedAnswer": "is verifying"
+    },
+    {
+      "id": "verify_presentPerfect_01",
+      "verb": "verify",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ twelve addresses so far today.",
+      "expectedAnswer": "has verified"
+    },
+    {
+      "id": "verify_presentPerfectContinuous_01",
+      "verb": "verify",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "verify_futureSimple_01",
+      "verb": "verify",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the last address tomorrow.",
+      "expectedAnswer": "will verify"
+    },
+    {
+      "id": "verify_futureContinuous_01",
+      "verb": "verify",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 3:00 p.m. tomorrow, she _____ the final addresses.",
+      "expectedAnswer": "will be verifying"
+    },
+    {
+      "id": "verify_futurePerfect_01",
+      "verb": "verify",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 4:00 p.m. tomorrow, she _____ every address.",
+      "expectedAnswer": "will have verified"
+    },
+    {
+      "id": "verify_futurePerfectContinuous_01",
+      "verb": "verify",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "view_pastSimple_01",
+      "verb": "view",
+      "tense": "pastSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "They _____ the apartment last Saturday.",
+      "expectedAnswer": "viewed"
+    },
+    {
+      "id": "view_pastContinuous_01",
+      "verb": "view",
+      "tense": "pastContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At noon yesterday, they _____ another apartment downtown.",
+      "expectedAnswer": "were viewing"
+    },
+    {
+      "id": "view_pastPerfect_01",
+      "verb": "view",
+      "tense": "pastPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before making an offer, they _____ four apartments.",
+      "expectedAnswer": "had viewed"
+    },
+    {
+      "id": "view_pastPerfectContinuous_01",
+      "verb": "view",
+      "tense": "pastPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "view_presentSimple_01",
+      "verb": "view",
+      "tense": "presentSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "They usually _____ several apartments before choosing one.",
+      "expectedAnswer": "view"
+    },
+    {
+      "id": "view_presentContinuous_01",
+      "verb": "view",
+      "tense": "presentContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "They _____ an apartment near the river at the moment.",
+      "expectedAnswer": "are viewing"
+    },
+    {
+      "id": "view_presentPerfect_01",
+      "verb": "view",
+      "tense": "presentPerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "They _____ six apartments this month.",
+      "expectedAnswer": "have viewed"
+    },
+    {
+      "id": "view_presentPerfectContinuous_01",
+      "verb": "view",
+      "tense": "presentPerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "view_futureSimple_01",
+      "verb": "view",
+      "tense": "futureSimple",
+      "subject": "they",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "They _____ another apartment tomorrow.",
+      "expectedAnswer": "will view"
+    },
+    {
+      "id": "view_futureContinuous_01",
+      "verb": "view",
+      "tense": "futureContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At noon tomorrow, they _____ an apartment near the park.",
+      "expectedAnswer": "will be viewing"
+    },
+    {
+      "id": "view_futurePerfect_01",
+      "verb": "view",
+      "tense": "futurePerfect",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By Friday, they _____ all eight apartments on their list.",
+      "expectedAnswer": "will have viewed"
+    },
+    {
+      "id": "view_futurePerfectContinuous_01",
+      "verb": "view",
+      "tense": "futurePerfectContinuous",
+      "subject": "they",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zip_pastSimple_01",
+      "verb": "zip",
+      "tense": "pastSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "She _____ the project folder before sending it last night.",
+      "expectedAnswer": "zipped"
+    },
+    {
+      "id": "zip_pastContinuous_01",
+      "verb": "zip",
+      "tense": "pastContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "At 6:00 p.m. yesterday, she _____ several large folders.",
+      "expectedAnswer": "was zipping"
+    },
+    {
+      "id": "zip_pastPerfect_01",
+      "verb": "zip",
+      "tense": "pastPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before the upload began, she _____ the entire project folder.",
+      "expectedAnswer": "had zipped"
+    },
+    {
+      "id": "zip_pastPerfectContinuous_01",
+      "verb": "zip",
+      "tense": "pastPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zip_presentSimple_01",
+      "verb": "zip",
+      "tense": "presentSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "She usually _____ large folders before uploading them.",
+      "expectedAnswer": "zips"
+    },
+    {
+      "id": "zip_presentContinuous_01",
+      "verb": "zip",
+      "tense": "presentContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "She _____ the final project folder at the moment.",
+      "expectedAnswer": "is zipping"
+    },
+    {
+      "id": "zip_presentPerfect_01",
+      "verb": "zip",
+      "tense": "presentPerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "She _____ four folders so far today.",
+      "expectedAnswer": "has zipped"
+    },
+    {
+      "id": "zip_presentPerfectContinuous_01",
+      "verb": "zip",
+      "tense": "presentPerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zip_futureSimple_01",
+      "verb": "zip",
+      "tense": "futureSimple",
+      "subject": "she",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "She _____ the last folder tomorrow.",
+      "expectedAnswer": "will zip"
+    },
+    {
+      "id": "zip_futureContinuous_01",
+      "verb": "zip",
+      "tense": "futureContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "sentence": "At 6:00 p.m. tomorrow, she _____ the final folders.",
+      "expectedAnswer": "will be zipping"
+    },
+    {
+      "id": "zip_futurePerfect_01",
+      "verb": "zip",
+      "tense": "futurePerfect",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "sentence": "By 7:00 p.m. tomorrow, she _____ all the folders.",
+      "expectedAnswer": "will have zipped"
+    },
+    {
+      "id": "zip_futurePerfectContinuous_01",
+      "verb": "zip",
+      "tense": "futurePerfectContinuous",
+      "subject": "she",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zoom_pastSimple_01",
+      "verb": "zoom",
+      "tense": "pastSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "pastSimple"
+      ],
+      "sentence": "Yesterday, he _____ in on the map to read the street names.",
+      "expectedAnswer": "zoomed"
+    },
+    {
+      "id": "zoom_pastContinuous_01",
+      "verb": "zoom",
+      "tense": "pastContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastContinuous"
+      ],
+      "sentence": "When I looked over, he _____ in on the map to check a side street.",
+      "expectedAnswer": "was zooming"
+    },
+    {
+      "id": "zoom_pastPerfect_01",
+      "verb": "zoom",
+      "tense": "pastPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfect"
+      ],
+      "sentence": "Before choosing the route, he _____ in on the map to street level.",
+      "expectedAnswer": "had zoomed"
+    },
+    {
+      "id": "zoom_pastPerfectContinuous_01",
+      "verb": "zoom",
+      "tense": "pastPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "pastPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zoom_presentSimple_01",
+      "verb": "zoom",
+      "tense": "presentSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "presentSimple"
+      ],
+      "sentence": "He often _____ in on the map when street names are hard to read.",
+      "expectedAnswer": "zooms"
+    },
+    {
+      "id": "zoom_presentContinuous_01",
+      "verb": "zoom",
+      "tense": "presentContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentContinuous"
+      ],
+      "sentence": "He _____ in on the map to check a side street at the moment.",
+      "expectedAnswer": "is zooming"
+    },
+    {
+      "id": "zoom_presentPerfect_01",
+      "verb": "zoom",
+      "tense": "presentPerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfect"
+      ],
+      "sentence": "He _____ in on the map several times during this route.",
+      "expectedAnswer": "has zoomed"
+    },
+    {
+      "id": "zoom_presentPerfectContinuous_01",
+      "verb": "zoom",
+      "tense": "presentPerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "presentPerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zoom_futureSimple_01",
+      "verb": "zoom",
+      "tense": "futureSimple",
+      "subject": "he",
+      "practiceTargets": [
+        "futureSimple"
+      ],
+      "sentence": "He _____ in on the map if the street names are too small.",
+      "expectedAnswer": "will zoom"
+    },
+    {
+      "id": "zoom_futureContinuous_01",
+      "verb": "zoom",
+      "tense": "futureContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futureContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zoom_futurePerfect_01",
+      "verb": "zoom",
+      "tense": "futurePerfect",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfect"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    },
+    {
+      "id": "zoom_futurePerfectContinuous_01",
+      "verb": "zoom",
+      "tense": "futurePerfectContinuous",
+      "subject": "he",
+      "practiceTargets": [
+        "futurePerfectContinuous"
+      ],
+      "notRecommended": true,
+      "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset's semantic and content constraints."
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 // Onboarding Screen 2 — Practice screen explanation
 
+import "./_group.css";
+
 const BG = "#060C18";
 const CARD = "#0D1425";
 const PRIMARY = "#6C47FF";
@@ -26,15 +28,15 @@ function Callout({ n, label, text }: { n: number; label: string; text: string })
       alignItems: "start",
     }}>
       <div style={{
-        width: 24, height: 24, borderRadius: 12,
+        width: 26, height: 26, borderRadius: 13,
         background: PRIMARY, color: "#fff",
         fontSize: 12, fontWeight: 700, lineHeight: 1,
         display: "flex", alignItems: "center", justifyContent: "center",
         flexShrink: 0,
       }}>{n}</div>
       <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{label}</div>
-        <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{text}</div>
+        <div style={{ color: FG, fontSize: 14, fontWeight: 600, lineHeight: "20px" }}>{label}</div>
+        <div style={{ color: MUTED, fontSize: 14, lineHeight: "21px" }}>{text}</div>
       </div>
     </div>
   );
@@ -129,10 +131,10 @@ function PracticePreview() {
 export function Screen2() {
   return (
     <div style={{
-      width: 390, height: 844, background: BG,
+      width: "100%", height: "100dvh", minHeight: 0, background: BG,
       fontFamily: "'Inter', sans-serif",
       display: "flex", flexDirection: "column",
-      overflow: "hidden",
+      overflow: "hidden", boxSizing: "border-box",
     }}>
       {/* Status bar */}
       <div style={{ height: 44, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", flexShrink: 0 }}>
@@ -144,26 +146,28 @@ export function Screen2() {
         </div>
       </div>
 
-      {/* Title */}
-      <div style={{ padding: "8px 24px 12px" }}>
-        <h2 style={{ color: FG, fontSize: 24, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>
-          Экран тренировки
-        </h2>
-      </div>
+      <div style={{ flex: "0 0 auto" }}>
+        {/* Title */}
+        <div style={{ padding: "8px 24px 12px" }}>
+          <h2 style={{ color: FG, fontSize: 24, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>
+            Экран тренировки
+          </h2>
+        </div>
 
-      {/* Practice preview */}
-      <div style={{ padding: "0 20px" }}>
-        <PracticePreview />
+        {/* Practice preview */}
+        <div style={{ padding: "0 20px" }}>
+          <PracticePreview />
+        </div>
       </div>
 
       {/* Callouts */}
-      <div style={{ flex: 1, padding: "16px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+      <div className="onboarding-scroll" style={{ flex: "1 1 auto", minHeight: 0, padding: "16px 24px 12px", display: "flex", flexDirection: "column", gap: 14, overflowY: "auto" }}>
         <Callout n={1} label="Training Mode"
-          text="Настройте тренировку под себя: выберите формы глаголов и времена, которые хотите практиковать." />
+          text="Выберите формы глаголов и времена, которые хотите тренировать. Используйте режим Context sentences, чтобы практиковать глаголы в предложениях. Повысьте сложность заданий, отключив Letter Builder." />
         <Callout n={2} label="English Tenses"
-          text="Наглядная схема времён английского языка, если захотите освежить знания." />
+          text="Если немного запутались во временах английского языка, посмотрите нашу удобную шпаргалку." />
         <Callout n={3} label="Поле с заданием"
-          text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат." />
+          text="Введите правильную форму глагола или нажмите Skip, чтобы пропустить задание." />
       </div>
 
       {/* Bottom */}

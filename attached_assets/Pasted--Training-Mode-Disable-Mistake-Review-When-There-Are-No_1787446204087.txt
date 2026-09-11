@@ -1,0 +1,109 @@
+# Training Mode: Disable Mistake Review When There Are No Mistakes
+
+Please update the **Mistake Review** option in the Training Mode menu so that it is unavailable when the user has no recorded mistakes.
+
+## Current problem
+
+`Mistake Review` is currently displayed as a normal selectable Training Mode even when the user has no mistakes.
+
+This creates a confusing situation: the user can select a mode that has nothing to review.
+
+## Required behavior
+
+### 1. No mistakes → Mistake Review is disabled
+
+When the user has **zero available mistakes**, the `Mistake Review` option must be:
+
+* visible in the Training Mode menu;
+* visually muted/disabled;
+* clearly non-clickable;
+* impossible to select.
+
+For example:
+
+```text
+Mistake Review
+[muted / disabled appearance]
+```
+
+The exact visual treatment should follow the existing disabled-state design language of the application.
+
+### 2. Mistake Review becomes available automatically
+
+As soon as the user makes at least one mistake and that mistake appears in the Mistakes system, `Mistake Review` should automatically become available.
+
+The user should NOT need to:
+
+* restart the app;
+* navigate away and back;
+* reload the page;
+* change another Training Mode.
+
+The Training Mode menu should react to the current mistakes state.
+
+Conceptually:
+
+```text
+0 mistakes
+→ Mistake Review disabled
+
+1+ mistakes
+→ Mistake Review enabled
+```
+
+### 3. Do not confuse this with the Mistakes screen
+
+The **Mistakes screen itself should remain accessible** according to the existing application navigation.
+
+This change concerns specifically the **Mistake Review option inside Training Mode**.
+
+### 4. Prevent invalid states
+
+Please make sure the user cannot enter Mistake Review through another UI/state path when there are no mistakes.
+
+If a stale `Mistake Review` configuration exists in local/session storage while the mistake list is empty, the application should gracefully fall back to the existing normal training behavior rather than opening an empty Mistake Review session.
+
+## Important: preserve existing Mistake Review behavior
+
+Do NOT change the Mistake Review mechanics that are already working:
+
+* starting review from the Mistakes screen;
+* exact reconstruction of the recorded mistake;
+* Skip;
+* answering mistakes;
+* removing correctly resolved mistakes;
+* one-pass review queue;
+* automatic transition to Full Conjugation after the queue is exhausted;
+* updating the top-left mode indicator;
+* Context Mode;
+* Letter Builder.
+
+This task is only about **availability and UI state of the Mistake Review option in Training Mode**.
+
+## Reactive state
+
+Please ensure the enabled/disabled state is based on the **current mistakes data**, not only on the state that existed when the Training Mode menu was first opened.
+
+For example:
+
+1. User opens Training Mode with 0 mistakes.
+2. Mistake Review is disabled.
+3. User makes a mistake during training.
+4. The mistake is recorded.
+5. When Training Mode is opened again, Mistake Review is now enabled.
+
+If the Training Mode menu is already open when the underlying mistakes state changes, update the UI appropriately if this is compatible with the existing architecture.
+
+## Acceptance criteria
+
+* [ ] Mistake Review is visible when there are no mistakes.
+* [ ] It is visually muted/disabled.
+* [ ] It cannot be clicked when there are no mistakes.
+* [ ] It becomes enabled when at least one mistake exists.
+* [ ] The state updates from the current mistakes data.
+* [ ] No restart/reload is required.
+* [ ] The Mistakes screen itself remains unaffected.
+* [ ] Existing Mistake Review functionality is not changed.
+* [ ] No regressions in Full Conjugation, Context Mode, Letter Builder, or other Training Modes.
+
+Please implement this using the existing mistakes state/data source rather than creating a second independent count of mistakes.

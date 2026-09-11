@@ -1,0 +1,214 @@
+We have finished a manually curated and reviewed Context Mode dataset for all 335 verbs.
+
+I will provide 7 final JSON batch files containing the approved exercises.
+
+Important: do not modify the app logic yet.
+
+This task has two stages. For now, complete Stage 1 only.
+
+Stage 1 — Import, merge, and validate the curated dataset
+1. Preserve the existing verb dictionary
+
+src/data/verbs.ts remains the canonical source of verb metadata:
+
+infinitive
+Russian translation
+V2
+V3
+isIrregular
+frequency rank
+existing grammatical metadata
+
+Do not replace or duplicate this logic with data from the Context dataset.
+
+Every curated Context record must link to the existing dictionary through its verb field.
+
+2. Import all 7 curated JSON batches
+
+Combine the supplied final JSON batch files into one production dataset.
+
+Prefer:
+
+src/data/contextExercises.ts
+
+or, if the current architecture strongly favors JSON:
+
+src/data/contextExercises.json
+
+Preserve every supplied record exactly.
+
+Fields may include:
+
+id
+verb
+tense
+subject
+sentence
+expectedAnswer
+practiceTargets
+notRecommended
+reason
+
+Do not rewrite, normalize, regenerate, paraphrase, fix, improve, or otherwise alter any sentence, answer, ID, or practice target.
+
+If a supplied record is invalid or inconsistent, report it instead of silently correcting it.
+
+3. Do not integrate the dataset into exercise selection yet
+
+In Stage 1:
+
+do not modify Context Mode selection logic;
+do not remove old templates;
+do not change SRS;
+do not change session persistence;
+do not change statistics;
+do not change Mistakes Review;
+do not change training presets.
+
+Stage 1 is data import + validation only.
+
+4. Validate all dictionary links
+
+Check that:
+
+all 335 verbs from verbs.ts are represented in the curated dataset;
+every verb value in the curated dataset exists in verbs.ts;
+there are no unknown verbs;
+there are no duplicate verb/rank mistakes;
+there are no duplicate exercise IDs.
+
+Do not use frequency rank as the primary join key.
+
+The semantic link between datasets is the verb infinitive:
+
+contextRecord.verb === verb.infinitive
+
+5. Validate tense IDs
+
+Only these 12 tense IDs are valid:
+
+pastSimple
+pastContinuous
+pastPerfect
+pastPerfectContinuous
+presentSimple
+presentContinuous
+presentPerfect
+presentPerfectContinuous
+futureSimple
+futureContinuous
+futurePerfect
+futurePerfectContinuous
+
+Do not infer tense from sentence text.
+
+The stored tense field is authoritative.
+
+6. Validate active records
+
+For every active exercise:
+
+sentence must exist;
+expectedAnswer must exist;
+sentence must contain exactly one _____;
+practiceTargets must exist;
+the first practice target must match the stored tense;
+all practiceTargets values must be known supported targets;
+the verb form in expectedAnswer must correspond to the dictionary entry in verbs.ts;
+subject/auxiliary agreement must be valid.
+
+Do not alter the sentence if validation fails.
+
+Report the exact record ID instead.
+
+7. Validate notRecommended
+
+A notRecommended record represents an intentionally unavailable Context Mode combination.
+
+Validate that such records:
+
+retain their id, verb, tense, subject, and practiceTargets;
+are not treated as usable Context exercises;
+do not accidentally enter the active exercise pool.
+
+Do not generate a replacement sentence for them.
+
+8. Validate irregular V2/V3 practice targets
+
+Preserve the existing regular / irregular verb distinction from verbs.ts.
+
+practiceTargets is authoritative for additional irregular-form grouping.
+
+Rules:
+
+Past Simple may also have v2 if the target verb itself is an irregular V2 form.
+Perfect Simple examples may also have v3 if the target verb itself is in V3 form.
+Do not classify Perfect Continuous as v3 merely because it contains the auxiliary been.
+The only exception is the verb be, where the target verb itself may genuinely be been.
+
+Validate every v2 and v3 target against the forms stored in verbs.ts.
+
+Report mismatches instead of fixing them.
+
+9. Check batch completeness
+
+Confirm that the seven imported batches cover the entire dictionary without overlap or gaps.
+
+Expected frequency ranges:
+
+Batch 01: 1–50
+Batch 02: 51–100
+Batch 03: 101–150
+Batch 04: 151–200
+Batch 05: 201–250
+Batch 06: 251–300
+Batch 07: 301–335
+
+Frequency rank is only a validation aid, not the runtime lookup key.
+
+10. Build a typed index, but do not wire it into Context Mode yet
+
+Prepare an efficient lookup/index for the future integration.
+
+Prefer a structure conceptually equivalent to:
+
+verb -> practiceTarget -> curated record(s)
+
+or another typed structure that avoids scanning the entire dataset during every exercise.
+
+This index must be derived from the curated data without modifying it.
+
+Do not connect the selector to this index yet.
+
+11. Stage 1 report
+
+When finished, stop and give me a report containing:
+
+files added;
+files modified;
+total imported records;
+total active exercises;
+total notRecommended;
+number of unique verbs;
+batch ranges found;
+duplicate IDs, if any;
+unknown verbs, if any;
+invalid tense IDs, if any;
+invalid/missing practice targets, if any;
+V2/V3 inconsistencies, if any;
+subject/agreement/form inconsistencies, if any;
+any records you believe cannot be safely integrated.
+
+Do not proceed to Stage 2 until I explicitly approve the Stage 1 report.
+
+Stage 2 — Do not execute yet
+
+After I approve Stage 1, I will ask you to:
+
+make the curated dataset the only Context Mode sentence source;
+remove the generic/template Context fallback from exercise selection;
+use notRecommended to fall back to the existing non-context exercise type;
+preserve tense grouping, V2/V3/Mixed irregular practice, SRS, Mistakes Review, statistics, session persistence, and training presets;
+verify that no old automatically generated Context sentence can appear at runtime.
+
+Do not perform any Stage 2 work yet.

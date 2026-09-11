@@ -1,0 +1,94 @@
+Task: Audit Verb Selection Order and Randomization
+Goal
+
+Verify that users do not receive verbs in a fixed or predictable sequence across training sessions and days.
+
+The app should not behave like a predefined list that users gradually progress through from beginning to end. When multiple verbs are equally eligible for practice, their selection order should be randomized.
+
+This is especially important for repeated daily use: restarting the app or starting a new day should not cause users to see the same sequence of verbs again.
+
+What to audit
+
+Please trace the complete verb-selection pipeline and verify:
+
+Source verb list
+Check whether the master verb list has a fixed order (alphabetical, by ID, insertion order, etc.).
+A fixed storage order is acceptable, but it must not become the user's training order.
+Exercise generation
+Identify exactly where the verb for a new exercise is selected.
+Verify whether selection is random, shuffled, weighted, or sequential.
+Check whether any .find(), array indexing, sorting, or deterministic iteration can unintentionally create a fixed sequence.
+SRS interaction
+Verify how due/review verbs are selected.
+It is acceptable and expected that SRS prioritizes verbs that are due for review.
+However, when multiple verbs have equal or similar priority, their order should not always follow the same deterministic sequence.
+New verbs
+Verify specifically how verbs that have not yet been practiced are introduced.
+They should not always be presented in the same order from the master list.
+Session and daily behavior
+Start multiple fresh training sessions and inspect the sequence of generated verbs.
+Simulate a new day / reset of daily progress.
+Verify that the same initial sequence does not repeat simply because a new session or day begins.
+Navigation and remounting
+Verify that leaving and returning to Practice does not unintentionally restart a deterministic sequence from the beginning.
+Important distinction
+
+We do not want pure random selection that ignores the SRS system.
+
+The intended logic is:
+
+SRS priority must continue to work normally.
+Due and weak verbs may legitimately appear more often.
+Recently mistaken verbs may be prioritized according to existing logic.
+But among multiple equally eligible candidates, selection should not be determined by their position in the original verb array.
+
+In other words:
+
+Priority should be meaningful; ordering within equal priority should be randomized.
+
+Verification requirements
+
+Please do not only inspect the code. Add a focused automated verification if practical.
+
+For example:
+
+Generate multiple independent training sequences from the same initial state.
+Compare their first 10–20 selected verbs.
+Verify that the sequences are not identical because of a fixed array traversal.
+Test new verbs separately from SRS review verbs.
+Confirm that randomness does not break SRS priority rules.
+If a deterministic order is found
+
+Fix the selection logic so that:
+
+the master verb list order does not determine training order;
+equally eligible verbs are randomly selected or shuffled;
+a new session does not restart the same sequence;
+SRS behavior and spaced repetition priorities remain intact;
+Mistakes Review remains unaffected and continues using its exact-ID queue.
+Out of scope
+
+Do not redesign:
+
+the SRS algorithm;
+daily progress rules;
+Mistakes Review;
+Training Mode UI;
+exercise types.
+
+This task is specifically an audit and, only if necessary, a targeted fix for verb selection order and randomization.
+
+Suggested files to inspect
+src/engine/exercises.ts
+src/engine/srs.ts
+src/hooks/useExerciseSession.ts
+src/db/progress.ts
+src/data/verbs.ts
+
+Please provide a short final report explaining:
+
+how verbs were previously selected;
+whether a deterministic order existed;
+what was changed, if anything;
+how SRS priority is preserved;
+what automated tests were added or run to verify sequence randomization.

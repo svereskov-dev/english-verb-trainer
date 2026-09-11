@@ -1,14 +1,11 @@
 import { ExerciseItem } from "../engine/exercises";
 import { verbs } from "../data/verbs";
+import { getTenseLabel } from "../data/grammar";
 import { cn } from "../lib/utils";
 
 interface ExerciseCardProps {
   exercise: ExerciseItem;
 }
-
-const formatTenseName = (tense: string) => {
-  return tense.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-};
 
 function getVerbData(infinitive: string) {
   return verbs.find(v => v.infinitive === infinitive);
@@ -26,7 +23,9 @@ function getIPA(infinitive: string): string {
 const PERFECT_TENSES = new Set(["presentPerfect", "pastPerfect", "futurePerfect"]);
 
 function irregularGapfillLabel(tense: string): string {
-  const form = PERFECT_TENSES.has(tense) ? "Past Participle" : "Past Simple";
+  const form = PERFECT_TENSES.has(tense)
+    ? "Past Participle"
+    : getTenseLabel("pastSimple");
   return `Irregular Form: ${form}`;
 }
 
@@ -42,7 +41,7 @@ export function ExerciseCard({
       <div className={cn("flex flex-col items-center w-full", compact ? "gap-1.5" : "gap-2")}>
         {/* Tense pill */}
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
-          {formatTenseName(exercise.question.tense)}
+          {getTenseLabel(exercise.question.tense)}
         </span>
 
         {/* Subject card */}
@@ -92,7 +91,7 @@ export function ExerciseCard({
 
   if (exercise.type === "irregular") {
     const askForMap: Record<string, string> = {
-      past: "Past Simple",
+      past: getTenseLabel("pastSimple"),
       pastParticiple: "Past Participle",
     };
     const translation = getTranslation(exercise.question.verb);
@@ -143,7 +142,7 @@ export function ExerciseCard({
         <span className="bg-primary/15 text-primary text-xs font-bold tracking-[0.18em] uppercase px-4 py-1 rounded-full border border-primary/30 max-w-full text-center break-words">
           {irregularContext
             ? irregularGapfillLabel(exercise.question.tense)
-            : formatTenseName(exercise.question.tense)}
+            : getTenseLabel(exercise.question.tense)}
         </span>
 
         {/* Sentence card */}
@@ -159,12 +158,17 @@ export function ExerciseCard({
             "font-bold tracking-tight leading-relaxed text-center",
             compact ? "text-lg" : "text-2xl md:text-3xl"
           )}>
-            {exercise.question.template.replace("_____", "______")}
+            {exercise.question.template}
           </p>
           <p className={cn(
-            "text-primary font-medium",
-            compact ? "text-base" : "text-xl"
-          )}>{exercise.question.hint}</p>
+            "text-primary font-black leading-tight break-words max-w-full",
+          )}
+            style={{
+              fontSize: compact
+                ? "clamp(1.125rem, min(6vw, 3.5vh), 1.5rem)"
+                : "clamp(1.375rem, min(7vw, 4vh), 2rem)",
+            }}
+          >{exercise.question.hint}</p>
           {ipa && (
             <p className={cn(
               "text-muted-foreground tracking-wide",

@@ -1,2 +1,5 @@
 - [Android edge-to-edge working config](android-edge-to-edge.md) — exact setup that makes transparent bars + dark nav bar work on ColorOS/Android 15. Do not change without testing on a real device.
+- [Android Studio Gradle JDK](android-studio-gradle-jdk.md) — `#GRADLE_LOCAL_JAVA_HOME` needs a machine-local config mapping; generate it for Java 21 instead of shipping an absolute path.
 - [Build archive requirements](build-archive-requirements.md) — every zip for the user MUST include root workspace files + android/; a zip with only artifacts/ is incomplete.
+- [Android icon masking](android-icon-masking.md) — preserve the canonical icon inside the adaptive safe area; rely on Android’s mask rather than ImageMagick rounded-corner compositing.
+- [Curated Context dataset](curated-context-dataset.md) — approved records must remain unchanged; do not activate them until Stage 1 findings are explicitly approved.

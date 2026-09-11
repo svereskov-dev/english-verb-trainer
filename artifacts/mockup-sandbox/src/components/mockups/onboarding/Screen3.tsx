@@ -1,6 +1,7 @@
 // Onboarding Screen 3 — Bottom navigation explanation
 
 import { Dumbbell } from "lucide-react";
+import "./_group.css";
 
 const BG = "#060C18";
 const CARD = "#0D1425";
@@ -44,20 +45,20 @@ const icons = {
 };
 
 const tabs = [
-  { key: "Home", label: "Главная", icon: icons.Home, desc: "Наблюдаем за статистикой ответов и ежедневным прогрессом." },
-  { key: "Practice", label: "Практика", icon: icons.Practice, desc: "Совершенствуем язык." },
-  { key: "Mistakes", label: "Ошибки", icon: icons.Mistakes, desc: "Изучаем список ошибок, допущенных в течение дня." },
-  { key: "Dictionary", label: "Словарь", icon: icons.Dictionary, desc: "При клике на глагол можно увидеть его перевод, транскрипцию и основные формы." },
-  { key: "Settings", label: "Настройки", icon: icons.Settings, desc: "Выбираем цель ежедневной тренировки." },
+  { key: "Home", label: "Главная", icon: icons.Home, desc: "Наблюдайте за статистикой ответов и ежедневным прогрессом." },
+  { key: "Practice", label: "Практика", icon: icons.Practice, desc: "Совершенствуйте язык." },
+  { key: "Mistakes", label: "Ошибки", icon: icons.Mistakes, desc: "Вернитесь к допущенным ошибкам и отработайте их." },
+  { key: "Dictionary", label: "Словарь", icon: icons.Dictionary, desc: "Кликните на глагол, чтобы узнать о его формах больше." },
+  { key: "Settings", label: "Настройки", icon: icons.Settings, desc: "Выберите цель тренировки и ещё раз пройдите гайд." },
 ];
 
 export function Screen3() {
   return (
     <div style={{
-      width: 390, height: 844, background: BG,
+      width: "100%", height: "100dvh", minHeight: 0, background: BG,
       fontFamily: "'Inter', sans-serif",
       display: "flex", flexDirection: "column",
-      overflow: "hidden",
+      overflow: "hidden", boxSizing: "border-box",
     }}>
       {/* Status bar */}
       <div style={{ height: 44, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", flexShrink: 0 }}>
@@ -67,20 +68,21 @@ export function Screen3() {
         </div>
       </div>
 
-      {/* Title */}
-      <div style={{ padding: "8px 24px 0" }}>
-        <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: "0 0 4px", letterSpacing: "-0.3px" }}>
-          Всё необходимое —{" "}
-          <br />под рукой
-        </h2>
-      </div>
+      <div style={{ flex: "0 0 auto" }}>
+        {/* Title */}
+        <div style={{ padding: "8px 24px 0" }}>
+          <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: "0 0 4px", letterSpacing: "-0.3px" }}>
+            Всё необходимое —{" "}
+            <br />под рукой
+          </h2>
+        </div>
 
-      {/* Nav bar visual */}
-      <div style={{ padding: "20px 16px 0" }}>
-        <div style={{
-          background: CARD, border: `1px solid ${BORDER}`,
-          borderRadius: 20, overflow: "hidden",
-        }}>
+        {/* Nav bar visual */}
+        <div style={{ padding: "20px 16px 0" }}>
+          <div style={{
+            background: CARD, border: `1px solid ${BORDER}`,
+            borderRadius: 20, overflow: "hidden",
+          }}>
           {/* Arrow indicators */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", padding: "10px 4px 0" }}>
             {tabs.map((t, i) => (
@@ -111,11 +113,12 @@ export function Screen3() {
               );
             })}
           </div>
+          </div>
         </div>
       </div>
 
       {/* Descriptions */}
-      <div style={{ flex: 1, padding: "20px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+      <div className="onboarding-scroll" style={{ flex: "1 1 auto", minHeight: 0, padding: "20px 24px 12px", display: "flex", flexDirection: "column", gap: 14, overflowY: "auto" }}>
         {tabs.map((t, i) => (
           <div key={t.key} style={{
             display: "grid",
@@ -124,15 +127,15 @@ export function Screen3() {
             alignItems: "start",
           }}>
             <div style={{
-              width: 24, height: 24, borderRadius: 12,
+              width: 26, height: 26, borderRadius: 13,
               background: PRIMARY, color: "#fff",
               fontSize: 12, fontWeight: 700, lineHeight: 1,
               display: "flex", alignItems: "center", justifyContent: "center",
               flexShrink: 0,
             }}>{i + 1}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{t.label}</div>
-              <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{t.desc}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              <div style={{ color: FG, fontSize: 14, fontWeight: 600, lineHeight: "20px" }}>{t.label}</div>
+              <div style={{ color: MUTED, fontSize: 14, lineHeight: "21px" }}>{t.desc}</div>
             </div>
           </div>
         ))}

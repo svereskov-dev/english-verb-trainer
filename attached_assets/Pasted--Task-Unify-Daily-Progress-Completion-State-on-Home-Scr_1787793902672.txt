@@ -1,0 +1,110 @@
+## Task — Unify Daily Progress Completion State on Home Screen
+
+### Goal
+
+The Training screen already changes the Daily Progress UI to a green completed state when the user reaches or exceeds the daily training goal.
+
+The Home screen currently does not do this: its progress bar remains blue even after the daily goal has been completed.
+
+Unify the Home screen with the Training screen so that both screens communicate the same completion state.
+
+### Current problem
+
+Example:
+
+Daily goal: 10 words
+Completed: 12 words
+
+Training screen:
+- progress bar is green;
+- completion state is visually communicated as completed.
+
+Home screen:
+- progress bar remains blue;
+- the Daily Progress icon remains blue/purple;
+- "Great job! Keep going!" remains blue/purple.
+
+This is visually inconsistent.
+
+### Required behavior
+
+When:
+
+completedDailyWords >= dailyGoal
+
+the entire Daily Progress completion state on the Home screen should switch to the same green visual state used by the Training screen.
+
+Specifically:
+
+1. **Progress bar**
+   - Change from the normal blue/purple state to green.
+   - Use the existing green completion color/token already used by the Training screen.
+   - Do not introduce a new green color.
+
+2. **Daily Progress icon**
+   - The icon next to "Daily Progress" should also become green.
+
+3. **Completion message**
+   - "Great job! Keep going!" should become green.
+   - Keep the existing text and wording unchanged.
+
+4. **Progress numbers**
+   - Keep the existing `completed / goal` values unchanged.
+   - If the user has completed more than the goal (for example `12 / 10`), continue displaying `12 / 10`.
+   - Do not cap the displayed completed count at the goal.
+
+5. **Correct / Incorrect statistics**
+   - Do not change their existing layout, values, or colors.
+   - The green completion state must not affect the Correct/Incorrect counters.
+
+### Important implementation requirement
+
+Do not create a separate Home-specific definition of "daily goal completed".
+
+Reuse the same completion condition and, where practical, the same visual tokens/classes/constants already used by the Training screen.
+
+The intended single condition is:
+
+completedDailyWords >= dailyGoal
+
+This means the state must remain completed even when the user continues training beyond the daily goal.
+
+### Do NOT change
+
+- Daily goal calculation.
+- Daily progress calculation.
+- Daily reset behavior.
+- Correct/Incorrect statistics.
+- Training Mode behavior.
+- Progress bar percentage logic except for its completed-state color.
+- The text "Great job! Keep going!".
+- Any unrelated Home screen styling.
+
+### Acceptance criteria
+
+Test at least these cases:
+
+1. `0 / 10`
+   - Normal non-completed visual state.
+
+2. `9 / 10`
+   - Normal non-completed visual state.
+
+3. `10 / 10`
+   - Green completed state on Home.
+
+4. `12 / 10`
+   - Green completed state on Home.
+   - Display remains `12 / 10`.
+
+5. Verify that the Home screen and Training screen use the same completion condition and green visual state.
+
+6. Verify that Correct/Incorrect counters remain unchanged.
+
+7. Verify that after the daily reset, the Home screen returns to the normal non-completed state.
+
+### Final verification
+
+Run the existing type checks, tests, and production build.
+
+Do not modify unrelated functionality.

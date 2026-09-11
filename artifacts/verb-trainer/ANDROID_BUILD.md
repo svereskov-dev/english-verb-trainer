@@ -10,7 +10,7 @@ Packaging: **Capacitor 8** · App ID: `com.verbtrainer.app`
 |------|---------|------|
 | Node.js | 20 LTS+ | https://nodejs.org |
 | pnpm | 9+ | `npm i -g pnpm` |
-| Java JDK | 17 | https://adoptium.net |
+| Java JDK | 21 | https://adoptium.net |
 | Android Studio | Ladybug 2024.2+ | https://developer.android.com/studio |
 
 After installing Android Studio:
@@ -56,7 +56,10 @@ This script performs the full sequence automatically:
    already exist.
 3. `cap:copy-templates` — copies the native system-bar / WebView templates into
    the Android project. This is cross-platform; no `cp` or `mkdir -p` is needed.
-4. `cap:sync` — copies `dist/public/` into `android/app/src/main/assets/public/`.
+4. `cap:configure-jdk` — creates Android Studio's local Gradle JDK mapping when
+   `JAVA_HOME`, the system Java installation, or the Android Studio embedded JDK
+   is available.
+5. `cap:sync` — copies `dist/public/` into `android/app/src/main/assets/public/`.
 
 Run this every time you want a fresh APK. It is safe to run repeatedly.
 
@@ -129,6 +132,24 @@ Run this every time you rebuild the web assets.
 ```bash
 pnpm run cap:open
 ```
+
+### If Android Studio says “Invalid Gradle JDK configuration”
+
+This message means Android Studio cannot resolve its project-local
+`#GRADLE_LOCAL_JAVA_HOME` setting. It is not an application or Gradle script
+error. The local JDK path is intentionally not included in the ZIP because it
+is different on every computer.
+
+Choose **Use Embedded JDK** in the warning, or set it manually:
+
+1. Open **File → Settings → Build, Execution, Deployment → Build Tools →
+   Gradle**.
+2. Set **Gradle JDK** to **Embedded JDK** (Java 21).
+3. Click **Apply → OK**, then run **File → Sync Project with Gradle Files**.
+
+If you ran `pnpm run build:android` after installing Java 21, the setup script
+usually creates `android/.gradle/config.properties` automatically. That file
+is local-only and must not be committed or copied between computers.
 
 ---
 
@@ -206,6 +227,10 @@ pnpm run cap:open                     # open Android Studio → Build APK
 ## Troubleshooting
 
 **"SDK location not found"** — Set `ANDROID_HOME` (see Prerequisites).
+
+**"Invalid Gradle JDK configuration"** — Select **Embedded JDK (Java 21)** in
+Android Studio's Gradle settings as described in Step 5. Then sync the project
+again. The native project uses Java 21 source compatibility.
 
 **Blank white screen** — Run `cap:build` then `cap:sync`; web assets are missing.
 

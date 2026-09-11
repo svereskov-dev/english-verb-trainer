@@ -1,0 +1,102 @@
+# Home Screen: Unify Daily Progress and Answer Statistics
+
+Please update the Home screen so that **Daily Progress, Correct, and Incorrect** are presented as one unified informational section rather than three separate card-like elements.
+
+## Current UX problem
+
+The current Home screen has:
+
+* a separate Daily Progress card;
+* a separate Correct card;
+* a separate Incorrect card.
+
+Because Correct and Incorrect look like individual cards, users naturally assume that they may be clickable.
+
+This has already caused user confusion: users try to click the `Incorrect` area expecting some action to happen.
+
+The information is purely statistical, so the visual design should communicate that this is **one non-interactive statistics area**.
+
+## Required redesign
+
+Create **one single outer container / border** around all three pieces of information:
+
+```text
+┌──────────────────────────────────────┐
+│                                      │
+│  🎯 Daily Progress             0 / 20│
+│                                      │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                      │
+│       ✓ 0                 ✕ 2        │
+│     CORRECT           INCORRECT      │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+### Structure
+
+Inside the single container:
+
+1. **Daily Progress** remains at the top.
+2. The progress bar remains directly below it.
+3. `Correct` and `Incorrect` remain below the progress bar in two columns.
+4. Remove the individual outer borders/cards around `Correct` and `Incorrect`.
+5. Keep the existing typography, icons, colors, and numerical values unless minor adjustments are needed for visual consistency.
+
+## Interaction
+
+The entire statistics container must be **non-interactive**.
+
+It should not:
+
+* look like a button;
+* have a hover/tap effect;
+* respond to clicks;
+* navigate anywhere.
+
+The first clearly interactive element below it should remain:
+
+**Start Practice**
+
+followed by:
+
+**Choose Training Mode**
+
+## Visual goal
+
+The result should look like **one coherent dashboard/statistics panel**, not three separate controls.
+
+The unified border should also create a clear visual distinction between:
+
+**information about today's progress**
+
+and
+
+**actions the user can take.**
+
+Do not add additional explanatory text such as "Statistics" unless the existing design system requires it.
+
+## Preserve functionality
+
+Do not change:
+
+* Daily Progress calculation;
+* Correct count;
+* Incorrect count;
+* daily goal;
+* progress bar behavior;
+* navigation;
+* Start Practice;
+* Choose Training Mode.
+
+This is a **visual/UX restructuring only**.
+
+## Acceptance criteria
+
+* [ ] Daily Progress, Correct, and Incorrect are inside one shared outer container.
+* [ ] Correct and Incorrect no longer have individual card borders.
+* [ ] The entire statistics area is clearly non-interactive.
+* [ ] Clicking Correct or Incorrect does nothing.
+* [ ] The visual hierarchy clearly separates statistics from the actionable buttons below.
+* [ ] Existing statistics and progress calculations remain unchanged.
+* [ ] The layout remains responsive on phone screens.

@@ -1,0 +1,118 @@
+Stage 3 — Remove legacy Context dead code
+
+Stage 2 is approved.
+
+The curated Context dataset is now the only runtime Context sentence source, and all tests/build checks are passing.
+
+Now perform a dead-code cleanup only.
+
+Do not redesign behavior.
+
+1. Identify legacy Context files and code paths
+
+Find all files, exports, helpers, types, constants, and imports that belong exclusively to the old generic/template-based Context Mode system.
+
+This may include, but is not limited to:
+
+contextTemplates.ts
+legacy gapFillSentences Context data or adapters
+generic Context sentence generators
+old template-selection helpers
+old Context fallback logic
+compatibility wrappers that are no longer referenced
+
+Do not assume a file is dead solely from its name.
+
+Confirm actual references before removing anything.
+
+2. Remove only code that is truly unreachable
+
+Delete legacy Context code only if:
+
+it is no longer imported by runtime code;
+it is not used by tests that represent current behavior;
+it is not required by another app feature;
+it is not required for migration of persisted legacy IDs.
+
+Preserve any migration helper that is still required to safely handle old persisted data.
+
+3. Do not touch curated data
+
+Do not modify:
+
+contextExercises.json
+curated sentence text
+curated expected answers
+practice targets
+IDs
+notRecommended
+
+Do not regenerate the curated dataset.
+
+4. Preserve runtime behavior
+
+Do not change:
+
+Context selection behavior
+notRecommended fallback
+V2/V3 behavior
+Mixed modes
+SRS
+progress tracking
+Mistakes Review
+session persistence
+legacy persisted-ID migration behavior
+
+This stage is cleanup only.
+
+5. Clean imports and exports
+
+After removing dead code:
+
+remove obsolete imports;
+remove obsolete exports;
+remove obsolete types/constants;
+remove comments that describe the old template runtime as active.
+
+Do not perform unrelated refactors.
+
+6. Search for legacy references
+
+Search the full codebase for references to:
+
+legacy Context templates;
+generic Context generation;
+old fallback helpers;
+old Context sentence data;
+removed filenames/exports.
+
+Confirm there are no stale runtime references.
+
+7. Verification
+
+Run:
+
+typecheck;
+curated Context validator;
+full test suite;
+production build.
+
+Also confirm:
+
+curated Context remains the only runtime Context sentence source;
+legacy persisted Context IDs still migrate safely;
+no old template sentence can be restored or selected at runtime.
+8. Final report
+
+Report:
+
+files deleted;
+files modified;
+imports/exports removed;
+any legacy code intentionally kept and why;
+final test total;
+validator result;
+build result;
+whether any legacy Context runtime path remains.
+
+Do not perform any additional refactor beyond dead-code removal.

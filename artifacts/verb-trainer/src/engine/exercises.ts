@@ -1,7 +1,13 @@
 import { Verb, verbs as allVerbs, irregularVerbs as allIrregularVerbs } from "../data/verbs";
 import { Subject, Tense } from "../data/grammar";
 import { conjugate } from "./conjugate";
-import { contextTemplates, ContextTemplate } from "../data/contextTemplates";
+import {
+  contextExerciseById,
+  contextExerciseIndex,
+  type ActiveCuratedContextExercise,
+  type ContextPracticeTarget,
+  type ContextTense,
+} from "../data/contextExercises";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -12,19 +18,27 @@ export type IrregularForm = "past" | "pastParticiple" | "mixed";
 
 export interface SessionConfig {
   id: string;
-  label: string;
-  groupLabel: string;
+  /** Presentation-only fields. Persisted state must use stable IDs instead. */
+  label?: string;
+  groupLabel?: string;
   selectedIds: string[];
   exerciseTypes: ("verbform" | "irregular")[];
   verbPool: VerbPoolSpec;
   tenses?: Tense[];
   irregularForm?: IrregularForm;
   mistakesOnly?: boolean;
-  reviewVerbs?: string[];      // temporary filtered list from Mistakes page (verb names)
   reviewMistakeIds?: string[]; // specific mistake record IDs (preserves type+tense+form)
   contextEnabled: boolean;
   letterBuilderEnabled?: boolean; // when true, every exercise uses letter-picker UI
   userCustomized?: boolean;  // true after first manual selection
+}
+
+export type PersistedSessionConfig = Omit<SessionConfig, "label" | "groupLabel">;
+
+/** Remove presentation-only labels before writing a config to browser storage. */
+export function toPersistedSessionConfig(config: SessionConfig): PersistedSessionConfig {
+  const { label: _label, groupLabel: _groupLabel, ...semanticConfig } = config;
+  return semanticConfig;
 }
 
 export interface ExerciseItem {
@@ -62,29 +76,63 @@ export function getTenses(difficulty: DifficultyLevel): Tense[] {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function pick<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
+export function pick<T>(arr: T[], random: () => number = Math.random): T {
+  const index = Math.min(arr.length - 1, Math.floor(random() * arr.length));
+  return arr[index];
 }
 
-function renderFrame(frame: string, subject: Subject): string {
-  const display =
-    subject === "he/she/it" ? (Math.random() < 0.5 ? "he" : "she") : subject;
-  const rendered = frame.replace("{subject}", display);
-  return rendered.charAt(0).toUpperCase() + rendered.slice(1);
+function makeCuratedGapFillExercise(
+  record: ActiveCuratedContextExercise,
+  practiceTarget: ContextPracticeTarget,
+): ExerciseItem {
+  return {
+    id: `gapfill:curated:${record.id}:${practiceTarget}`,
+    type: "gapfill",
+    question: {
+      template: record.sentence,
+      hint: `(${record.verb})`,
+      verb: record.verb,
+      tense: record.tense,
+      subject: record.subject,
+      displaySubject: record.subject,
+      practiceTarget,
+      curatedExerciseId: record.id,
+    },
+    answer: record.expectedAnswer,
+  };
 }
 
 // ─── Internal generators (accept explicit pool + tenses) ──────────────────────
 
-function makeVerbForm(pool: Verb[], tenses: Tense[]): ExerciseItem {
-  const verb    = pick(pool);
-  const tense   = pick(tenses);
-  const subject = pick(ALL_SUBJECTS);
+function makeVerbFormFor(
+  verb: Verb,
+  tense: Tense,
+  subject: Subject = pick(ALL_SUBJECTS),
+  id?: string,
+): ExerciseItem {
   const answer  = conjugate(verb, tense, subject);
   return {
-    id: `verbform:${verb.infinitive}:${tense}:${subject}`,
+    id: id ?? `verbform:${verb.infinitive}:${tense}:${subject}`,
     type: "verbform",
     question: { verb: verb.infinitive, tense, subject },
     answer,
+  };
+}
+
+function makeVerbForm(pool: Verb[], tenses: Tense[]): ExerciseItem {
+  return makeVerbFormFor(pick(pool), pick(tenses));
+}
+
+function makeIrregularFor(
+  verb: Verb,
+  askFor: "past" | "pastParticiple",
+): ExerciseItem {
+  const answer = askFor === "past" ? verb.past : verb.pastParticiple;
+  return {
+    id: `irregular:${verb.infinitive}:${askFor}`,
+    type: "irregular",
+    question: { verb: verb.infinitive, askFor },
+    answer: answer.split("/"),
   };
 }
 
@@ -95,49 +143,52 @@ function makeIrregular(pool: Verb[], form: IrregularForm): ExerciseItem {
     form === "past"           ? "past" :
     form === "pastParticiple" ? "pastParticiple" :
     pick(["past", "pastParticiple"]);
-  const answer = askFor === "past" ? verb.past : verb.pastParticiple;
-  return {
-    id: `irregular:${verb.infinitive}:${askFor}`,
-    type: "irregular",
-    question: { verb: verb.infinitive, askFor },
-    answer: answer.split("/"),
-  };
+  return makeIrregularFor(verb, askFor);
 }
 
-function makeGapFill(pool: Verb[], tenses: Tense[]): ExerciseItem {
-  const eligible = contextTemplates.filter(t =>
-    t.tenses.some(tense => tenses.includes(tense))
-  );
-  const template: ContextTemplate = pick(eligible.length > 0 ? eligible : contextTemplates);
-  const shared   = template.tenses.filter(t => tenses.includes(t));
-  const tense    = pick(shared.length > 0 ? shared : template.tenses);
-  const subject  = pick(template.subjects ?? ALL_SUBJECTS);
+function findCuratedRecord(
+  verb: Verb,
+  target: ContextPracticeTarget,
+): ActiveCuratedContextExercise | undefined {
+  const records = contextExerciseIndex.get(verb.infinitive)?.get(target);
+  return records?.length ? pick([...records]) : undefined;
+}
 
-  let verbPool = pool.filter(v => template.allowedBehaviors.includes(v.behavior));
-  if (template.allowedTransitivity?.length) {
-    const f = verbPool.filter(v => template.allowedTransitivity!.includes(v.transitivity));
-    if (f.length > 0) verbPool = f;
-  }
-  if (template.allowedDomains?.length) {
-    const f = verbPool.filter(v => v.domains.some(d => template.allowedDomains!.includes(d)));
-    if (f.length > 0) verbPool = f;
-  }
-  if (verbPool.length === 0) verbPool = pool.filter(v => v.behavior === "dynamic");
-  if (verbPool.length === 0) verbPool = pool;
+export function generateContextExerciseFor(
+  verb: Verb,
+  target: ContextPracticeTarget,
+): ExerciseItem {
+  const record = findCuratedRecord(verb, target);
+  if (record) return makeCuratedGapFillExercise(record, target);
 
-  const verb   = pick(verbPool);
-  const answer = conjugate(verb, tense, subject);
-  return {
-    id: `gapfill:${template.id}:${verb.infinitive}:${tense}`,
-    type: "gapfill",
-    question: {
-      template: renderFrame(template.frame, subject),
-      hint: `(${verb.infinitive})`,
-      verb: verb.infinitive,
-      tense,
-    },
-    answer,
-  };
+  if (target === "v2" || target === "v3") {
+    return makeIrregularFor(
+      verb,
+      target === "v2" ? "past" : "pastParticiple",
+    );
+  }
+
+  return makeVerbFormFor(verb, target);
+}
+
+function makeContextForTense(pool: Verb[], tenses: Tense[]): ExerciseItem {
+  const verb = pick(pool);
+  const tense = pick(tenses);
+  return generateContextExerciseFor(verb, tense as ContextTense);
+}
+
+function makeContextForIrregular(
+  pool: Verb[],
+  form: IrregularForm,
+): ExerciseItem {
+  const irregPool = pool.filter(verb => verb.isIrregular);
+  const verb = pick(irregPool.length > 0 ? irregPool : allIrregularVerbs);
+  const askFor: "past" | "pastParticiple" =
+    form === "past" ? "past" :
+    form === "pastParticiple" ? "pastParticiple" :
+    pick(["past", "pastParticiple"]);
+  const target: ContextPracticeTarget = askFor === "past" ? "v2" : "v3";
+  return generateContextExerciseFor(verb, target);
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
@@ -147,7 +198,7 @@ function makeGapFill(pool: Verb[], tenses: Tense[]): ExerciseItem {
  * IDs are encoded as:
  *   verbform:   "verbform:<verb>:<tense>:<subject>"
  *   irregular:  "irregular:<verb>:<askFor>"
- *   gapfill:    "gapfill:<templateId>:<verb>:<tense>"  — not reconstructable, returns null
+ *   curated:   "gapfill:curated:<curatedId>:<practiceTarget>"
  */
 export function exerciseFromMistakeId(id: string): ExerciseItem | null {
   const parts = id.split(":");
@@ -160,7 +211,13 @@ export function exerciseFromMistakeId(id: string): ExerciseItem | null {
     const tense   = parts[2] as Tense;
     const subject = parts.slice(3).join(":") as Subject; // subject can contain "/"
     const verb = allVerbs.find(v => v.infinitive === verbInf);
-    if (!verb) return null;
+    if (
+      !verb ||
+      !getTenses("advanced").includes(tense) ||
+      !ALL_SUBJECTS.includes(subject)
+    ) {
+      return null;
+    }
     const answer = conjugate(verb, tense, subject);
     return { id, type: "verbform", question: { verb: verbInf, tense, subject }, answer };
   }
@@ -168,6 +225,7 @@ export function exerciseFromMistakeId(id: string): ExerciseItem | null {
   if (type === "irregular" && parts.length >= 3) {
     const verbInf = parts[1];
     const askFor  = parts[2] as "past" | "pastParticiple";
+    if (askFor !== "past" && askFor !== "pastParticiple") return null;
     const verb =
       allVerbs.find(v => v.infinitive === verbInf) ??
       allIrregularVerbs.find(v => v.infinitive === verbInf);
@@ -182,7 +240,50 @@ export function exerciseFromMistakeId(id: string): ExerciseItem | null {
     };
   }
 
-  return null; // gapfill IDs are not reconstructable
+  if (type === "gapfill" && parts[1] === "curated" && parts.length === 4) {
+    const record = contextExerciseById.get(parts[2]);
+    const target = parts[3] as ContextPracticeTarget;
+    if (!record || !record.practiceTargets.includes(target)) return null;
+    return makeCuratedGapFillExercise(record, target);
+  }
+
+  // Migrate old template-based mistake IDs to a deterministic non-context
+  // exercise. Legacy sentences are never reconstructed or shown.
+  if (type === "gapfill") {
+    const isV2 = parts[1] === "v2";
+    const verbInf = isV2 ? parts[3] : parts[2];
+    const tense = (isV2 ? parts[4] : parts[3]) as Tense;
+    const encodedSubject = isV2 ? parts[5] : "I";
+    const subject: Subject =
+      encodedSubject === "he" || encodedSubject === "she"
+        ? "he/she/it"
+        : (encodedSubject as Subject);
+    const verb = allVerbs.find(item => item.infinitive === verbInf);
+    if (!verb || !getTenses("advanced").includes(tense) || !ALL_SUBJECTS.includes(subject)) {
+      return null;
+    }
+    return makeVerbFormFor(verb, tense, subject, id);
+  }
+
+  return null;
+}
+
+export function isRuntimeSafeExercise(exercise: unknown): boolean {
+  return restorePersistedExercise(exercise) !== null;
+}
+
+export function restorePersistedExercise(
+  exercise: unknown,
+): ExerciseItem | null {
+  if (
+    !exercise ||
+    typeof exercise !== "object" ||
+    !("id" in exercise) ||
+    typeof exercise.id !== "string"
+  ) {
+    return null;
+  }
+  return exerciseFromMistakeId(exercise.id);
 }
 
 // Legacy — kept for any code that still calls the old signature
@@ -191,7 +292,7 @@ export function generateExercise(type: ExerciseMode, difficulty: DifficultyLevel
   switch (type) {
     case "verbform":         return makeVerbForm(allVerbs, tenses);
     case "irregular":        return makeIrregular(allIrregularVerbs, "mixed");
-    case "gapfill":          return makeGapFill(allVerbs, tenses);
+    case "gapfill":          return makeContextForTense(allVerbs, tenses);
     case "tenserecognition": return makeVerbForm(allVerbs, tenses);
     default:                 return makeVerbForm(allVerbs, tenses);
   }
@@ -200,7 +301,6 @@ export function generateExercise(type: ExerciseMode, difficulty: DifficultyLevel
 export function generateExerciseFromConfig(
   config: SessionConfig,
   difficulty: DifficultyLevel,
-  mistakeVerbs?: string[],
   forceType?: ExerciseMode,
 ): ExerciseItem {
   // 1. Resolve verb pool
@@ -209,28 +309,16 @@ export function generateExerciseFromConfig(
     config.verbPool === "irregular" ? allIrregularVerbs :
     allVerbs.filter(v => v.frequencyRank <= (config.verbPool as number));
 
-  // 2. Narrow to mistake verbs if applicable
-  if (config.mistakesOnly && mistakeVerbs && mistakeVerbs.length > 0) {
-    const narrowed = pool.filter(v => mistakeVerbs.includes(v.infinitive));
-    if (narrowed.length > 0) pool = narrowed;
-  }
-
-  // 3. Narrow to review verbs from Mistakes page
-  if (config.reviewVerbs && config.reviewVerbs.length > 0) {
-    const narrowed = pool.filter(v => config.reviewVerbs!.includes(v.infinitive));
-    if (narrowed.length > 0) pool = narrowed;
-  }
-
-  // 5. Tenses
+  // 2. Tenses
   const tenses: Tense[] = config.tenses ?? getTenses(difficulty);
 
-  // 6. Effective exercise types (context adds gapfill)
+  // 3. Effective exercise types (context adds gapfill)
   const types: ExerciseMode[] = [
     ...config.exerciseTypes,
     ...(config.contextEnabled ? ["gapfill" as ExerciseMode] : []),
   ];
 
-  // 7. Pick a type and generate
+  // 4. Pick a type and generate
   // forceType lets the caller guarantee a specific mode (e.g. "gapfill" when
   // Context Mode is first enabled, so the user immediately sees a context sentence).
   const resolvedType =
@@ -244,21 +332,11 @@ export function generateExerciseFromConfig(
       exercise = makeIrregular(pool, config.irregularForm ?? "mixed");
       break;
     case "gapfill": {
-      // When an irregularForm is set, constrain gapfill tenses so the sentence
-      // structure matches the form being drilled:
-      //   past            → pastSimple  (She put it on the table.)
-      //   pastParticiple  → perfect tenses  (She has/had put it away.)
-      //   mixed           → pastSimple + all perfect tenses
-      let gapfillTenses = tenses;
       if (config.irregularForm) {
-        const PAST_SIMPLE:  Tense[] = ["pastSimple"];
-        const PERFECT:      Tense[] = ["presentPerfect", "pastPerfect", "futurePerfect"];
-        gapfillTenses =
-          config.irregularForm === "past"           ? PAST_SIMPLE :
-          config.irregularForm === "pastParticiple" ? PERFECT :
-          /* mixed */                                 [...PAST_SIMPLE, ...PERFECT];
+        exercise = makeContextForIrregular(pool, config.irregularForm);
+      } else {
+        exercise = makeContextForTense(pool, tenses);
       }
-      exercise = makeGapFill(pool, gapfillTenses);
       break;
     }
     default:

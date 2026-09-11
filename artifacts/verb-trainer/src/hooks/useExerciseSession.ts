@@ -1,12 +1,28 @@
-import { useState, useEffect, useRef } from 'react';
-import { SessionConfig, ExerciseItem, generateExerciseFromConfig, exerciseFromMistakeId } from '../engine/exercises';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import {
+  SessionConfig,
+  ExerciseItem,
+  generateExerciseFromConfig,
+  exerciseFromMistakeId,
+  restorePersistedExercise,
+  toPersistedSessionConfig,
+} from '../engine/exercises';
+import { LetterBuilderState } from './useLetterBuilder';
 import { useSettings } from './useSettings';
 import { useStats } from './useStats';
 import { getProgress, saveProgress, getAllProgress } from '../db/progress';
 import { updateSRS, ProgressRecord } from '../engine/srs';
 import { isCorrect } from '../engine/validate';
+import {
+  canRestorePendingReviewQueue,
+  createReviewQueue,
+  getActiveMistakeRecords,
+  removeCurrentReviewItem,
+  rotateCurrentReviewItem,
+} from '../engine/reviewQueue';
 
 const SESSION_KEY = 'exercise_session';
+const REVIEW_SESSION_KEY = 'mistake_review_session';
 
 interface SessionState {
   config: SessionConfig;
@@ -15,19 +31,28 @@ interface SessionState {
   showAnswer: string | null;
   pendingAnswer: string;
   submittedValue: string;
+  letterBuilderState?: LetterBuilderState | null;
+  pendingMistakeIds?: string[];
+}
+
+function sessionKeyFor(config: SessionConfig): string {
+  return isExactReviewConfig(config) ? REVIEW_SESSION_KEY : SESSION_KEY;
 }
 
 function saveSession(state: SessionState) {
   try {
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify(state));
+    sessionStorage.setItem(
+      sessionKeyFor(state.config),
+      JSON.stringify({ ...state, config: toPersistedSessionConfig(state.config) }),
+    );
   } catch {
     // ignore
   }
 }
 
-function loadSession(): SessionState | null {
+function loadSession(config: SessionConfig): SessionState | null {
   try {
-    const raw = sessionStorage.getItem(SESSION_KEY);
+    const raw = sessionStorage.getItem(sessionKeyFor(config));
     if (!raw) return null;
     return JSON.parse(raw);
   } catch {
@@ -37,15 +62,28 @@ function loadSession(): SessionState | null {
 
 function clearSession() {
   sessionStorage.removeItem(SESSION_KEY);
+  sessionStorage.removeItem(REVIEW_SESSION_KEY);
 }
 
-function configsMatch(a: SessionConfig, b: SessionConfig): boolean {
+export function configsMatch(a: SessionConfig, b: SessionConfig): boolean {
   if (a.id !== b.id) return false;
   if (a.contextEnabled !== b.contextEnabled) return false;
+  if (a.letterBuilderEnabled !== b.letterBuilderEnabled) return false;
   if (a.mistakesOnly !== b.mistakesOnly) return false;
-  if (JSON.stringify(a.reviewVerbs) !== JSON.stringify(b.reviewVerbs)) return false;
   if (JSON.stringify(a.reviewMistakeIds) !== JSON.stringify(b.reviewMistakeIds)) return false;
   return true;
+}
+
+function isExactReviewConfig(config: SessionConfig): boolean {
+  return config.id === "mistake-review" && !!config.reviewMistakeIds?.length;
+}
+
+function canRestoreReviewSession(stored: SessionState, config: SessionConfig): boolean {
+  if (!isExactReviewConfig(stored.config) || !isExactReviewConfig(config)) return false;
+  return canRestorePendingReviewQueue(
+    stored.pendingMistakeIds,
+    config.reviewMistakeIds ?? [],
+  );
 }
 
 export function useExerciseSession(config: SessionConfig) {
@@ -58,12 +96,12 @@ export function useExerciseSession(config: SessionConfig) {
   const [showAnswer, setShowAnswer]           = useState<string | null>(null);
   const [pendingAnswer, setPendingAnswer]     = useState("");
   const [submittedValue, setSubmittedValue]   = useState("");
-  const [mistakeVerbs, setMistakeVerbs]       = useState<string[]>([]);
+  const [letterBuilderState, setLetterBuilderState] =
+    useState<LetterBuilderState | null>(null);
+  const [activeMistakeIds, setActiveMistakeIds] = useState<string[]>([]);
   const [mistakesReady, setMistakesReady]     = useState(!config.mistakesOnly);
-  const [reviewExhausted, setReviewExhausted] = useState(false);
-  // Set to true when every mistakeId has been answered correctly — triggers
-  // automatic navigation back to the Mistakes screen in the UI layer.
   const [reviewComplete, setReviewComplete]   = useState(false);
+  const [reviewQueueVersion, setReviewQueueVersion] = useState(0);
   // Increments on every nextExercise() so AnswerInput always remounts even if
   // the generated exercise id happens to be the same as the previous one.
   const [exerciseSeq, setExerciseSeq]         = useState(0);
@@ -71,47 +109,24 @@ export function useExerciseSession(config: SessionConfig) {
   // ── Review-mode tracking ────────────────────────────────────────────────────
   // Ordered list of mistake IDs still to be answered correctly this session.
   const pendingMistakeIdsRef  = useRef<string[]>([]);
-  // Legacy: track by verb name (used when only reviewVerbs is set)
-  const reviewVerbsCorrectRef = useRef(new Set<string>());
-  const reviewVerbsKeyRef     = useRef<string>("");
-  // Remember the outcome of the last submitted answer so nextExercise() can act on it.
-  const lastFeedbackRef       = useRef<"correct" | "incorrect" | null>(null);
-
-  if (config.reviewVerbs) {
-    const key = config.reviewVerbs.join(",");
-    if (key !== reviewVerbsKeyRef.current) {
-      reviewVerbsCorrectRef.current = new Set<string>();
-      reviewVerbsKeyRef.current = key;
-    }
-  }
 
   // Keep latest values in refs so nextExercise closure is never stale
   const configRef             = useRef(config);
-  const mistakeVerbsRef       = useRef(mistakeVerbs);
   // Track the previous contextEnabled so we can detect a false→true transition
   // and guarantee the first exercise after enabling Context is a gapfill.
   const prevContextEnabledRef = useRef(config.contextEnabled);
-  configRef.current       = config;
-  mistakeVerbsRef.current = mistakeVerbs;
+  configRef.current = config;
 
-  // ── Load mistake verbs from IDB when in mistakes mode ──────────────────────
+  // ── Load active mistake IDs from IDB when in review mode ────────────────────
   useEffect(() => {
     if (!config.mistakesOnly) {
-      setMistakeVerbs([]);
+      setActiveMistakeIds([]);
       setMistakesReady(true);
       return;
     }
     setMistakesReady(false);
     getAllProgress().then(records => {
-      const found = [
-        ...new Set(
-          records
-            .filter(r => r.failureCount > 0)
-            .map(r => r.verbInfinitive)
-            .filter(Boolean),
-        ),
-      ];
-      setMistakeVerbs(found);
+      setActiveMistakeIds(getActiveMistakeRecords(records).map(record => record.id));
       setMistakesReady(true);
     });
   }, [config.mistakesOnly, config.id]);
@@ -120,34 +135,60 @@ export function useExerciseSession(config: SessionConfig) {
   useEffect(() => {
     if (!settings || !mistakesReady) return;
 
-    // When review mode is active with specific mistake IDs, always start fresh —
-    // never restore from session (the ordering is per-session and session storage
-    // may hold a stale exercise from a different review run).
-    if (config.reviewMistakeIds && config.reviewMistakeIds.length > 0) {
-      // Initialize the pending list (sorted: keep original order from DB query)
-      pendingMistakeIdsRef.current = [...config.reviewMistakeIds];
-      lastFeedbackRef.current = null;
-      reviewVerbsCorrectRef.current = new Set<string>();
+    const stored = loadSession(config);
+    const restoredExercise = stored
+      ? restorePersistedExercise(stored.exercise)
+      : null;
+    if (isExactReviewConfig(config)) {
+      if (
+        stored &&
+        restoredExercise &&
+        canRestoreReviewSession(stored, config)
+      ) {
+        pendingMistakeIdsRef.current = stored.pendingMistakeIds ?? [];
+        setCurrentExercise(restoredExercise);
+        setFeedback(stored.feedback);
+        setShowAnswer(stored.showAnswer);
+        setPendingAnswer(stored.pendingAnswer ?? "");
+        setSubmittedValue(stored.submittedValue ?? "");
+        setLetterBuilderState(stored.letterBuilderState ?? null);
+        setReviewComplete(false);
+        return;
+      }
+
+      pendingMistakeIdsRef.current = createReviewQueue(config.reviewMistakeIds ?? []);
       setFeedback(null);
       setShowAnswer(null);
-      setReviewExhausted(false);
+      setPendingAnswer("");
+      setSubmittedValue("");
+      setLetterBuilderState(null);
+      setReviewComplete(false);
       clearSession();
 
       const firstId = pendingMistakeIdsRef.current[0];
-      const ex = exerciseFromMistakeId(firstId) ??
-        generateExerciseFromConfig(config, settings.difficulty);
-      setCurrentExercise(ex);
+      setCurrentExercise(firstId ? exerciseFromMistakeId(firstId) : null);
       setExerciseSeq(s => s + 1);
       return;
     }
 
-    const stored = loadSession();
-    if (stored && configsMatch(stored.config, config)) {
-      setCurrentExercise(stored.exercise);
+    // A review is always configured with exact active IDs by Practice. Never
+    // replace a stale/missing review snapshot with a random verb-only exercise.
+    if (config.mistakesOnly) {
+      setCurrentExercise(null);
+      return;
+    }
+
+    if (
+      stored &&
+      restoredExercise &&
+      configsMatch(stored.config, config)
+    ) {
+      setCurrentExercise(restoredExercise);
       setFeedback(stored.feedback);
       setShowAnswer(stored.showAnswer);
       setPendingAnswer(stored.pendingAnswer ?? "");
       setSubmittedValue(stored.submittedValue ?? "");
+      setLetterBuilderState(stored.letterBuilderState ?? null);
       // Session restore: exerciseSeq unchanged — same exercise, same component state.
       return;
     }
@@ -160,19 +201,20 @@ export function useExerciseSession(config: SessionConfig) {
 
     setFeedback(null);
     setShowAnswer(null);
+    setPendingAnswer("");
+    setSubmittedValue("");
+    setLetterBuilderState(null);
     setCurrentExercise(
       generateExerciseFromConfig(
         config,
         settings.difficulty,
-        config.mistakesOnly ? mistakeVerbs : undefined,
         contextJustEnabled ? "gapfill" : undefined,
       ),
     );
     // Bump so LetterBuilder / AnswerInput always remount on a fresh exercise,
     // whether the change came from nextExercise() or a config-driven regeneration.
     setExerciseSeq(s => s + 1);
-    // mistakeVerbs intentionally read from state here (always fresh after
-    // mistakesReady flips); config.id + contextEnabled track config identity.
+    // config.id + contextEnabled track config identity.
     // letterBuilderEnabled is intentionally excluded — it controls the input
     // component only and must never trigger exercise regeneration.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -181,8 +223,6 @@ export function useExerciseSession(config: SessionConfig) {
   // ── Save session state whenever exercise or feedback changes ─────────────────
   useEffect(() => {
     if (!currentExercise) return;
-    // Don't persist review-mode sessions — they are always rebuilt from IDs.
-    if (config.reviewMistakeIds && config.reviewMistakeIds.length > 0) return;
     saveSession({
       config,
       exercise: currentExercise,
@@ -190,62 +230,66 @@ export function useExerciseSession(config: SessionConfig) {
       showAnswer,
       pendingAnswer,
       submittedValue,
+      letterBuilderState: feedback === null ? letterBuilderState : null,
+      pendingMistakeIds: isExactReviewConfig(config)
+        ? pendingMistakeIdsRef.current
+        : undefined,
     });
-  }, [currentExercise, feedback, showAnswer, pendingAnswer, submittedValue]);
+  }, [
+    config,
+    currentExercise,
+    feedback,
+    showAnswer,
+    pendingAnswer,
+    submittedValue,
+    letterBuilderState,
+    reviewQueueVersion,
+  ]);
 
   // ── Next / Skip ────────────────────────────────────────────────────────────
   const nextExercise = () => {
     if (!settings) return;
     const cfg = configRef.current;
-    const wasCorrect = lastFeedbackRef.current === "correct";
-    lastFeedbackRef.current = null;
 
     setFeedback(null);
     setShowAnswer(null);
     setPendingAnswer("");
     setSubmittedValue("");
+    setLetterBuilderState(null);
     setExerciseSeq(s => s + 1);
 
     // ── Specific-mistake-ID review mode ──────────────────────────────────────
-    if (cfg.reviewMistakeIds && cfg.reviewMistakeIds.length > 0) {
+    if (isExactReviewConfig(cfg)) {
       const pending = pendingMistakeIdsRef.current;
 
-      // Current exercise's ID is pending[0].
-      // If answered correctly it was already removed from the front in submitAnswer.
-      // If answered incorrectly it was already rotated to the back in submitAnswer.
-      // So just look at what's next.
       if (pending.length === 0) {
-        // All mistakes have been cleared — signal the UI to navigate away.
         setReviewComplete(true);
         return;
       }
 
       const nextId = pending[0];
-      const ex = exerciseFromMistakeId(nextId) ??
-        generateExerciseFromConfig(cfg, settings.difficulty);
-      setCurrentExercise(ex);
+      setCurrentExercise(exerciseFromMistakeId(nextId));
       return;
     }
 
-    // ── Regular / legacy verb-name review mode ───────────────────────────────
     setCurrentExercise(
-      generateExerciseFromConfig(
-        cfg,
-        settings.difficulty,
-        cfg.mistakesOnly ? mistakeVerbsRef.current : undefined,
-      ),
+      generateExerciseFromConfig(cfg, settings.difficulty),
     );
   };
 
   const setPendingAnswerValue = (value: string) => setPendingAnswer(value);
   const setSubmittedValueValue = (value: string) => setSubmittedValue(value);
+  const updateLetterBuilderState = useCallback(
+    (value: LetterBuilderState | null) => setLetterBuilderState(value),
+    [],
+  );
 
   // ── Submit ─────────────────────────────────────────────────────────────────
   const submitAnswer = async (answer: string) => {
     if (!currentExercise || feedback || !settings || !stats) return;
 
+    setLetterBuilderState(null);
     const correct = isCorrect(answer, currentExercise.answer);
-    lastFeedbackRef.current = correct ? "correct" : "incorrect";
     setFeedback(correct ? "correct" : "incorrect");
     setShowAnswer(
       Array.isArray(currentExercise.answer)
@@ -294,19 +338,18 @@ export function useExerciseSession(config: SessionConfig) {
     // ── Review-mode specific handling ─────────────────────────────────────────
     const cfg = configRef.current;
 
-    if (cfg.reviewMistakeIds && cfg.reviewMistakeIds.length > 0) {
+    if (isExactReviewConfig(cfg)) {
       const pending = pendingMistakeIdsRef.current;
 
       if (correct) {
         // Clear the failure marker so this item no longer shows on the Mistakes
         // screen.  SRS history (interval, easeFactor) is preserved.
         record.lastFailureDate = 0;
-        // Remove from the front of the pending list.
-        pendingMistakeIdsRef.current = pending.slice(1);
+        pendingMistakeIdsRef.current = removeCurrentReviewItem(pending);
       } else {
-        // Rotate to the back so the user will see it again after the rest.
-        pendingMistakeIdsRef.current = [...pending.slice(1), pending[0]];
+        pendingMistakeIdsRef.current = rotateCurrentReviewItem(pending);
       }
+      setReviewQueueVersion(version => version + 1);
 
       await saveProgress(record);
 
@@ -322,32 +365,58 @@ export function useExerciseSession(config: SessionConfig) {
     }
 
     await saveProgress(record);
+    // Keep TrainingMenu's Mistakes option in sync while the user remains
+    // on the current screen.
+    try { window.dispatchEvent(new CustomEvent("mistakes-updated")); } catch { /* ignore */ }
 
-    // Legacy verb-name review tracking
-    if (correct) {
-      const verb = currentExercise.question.verb;
-      if (verb && cfg.reviewVerbs) {
-        reviewVerbsCorrectRef.current.add(verb);
-        const allCorrect = cfg.reviewVerbs.every(v => reviewVerbsCorrectRef.current.has(v));
-        if (allCorrect) {
-          setReviewExhausted(true);
-        }
-      }
-    }
   };
 
   const noMistakes =
-    !!config.mistakesOnly && mistakesReady && mistakeVerbs.length === 0;
+    !!config.mistakesOnly && mistakesReady && activeMistakeIds.length === 0;
 
   const onClearReview = () => {
     // Full teardown of review state so Practice returns to a clean slate.
     pendingMistakeIdsRef.current  = [];
-    reviewVerbsCorrectRef.current = new Set<string>();
-    lastFeedbackRef.current       = null;
-    setReviewExhausted(false);
+    setReviewQueueVersion(version => version + 1);
     setReviewComplete(false);
     clearSession();
     sessionStorage.removeItem("mistakeReview");
+  };
+
+  // ── Skip ─────────────────────────────────────────────────────────────────────
+  // Separate from nextExercise: no answer is submitted. In review mode it
+  // consumes the current item for this session without touching stats, SRS,
+  // or the stored mistake marker.
+  const skipExercise = () => {
+    if (!settings) return;
+    const cfg = configRef.current;
+
+    setFeedback(null);
+    setShowAnswer(null);
+    setPendingAnswer("");
+    setSubmittedValue("");
+    setLetterBuilderState(null);
+    setExerciseSeq(s => s + 1);
+
+    // ── Specific-mistake-ID review mode ────────────────────────────────────────
+    if (isExactReviewConfig(cfg)) {
+      const pending = pendingMistakeIdsRef.current;
+      if (pending.length <= 1) {
+        // Handled by handleSkip in practice.tsx before calling here; guard only.
+        return;
+      }
+      // Remove the current mistake from the queue — one pass only.
+      // The mistake is NOT marked solved; it stays on the Mistakes screen.
+      // Rotating back is intentionally avoided so the user can never be
+      // sent back to a mistake they already skipped this session.
+      pendingMistakeIdsRef.current = removeCurrentReviewItem(pending);
+      setReviewQueueVersion(version => version + 1);
+      const nextId = pendingMistakeIdsRef.current[0];
+      setCurrentExercise(exerciseFromMistakeId(nextId));
+      return;
+    }
+
+    setCurrentExercise(generateExerciseFromConfig(cfg, settings.difficulty));
   };
 
   return {
@@ -357,12 +426,17 @@ export function useExerciseSession(config: SessionConfig) {
     streak,
     feedback,
     showAnswer,
+    pendingAnswer,
+    submittedValue,
+    letterBuilderState,
+    setPendingAnswer: setPendingAnswerValue,
+    setSubmittedValue: setSubmittedValueValue,
+    setLetterBuilderState: updateLetterBuilderState,
     submitAnswer,
     nextExercise,
-    skipExercise: nextExercise,
+    skipExercise,
     dailyGoal: settings?.dailyGoal || 20,
     noMistakes,
-    reviewExhausted,
     reviewComplete,
     onClearReview,
     exerciseSeq,

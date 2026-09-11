@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SkipForward } from "lucide-react";
 import { ExerciseItem } from "../engine/exercises";
-import { useLetterBuilder } from "../hooks/useLetterBuilder";
+import { LetterBuilderState, useLetterBuilder } from "../hooks/useLetterBuilder";
 import { useAudioFeedback } from "../hooks/useAudioFeedback";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
@@ -10,6 +10,8 @@ import { cn } from "../lib/utils";
 
 interface LetterBuilderProps {
   exercise: ExerciseItem;
+  initialState?: LetterBuilderState | null;
+  onStateChange?: (state: LetterBuilderState) => void;
   /** Called with the correct answer string when all letters are revealed. */
   onSuccess: (answer: string) => void;
   /** Called when the user exhausts all 3 wrong-tap attempts. */
@@ -147,6 +149,8 @@ function LetterButtons({ choices, disabledLetters, onTap, compact }: LetterButto
 
 export function LetterBuilder({
   exercise,
+  initialState,
+  onStateChange,
   onSuccess,
   onFailure,
   onSkip,
@@ -167,7 +171,7 @@ export function LetterBuilder({
     isFailed,
     nextPos,
     tapLetter,
-  } = useLetterBuilder(answer);
+  } = useLetterBuilder(answer, initialState, onStateChange);
 
   const { playClick } = useAudioFeedback();
 
@@ -220,12 +224,12 @@ export function LetterBuilder({
       {/* Skip — always available so the user is never stuck */}
       {!finished && (
         <Button
-          variant="ghost"
-          size="sm"
+          variant="tertiary"
+          size="compact"
           onClick={onSkip}
           className={cn(
-            "text-muted-foreground hover:text-foreground gap-1.5 mt-1",
-            compact && "text-xs h-8 px-2"
+            "hover:text-foreground mt-1",
+            compact && "text-xs"
           )}
           data-testid="button-skip"
         >

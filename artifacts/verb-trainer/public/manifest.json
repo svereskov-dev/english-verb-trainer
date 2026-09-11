@@ -4,14 +4,20 @@
   "description": "Train English verb conjugation with instant feedback",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#060d1f",
-  "theme_color": "#060d1f",
+  "background_color": "#060C18",
+  "theme_color": "#060C18",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

@@ -28,6 +28,13 @@ export function generateChoices(correctLetter: string): string[] {
   return all;
 }
 
+export interface LetterBuilderState {
+  revealed: boolean[];
+  wrongTaps: number;
+  disabledLetters: string[];
+  choices: string[];
+}
+
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 
 /**
@@ -38,21 +45,43 @@ export function generateChoices(correctLetter: string): string[] {
  * - After 3 wrong taps `isFailed` becomes true.
  * - When all non-space chars are revealed `isDone` becomes true.
  */
-export function useLetterBuilder(rawAnswer: string) {
+export function useLetterBuilder(
+  rawAnswer: string,
+  initialState?: LetterBuilderState | null,
+  onStateChange?: (state: LetterBuilderState) => void,
+) {
   const chars = useMemo(() => rawAnswer.split(""), [rawAnswer]);
+  const hasValidInitialState =
+    !!initialState &&
+    initialState.revealed.length === chars.length &&
+    initialState.wrongTaps >= 0 &&
+    initialState.wrongTaps <= 3;
 
   // revealed[i] = true means chars[i] is shown; spaces start revealed
   const [revealed, setRevealed] = useState<boolean[]>(() =>
-    chars.map(ch => ch === " ")
+    hasValidInitialState
+      ? initialState!.revealed
+      : chars.map(ch => ch === " ")
   );
 
   // Use a ref so tapLetter closure always sees the freshest count without
   // adding wrongTaps to every callback dependency.
-  const wrongTapsRef = useRef(0);
-  const [wrongTaps, setWrongTaps] = useState(0);
+  const wrongTapsRef = useRef(hasValidInitialState ? initialState!.wrongTaps : 0);
+  const [wrongTaps, setWrongTaps] = useState(
+    hasValidInitialState ? initialState!.wrongTaps : 0,
+  );
 
-  const [disabledLetters, setDisabledLetters] = useState<Set<string>>(new Set());
-  const [choices, setChoices] = useState<string[]>([]);
+  const [disabledLetters, setDisabledLetters] = useState<Set<string>>(
+    () => new Set(hasValidInitialState ? initialState!.disabledLetters : []),
+  );
+  const [choices, setChoices] = useState<string[]>(
+    hasValidInitialState ? initialState!.choices : [],
+  );
+  // A restored choice set already belongs to the current position. The first
+  // choices effect must not replace it with a new random set.
+  const restoredChoicesRef = useRef(
+    hasValidInitialState && initialState!.choices.length > 0,
+  );
 
   // Derived state
   const nextPos = revealed.findIndex(r => !r); // -1 when all revealed
@@ -62,11 +91,25 @@ export function useLetterBuilder(rawAnswer: string) {
   // Regenerate choices whenever we advance to a new position
   useEffect(() => {
     if (isDone || isFailed) return;
+    if (restoredChoicesRef.current) {
+      restoredChoicesRef.current = false;
+      return;
+    }
     setDisabledLetters(new Set());
     setChoices(generateChoices(chars[nextPos]));
     // chars is stable within a single mounted instance (keyed by exerciseSeq)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nextPos, isDone, isFailed]);
+
+  useEffect(() => {
+    if (!onStateChange || isDone || isFailed) return;
+    onStateChange({
+      revealed,
+      wrongTaps,
+      disabledLetters: [...disabledLetters],
+      choices,
+    });
+  }, [revealed, wrongTaps, disabledLetters, choices, isDone, isFailed, onStateChange]);
 
   const tapLetter = useCallback(
     (letter: string) => {

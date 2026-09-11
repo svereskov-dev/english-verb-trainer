@@ -1,0 +1,135 @@
+ask: Refine the Full Access paywall modal
+
+Please update the existing Full Access paywall UI and copy.
+
+This is a UI/copy refinement only. Do not change purchase or entitlement logic unless required to support the existing states correctly.
+
+1. Replace the crown icon
+
+Remove the crown icon.
+
+Use a closed lock icon instead.
+
+Requirements:
+
+use the same visual language as the lock icons already used in Training Mode;
+keep it centered above the title;
+align and size it cleanly;
+do not use a key icon unless the existing icon set makes the lock unsuitable.
+2. Change the title
+
+Replace the current title with:
+
+Полный доступ к VerbFlow навсегда
+
+3. Change the main description
+
+Replace the current description with:
+
+Практикуй все времена английского языка, полное спряжение и формы неправильных глаголов — без ограничений.
+
+4. Android state: localized price available
+
+When the Google Play product and localized price are loaded successfully, show:
+
+[localized price] · один платёж · доступ навсегда
+
+Example only:
+
+$4.99 · один платёж · доступ навсегда
+
+Do not hardcode $4.99.
+
+Use the localized price supplied by Google Play.
+
+Primary button:
+
+Открыть полный доступ — [localized price]
+
+Secondary action:
+
+Восстановить покупку
+
+Keep the normal close button in the top-right corner.
+
+5. Android state: price is still loading
+
+While the product price is loading:
+
+show only one clear loading message:
+
+Загружаем цену...
+
+keep the purchase button disabled;
+button text:
+
+Открыть полный доступ
+
+Do not simultaneously show multiple different “loading/unavailable” messages.
+
+6. Browser / PWA state
+
+When native Google Play Billing is unavailable because the app is running in the browser/PWA preview:
+
+Do not show a purchase button that looks actionable.
+
+Show an informational message:
+
+Покупка доступна только в Android-приложении через Google Play.
+
+In this state:
+
+hide the purchase CTA;
+hide Восстановить покупку if restoration is also unavailable;
+keep the close button;
+optionally show a simple secondary button:
+
+Понятно
+
+if that fits the existing modal interaction.
+
+The browser state should clearly look informational, not like a broken purchase flow.
+
+7. Visual hierarchy
+
+Keep the modal visually simple:
+
+lock icon
+title
+description
+price / status
+primary purchase action
+restore action
+
+Avoid duplicate explanatory blocks if the same information is already communicated elsewhere in the modal.
+
+8. Button design system
+
+Use the shared centralized button styles introduced in the recent button-system refactor.
+
+Do not create new ad-hoc:
+
+border styles;
+button heights;
+corner radii;
+text weights;
+icon alignment rules.
+9. Important
+
+Do not change:
+
+full_access product ID;
+entitlement logic;
+purchase-state logic;
+pending-purchase behavior;
+restoration logic;
+automatic paywall scheduler.
+Done looks like
+crown replaced by a lock;
+title says Полный доступ к VerbFlow навсегда;
+description uses the new Russian copy;
+Android users see the localized price and a clear purchase CTA;
+loading state is simple and non-duplicative;
+browser/PWA users see an informational state without a fake actionable purchase button;
+restore action is shown only where it can actually work;
+modal uses the shared button design system.

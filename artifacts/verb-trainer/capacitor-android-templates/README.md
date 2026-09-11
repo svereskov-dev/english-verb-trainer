@@ -60,7 +60,7 @@ cp capacitor-android-templates/capacitor_bridge_layout_main.xml \
 
 | File | Purpose |
 |------|---------|
-| `colors.xml` | Single source of truth — `appBackground` = `#070B17` |
+| `colors.xml` | Single source of truth — `appBackground` = `#060C18` |
 | `styles.xml` (values/) | Base theme: transparent status bar, solid dark nav bar, light icons |
 | `styles.xml` (values-v35/) | Android 15: same as base, reinforces nav-bar color |
 | `splash.xml` | Splash background drawable matching the app |

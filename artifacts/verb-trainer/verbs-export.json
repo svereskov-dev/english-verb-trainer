@@ -1,0 +1,4698 @@
+{
+  "source": "src/data/verbs.ts",
+  "exportedAt": "2026-09-03",
+  "totalVerbs": 335,
+  "stableVerbIdsPresent": false,
+  "verbs": [
+    {
+      "id": null,
+      "infinitive": "be",
+      "translation": "быть",
+      "forms": {
+        "v2": "was/were",
+        "v3": "been"
+      },
+      "isIrregular": true,
+      "behavior": "copular",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 1
+    },
+    {
+      "id": null,
+      "infinitive": "have",
+      "translation": "иметь",
+      "forms": {
+        "v2": "had",
+        "v3": "had"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 2
+    },
+    {
+      "id": null,
+      "infinitive": "do",
+      "translation": "делать",
+      "forms": {
+        "v2": "did",
+        "v3": "done"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 3
+    },
+    {
+      "id": null,
+      "infinitive": "say",
+      "translation": "говорить",
+      "forms": {
+        "v2": "said",
+        "v3": "said"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 4
+    },
+    {
+      "id": null,
+      "infinitive": "go",
+      "translation": "идти",
+      "forms": {
+        "v2": "went",
+        "v3": "gone"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 5
+    },
+    {
+      "id": null,
+      "infinitive": "get",
+      "translation": "получать",
+      "forms": {
+        "v2": "got",
+        "v3": "gotten"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 6
+    },
+    {
+      "id": null,
+      "infinitive": "make",
+      "translation": "делать",
+      "forms": {
+        "v2": "made",
+        "v3": "made"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 7
+    },
+    {
+      "id": null,
+      "infinitive": "know",
+      "translation": "знать",
+      "forms": {
+        "v2": "knew",
+        "v3": "known"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 8
+    },
+    {
+      "id": null,
+      "infinitive": "think",
+      "translation": "думать",
+      "forms": {
+        "v2": "thought",
+        "v3": "thought"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 9
+    },
+    {
+      "id": null,
+      "infinitive": "take",
+      "translation": "брать",
+      "forms": {
+        "v2": "took",
+        "v3": "taken"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 10
+    },
+    {
+      "id": null,
+      "infinitive": "see",
+      "translation": "видеть",
+      "forms": {
+        "v2": "saw",
+        "v3": "seen"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 11
+    },
+    {
+      "id": null,
+      "infinitive": "come",
+      "translation": "приходить",
+      "forms": {
+        "v2": "came",
+        "v3": "come"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 12
+    },
+    {
+      "id": null,
+      "infinitive": "give",
+      "translation": "давать",
+      "forms": {
+        "v2": "gave",
+        "v3": "given"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 13
+    },
+    {
+      "id": null,
+      "infinitive": "find",
+      "translation": "находить",
+      "forms": {
+        "v2": "found",
+        "v3": "found"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 14
+    },
+    {
+      "id": null,
+      "infinitive": "tell",
+      "translation": "рассказывать",
+      "forms": {
+        "v2": "told",
+        "v3": "told"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 15
+    },
+    {
+      "id": null,
+      "infinitive": "become",
+      "translation": "становиться",
+      "forms": {
+        "v2": "became",
+        "v3": "become"
+      },
+      "isIrregular": true,
+      "behavior": "copular",
+      "transitivity": "intransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 16
+    },
+    {
+      "id": null,
+      "infinitive": "leave",
+      "translation": "уходить",
+      "forms": {
+        "v2": "left",
+        "v3": "left"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 17
+    },
+    {
+      "id": null,
+      "infinitive": "feel",
+      "translation": "чувствовать",
+      "forms": {
+        "v2": "felt",
+        "v3": "felt"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 18
+    },
+    {
+      "id": null,
+      "infinitive": "put",
+      "translation": "класть",
+      "forms": {
+        "v2": "put",
+        "v3": "put"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 19
+    },
+    {
+      "id": null,
+      "infinitive": "bring",
+      "translation": "приносить",
+      "forms": {
+        "v2": "brought",
+        "v3": "brought"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 20
+    },
+    {
+      "id": null,
+      "infinitive": "begin",
+      "translation": "начинать",
+      "forms": {
+        "v2": "began",
+        "v3": "begun"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 21
+    },
+    {
+      "id": null,
+      "infinitive": "keep",
+      "translation": "хранить",
+      "forms": {
+        "v2": "kept",
+        "v3": "kept"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 22
+    },
+    {
+      "id": null,
+      "infinitive": "hold",
+      "translation": "держать",
+      "forms": {
+        "v2": "held",
+        "v3": "held"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 23
+    },
+    {
+      "id": null,
+      "infinitive": "write",
+      "translation": "писать",
+      "forms": {
+        "v2": "wrote",
+        "v3": "written"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation", "communication"],
+      "sourceFrequencyRank": 24
+    },
+    {
+      "id": null,
+      "infinitive": "stand",
+      "translation": "стоять",
+      "forms": {
+        "v2": "stood",
+        "v3": "stood"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 25
+    },
+    {
+      "id": null,
+      "infinitive": "hear",
+      "translation": "слышать",
+      "forms": {
+        "v2": "heard",
+        "v3": "heard"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 26
+    },
+    {
+      "id": null,
+      "infinitive": "show",
+      "translation": "показывать",
+      "forms": {
+        "v2": "showed",
+        "v3": "shown"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 27
+    },
+    {
+      "id": null,
+      "infinitive": "let",
+      "translation": "позволять",
+      "forms": {
+        "v2": "let",
+        "v3": "let"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 28
+    },
+    {
+      "id": null,
+      "infinitive": "meet",
+      "translation": "встречать",
+      "forms": {
+        "v2": "met",
+        "v3": "met"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 29
+    },
+    {
+      "id": null,
+      "infinitive": "lead",
+      "translation": "вести",
+      "forms": {
+        "v2": "led",
+        "v3": "led"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 30
+    },
+    {
+      "id": null,
+      "infinitive": "run",
+      "translation": "бежать",
+      "forms": {
+        "v2": "ran",
+        "v3": "run"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 31
+    },
+    {
+      "id": null,
+      "infinitive": "set",
+      "translation": "устанавливать",
+      "forms": {
+        "v2": "set",
+        "v3": "set"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 32
+    },
+    {
+      "id": null,
+      "infinitive": "buy",
+      "translation": "покупать",
+      "forms": {
+        "v2": "bought",
+        "v3": "bought"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 33
+    },
+    {
+      "id": null,
+      "infinitive": "speak",
+      "translation": "говорить",
+      "forms": {
+        "v2": "spoke",
+        "v3": "spoken"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 34
+    },
+    {
+      "id": null,
+      "infinitive": "lose",
+      "translation": "терять",
+      "forms": {
+        "v2": "lost",
+        "v3": "lost"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 35
+    },
+    {
+      "id": null,
+      "infinitive": "pay",
+      "translation": "платить",
+      "forms": {
+        "v2": "paid",
+        "v3": "paid"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 36
+    },
+    {
+      "id": null,
+      "infinitive": "send",
+      "translation": "отправлять",
+      "forms": {
+        "v2": "sent",
+        "v3": "sent"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 37
+    },
+    {
+      "id": null,
+      "infinitive": "build",
+      "translation": "строить",
+      "forms": {
+        "v2": "built",
+        "v3": "built"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 38
+    },
+    {
+      "id": null,
+      "infinitive": "sit",
+      "translation": "сидеть",
+      "forms": {
+        "v2": "sat",
+        "v3": "sat"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 39
+    },
+    {
+      "id": null,
+      "infinitive": "fall",
+      "translation": "падать",
+      "forms": {
+        "v2": "fell",
+        "v3": "fallen"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 40
+    },
+    {
+      "id": null,
+      "infinitive": "cut",
+      "translation": "резать",
+      "forms": {
+        "v2": "cut",
+        "v3": "cut"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 41
+    },
+    {
+      "id": null,
+      "infinitive": "read",
+      "translation": "читать",
+      "forms": {
+        "v2": "read",
+        "v3": "read"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 42
+    },
+    {
+      "id": null,
+      "infinitive": "spend",
+      "translation": "тратить",
+      "forms": {
+        "v2": "spent",
+        "v3": "spent"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 43
+    },
+    {
+      "id": null,
+      "infinitive": "sell",
+      "translation": "продавать",
+      "forms": {
+        "v2": "sold",
+        "v3": "sold"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 44
+    },
+    {
+      "id": null,
+      "infinitive": "understand",
+      "translation": "понимать",
+      "forms": {
+        "v2": "understood",
+        "v3": "understood"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 45
+    },
+    {
+      "id": null,
+      "infinitive": "break",
+      "translation": "ломать",
+      "forms": {
+        "v2": "broke",
+        "v3": "broken"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 46
+    },
+    {
+      "id": null,
+      "infinitive": "win",
+      "translation": "побеждать",
+      "forms": {
+        "v2": "won",
+        "v3": "won"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 47
+    },
+    {
+      "id": null,
+      "infinitive": "drive",
+      "translation": "водить",
+      "forms": {
+        "v2": "drove",
+        "v3": "driven"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 48
+    },
+    {
+      "id": null,
+      "infinitive": "eat",
+      "translation": "есть",
+      "forms": {
+        "v2": "ate",
+        "v3": "eaten"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 49
+    },
+    {
+      "id": null,
+      "infinitive": "drink",
+      "translation": "пить",
+      "forms": {
+        "v2": "drank",
+        "v3": "drunk"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 50
+    },
+    {
+      "id": null,
+      "infinitive": "rise",
+      "translation": "подниматься",
+      "forms": {
+        "v2": "rose",
+        "v3": "risen"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 51
+    },
+    {
+      "id": null,
+      "infinitive": "grow",
+      "translation": "расти",
+      "forms": {
+        "v2": "grew",
+        "v3": "grown"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 52
+    },
+    {
+      "id": null,
+      "infinitive": "draw",
+      "translation": "рисовать",
+      "forms": {
+        "v2": "drew",
+        "v3": "drawn"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 53
+    },
+    {
+      "id": null,
+      "infinitive": "choose",
+      "translation": "выбирать",
+      "forms": {
+        "v2": "chose",
+        "v3": "chosen"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 54
+    },
+    {
+      "id": null,
+      "infinitive": "throw",
+      "translation": "бросать",
+      "forms": {
+        "v2": "threw",
+        "v3": "thrown"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 55
+    },
+    {
+      "id": null,
+      "infinitive": "catch",
+      "translation": "ловить",
+      "forms": {
+        "v2": "caught",
+        "v3": "caught"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 56
+    },
+    {
+      "id": null,
+      "infinitive": "teach",
+      "translation": "преподавать",
+      "forms": {
+        "v2": "taught",
+        "v3": "taught"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 57
+    },
+    {
+      "id": null,
+      "infinitive": "fly",
+      "translation": "летать",
+      "forms": {
+        "v2": "flew",
+        "v3": "flown"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 58
+    },
+    {
+      "id": null,
+      "infinitive": "forget",
+      "translation": "забывать",
+      "forms": {
+        "v2": "forgot",
+        "v3": "forgotten"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 59
+    },
+    {
+      "id": null,
+      "infinitive": "swim",
+      "translation": "плавать",
+      "forms": {
+        "v2": "swam",
+        "v3": "swum"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 60
+    },
+    {
+      "id": null,
+      "infinitive": "sing",
+      "translation": "петь",
+      "forms": {
+        "v2": "sang",
+        "v3": "sung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 61
+    },
+    {
+      "id": null,
+      "infinitive": "ride",
+      "translation": "ездить",
+      "forms": {
+        "v2": "rode",
+        "v3": "ridden"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 62
+    },
+    {
+      "id": null,
+      "infinitive": "wear",
+      "translation": "носить",
+      "forms": {
+        "v2": "wore",
+        "v3": "worn"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 63
+    },
+    {
+      "id": null,
+      "infinitive": "wake",
+      "translation": "просыпаться",
+      "forms": {
+        "v2": "woke",
+        "v3": "woken"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 64
+    },
+    {
+      "id": null,
+      "infinitive": "shake",
+      "translation": "трясти",
+      "forms": {
+        "v2": "shook",
+        "v3": "shaken"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 65
+    },
+    {
+      "id": null,
+      "infinitive": "steal",
+      "translation": "красть",
+      "forms": {
+        "v2": "stole",
+        "v3": "stolen"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 66
+    },
+    {
+      "id": null,
+      "infinitive": "hide",
+      "translation": "прятать",
+      "forms": {
+        "v2": "hid",
+        "v3": "hidden"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 67
+    },
+    {
+      "id": null,
+      "infinitive": "bite",
+      "translation": "кусать",
+      "forms": {
+        "v2": "bit",
+        "v3": "bitten"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 68
+    },
+    {
+      "id": null,
+      "infinitive": "freeze",
+      "translation": "замерзать",
+      "forms": {
+        "v2": "froze",
+        "v3": "frozen"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 69
+    },
+    {
+      "id": null,
+      "infinitive": "tear",
+      "translation": "рвать",
+      "forms": {
+        "v2": "tore",
+        "v3": "torn"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 70
+    },
+    {
+      "id": null,
+      "infinitive": "blow",
+      "translation": "дуть",
+      "forms": {
+        "v2": "blew",
+        "v3": "blown"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 71
+    },
+    {
+      "id": null,
+      "infinitive": "strike",
+      "translation": "ударять",
+      "forms": {
+        "v2": "struck",
+        "v3": "struck"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 72
+    },
+    {
+      "id": null,
+      "infinitive": "stick",
+      "translation": "приклеивать",
+      "forms": {
+        "v2": "stuck",
+        "v3": "stuck"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 73
+    },
+    {
+      "id": null,
+      "infinitive": "swing",
+      "translation": "качать",
+      "forms": {
+        "v2": "swung",
+        "v3": "swung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 74
+    },
+    {
+      "id": null,
+      "infinitive": "dig",
+      "translation": "копать",
+      "forms": {
+        "v2": "dug",
+        "v3": "dug"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 75
+    },
+    {
+      "id": null,
+      "infinitive": "hang",
+      "translation": "вешать",
+      "forms": {
+        "v2": "hung",
+        "v3": "hung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 76
+    },
+    {
+      "id": null,
+      "infinitive": "shoot",
+      "translation": "стрелять",
+      "forms": {
+        "v2": "shot",
+        "v3": "shot"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 77
+    },
+    {
+      "id": null,
+      "infinitive": "spin",
+      "translation": "вращать",
+      "forms": {
+        "v2": "spun",
+        "v3": "spun"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 78
+    },
+    {
+      "id": null,
+      "infinitive": "spread",
+      "translation": "распространять",
+      "forms": {
+        "v2": "spread",
+        "v3": "spread"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 79
+    },
+    {
+      "id": null,
+      "infinitive": "hurt",
+      "translation": "причинять боль",
+      "forms": {
+        "v2": "hurt",
+        "v3": "hurt"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 80
+    },
+    {
+      "id": null,
+      "infinitive": "hit",
+      "translation": "ударять",
+      "forms": {
+        "v2": "hit",
+        "v3": "hit"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 81
+    },
+    {
+      "id": null,
+      "infinitive": "cost",
+      "translation": "стоить",
+      "forms": {
+        "v2": "cost",
+        "v3": "cost"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 82
+    },
+    {
+      "id": null,
+      "infinitive": "shut",
+      "translation": "закрывать",
+      "forms": {
+        "v2": "shut",
+        "v3": "shut"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 83
+    },
+    {
+      "id": null,
+      "infinitive": "beat",
+      "translation": "бить",
+      "forms": {
+        "v2": "beat",
+        "v3": "beaten"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 84
+    },
+    {
+      "id": null,
+      "infinitive": "lend",
+      "translation": "одалживать",
+      "forms": {
+        "v2": "lent",
+        "v3": "lent"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 85
+    },
+    {
+      "id": null,
+      "infinitive": "bend",
+      "translation": "сгибать",
+      "forms": {
+        "v2": "bent",
+        "v3": "bent"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 86
+    },
+    {
+      "id": null,
+      "infinitive": "mean",
+      "translation": "означать",
+      "forms": {
+        "v2": "meant",
+        "v3": "meant"
+      },
+      "isIrregular": true,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 87
+    },
+    {
+      "id": null,
+      "infinitive": "sweep",
+      "translation": "подметать",
+      "forms": {
+        "v2": "swept",
+        "v3": "swept"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 88
+    },
+    {
+      "id": null,
+      "infinitive": "sleep",
+      "translation": "спать",
+      "forms": {
+        "v2": "slept",
+        "v3": "slept"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 89
+    },
+    {
+      "id": null,
+      "infinitive": "creep",
+      "translation": "красться",
+      "forms": {
+        "v2": "crept",
+        "v3": "crept"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 90
+    },
+    {
+      "id": null,
+      "infinitive": "weep",
+      "translation": "плакать",
+      "forms": {
+        "v2": "wept",
+        "v3": "wept"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 91
+    },
+    {
+      "id": null,
+      "infinitive": "deal",
+      "translation": "иметь дело",
+      "forms": {
+        "v2": "dealt",
+        "v3": "dealt"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 92
+    },
+    {
+      "id": null,
+      "infinitive": "forbid",
+      "translation": "запрещать",
+      "forms": {
+        "v2": "forbade",
+        "v3": "forbidden"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 93
+    },
+    {
+      "id": null,
+      "infinitive": "forgive",
+      "translation": "прощать",
+      "forms": {
+        "v2": "forgave",
+        "v3": "forgiven"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 94
+    },
+    {
+      "id": null,
+      "infinitive": "withdraw",
+      "translation": "снимать",
+      "forms": {
+        "v2": "withdrew",
+        "v3": "withdrawn"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 95
+    },
+    {
+      "id": null,
+      "infinitive": "withstand",
+      "translation": "выдерживать",
+      "forms": {
+        "v2": "withstood",
+        "v3": "withstood"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 96
+    },
+    {
+      "id": null,
+      "infinitive": "mislead",
+      "translation": "вводить в заблуждение",
+      "forms": {
+        "v2": "misled",
+        "v3": "misled"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 97
+    },
+    {
+      "id": null,
+      "infinitive": "overcome",
+      "translation": "преодолевать",
+      "forms": {
+        "v2": "overcame",
+        "v3": "overcome"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 98
+    },
+    {
+      "id": null,
+      "infinitive": "undergo",
+      "translation": "проходить через",
+      "forms": {
+        "v2": "underwent",
+        "v3": "undergone"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 99
+    },
+    {
+      "id": null,
+      "infinitive": "upset",
+      "translation": "расстраивать",
+      "forms": {
+        "v2": "upset",
+        "v3": "upset"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 100
+    },
+    {
+      "id": null,
+      "infinitive": "undo",
+      "translation": "отменять",
+      "forms": {
+        "v2": "undid",
+        "v3": "undone"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 101
+    },
+    {
+      "id": null,
+      "infinitive": "mistake",
+      "translation": "ошибаться",
+      "forms": {
+        "v2": "mistook",
+        "v3": "mistaken"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 102
+    },
+    {
+      "id": null,
+      "infinitive": "ring",
+      "translation": "звонить",
+      "forms": {
+        "v2": "rang",
+        "v3": "rung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 103
+    },
+    {
+      "id": null,
+      "infinitive": "sink",
+      "translation": "тонуть",
+      "forms": {
+        "v2": "sank",
+        "v3": "sunk"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 104
+    },
+    {
+      "id": null,
+      "infinitive": "spring",
+      "translation": "прыгать",
+      "forms": {
+        "v2": "sprang",
+        "v3": "sprung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 105
+    },
+    {
+      "id": null,
+      "infinitive": "shrink",
+      "translation": "сжиматься",
+      "forms": {
+        "v2": "shrank",
+        "v3": "shrunk"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 106
+    },
+    {
+      "id": null,
+      "infinitive": "stink",
+      "translation": "вонять",
+      "forms": {
+        "v2": "stank",
+        "v3": "stunk"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 107
+    },
+    {
+      "id": null,
+      "infinitive": "cling",
+      "translation": "цепляться",
+      "forms": {
+        "v2": "clung",
+        "v3": "clung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 108
+    },
+    {
+      "id": null,
+      "infinitive": "fling",
+      "translation": "бросать",
+      "forms": {
+        "v2": "flung",
+        "v3": "flung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 109
+    },
+    {
+      "id": null,
+      "infinitive": "sting",
+      "translation": "жалить",
+      "forms": {
+        "v2": "stung",
+        "v3": "stung"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 110
+    },
+    {
+      "id": null,
+      "infinitive": "slide",
+      "translation": "скользить",
+      "forms": {
+        "v2": "slid",
+        "v3": "slid"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 111
+    },
+    {
+      "id": null,
+      "infinitive": "stride",
+      "translation": "шагать",
+      "forms": {
+        "v2": "strode",
+        "v3": "stridden"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 112
+    },
+    {
+      "id": null,
+      "infinitive": "kneel",
+      "translation": "стоять на коленях",
+      "forms": {
+        "v2": "knelt",
+        "v3": "knelt"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 113
+    },
+    {
+      "id": null,
+      "infinitive": "speed",
+      "translation": "ускоряться",
+      "forms": {
+        "v2": "sped",
+        "v3": "sped"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 114
+    },
+    {
+      "id": null,
+      "infinitive": "bleed",
+      "translation": "кровоточить",
+      "forms": {
+        "v2": "bled",
+        "v3": "bled"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 115
+    },
+    {
+      "id": null,
+      "infinitive": "breed",
+      "translation": "разводить",
+      "forms": {
+        "v2": "bred",
+        "v3": "bred"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 116
+    },
+    {
+      "id": null,
+      "infinitive": "feed",
+      "translation": "кормить",
+      "forms": {
+        "v2": "fed",
+        "v3": "fed"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 117
+    },
+    {
+      "id": null,
+      "infinitive": "flee",
+      "translation": "убегать",
+      "forms": {
+        "v2": "fled",
+        "v3": "fled"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 118
+    },
+    {
+      "id": null,
+      "infinitive": "shed",
+      "translation": "сбрасывать",
+      "forms": {
+        "v2": "shed",
+        "v3": "shed"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 119
+    },
+    {
+      "id": null,
+      "infinitive": "bid",
+      "translation": "предлагать цену",
+      "forms": {
+        "v2": "bid",
+        "v3": "bid"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 120
+    },
+    {
+      "id": null,
+      "infinitive": "rid",
+      "translation": "избавляться",
+      "forms": {
+        "v2": "rid",
+        "v3": "rid"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 121
+    },
+    {
+      "id": null,
+      "infinitive": "quit",
+      "translation": "бросать",
+      "forms": {
+        "v2": "quit",
+        "v3": "quit"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 122
+    },
+    {
+      "id": null,
+      "infinitive": "thrust",
+      "translation": "толкать",
+      "forms": {
+        "v2": "thrust",
+        "v3": "thrust"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 123
+    },
+    {
+      "id": null,
+      "infinitive": "cast",
+      "translation": "бросать",
+      "forms": {
+        "v2": "cast",
+        "v3": "cast"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 124
+    },
+    {
+      "id": null,
+      "infinitive": "burst",
+      "translation": "взрываться",
+      "forms": {
+        "v2": "burst",
+        "v3": "burst"
+      },
+      "isIrregular": true,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 125
+    },
+    {
+      "id": null,
+      "infinitive": "work",
+      "translation": "работать",
+      "forms": {
+        "v2": "worked",
+        "v3": "worked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 126
+    },
+    {
+      "id": null,
+      "infinitive": "talk",
+      "translation": "разговаривать",
+      "forms": {
+        "v2": "talked",
+        "v3": "talked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 127
+    },
+    {
+      "id": null,
+      "infinitive": "walk",
+      "translation": "ходить",
+      "forms": {
+        "v2": "walked",
+        "v3": "walked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 128
+    },
+    {
+      "id": null,
+      "infinitive": "play",
+      "translation": "играть",
+      "forms": {
+        "v2": "played",
+        "v3": "played"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 129
+    },
+    {
+      "id": null,
+      "infinitive": "watch",
+      "translation": "смотреть",
+      "forms": {
+        "v2": "watched",
+        "v3": "watched"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 130
+    },
+    {
+      "id": null,
+      "infinitive": "listen",
+      "translation": "слушать",
+      "forms": {
+        "v2": "listened",
+        "v3": "listened"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 131
+    },
+    {
+      "id": null,
+      "infinitive": "open",
+      "translation": "открывать",
+      "forms": {
+        "v2": "opened",
+        "v3": "opened"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 132
+    },
+    {
+      "id": null,
+      "infinitive": "close",
+      "translation": "закрывать",
+      "forms": {
+        "v2": "closed",
+        "v3": "closed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 133
+    },
+    {
+      "id": null,
+      "infinitive": "start",
+      "translation": "начинать",
+      "forms": {
+        "v2": "started",
+        "v3": "started"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 134
+    },
+    {
+      "id": null,
+      "infinitive": "stop",
+      "translation": "останавливать",
+      "forms": {
+        "v2": "stopped",
+        "v3": "stopped"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 135
+    },
+    {
+      "id": null,
+      "infinitive": "finish",
+      "translation": "заканчивать",
+      "forms": {
+        "v2": "finished",
+        "v3": "finished"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 136
+    },
+    {
+      "id": null,
+      "infinitive": "help",
+      "translation": "помогать",
+      "forms": {
+        "v2": "helped",
+        "v3": "helped"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 137
+    },
+    {
+      "id": null,
+      "infinitive": "ask",
+      "translation": "спрашивать",
+      "forms": {
+        "v2": "asked",
+        "v3": "asked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 138
+    },
+    {
+      "id": null,
+      "infinitive": "answer",
+      "translation": "отвечать",
+      "forms": {
+        "v2": "answered",
+        "v3": "answered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 139
+    },
+    {
+      "id": null,
+      "infinitive": "use",
+      "translation": "использовать",
+      "forms": {
+        "v2": "used",
+        "v3": "used"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 140
+    },
+    {
+      "id": null,
+      "infinitive": "move",
+      "translation": "двигаться",
+      "forms": {
+        "v2": "moved",
+        "v3": "moved"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 141
+    },
+    {
+      "id": null,
+      "infinitive": "turn",
+      "translation": "поворачивать",
+      "forms": {
+        "v2": "turned",
+        "v3": "turned"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 142
+    },
+    {
+      "id": null,
+      "infinitive": "learn",
+      "translation": "изучать",
+      "forms": {
+        "v2": "learned",
+        "v3": "learned"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 143
+    },
+    {
+      "id": null,
+      "infinitive": "explain",
+      "translation": "объяснять",
+      "forms": {
+        "v2": "explained",
+        "v3": "explained"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 144
+    },
+    {
+      "id": null,
+      "infinitive": "try",
+      "translation": "пытаться",
+      "forms": {
+        "v2": "tried",
+        "v3": "tried"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 145
+    },
+    {
+      "id": null,
+      "infinitive": "study",
+      "translation": "учиться",
+      "forms": {
+        "v2": "studied",
+        "v3": "studied"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 146
+    },
+    {
+      "id": null,
+      "infinitive": "practice",
+      "translation": "практиковать",
+      "forms": {
+        "v2": "practiced",
+        "v3": "practiced"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 147
+    },
+    {
+      "id": null,
+      "infinitive": "cook",
+      "translation": "готовить",
+      "forms": {
+        "v2": "cooked",
+        "v3": "cooked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 148
+    },
+    {
+      "id": null,
+      "infinitive": "clean",
+      "translation": "убирать",
+      "forms": {
+        "v2": "cleaned",
+        "v3": "cleaned"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 149
+    },
+    {
+      "id": null,
+      "infinitive": "wash",
+      "translation": "мыть",
+      "forms": {
+        "v2": "washed",
+        "v3": "washed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 150
+    },
+    {
+      "id": null,
+      "infinitive": "call",
+      "translation": "звонить",
+      "forms": {
+        "v2": "called",
+        "v3": "called"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 151
+    },
+    {
+      "id": null,
+      "infinitive": "wait",
+      "translation": "ждать",
+      "forms": {
+        "v2": "waited",
+        "v3": "waited"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 152
+    },
+    {
+      "id": null,
+      "infinitive": "live",
+      "translation": "жить",
+      "forms": {
+        "v2": "lived",
+        "v3": "lived"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 153
+    },
+    {
+      "id": null,
+      "infinitive": "love",
+      "translation": "любить",
+      "forms": {
+        "v2": "loved",
+        "v3": "loved"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 154
+    },
+    {
+      "id": null,
+      "infinitive": "like",
+      "translation": "нравиться",
+      "forms": {
+        "v2": "liked",
+        "v3": "liked"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 155
+    },
+    {
+      "id": null,
+      "infinitive": "hate",
+      "translation": "ненавидеть",
+      "forms": {
+        "v2": "hated",
+        "v3": "hated"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 156
+    },
+    {
+      "id": null,
+      "infinitive": "need",
+      "translation": "нуждаться",
+      "forms": {
+        "v2": "needed",
+        "v3": "needed"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 157
+    },
+    {
+      "id": null,
+      "infinitive": "plan",
+      "translation": "планировать",
+      "forms": {
+        "v2": "planned",
+        "v3": "planned"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 158
+    },
+    {
+      "id": null,
+      "infinitive": "check",
+      "translation": "проверять",
+      "forms": {
+        "v2": "checked",
+        "v3": "checked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 159
+    },
+    {
+      "id": null,
+      "infinitive": "change",
+      "translation": "изменять",
+      "forms": {
+        "v2": "changed",
+        "v3": "changed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 160
+    },
+    {
+      "id": null,
+      "infinitive": "join",
+      "translation": "присоединяться",
+      "forms": {
+        "v2": "joined",
+        "v3": "joined"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 161
+    },
+    {
+      "id": null,
+      "infinitive": "jump",
+      "translation": "прыгать",
+      "forms": {
+        "v2": "jumped",
+        "v3": "jumped"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 162
+    },
+    {
+      "id": null,
+      "infinitive": "kick",
+      "translation": "пинать",
+      "forms": {
+        "v2": "kicked",
+        "v3": "kicked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 163
+    },
+    {
+      "id": null,
+      "infinitive": "laugh",
+      "translation": "смеяться",
+      "forms": {
+        "v2": "laughed",
+        "v3": "laughed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 164
+    },
+    {
+      "id": null,
+      "infinitive": "smile",
+      "translation": "улыбаться",
+      "forms": {
+        "v2": "smiled",
+        "v3": "smiled"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 165
+    },
+    {
+      "id": null,
+      "infinitive": "cry",
+      "translation": "плакать",
+      "forms": {
+        "v2": "cried",
+        "v3": "cried"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 166
+    },
+    {
+      "id": null,
+      "infinitive": "push",
+      "translation": "толкать",
+      "forms": {
+        "v2": "pushed",
+        "v3": "pushed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 167
+    },
+    {
+      "id": null,
+      "infinitive": "pull",
+      "translation": "тянуть",
+      "forms": {
+        "v2": "pulled",
+        "v3": "pulled"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 168
+    },
+    {
+      "id": null,
+      "infinitive": "save",
+      "translation": "сохранять",
+      "forms": {
+        "v2": "saved",
+        "v3": "saved"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 169
+    },
+    {
+      "id": null,
+      "infinitive": "serve",
+      "translation": "обслуживать",
+      "forms": {
+        "v2": "served",
+        "v3": "served"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 170
+    },
+    {
+      "id": null,
+      "infinitive": "share",
+      "translation": "делиться",
+      "forms": {
+        "v2": "shared",
+        "v3": "shared"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 171
+    },
+    {
+      "id": null,
+      "infinitive": "stay",
+      "translation": "оставаться",
+      "forms": {
+        "v2": "stayed",
+        "v3": "stayed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 172
+    },
+    {
+      "id": null,
+      "infinitive": "die",
+      "translation": "умирать",
+      "forms": {
+        "v2": "died",
+        "v3": "died"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 173
+    },
+    {
+      "id": null,
+      "infinitive": "want",
+      "translation": "хотеть",
+      "forms": {
+        "v2": "wanted",
+        "v3": "wanted"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 174
+    },
+    {
+      "id": null,
+      "infinitive": "wish",
+      "translation": "желать",
+      "forms": {
+        "v2": "wished",
+        "v3": "wished"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 175
+    },
+    {
+      "id": null,
+      "infinitive": "hope",
+      "translation": "надеяться",
+      "forms": {
+        "v2": "hoped",
+        "v3": "hoped"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 176
+    },
+    {
+      "id": null,
+      "infinitive": "expect",
+      "translation": "ожидать",
+      "forms": {
+        "v2": "expected",
+        "v3": "expected"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 177
+    },
+    {
+      "id": null,
+      "infinitive": "kill",
+      "translation": "убивать",
+      "forms": {
+        "v2": "killed",
+        "v3": "killed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 178
+    },
+    {
+      "id": null,
+      "infinitive": "remain",
+      "translation": "оставаться",
+      "forms": {
+        "v2": "remained",
+        "v3": "remained"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 179
+    },
+    {
+      "id": null,
+      "infinitive": "raise",
+      "translation": "поднимать",
+      "forms": {
+        "v2": "raised",
+        "v3": "raised"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 180
+    },
+    {
+      "id": null,
+      "infinitive": "cause",
+      "translation": "вызывать",
+      "forms": {
+        "v2": "caused",
+        "v3": "caused"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 181
+    },
+    {
+      "id": null,
+      "infinitive": "place",
+      "translation": "размещать",
+      "forms": {
+        "v2": "placed",
+        "v3": "placed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 182
+    },
+    {
+      "id": null,
+      "infinitive": "arrive",
+      "translation": "прибывать",
+      "forms": {
+        "v2": "arrived",
+        "v3": "arrived"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 183
+    },
+    {
+      "id": null,
+      "infinitive": "matter",
+      "translation": "иметь значение",
+      "forms": {
+        "v2": "mattered",
+        "v3": "mattered"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 184
+    },
+    {
+      "id": null,
+      "infinitive": "exist",
+      "translation": "существовать",
+      "forms": {
+        "v2": "existed",
+        "v3": "existed"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 185
+    },
+    {
+      "id": null,
+      "infinitive": "trust",
+      "translation": "доверять",
+      "forms": {
+        "v2": "trusted",
+        "v3": "trusted"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 186
+    },
+    {
+      "id": null,
+      "infinitive": "touch",
+      "translation": "трогать",
+      "forms": {
+        "v2": "touched",
+        "v3": "touched"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 187
+    },
+    {
+      "id": null,
+      "infinitive": "avoid",
+      "translation": "избегать",
+      "forms": {
+        "v2": "avoided",
+        "v3": "avoided"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 188
+    },
+    {
+      "id": null,
+      "infinitive": "connect",
+      "translation": "соединять",
+      "forms": {
+        "v2": "connected",
+        "v3": "connected"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 189
+    },
+    {
+      "id": null,
+      "infinitive": "search",
+      "translation": "искать",
+      "forms": {
+        "v2": "searched",
+        "v3": "searched"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 190
+    },
+    {
+      "id": null,
+      "infinitive": "travel",
+      "translation": "путешествовать",
+      "forms": {
+        "v2": "traveled",
+        "v3": "traveled"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 191
+    },
+    {
+      "id": null,
+      "infinitive": "visit",
+      "translation": "посещать",
+      "forms": {
+        "v2": "visited",
+        "v3": "visited"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 192
+    },
+    {
+      "id": null,
+      "infinitive": "develop",
+      "translation": "развивать",
+      "forms": {
+        "v2": "developed",
+        "v3": "developed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation", "change"],
+      "sourceFrequencyRank": 193
+    },
+    {
+      "id": null,
+      "infinitive": "include",
+      "translation": "включать",
+      "forms": {
+        "v2": "included",
+        "v3": "included"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 194
+    },
+    {
+      "id": null,
+      "infinitive": "allow",
+      "translation": "позволять",
+      "forms": {
+        "v2": "allowed",
+        "v3": "allowed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 195
+    },
+    {
+      "id": null,
+      "infinitive": "consider",
+      "translation": "рассматривать",
+      "forms": {
+        "v2": "considered",
+        "v3": "considered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 196
+    },
+    {
+      "id": null,
+      "infinitive": "suggest",
+      "translation": "предлагать",
+      "forms": {
+        "v2": "suggested",
+        "v3": "suggested"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 197
+    },
+    {
+      "id": null,
+      "infinitive": "accept",
+      "translation": "принимать",
+      "forms": {
+        "v2": "accepted",
+        "v3": "accepted"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 198
+    },
+    {
+      "id": null,
+      "infinitive": "report",
+      "translation": "сообщать",
+      "forms": {
+        "v2": "reported",
+        "v3": "reported"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 199
+    },
+    {
+      "id": null,
+      "infinitive": "require",
+      "translation": "требовать",
+      "forms": {
+        "v2": "required",
+        "v3": "required"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 200
+    },
+    {
+      "id": null,
+      "infinitive": "receive",
+      "translation": "получать",
+      "forms": {
+        "v2": "received",
+        "v3": "received"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 201
+    },
+    {
+      "id": null,
+      "infinitive": "provide",
+      "translation": "предоставлять",
+      "forms": {
+        "v2": "provided",
+        "v3": "provided"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 202
+    },
+    {
+      "id": null,
+      "infinitive": "create",
+      "translation": "создавать",
+      "forms": {
+        "v2": "created",
+        "v3": "created"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 203
+    },
+    {
+      "id": null,
+      "infinitive": "decide",
+      "translation": "решать",
+      "forms": {
+        "v2": "decided",
+        "v3": "decided"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 204
+    },
+    {
+      "id": null,
+      "infinitive": "improve",
+      "translation": "улучшать",
+      "forms": {
+        "v2": "improved",
+        "v3": "improved"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 205
+    },
+    {
+      "id": null,
+      "infinitive": "increase",
+      "translation": "увеличивать",
+      "forms": {
+        "v2": "increased",
+        "v3": "increased"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 206
+    },
+    {
+      "id": null,
+      "infinitive": "decrease",
+      "translation": "уменьшать",
+      "forms": {
+        "v2": "decreased",
+        "v3": "decreased"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 207
+    },
+    {
+      "id": null,
+      "infinitive": "manage",
+      "translation": "управлять",
+      "forms": {
+        "v2": "managed",
+        "v3": "managed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 208
+    },
+    {
+      "id": null,
+      "infinitive": "measure",
+      "translation": "измерять",
+      "forms": {
+        "v2": "measured",
+        "v3": "measured"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 209
+    },
+    {
+      "id": null,
+      "infinitive": "reduce",
+      "translation": "сокращать",
+      "forms": {
+        "v2": "reduced",
+        "v3": "reduced"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 210
+    },
+    {
+      "id": null,
+      "infinitive": "involve",
+      "translation": "вовлекать",
+      "forms": {
+        "v2": "involved",
+        "v3": "involved"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 211
+    },
+    {
+      "id": null,
+      "infinitive": "compare",
+      "translation": "сравнивать",
+      "forms": {
+        "v2": "compared",
+        "v3": "compared"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 212
+    },
+    {
+      "id": null,
+      "infinitive": "describe",
+      "translation": "описывать",
+      "forms": {
+        "v2": "described",
+        "v3": "described"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 213
+    },
+    {
+      "id": null,
+      "infinitive": "produce",
+      "translation": "производить",
+      "forms": {
+        "v2": "produced",
+        "v3": "produced"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 214
+    },
+    {
+      "id": null,
+      "infinitive": "discuss",
+      "translation": "обсуждать",
+      "forms": {
+        "v2": "discussed",
+        "v3": "discussed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 215
+    },
+    {
+      "id": null,
+      "infinitive": "continue",
+      "translation": "продолжать",
+      "forms": {
+        "v2": "continued",
+        "v3": "continued"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 216
+    },
+    {
+      "id": null,
+      "infinitive": "realize",
+      "translation": "осознавать",
+      "forms": {
+        "v2": "realized",
+        "v3": "realized"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 217
+    },
+    {
+      "id": null,
+      "infinitive": "recognize",
+      "translation": "узнавать",
+      "forms": {
+        "v2": "recognized",
+        "v3": "recognized"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 218
+    },
+    {
+      "id": null,
+      "infinitive": "remember",
+      "translation": "помнить",
+      "forms": {
+        "v2": "remembered",
+        "v3": "remembered"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 219
+    },
+    {
+      "id": null,
+      "infinitive": "imagine",
+      "translation": "воображать",
+      "forms": {
+        "v2": "imagined",
+        "v3": "imagined"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 220
+    },
+    {
+      "id": null,
+      "infinitive": "contain",
+      "translation": "содержать",
+      "forms": {
+        "v2": "contained",
+        "v3": "contained"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 221
+    },
+    {
+      "id": null,
+      "infinitive": "represent",
+      "translation": "представлять",
+      "forms": {
+        "v2": "represented",
+        "v3": "represented"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 222
+    },
+    {
+      "id": null,
+      "infinitive": "establish",
+      "translation": "устанавливать",
+      "forms": {
+        "v2": "established",
+        "v3": "established"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 223
+    },
+    {
+      "id": null,
+      "infinitive": "prefer",
+      "translation": "предпочитать",
+      "forms": {
+        "v2": "preferred",
+        "v3": "preferred"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 224
+    },
+    {
+      "id": null,
+      "infinitive": "intend",
+      "translation": "намереваться",
+      "forms": {
+        "v2": "intended",
+        "v3": "intended"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 225
+    },
+    {
+      "id": null,
+      "infinitive": "design",
+      "translation": "проектировать",
+      "forms": {
+        "v2": "designed",
+        "v3": "designed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 226
+    },
+    {
+      "id": null,
+      "infinitive": "depend",
+      "translation": "зависеть",
+      "forms": {
+        "v2": "depended",
+        "v3": "depended"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 227
+    },
+    {
+      "id": null,
+      "infinitive": "belong",
+      "translation": "принадлежать",
+      "forms": {
+        "v2": "belonged",
+        "v3": "belonged"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 228
+    },
+    {
+      "id": null,
+      "infinitive": "achieve",
+      "translation": "достигать",
+      "forms": {
+        "v2": "achieved",
+        "v3": "achieved"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 229
+    },
+    {
+      "id": null,
+      "infinitive": "perform",
+      "translation": "выполнять",
+      "forms": {
+        "v2": "performed",
+        "v3": "performed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 230
+    },
+    {
+      "id": null,
+      "infinitive": "determine",
+      "translation": "определять",
+      "forms": {
+        "v2": "determined",
+        "v3": "determined"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 231
+    },
+    {
+      "id": null,
+      "infinitive": "complete",
+      "translation": "завершать",
+      "forms": {
+        "v2": "completed",
+        "v3": "completed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 232
+    },
+    {
+      "id": null,
+      "infinitive": "mention",
+      "translation": "упоминать",
+      "forms": {
+        "v2": "mentioned",
+        "v3": "mentioned"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 233
+    },
+    {
+      "id": null,
+      "infinitive": "obtain",
+      "translation": "получать",
+      "forms": {
+        "v2": "obtained",
+        "v3": "obtained"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 234
+    },
+    {
+      "id": null,
+      "infinitive": "support",
+      "translation": "поддерживать",
+      "forms": {
+        "v2": "supported",
+        "v3": "supported"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 235
+    },
+    {
+      "id": null,
+      "infinitive": "reach",
+      "translation": "достигать",
+      "forms": {
+        "v2": "reached",
+        "v3": "reached"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 236
+    },
+    {
+      "id": null,
+      "infinitive": "believe",
+      "translation": "верить",
+      "forms": {
+        "v2": "believed",
+        "v3": "believed"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 237
+    },
+    {
+      "id": null,
+      "infinitive": "agree",
+      "translation": "соглашаться",
+      "forms": {
+        "v2": "agreed",
+        "v3": "agreed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 238
+    },
+    {
+      "id": null,
+      "infinitive": "disagree",
+      "translation": "не соглашаться",
+      "forms": {
+        "v2": "disagreed",
+        "v3": "disagreed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 239
+    },
+    {
+      "id": null,
+      "infinitive": "appear",
+      "translation": "появляться",
+      "forms": {
+        "v2": "appeared",
+        "v3": "appeared"
+      },
+      "isIrregular": false,
+      "behavior": "copular",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 240
+    },
+    {
+      "id": null,
+      "infinitive": "disappear",
+      "translation": "исчезать",
+      "forms": {
+        "v2": "disappeared",
+        "v3": "disappeared"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 241
+    },
+    {
+      "id": null,
+      "infinitive": "happen",
+      "translation": "происходить",
+      "forms": {
+        "v2": "happened",
+        "v3": "happened"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 242
+    },
+    {
+      "id": null,
+      "infinitive": "fail",
+      "translation": "терпеть неудачу",
+      "forms": {
+        "v2": "failed",
+        "v3": "failed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 243
+    },
+    {
+      "id": null,
+      "infinitive": "succeed",
+      "translation": "добиться успеха",
+      "forms": {
+        "v2": "succeeded",
+        "v3": "succeeded"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 244
+    },
+    {
+      "id": null,
+      "infinitive": "follow",
+      "translation": "следовать",
+      "forms": {
+        "v2": "followed",
+        "v3": "followed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 245
+    },
+    {
+      "id": null,
+      "infinitive": "pass",
+      "translation": "проходить",
+      "forms": {
+        "v2": "passed",
+        "v3": "passed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 246
+    },
+    {
+      "id": null,
+      "infinitive": "carry",
+      "translation": "нести",
+      "forms": {
+        "v2": "carried",
+        "v3": "carried"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 247
+    },
+    {
+      "id": null,
+      "infinitive": "add",
+      "translation": "добавлять",
+      "forms": {
+        "v2": "added",
+        "v3": "added"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 248
+    },
+    {
+      "id": null,
+      "infinitive": "return",
+      "translation": "возвращать",
+      "forms": {
+        "v2": "returned",
+        "v3": "returned"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 249
+    },
+    {
+      "id": null,
+      "infinitive": "offer",
+      "translation": "предлагать",
+      "forms": {
+        "v2": "offered",
+        "v3": "offered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 250
+    },
+    {
+      "id": null,
+      "infinitive": "enter",
+      "translation": "входить",
+      "forms": {
+        "v2": "entered",
+        "v3": "entered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 251
+    },
+    {
+      "id": null,
+      "infinitive": "form",
+      "translation": "формировать",
+      "forms": {
+        "v2": "formed",
+        "v3": "formed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 252
+    },
+    {
+      "id": null,
+      "infinitive": "order",
+      "translation": "заказывать",
+      "forms": {
+        "v2": "ordered",
+        "v3": "ordered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 253
+    },
+    {
+      "id": null,
+      "infinitive": "seem",
+      "translation": "казаться",
+      "forms": {
+        "v2": "seemed",
+        "v3": "seemed"
+      },
+      "isIrregular": false,
+      "behavior": "copular",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 254
+    },
+    {
+      "id": null,
+      "infinitive": "care",
+      "translation": "заботиться",
+      "forms": {
+        "v2": "cared",
+        "v3": "cared"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 255
+    },
+    {
+      "id": null,
+      "infinitive": "cover",
+      "translation": "покрывать",
+      "forms": {
+        "v2": "covered",
+        "v3": "covered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 256
+    },
+    {
+      "id": null,
+      "infinitive": "wonder",
+      "translation": "удивляться",
+      "forms": {
+        "v2": "wondered",
+        "v3": "wondered"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 257
+    },
+    {
+      "id": null,
+      "infinitive": "worry",
+      "translation": "беспокоиться",
+      "forms": {
+        "v2": "worried",
+        "v3": "worried"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 258
+    },
+    {
+      "id": null,
+      "infinitive": "copy",
+      "translation": "копировать",
+      "forms": {
+        "v2": "copied",
+        "v3": "copied"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 259
+    },
+    {
+      "id": null,
+      "infinitive": "count",
+      "translation": "считать",
+      "forms": {
+        "v2": "counted",
+        "v3": "counted"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 260
+    },
+    {
+      "id": null,
+      "infinitive": "cross",
+      "translation": "пересекать",
+      "forms": {
+        "v2": "crossed",
+        "v3": "crossed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 261
+    },
+    {
+      "id": null,
+      "infinitive": "damage",
+      "translation": "повреждать",
+      "forms": {
+        "v2": "damaged",
+        "v3": "damaged"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 262
+    },
+    {
+      "id": null,
+      "infinitive": "discover",
+      "translation": "обнаруживать",
+      "forms": {
+        "v2": "discovered",
+        "v3": "discovered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 263
+    },
+    {
+      "id": null,
+      "infinitive": "download",
+      "translation": "скачивать",
+      "forms": {
+        "v2": "downloaded",
+        "v3": "downloaded"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 264
+    },
+    {
+      "id": null,
+      "infinitive": "drop",
+      "translation": "ронять",
+      "forms": {
+        "v2": "dropped",
+        "v3": "dropped"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 265
+    },
+    {
+      "id": null,
+      "infinitive": "encourage",
+      "translation": "поощрять",
+      "forms": {
+        "v2": "encouraged",
+        "v3": "encouraged"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 266
+    },
+    {
+      "id": null,
+      "infinitive": "enjoy",
+      "translation": "наслаждаться",
+      "forms": {
+        "v2": "enjoyed",
+        "v3": "enjoyed"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 267
+    },
+    {
+      "id": null,
+      "infinitive": "escape",
+      "translation": "сбегать",
+      "forms": {
+        "v2": "escaped",
+        "v3": "escaped"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 268
+    },
+    {
+      "id": null,
+      "infinitive": "experience",
+      "translation": "переживать",
+      "forms": {
+        "v2": "experienced",
+        "v3": "experienced"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 269
+    },
+    {
+      "id": null,
+      "infinitive": "explore",
+      "translation": "исследовать",
+      "forms": {
+        "v2": "explored",
+        "v3": "explored"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 270
+    },
+    {
+      "id": null,
+      "infinitive": "fix",
+      "translation": "чинить",
+      "forms": {
+        "v2": "fixed",
+        "v3": "fixed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 271
+    },
+    {
+      "id": null,
+      "infinitive": "focus",
+      "translation": "сосредотачиваться",
+      "forms": {
+        "v2": "focused",
+        "v3": "focused"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 272
+    },
+    {
+      "id": null,
+      "infinitive": "gather",
+      "translation": "собирать",
+      "forms": {
+        "v2": "gathered",
+        "v3": "gathered"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["social"],
+      "sourceFrequencyRank": 273
+    },
+    {
+      "id": null,
+      "infinitive": "guess",
+      "translation": "угадывать",
+      "forms": {
+        "v2": "guessed",
+        "v3": "guessed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 274
+    },
+    {
+      "id": null,
+      "infinitive": "handle",
+      "translation": "обращаться",
+      "forms": {
+        "v2": "handled",
+        "v3": "handled"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 275
+    },
+    {
+      "id": null,
+      "infinitive": "identify",
+      "translation": "определять",
+      "forms": {
+        "v2": "identified",
+        "v3": "identified"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 276
+    },
+    {
+      "id": null,
+      "infinitive": "ignore",
+      "translation": "игнорировать",
+      "forms": {
+        "v2": "ignored",
+        "v3": "ignored"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 277
+    },
+    {
+      "id": null,
+      "infinitive": "impact",
+      "translation": "влиять",
+      "forms": {
+        "v2": "impacted",
+        "v3": "impacted"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 278
+    },
+    {
+      "id": null,
+      "infinitive": "install",
+      "translation": "устанавливать",
+      "forms": {
+        "v2": "installed",
+        "v3": "installed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 279
+    },
+    {
+      "id": null,
+      "infinitive": "introduce",
+      "translation": "представлять",
+      "forms": {
+        "v2": "introduced",
+        "v3": "introduced"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 280
+    },
+    {
+      "id": null,
+      "infinitive": "issue",
+      "translation": "выдавать",
+      "forms": {
+        "v2": "issued",
+        "v3": "issued"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 281
+    },
+    {
+      "id": null,
+      "infinitive": "launch",
+      "translation": "запускать",
+      "forms": {
+        "v2": "launched",
+        "v3": "launched"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 282
+    },
+    {
+      "id": null,
+      "infinitive": "lift",
+      "translation": "поднимать",
+      "forms": {
+        "v2": "lifted",
+        "v3": "lifted"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 283
+    },
+    {
+      "id": null,
+      "infinitive": "link",
+      "translation": "связывать",
+      "forms": {
+        "v2": "linked",
+        "v3": "linked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 284
+    },
+    {
+      "id": null,
+      "infinitive": "load",
+      "translation": "загружать",
+      "forms": {
+        "v2": "loaded",
+        "v3": "loaded"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 285
+    },
+    {
+      "id": null,
+      "infinitive": "lock",
+      "translation": "запирать",
+      "forms": {
+        "v2": "locked",
+        "v3": "locked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 286
+    },
+    {
+      "id": null,
+      "infinitive": "log",
+      "translation": "записывать",
+      "forms": {
+        "v2": "logged",
+        "v3": "logged"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 287
+    },
+    {
+      "id": null,
+      "infinitive": "mark",
+      "translation": "отмечать",
+      "forms": {
+        "v2": "marked",
+        "v3": "marked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 288
+    },
+    {
+      "id": null,
+      "infinitive": "match",
+      "translation": "соответствовать",
+      "forms": {
+        "v2": "matched",
+        "v3": "matched"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 289
+    },
+    {
+      "id": null,
+      "infinitive": "miss",
+      "translation": "скучать",
+      "forms": {
+        "v2": "missed",
+        "v3": "missed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 290
+    },
+    {
+      "id": null,
+      "infinitive": "mix",
+      "translation": "смешивать",
+      "forms": {
+        "v2": "mixed",
+        "v3": "mixed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 291
+    },
+    {
+      "id": null,
+      "infinitive": "name",
+      "translation": "называть",
+      "forms": {
+        "v2": "named",
+        "v3": "named"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 292
+    },
+    {
+      "id": null,
+      "infinitive": "notice",
+      "translation": "замечать",
+      "forms": {
+        "v2": "noticed",
+        "v3": "noticed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 293
+    },
+    {
+      "id": null,
+      "infinitive": "observe",
+      "translation": "наблюдать",
+      "forms": {
+        "v2": "observed",
+        "v3": "observed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 294
+    },
+    {
+      "id": null,
+      "infinitive": "own",
+      "translation": "владеть",
+      "forms": {
+        "v2": "owned",
+        "v3": "owned"
+      },
+      "isIrregular": false,
+      "behavior": "stative",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 295
+    },
+    {
+      "id": null,
+      "infinitive": "park",
+      "translation": "парковать",
+      "forms": {
+        "v2": "parked",
+        "v3": "parked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 296
+    },
+    {
+      "id": null,
+      "infinitive": "pick",
+      "translation": "выбирать",
+      "forms": {
+        "v2": "picked",
+        "v3": "picked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 297
+    },
+    {
+      "id": null,
+      "infinitive": "point",
+      "translation": "указывать",
+      "forms": {
+        "v2": "pointed",
+        "v3": "pointed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 298
+    },
+    {
+      "id": null,
+      "infinitive": "post",
+      "translation": "публиковать",
+      "forms": {
+        "v2": "posted",
+        "v3": "posted"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 299
+    },
+    {
+      "id": null,
+      "infinitive": "prepare",
+      "translation": "готовить",
+      "forms": {
+        "v2": "prepared",
+        "v3": "prepared"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 300
+    },
+    {
+      "id": null,
+      "infinitive": "press",
+      "translation": "нажимать",
+      "forms": {
+        "v2": "pressed",
+        "v3": "pressed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 301
+    },
+    {
+      "id": null,
+      "infinitive": "process",
+      "translation": "обрабатывать",
+      "forms": {
+        "v2": "processed",
+        "v3": "processed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 302
+    },
+    {
+      "id": null,
+      "infinitive": "protect",
+      "translation": "защищать",
+      "forms": {
+        "v2": "protected",
+        "v3": "protected"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 303
+    },
+    {
+      "id": null,
+      "infinitive": "publish",
+      "translation": "публиковать",
+      "forms": {
+        "v2": "published",
+        "v3": "published"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 304
+    },
+    {
+      "id": null,
+      "infinitive": "record",
+      "translation": "записывать",
+      "forms": {
+        "v2": "recorded",
+        "v3": "recorded"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 305
+    },
+    {
+      "id": null,
+      "infinitive": "release",
+      "translation": "выпускать",
+      "forms": {
+        "v2": "released",
+        "v3": "released"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 306
+    },
+    {
+      "id": null,
+      "infinitive": "remove",
+      "translation": "удалять",
+      "forms": {
+        "v2": "removed",
+        "v3": "removed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["physical"],
+      "sourceFrequencyRank": 307
+    },
+    {
+      "id": null,
+      "infinitive": "rent",
+      "translation": "арендовать",
+      "forms": {
+        "v2": "rented",
+        "v3": "rented"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 308
+    },
+    {
+      "id": null,
+      "infinitive": "repeat",
+      "translation": "повторять",
+      "forms": {
+        "v2": "repeated",
+        "v3": "repeated"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 309
+    },
+    {
+      "id": null,
+      "infinitive": "replace",
+      "translation": "заменять",
+      "forms": {
+        "v2": "replaced",
+        "v3": "replaced"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 310
+    },
+    {
+      "id": null,
+      "infinitive": "request",
+      "translation": "просить",
+      "forms": {
+        "v2": "requested",
+        "v3": "requested"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 311
+    },
+    {
+      "id": null,
+      "infinitive": "research",
+      "translation": "исследовать",
+      "forms": {
+        "v2": "researched",
+        "v3": "researched"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 312
+    },
+    {
+      "id": null,
+      "infinitive": "respond",
+      "translation": "отвечать",
+      "forms": {
+        "v2": "responded",
+        "v3": "responded"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 313
+    },
+    {
+      "id": null,
+      "infinitive": "review",
+      "translation": "рассматривать",
+      "forms": {
+        "v2": "reviewed",
+        "v3": "reviewed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 314
+    },
+    {
+      "id": null,
+      "infinitive": "select",
+      "translation": "выбирать",
+      "forms": {
+        "v2": "selected",
+        "v3": "selected"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 315
+    },
+    {
+      "id": null,
+      "infinitive": "sign",
+      "translation": "подписывать",
+      "forms": {
+        "v2": "signed",
+        "v3": "signed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 316
+    },
+    {
+      "id": null,
+      "infinitive": "skip",
+      "translation": "пропускать",
+      "forms": {
+        "v2": "skipped",
+        "v3": "skipped"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 317
+    },
+    {
+      "id": null,
+      "infinitive": "solve",
+      "translation": "решать",
+      "forms": {
+        "v2": "solved",
+        "v3": "solved"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["mental"],
+      "sourceFrequencyRank": 318
+    },
+    {
+      "id": null,
+      "infinitive": "sort",
+      "translation": "сортировать",
+      "forms": {
+        "v2": "sorted",
+        "v3": "sorted"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 319
+    },
+    {
+      "id": null,
+      "infinitive": "store",
+      "translation": "хранить",
+      "forms": {
+        "v2": "stored",
+        "v3": "stored"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 320
+    },
+    {
+      "id": null,
+      "infinitive": "subscribe",
+      "translation": "подписываться",
+      "forms": {
+        "v2": "subscribed",
+        "v3": "subscribed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "intransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 321
+    },
+    {
+      "id": null,
+      "infinitive": "switch",
+      "translation": "переключать",
+      "forms": {
+        "v2": "switched",
+        "v3": "switched"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 322
+    },
+    {
+      "id": null,
+      "infinitive": "target",
+      "translation": "нацеливаться",
+      "forms": {
+        "v2": "targeted",
+        "v3": "targeted"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 323
+    },
+    {
+      "id": null,
+      "infinitive": "test",
+      "translation": "тестировать",
+      "forms": {
+        "v2": "tested",
+        "v3": "tested"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 324
+    },
+    {
+      "id": null,
+      "infinitive": "track",
+      "translation": "отслеживать",
+      "forms": {
+        "v2": "tracked",
+        "v3": "tracked"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 325
+    },
+    {
+      "id": null,
+      "infinitive": "transfer",
+      "translation": "передавать",
+      "forms": {
+        "v2": "transferred",
+        "v3": "transferred"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 326
+    },
+    {
+      "id": null,
+      "infinitive": "transform",
+      "translation": "преобразовывать",
+      "forms": {
+        "v2": "transformed",
+        "v3": "transformed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["change"],
+      "sourceFrequencyRank": 327
+    },
+    {
+      "id": null,
+      "infinitive": "translate",
+      "translation": "переводить",
+      "forms": {
+        "v2": "translated",
+        "v3": "translated"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["communication"],
+      "sourceFrequencyRank": 328
+    },
+    {
+      "id": null,
+      "infinitive": "type",
+      "translation": "печатать",
+      "forms": {
+        "v2": "typed",
+        "v3": "typed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["creation"],
+      "sourceFrequencyRank": 329
+    },
+    {
+      "id": null,
+      "infinitive": "update",
+      "translation": "обновлять",
+      "forms": {
+        "v2": "updated",
+        "v3": "updated"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 330
+    },
+    {
+      "id": null,
+      "infinitive": "upload",
+      "translation": "загружать",
+      "forms": {
+        "v2": "uploaded",
+        "v3": "uploaded"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 331
+    },
+    {
+      "id": null,
+      "infinitive": "verify",
+      "translation": "проверять",
+      "forms": {
+        "v2": "verified",
+        "v3": "verified"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 332
+    },
+    {
+      "id": null,
+      "infinitive": "view",
+      "translation": "просматривать",
+      "forms": {
+        "v2": "viewed",
+        "v3": "viewed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["consumption"],
+      "sourceFrequencyRank": 333
+    },
+    {
+      "id": null,
+      "infinitive": "zip",
+      "translation": "сжимать",
+      "forms": {
+        "v2": "zipped",
+        "v3": "zipped"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["general"],
+      "sourceFrequencyRank": 334
+    },
+    {
+      "id": null,
+      "infinitive": "zoom",
+      "translation": "приближать",
+      "forms": {
+        "v2": "zoomed",
+        "v3": "zoomed"
+      },
+      "isIrregular": false,
+      "behavior": "dynamic",
+      "transitivity": "ambitransitive",
+      "domains": ["motion"],
+      "sourceFrequencyRank": 335
+    }
+  ]
+}

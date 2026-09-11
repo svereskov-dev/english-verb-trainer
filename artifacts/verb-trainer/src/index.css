@@ -89,6 +89,7 @@
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
   --radius: .5rem; 
+  --button-border: rgba(100, 116, 139, 0.55);
 }
 
 .dark {
@@ -118,6 +119,7 @@
   --chart-3: 30 80% 55%;
   --chart-4: 280 65% 60%;
   --chart-5: 340 75% 55%;
+  --button-border: rgba(203, 213, 225, 0.55);
 }
 
 @layer base {
@@ -151,6 +153,18 @@
  * need to be distinguished from eachother visually.
  */
 @layer utilities {
+
+  /* Keep dedicated touch-scroll regions clean while preserving scrolling. */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 
   /* Hide ugly search cancel button in Chrome until we can style it properly */
   input[type="search"]::-webkit-search-cancel-button {

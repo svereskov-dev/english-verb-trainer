@@ -1,0 +1,155 @@
+## Review Mistakes — make the mode explicitly toggleable
+
+We need to improve the UX of the existing **Review Mistakes** training mode.
+
+### Current problem
+
+Review Mistakes can be entered in two ways:
+
+1. From the Mistakes screen → Practice
+2. From Training Mode → Review Mistakes
+
+Once Review Mistakes is active, it is not obvious to some users how to leave the mode.
+
+Currently, the user has to understand that selecting another training mode (for example Past Simple or Full Conjugation) will implicitly exit Review Mistakes.
+
+We want to make the existing Review Mistakes option itself capable of being turned off.
+
+---
+
+# Required behavior
+
+## 1. Keep Review Mistakes in Training Mode
+
+Do NOT remove Review Mistakes from the Training Mode menu.
+
+It must remain visible alongside the other training modes.
+
+It should continue to be available whenever the user has mistakes that can be reviewed.
+
+If there are no mistakes, preserve the existing behavior where Review Mistakes is disabled/unavailable.
+
+---
+
+## 2. Review Mistakes becomes re-clickable
+
+When Review Mistakes is currently active:
+
+### Current state
+
+```text
+Review Mistakes = ON
+
+If the user clicks the already-active Review Mistakes option again:
+
+Review Mistakes = OFF
+
+The application must immediately leave Mistakes Review.
+
+The user should NOT have to select another training mode just to escape Review Mistakes.
+
+3. What mode should replace Review Mistakes?
+
+When the user turns Review Mistakes OFF by clicking it again, automatically activate:
+
+Full Conjugation
+
+This should be treated as the neutral/default training mode after leaving Mistakes Review.
+
+The Training Mode UI must immediately reflect this:
+
+Review Mistakes → inactive
+Full Conjugation → active
+
+The top-left training mode indicator must also immediately change from:
+
+Review Mistakes
+
+to:
+
+Full Conjugation
+
+Do not leave the UI showing Review Mistakes after the user has exited it.
+
+4. Selecting another mode still works normally
+
+The existing behavior where the user selects another training mode must continue to work.
+
+For example:
+
+Review Mistakes
+        ↓
+user clicks Past Simple
+        ↓
+Past Simple becomes active
+Review Mistakes becomes inactive
+
+Likewise:
+
+Review Mistakes
+        ↓
+user clicks Present Perfect
+        ↓
+Present Perfect becomes active
+Review Mistakes becomes inactive
+
+The special new behavior is only that the user can now also click the active Review Mistakes option itself to exit it.
+
+5. Important: do NOT make Full Conjugation a toggle
+
+Full Conjugation should remain a normal selectable training mode.
+
+Do NOT turn Full Conjugation into an ON/OFF toggle.
+
+The special toggle-like behavior applies only to the currently active Review Mistakes option.
+
+6. Visual behavior
+
+Please preserve the existing Training Mode visual language as much as possible.
+
+Review Mistakes should still look like a normal training mode.
+
+When active, it should use the existing active/selected styling.
+
+When the user clicks the active Review Mistakes option again, its visual state must immediately become inactive and Full Conjugation must become active.
+
+We do NOT need a separate button such as:
+
+"Exit Mistakes Review"
+
+Do NOT add another exit button.
+
+The active Review Mistakes option itself is the exit mechanism.
+
+7. Mistakes → Practice flow
+
+The existing flow must continue to work:
+
+Mistakes
+   ↓
+Practice
+   ↓
+Training screen
+   ↓
+Review Mistakes active
+
+The user can then open Training Mode and click the active Review Mistakes option again to exit.
+
+After exiting:
+
+Review Mistakes → OFF
+Full Conjugation → ON
+
+The training screen must immediately switch to Full Conjugation.
+
+8. Home → Practice behavior
+
+Do not create a separate "Mistakes Review session" that permanently traps the user.
+
+The existing Review Mistakes state should be treated as a training mode.
+
+If the user is currently in Review Mistakes and leaves Practice to Home, preserve the existing behavior unless it conflicts with the new toggle logic.
+
+When they return to Practice, the current mode should still be represented correctly.
+
+Most importantly, once they explicitly turn Review Mistakes OFF, it must remain OFF and Practice must use Full Conjugation.

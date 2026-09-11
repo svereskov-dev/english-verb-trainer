@@ -1,0 +1,249 @@
+# Persist In-Progress Exercise State When Navigating Between Pages
+
+There is currently a UX bug in the Training screen.
+
+If a user starts answering an exercise, navigates to another page (for example, Dictionary), and then returns to Practice/Training, the current answer is reset.
+
+This happens in both:
+
+1. **Letter Builder mode**
+2. **Normal keyboard / "Type your answer" mode**
+
+This should be fixed.
+
+---
+
+## 1. Letter Builder mode
+
+### Current behavior
+
+Example:
+
+* Exercise asks for `would...`
+* User has already entered several letters.
+* User has made one or more incorrect letter selections.
+* User navigates to another page, e.g. Dictionary.
+* User returns to Practice.
+* The exercise is still displayed, but the entered letters and mistakes have been reset.
+
+The user is forced to start the word again.
+
+### Required behavior
+
+The current state of the unfinished Letter Builder exercise must survive navigation.
+
+If the user leaves the Practice screen and later returns, restore the exercise **exactly as it was**.
+
+Persist at minimum:
+
+* current exercise;
+* letters already entered;
+* positions already filled;
+* incorrect letter attempts for the current word;
+* which letter buttons have already been disabled/faded;
+* remaining attempts;
+* any other state required to continue the current Letter Builder exercise correctly.
+
+### Example
+
+Before leaving:
+
+```text
+W _ _ _ _ _ _
+
+Incorrect attempts:
+● ● ○
+
+Available letters:
+U   I   F(disabled)   E(disabled)   Q
+```
+
+After navigating to Dictionary and returning, the user must see the **same state**.
+
+They should be able to continue from exactly that point.
+
+Do NOT generate a new exercise.
+
+Do NOT clear the entered letters.
+
+Do NOT reset the incorrect attempts.
+
+Do NOT restore disabled buttons to their active state.
+
+---
+
+# 2. Normal keyboard / "Type your answer" mode
+
+The same persistence must work when Letter Builder is disabled.
+
+### Current behavior
+
+The user begins typing an answer:
+
+```text
+worked
+```
+
+but before pressing `Check`, navigates to another page.
+
+When returning to Practice, the input field is empty.
+
+### Required behavior
+
+The unfinished answer must remain in the input field.
+
+For example:
+
+```text
+work
+```
+
+User navigates to Dictionary → returns to Practice → input field still contains:
+
+```text
+work
+```
+
+The user can continue typing:
+
+```text
+worked
+```
+
+and then press `Check`.
+
+Do NOT automatically submit the answer when the user leaves the page.
+
+---
+
+# 3. The exercise itself must remain the same
+
+This is important.
+
+Navigation must NOT trigger a new exercise.
+
+If the user was answering:
+
+```text
+Future Simple
+they
+build
+```
+
+then after returning from another page, it must still be the exact same exercise.
+
+The following must remain unchanged:
+
+* verb;
+* subject;
+* tense;
+* exercise type;
+* context sentence, if Context Mode is enabled;
+* current answer state.
+
+---
+
+# 4. Navigation must not affect training statistics
+
+Leaving the Practice screen while an exercise is unfinished must NOT:
+
+* count the exercise as correct;
+* count it as incorrect;
+* add a mistake;
+* advance SRS;
+* advance to the next exercise;
+* reset daily progress.
+
+Only pressing `Check` / completing the Letter Builder answer / otherwise completing the exercise through the existing normal flow should trigger the existing answer-processing logic.
+
+---
+
+# 5. Recommended implementation approach
+
+Please inspect the current Training/Practice state management before changing the code.
+
+The unfinished exercise state should live at a level that survives normal navigation between pages.
+
+If the current architecture unmounts the Practice component when the user switches tabs, make sure the **active exercise and answer state are not lost when that component unmounts**.
+
+Do NOT solve this by simply preventing navigation.
+
+Users must remain free to:
+
+* open Dictionary;
+* open Home;
+* open Mistakes;
+* open Settings;
+* return to Practice.
+
+When they return, their unfinished exercise should be restored.
+
+Use the existing state/persistence architecture where appropriate rather than introducing unnecessary duplicated state.
+
+---
+
+# 6. Important distinction: leaving Practice vs completing an exercise
+
+There are two different situations.
+
+### User leaves Practice before completing the exercise
+
+→ Preserve everything.
+
+### User completes the exercise
+
+→ Use the existing normal flow:
+
+* process correct/incorrect result;
+* update statistics;
+* update Mistakes if necessary;
+* update SRS;
+* advance to the next exercise;
+* clear the previous answer state.
+
+Do not persist a completed answer as an unfinished answer.
+
+---
+
+# 7. Acceptance criteria
+
+### Letter Builder
+
+* [ ] Start a Letter Builder exercise.
+* [ ] Enter several correct letters.
+* [ ] Make one or more incorrect attempts.
+* [ ] Navigate to Dictionary.
+* [ ] Return to Practice.
+* [ ] The same exercise is displayed.
+* [ ] Previously entered letters remain.
+* [ ] Previously incorrect attempts remain.
+* [ ] Previously disabled/faded letter buttons remain disabled/faded.
+* [ ] Remaining attempts are unchanged.
+* [ ] User can continue and complete the exercise normally.
+
+### Keyboard mode
+
+* [ ] Disable Letter Builder.
+* [ ] Start a normal keyboard exercise.
+* [ ] Type only part of the answer.
+* [ ] Navigate to another page.
+* [ ] Return to Practice.
+* [ ] The same exercise is displayed.
+* [ ] The partially typed answer remains in the input field.
+* [ ] User can continue typing and submit normally.
+
+### General
+
+* [ ] Navigation does not generate a new exercise.
+* [ ] Navigation does not modify Correct/Incorrect statistics.
+* [ ] Navigation does not modify Daily Progress.
+* [ ] Navigation does not create/remove a mistake.
+* [ ] Navigation does not affect SRS.
+* [ ] Completing an exercise still clears its temporary answer state and advances normally.
+* [ ] Existing Context Mode behavior remains unchanged.
+* [ ] Existing Letter Builder behavior remains unchanged apart from this persistence fix.
+* [ ] No regression in Mistakes Review or Full Conjugation.
+
+The key principle is:
+
+> **Navigation away from Practice must pause the current exercise, not restart it.**

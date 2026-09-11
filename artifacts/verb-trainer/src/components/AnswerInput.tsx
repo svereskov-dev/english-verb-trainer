@@ -4,6 +4,7 @@ import { cn } from "../lib/utils";
 interface AnswerInputProps {
   onSubmit: (answer: string) => void;
   onValueChange?: (value: string) => void;
+  value?: string;
   disabled?: boolean;
   feedback?: "correct" | "incorrect" | null;
   submittedValue?: string;
@@ -21,18 +22,20 @@ interface AnswerInputProps {
 export function AnswerInput({
   onSubmit,
   onValueChange,
+  value,
   disabled,
   feedback,
   submittedValue,
   compact = false,
   expectedAnswer,
 }: AnswerInputProps) {
-  const [value, setValue] = useState("");
+  const [uncontrolledValue, setUncontrolledValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const currentValue = value ?? uncontrolledValue;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && value.trim() && !disabled) {
-      onSubmit(value);
+    if (e.key === "Enter" && currentValue.trim() && !disabled) {
+      onSubmit(currentValue);
     }
   };
 
@@ -43,7 +46,7 @@ export function AnswerInput({
   };
 
   const isPostSubmit = !!feedback;
-  const displayValue = isPostSubmit ? (submittedValue ?? "") : value;
+  const displayValue = isPostSubmit ? (submittedValue ?? "") : currentValue;
 
   // ── Guidance layer ──────────────────────────────────────────────────────────
   // Active only while the user is typing (pre-submit) and an expected answer is
@@ -52,9 +55,9 @@ export function AnswerInput({
   const isGuidanceActive = !isPostSubmit && !!expectedAnswer;
 
   const firstErrorIdx =
-    isGuidanceActive && value.length > 0
+    isGuidanceActive && currentValue.length > 0
       ? (() => {
-          const idx = value
+          const idx = currentValue
             .split("")
             .findIndex((ch, i) => ch !== expectedAnswer![i]);
           return idx; // -1 means fully correct so far
@@ -93,7 +96,7 @@ export function AnswerInput({
       <div className="relative w-full">
 
         {/* Guidance overlay — only shown when the user has started typing */}
-        {isGuidanceActive && value.length > 0 && (
+        {isGuidanceActive && currentValue.length > 0 && (
           <div
             aria-hidden="true"
             className={cn(
@@ -105,15 +108,15 @@ export function AnswerInput({
           >
             {firstErrorIdx === -1 ? (
               // All typed characters match so far
-              <span className="text-foreground">{value}</span>
+                <span className="text-foreground">{currentValue}</span>
             ) : firstErrorIdx === 0 ? (
               // First character already wrong — entire input is red
-              <span className="text-red-400">{value}</span>
+                <span className="text-red-400">{currentValue}</span>
             ) : (
               // Split at first divergence
               <>
-                <span className="text-foreground">{value.slice(0, firstErrorIdx)}</span>
-                <span className="text-red-400">{value.slice(firstErrorIdx)}</span>
+                <span className="text-foreground">{currentValue.slice(0, firstErrorIdx)}</span>
+                <span className="text-red-400">{currentValue.slice(firstErrorIdx)}</span>
               </>
             )}
           </div>
@@ -124,7 +127,7 @@ export function AnswerInput({
           value={displayValue}
           onChange={(e) => {
             if (!disabled) {
-              setValue(e.target.value);
+              if (value === undefined) setUncontrolledValue(e.target.value);
               onValueChange?.(e.target.value);
             }
           }}

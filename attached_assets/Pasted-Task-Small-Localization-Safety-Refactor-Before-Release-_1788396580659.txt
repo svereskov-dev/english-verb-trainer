@@ -1,0 +1,305 @@
+Task: Small Localization-Safety Refactor Before Release
+Goal
+
+Make a small number of low-risk architectural improvements identified during the Localization Readiness Audit.
+
+The purpose is not to implement localization now.
+
+The app will remain Russian-only for the current release.
+
+We only want to remove a few places where application logic currently depends on English/Russian display text, because these dependencies could create unnecessary problems when a second interface language is added later.
+
+Please keep this task deliberately small and avoid a broad i18n refactor.
+
+Scope
+
+Implement only the following three improvements:
+
+Remove application logic that depends on display strings such as "Mixed".
+Create a single shared source for tense display labels.
+Ensure persisted training/session configuration does not rely on localized display labels as meaningful state.
+
+Do not implement:
+
+Spanish localization;
+language selector;
+i18n framework;
+translation dictionaries for the entire UI;
+migration of all Russian UI strings;
+restructuring the verb translation dataset;
+onboarding localization;
+changes to exercise generation logic;
+changes to SRS;
+changes to Mistakes Review.
+1. Remove logic based on display labels
+Problem
+
+The Localization Audit found logic that checks a display string such as:
+
+groupLabel === "Mixed"
+
+This is unsafe because display labels are presentation text.
+
+In a future Spanish interface, the same concept might be displayed as:
+
+Mixto
+
+Application behavior must never depend on translated text.
+
+Required change
+
+Replace any logic based on display strings with stable semantic identifiers.
+
+For example, use a language-neutral field such as:
+
+mode: "mixed"
+
+or another appropriate stable internal identifier.
+
+The exact implementation may differ depending on the existing architecture, but the principle must be:
+
+Internal logic uses stable IDs.
+Display labels are used only for presentation.
+
+Audit requirement
+
+Search the relevant codebase for similar patterns, including:
+
+comparisons against "Mixed";
+comparisons against tense display names;
+comparisons against group display names;
+branching based on user-visible text.
+
+Do not broadly rewrite unrelated code.
+
+Only replace cases where display text currently influences application behavior.
+
+2. Create a shared source for tense display labels
+Problem
+
+The Localization Audit found that tense labels such as:
+
+Past Simple
+Past Continuous
+Past Perfect
+Present Simple
+Future Perfect
+
+are duplicated across multiple files/components.
+
+This creates future localization risk because adding another language would require finding and updating many copies.
+
+Required change
+
+Create one shared helper, constant, or utility responsible for converting stable tense IDs into display labels.
+
+For example, conceptually:
+
+getTenseLabel("pastSimple")
+
+→
+
+Past Simple
+
+The exact API is up to the existing code style.
+
+The important architectural separation is:
+
+Internal ID
+pastSimple
+
+↓
+
+Shared display-label resolver
+
+↓
+
+"Past Simple"
+Requirements
+Existing stable tense IDs must remain unchanged.
+Exercise generation must continue using stable IDs.
+Review Mistakes exact exercise identities must remain unchanged.
+The helper should become the preferred source of tense labels in relevant UI locations.
+Remove unnecessary duplicate mappings where practical.
+
+Do not attempt to replace every string in the entire application if some unrelated educational text naturally contains tense names in sentences.
+
+Focus specifically on places where a tense label is being programmatically mapped or displayed as structured UI data.
+
+3. Separate persisted session meaning from display labels
+Problem
+
+The current training/session state may persist fields such as:
+
+label
+groupLabel
+
+alongside semantic configuration.
+
+This is potentially problematic for future localization.
+
+A saved session should conceptually store:
+
+What the user is training
+
+not:
+
+How that mode happened to be displayed in Russian/English at the time.
+
+For example:
+
+Good persisted state:
+
+{
+  tense: "pastSimple",
+  group: "past",
+  mode: "mixed"
+}
+
+Display text should be derived when rendering:
+
+Past Simple
+Required change
+
+Audit persisted training/session configuration, especially:
+
+SessionConfig;
+exercise session persistence;
+navigation restoration;
+Practice remount behavior.
+
+Identify display-oriented fields such as:
+
+label;
+groupLabel;
+other human-readable mode names.
+
+Ensure application logic and session restoration do not depend on those strings.
+
+Preferred approach
+
+Persist stable semantic identifiers as the meaningful state.
+
+When rendering the UI:
+
+stable ID
+↓
+shared label resolver
+↓
+current display label
+Backward compatibility
+
+This is important.
+
+Existing saved user sessions/settings must not break.
+
+If old persisted session data contains fields such as:
+
+label
+groupLabel
+
+the app should remain able to load safely.
+
+A lightweight backward-compatible approach is acceptable.
+
+For example:
+
+old display fields may remain temporarily ignored;
+missing new semantic fields may use existing stable fields where safely possible;
+no user progress should be lost.
+
+Do not introduce a destructive database migration.
+
+Important constraints
+Do not change user-visible behavior
+
+After this refactor, the Russian version of the app should look and behave exactly as before.
+
+This task is architectural preparation only.
+
+The following must remain unchanged:
+
+Training Mode;
+Context Mode;
+Letter Builder;
+keyboard input;
+Mistakes Review;
+exact mistake identities;
+Full Conjugation;
+exercise generation;
+SRS/progress;
+daily statistics;
+navigation;
+onboarding.
+Verification requirements
+
+Please add focused regression coverage where practical.
+
+Verify at minimum:
+
+1. Mixed mode
+Mixed mode still works correctly.
+No application behavior depends on "Mixed" as a display string.
+Mixed tense selection remains unchanged.
+2. Tense labels
+
+Verify the shared label resolver correctly returns labels for all supported tense IDs.
+
+3. Session persistence
+
+Verify:
+
+Start a training session.
+Navigate away.
+Return to Practice.
+The correct training configuration is restored.
+
+The restoration should depend on semantic configuration rather than display labels.
+
+4. Review Mistakes
+
+Verify that exact-ID Mistakes Review behavior remains unaffected.
+
+5. Existing training modes
+
+Run the existing Training Mode regression suite.
+
+Suggested files to inspect
+
+Please adapt to the actual architecture, but likely relevant files include:
+
+src/components/TrainingMenu.tsx
+src/hooks/useExerciseSession.ts
+src/pages/practice.tsx
+training/session type definitions
+exercise configuration types
+existing tense constants/helpers
+relevant test files
+Deliverable
+
+After implementation, provide a short report:
+
+1. Display-string logic
+Which logic previously depended on display strings?
+What was replaced with stable identifiers?
+2. Tense labels
+Where is the new shared label resolver located?
+Which UI locations now use it?
+3. Session persistence
+Which display fields were previously persisted?
+How is semantic state now separated from presentation?
+How was backward compatibility handled?
+4. Verification
+
+Report:
+
+TypeScript/typecheck result;
+existing test suite result;
+new tests added;
+production build result.
+Guiding principle
+
+Stable IDs belong to application state and logic.
+Human-readable labels belong to the presentation layer.
+
+Please keep this refactor small, targeted, and low-risk. We are preparing for the first release, not building a full localization system yet.

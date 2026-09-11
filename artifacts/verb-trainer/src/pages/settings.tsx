@@ -18,12 +18,16 @@ import {
   AlertDialogTrigger,
 } from "../components/ui/alert-dialog";
 import { closeDB } from "../db";
+import { useFullAccess } from "../purchases/FullAccessContext";
+import { Lock, Unlock } from "lucide-react";
+import { Separator } from "../components/ui/separator";
 
 export default function Settings() {
   const { settings, updateSettings } = useSettings();
   const [clearing, setClearing] = useState(false);
   const [clearError, setClearError] = useState<string | null>(null);
   const [showGuide, setShowGuide] = useState(false);
+  const { hasFullAccess, openPaywall } = useFullAccess();
 
   if (!settings) return null;
 
@@ -107,7 +111,8 @@ export default function Settings() {
       <div className="w-full max-w-md mx-auto p-6 space-y-6">
         <h1 className="text-3xl font-bold">Settings</h1>
 
-        <div className="space-y-4">
+        <div>
+          <div className="space-y-4">
           <div className="space-y-2">
             <Label>Daily Goal</Label>
             <Select
@@ -148,15 +153,6 @@ export default function Settings() {
             </Select>
           </div>
 
-          <Button
-            type="button"
-            className="w-full"
-            variant="outline"
-            onClick={() => setShowGuide(true)}
-          >
-            Repeat Guide
-          </Button>
-
           {/* Clear Data — uses AlertDialog instead of window.confirm() so it
               works reliably on Samsung WebView and all Capacitor environments. */}
           <AlertDialog>
@@ -169,22 +165,24 @@ export default function Settings() {
                 {clearing ? "Clearing…" : "Clear All Data"}
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Clear all data?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This will permanently delete all your progress, statistics, and
-                  mistakes. Your daily goal and theme settings will also be reset.
-                  This cannot be undone.
-                </AlertDialogDescription>
+            <AlertDialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border-border/80 bg-card p-7 text-center shadow-2xl sm:max-w-sm">
+              <AlertDialogHeader className="space-y-3 !text-center">
+                <AlertDialogTitle className="text-center text-xl font-bold tracking-tight">
+                  Clear all data?
+                </AlertDialogTitle>
               </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogDescription className="sr-only">
+                Confirm whether to permanently clear all saved data.
+              </AlertDialogDescription>
+              <AlertDialogFooter className="!flex-row !justify-center !space-x-0 gap-3">
+                <AlertDialogCancel className="mt-0">
+                  No
+                </AlertDialogCancel>
                 <AlertDialogAction
+                  variant="destructive"
                   onClick={executeClear}
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                 >
-                  Clear
+                  Yes
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -196,6 +194,40 @@ export default function Settings() {
               {clearError}
             </p>
           )}
+
+          </div>
+
+          <div className="mt-6">
+            <Separator className="bg-border" />
+          </div>
+
+          <div className="mt-6">
+            <Button
+              type="button"
+              className="w-full"
+              variant="secondary"
+              onClick={() => setShowGuide(true)}
+            >
+              Repeat Guide
+            </Button>
+
+            <Button
+              type="button"
+              className="mt-4 w-full"
+              variant={hasFullAccess ? "success" : "primary"}
+              disabled={hasFullAccess}
+              onClick={() => {
+                if (!hasFullAccess) openPaywall();
+              }}
+            >
+              {hasFullAccess ? (
+                <Unlock size={16} aria-hidden="true" />
+              ) : (
+                <Lock size={16} aria-hidden="true" />
+              )}
+              {hasFullAccess ? "Full Access Unlocked" : "Unlock Full Access"}
+            </Button>
+          </div>
         </div>
       </div>
       <BottomNav />

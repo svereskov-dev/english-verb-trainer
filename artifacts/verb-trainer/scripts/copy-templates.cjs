@@ -50,13 +50,9 @@ for (const [srcRel, destRel] of mappings) {
 }
 
 // ---------------------------------------------------------------------------
-// Remove the Capacitor-generated splash.png from drawable/ so it does not
-// conflict with our splash.xml (both would be @drawable/splash in the same
-// resource bucket, causing a duplicate resource build error).
-//
-// The qualified variants in drawable-port-* / drawable-land-* are separate
-// resource buckets and do NOT conflict — only the unqualified drawable/ copy
-// needs to be removed.
+// Remove the unqualified Capacitor-generated splash.png so it does not conflict
+// with splash.xml. cleanup-android-splash.cjs runs before and after cap sync and
+// also removes orientation/density variants that could override this XML.
 // ---------------------------------------------------------------------------
 const conflictingPng = path.join(androidDir, 'app/src/main/res/drawable/splash.png');
 if (fs.existsSync(conflictingPng)) {

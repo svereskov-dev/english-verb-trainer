@@ -6,105 +6,209 @@ id = "IICYgP6Tinl3jeqln79qB"
 uri = "file://verb-trainer.zip"
 type = "unspecified"
 title = "English Verb Trainer — source code"
+logical_id = "fd328508-3803-40aa-801d-6d05b51900f0"
 
 [[outputs]]
 id = "F18s-riXhxWRlI_XSyWTn"
 uri = "file://artifacts/verb-trainer/public/architecture/architecture.svg"
 type = "image"
 title = "Architecture Diagram (SVG - editable)"
+logical_id = "1d6b9d6c-9d8e-4dba-a4fe-16374309f8d8"
 
 [[outputs]]
 id = "mrtv4ntWH5Kj8TTOd-zF3"
 uri = "file://artifacts/verb-trainer/public/architecture/architecture.png"
 type = "image"
 title = "Architecture Diagram (PNG - high resolution)"
+logical_id = "3700aa8e-c145-4d6e-9cec-2bf60661b945"
 
 [[outputs]]
 id = "rX4IyqYewjKzEX9SS_yHf"
 uri = "file://verb-trainer-full.tar.gz"
 type = "unspecified"
 title = "English Verb Trainer — Practice Screen UX Improvements"
+logical_id = "eed54321-84f7-444a-ab3d-7cca04d4d47b"
 
 [[outputs]]
 id = "5EQAnMcP1wadhBWdDXtYX"
 uri = "file://verb-trainer-full.zip"
 type = "unspecified"
 title = "VerbFlow – Canvas icon for onboarding + launcher"
+logical_id = "055ac51b-d272-4f2d-bd65-d15a37b00fe3"
 
 [[outputs]]
 id = "wK250gateKOUw-0DBwbIe"
 uri = "file://attached_assets/icon_concept_a.png"
 type = "image"
 title = "Icon A — Crest (V-Wave)"
+logical_id = "ea092769-9e23-48b8-a3c5-bad27a422a54"
 
 [[outputs]]
 id = "T42g9GswjPN_PHQOdvDfg"
 uri = "file://attached_assets/icon_concept_b.png"
 type = "image"
 title = "Icon B — Slipstream (Whale)"
+logical_id = "fdcc1c89-d861-4a23-8885-0c0550596c63"
 
 [[outputs]]
 id = "BkXqmwQ46PoqWCPE3BvzP"
 uri = "file://attached_assets/icon_concept_c.png"
 type = "image"
 title = "Icon C — Current Loop (Spiral)"
+logical_id = "44bb5b87-3eaa-4d40-924f-f07c8bab171b"
 
 [[outputs]]
 id = "gnpNEzMwF5wYyf80OoT_D"
 uri = "file://screenshots/onboarding-screen1.jpg"
 type = "image"
 title = "Onboarding — Welcome"
+logical_id = "aa68a000-0a12-418e-8178-edf78ed6aa01"
 
 [[outputs]]
 id = "yd7d3WXbOUHkrTrghpOWg"
 uri = "file://screenshots/onboarding-screen2.jpg"
 type = "image"
 title = "Onboarding — Practice Screen"
+logical_id = "92e30393-7c1d-4d5b-871d-6c177df5dae6"
 
 [[outputs]]
 id = "4EA2GKVA9Ms-_8QsEm6_W"
 uri = "file://screenshots/onboarding-screen3.jpg"
 type = "image"
 title = "Onboarding — Navigation (fixed)"
+logical_id = "feae504b-fc26-4c24-a01d-2dcda3873011"
 
 [[outputs]]
 id = "D1nQroj15W9Vzot25fI8h"
 uri = "file://screenshots/onboarding-screen4.jpg"
 type = "image"
 title = "Onboarding — Daily Goal"
+logical_id = "c306356b-eba7-405d-8ed2-4f02994f3722"
 
 [[outputs]]
 id = "7Jrywej5gfpg6CafIukuj"
 uri = "file://artifacts/verb-trainer/public/onboarding-icon-512.png"
 type = "image"
 title = "New VerbFlow onboarding icon (512×512)"
+logical_id = "91b9264f-4ed5-4eb4-a9c5-8e6d73dcb7a7"
 
 [[outputs]]
 id = "KsIxfwIiJWpJ6VZOh8aU1"
 uri = "file://preview_icons/onboarding_preview.png"
 type = "image"
 title = "Onboarding preview (120×120 dp icon)"
+logical_id = "3cd9363e-6385-4fc1-85f4-60fb700a2e42"
 
 [[outputs]]
 id = "uZPc8rMD_DZkZyym8fRwT"
 uri = "file://preview_icons/launcher_preview.png"
 type = "image"
 title = "Android launcher preview (xxxhdpi 192×192 dp)"
+logical_id = "98872b7a-9d2c-455f-bcb2-f034d95efd1b"
 
 [[outputs]]
 id = "faveiU-ejLH0NHxr_AHvv"
 uri = "file://artifacts/verb-trainer/public/verbflow-icon.png"
 type = "image"
 title = "Full source PNG (1024×1024)"
+logical_id = "53a0ee2f-d327-4de4-9bad-6c55d0017a84"
 
 [[outputs]]
 id = "GbBuAVIwIom6cTaWs6U6u"
 uri = "file://verb-trainer-source.zip"
 type = "unspecified"
 title = "VerbFlow — Source Code (verb-trainer-source.zip)"
+logical_id = "b4fedf17-a646-475e-bcc6-a86b2e630ae1"
 
 [[outputs]]
 id = "Jw7hVMjsqPV49pJ2oeumi"
 uri = "file://verbflow-build.zip"
 type = "unspecified"
 title = "VerbFlow — Complete Build Archive (verbflow-build.zip)"
+logical_id = "f010cf9f-165f-4e53-ab3c-f7198f980cda"
+
+[[outputs]]
+id = "DfUsabX86atGyLmJtVB6p"
+uri = "file://verbflow-final-20260807.zip"
+type = "unspecified"
+title = "VerbFlow — Full Source Archive (fixed)"
+description = "Complete source including scripts/preinstall.cjs and scripts/ directory. Workspace root config, artifacts/verb-trainer, scripts/, and android/ Capacitor project. Run: pnpm install → pnpm --filter @workspace/verb-trainer build → npx cap sync android."
+logical_id = "e7041199-04ab-4337-a130-5e07f406ab55"
+
+[[outputs]]
+id = "Hf6bs_UaXQOz05Qa8LNjd"
+uri = "file://verbflow-final-20260808.zip"
+type = "unspecified"
+title = "verbflow-final-20260808.zip"
+description = "Full source archive with Skip fix (one-pass Mistakes Review) and automatic Full Conjugation transition."
+logical_id = "5441148b-29b1-4aff-9ab0-8688aac9e9bf"
+
+[[outputs]]
+id = "Em-wjh_msTD7ORpku5fWs"
+uri = "file://verbflow-final-20260809.zip"
+type = "unspecified"
+title = "VerbFlow — verbflow-final-20260809.zip"
+description = "Full build archive with all changes from this session: Clear Mistakes repositioned & restyled, Repeat Guide color match, fixed-header scrolling on Dictionary & Mistakes, hidden scrollbars, Mistakes Review renamed, Review Mistakes fixed to Letter Builder ON / Context OFF with immediate toggle lock in Training Mode sheet."
+logical_id = "b19f92f9-426f-4ac0-a86f-0b1c881de8dd"
+
+[[outputs]]
+id = "qc97h6q9YY97keLTwbGmC"
+uri = "file://verbflow-build-20260824.zip"
+type = "unspecified"
+title = "VerbFlow complete build archive"
+description = "Complete source archive for building VerbFlow, including root pnpm workspace files, lockfile, app source, shared workspace packages, assets, Android/Capacitor project files, scripts, and JSON/configuration files. Generated dependencies, caches, and build outputs are excluded."
+logical_id = "a4942ce7-4867-4d66-89c9-f5f09c929cb5"
+
+[[outputs]]
+id = "rJwdMFAVcjQ4bLHteNwcH"
+uri = "file://verbflow-build-20260825.zip"
+type = "unspecified"
+title = "VerbFlow build archive — Android JDK fix"
+description = "Complete source and Android archive with automatic local Java 21 Gradle-JDK setup plus updated Android Studio instructions."
+logical_id = "66f59db2-a1d1-4c57-818f-60120dcedd28"
+
+[[outputs]]
+id = "aockXNv902IzZh7seMNPn"
+uri = "file://screenshots/verbflow-icon-desktop-preview.png"
+type = "image"
+title = "VerbFlow desktop icon preview"
+description = "Approximate ColorOS/Android launcher appearance using the unified wave-and-book icon."
+logical_id = "53b04de9-fd45-4574-a748-6b620ce47a45"
+
+[[outputs]]
+id = "V3YvlCLeCq0YbwZnsZR2L"
+uri = "file://screenshots/verbflow-icon-boot-preview.png"
+type = "image"
+title = "VerbFlow boot screen preview"
+description = "Native splash preview with the unified icon on the new near-black background."
+logical_id = "65689342-f561-4ce2-b37f-cf81e747e676"
+
+[[outputs]]
+id = "nNZWlkGoNhB7tlSBFGHla"
+uri = "file://downloads/verbflow-android-source-20260828.zip"
+type = "unspecified"
+title = "VerbFlow Android source archive"
+description = "Complete rebuildable VerbFlow project with Android source, latest onboarding icon change, workspace files, locked dependencies, build scripts, and documentation. Dependencies and build caches excluded."
+logical_id = "705c02bc-4537-4064-8eed-1323b382eb59"
+
+[[outputs]]
+id = "6MkD-744GwJxMhEXRqrqv"
+uri = "file://downloads/verbflow-android-source-20260829.zip"
+type = "unspecified"
+title = "VerbFlow Android source archive"
+description = "Complete VerbFlow workspace and Android source, including the latest English Tenses circular navigation. Excludes dependencies, build output, Gradle caches, and machine-specific files."
+logical_id = "3d8afc91-115c-4be9-bf51-342110f33883"
+
+[[outputs]]
+id = "-w8EC6s4KXqTCkzoSg7hF"
+uri = "file://artifacts/verb-trainer/verbs-export.json"
+type = "unspecified"
+title = "Download verbs-export.json"
+description = "Complete VerbFlow verb dataset export containing 335 verbs and their translations, V2/V3 forms, behavior, transitivity, and domain metadata."
+logical_id = "4e6a3f33-f2a1-4b38-9c59-058a2e00aa07"
+content_hash = "sha256:9afd53da76c9ac849d2e274e3c425af4d8f7581e32116e28c0f427e40b2c8970"
+size = 118010
+mtime_ms = 1788484100647
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:2388cf3f-b78b-411c-9f64-4f1951e9380d/4e6a3f33-f2a1-4b38-9c59-058a2e00aa07/3b90f8dd-d46d-4bd0-95ee-c3f4b72c9c61"
+storage_version_token = "1788484172293391"
+content_type = "application/octet-stream"

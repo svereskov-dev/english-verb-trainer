@@ -1,0 +1,65 @@
+There is a logic problem in Review Mistakes when the user switches between Context Mode and Letter Build.
+
+Currently, Review Mistakes works correctly, including Skip, but switching the Context Mode / Letter Build toggles back and forth while reviewing mistakes can put the exercise logic into an inconsistent state.
+
+I do NOT want to make the Review Mistakes logic more complicated by allowing the exercise mode to change dynamically.
+
+Instead, please make Review Mistakes a fixed exercise mode.
+
+IMPORTANT: This rule must apply EVERYWHERE the user can access Review Mistakes, including when Review Mistakes is selected from the Training Mode section.
+
+REVIEW MISTAKES RULES:
+
+1. Review Mistakes must ALWAYS use Letter Build mode.
+
+2. Context Mode must ALWAYS be disabled during Review Mistakes.
+
+3. The user must NOT be able to switch between Context Mode and Letter Build while reviewing mistakes.
+
+4. The Letter Build toggle should appear selected/active.
+
+5. The Context Mode toggle should appear disabled/greyed out.
+
+6. The toggles should be visually disabled (for example, reduced opacity and disabled pointer interaction) so the user understands that this is intentional.
+
+7. This behavior must be identical regardless of how Review Mistakes was entered:
+   - from the normal Review Mistakes flow;
+   - from the Training Mode section by selecting "Review Mistakes";
+   - from any other existing entry point that opens the Review Mistakes exercise.
+
+8. If the user selects "Review Mistakes" inside Training Mode, the exact same restrictions must immediately apply:
+   - Letter Build is fixed;
+   - Context Mode is disabled;
+   - the user cannot switch the exercise format.
+
+9. Do NOT change the stored information about the original mistake. The mistake should still be stored exactly as it is currently stored. We are only changing how the mistake is presented during Review Mistakes.
+
+10. Review Mistakes should always present the user with the Letter Build version of the exercise, without context, regardless of which mode was used when the original mistake occurred.
+
+11. The existing Review Mistakes flow must remain unchanged:
+   - mistakes are shown one by one;
+   - the user can answer them;
+   - Skip must continue to work;
+   - after the mistake review cycle is completed/skipped, the user must transition to Full Conjugation as currently implemented;
+   - no infinite mistake loop should be introduced.
+
+IMPORTANT ARCHITECTURE REQUIREMENT:
+
+Please treat "Review Mistakes" as a distinct exercise state/mode, not simply as normal Practice mode with a different list of verbs.
+
+Whenever the application state indicates that the user is currently reviewing mistakes, the exercise format must be forced to:
+
+    Letter Build = ON
+    Context Mode = OFF
+
+The UI controls must reflect this state and must not be interactive.
+
+Do not modify the normal Practice mode.
+
+In normal Practice mode, Context Mode and Letter Build should remain fully functional and switchable exactly as they are now.
+
+Only Review Mistakes should have the fixed mode:
+
+Review Mistakes = Letter Build + No Context
+
+Please inspect the existing exercise-state and Training Mode logic before making changes. The goal is to make Review Mistakes deterministic and prevent mode switching from affecting the mistake-review state, rather than adding more complex state transitions.

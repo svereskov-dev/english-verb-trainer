@@ -310,6 +310,9 @@ importers:
 
   artifacts/verb-trainer:
     dependencies:
+      cordova-plugin-purchase:
+        specifier: ^13.18.0
+        version: 13.18.0
       idb:
         specifier: ^8.0.3
         version: 8.0.3
@@ -2889,6 +2892,9 @@ packages:
   cookie@0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
+
+  cordova-plugin-purchase@13.18.0:
+    resolution: {integrity: sha512-1wDTQxBDS+JYwUN5+0Ivs8MjG2s5HXB4UXnm84pc/WGIdx/K0/fBme20l4C0H0102Iohwvuf77u8FkRXRJaPSA==}
 
   core-js-compat@3.49.0:
     resolution: {integrity: sha512-VQXt1jr9cBz03b331DFDCCP90b3fanciLkgiOoy8SBHy06gNf+vQ1A3WFLqG7I8TipYIKeYK9wxd0tUrvHcOZA==}
@@ -7587,6 +7593,8 @@ snapshots:
   cookie-signature@1.2.2: {}
 
   cookie@0.7.2: {}
+
+  cordova-plugin-purchase@13.18.0: {}
 
   core-js-compat@3.49.0:
     dependencies:

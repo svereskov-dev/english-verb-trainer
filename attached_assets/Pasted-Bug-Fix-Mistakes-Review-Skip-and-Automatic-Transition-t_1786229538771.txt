@@ -1,0 +1,165 @@
+Bug Fix: Mistakes Review — Skip and Automatic Transition to Full Conjugation
+
+Please investigate and fix the Mistakes Review training flow, specifically the Skip functionality.
+
+Current user flow
+
+The intended flow is:
+
+User makes mistakes during training.
+User opens the Mistakes section.
+User starts practicing the accumulated mistakes.
+The app correctly opens the Training screen.
+The top-left training mode indicator correctly shows Mistakes Review.
+The user should be able to practice the mistakes or skip them.
+
+Currently, step 6 is broken: the Skip button does not work correctly in Mistakes Review.
+
+Required behavior
+1. Skip must work in Mistakes Review
+
+When the user is in:
+
+Mistakes Review → Training screen
+
+the existing Skip button must be fully functional.
+
+When the user presses Skip:
+
+the current mistake should be skipped;
+the app should move to the next available mistake;
+the current mistake should NOT be treated as a correct answer;
+skipping must NOT artificially increase the user's correct-answer count;
+skipping must NOT create a new mistake;
+the existing mistake-recording/statistics/SRS logic should remain consistent with the existing application rules.
+2. User can skip ALL mistakes
+
+The user must be able to press Skip repeatedly until there are no remaining mistakes in the current Mistakes Review session.
+
+This is important: Mistakes Review must not trap the user on the same exercise.
+
+If there are 5 mistakes, for example:
+
+Mistake 1 → Skip
+Mistake 2 → Skip
+Mistake 3 → Skip
+Mistake 4 → Skip
+Mistake 5 → Skip
+
+After the final skip, the app must detect that there are no more mistakes available.
+
+3. Automatic transition to Full Conjugation
+
+When the user skips the last remaining mistake, automatically transition the training session to:
+
+Full Conjugation
+
+This is the behavior we previously agreed on.
+
+The user should NOT have to:
+
+press another button;
+leave the Training screen;
+manually select another mode;
+toggle anything;
+restart the session.
+
+The next exercise should immediately belong to Full Conjugation.
+
+4. Update the mode indicator
+
+The transition must also update the mode selector/indicator in the top-left corner of the Training screen.
+
+Before the last mistake is skipped:
+
+Mistakes Review
+
+After all mistakes have been skipped:
+
+Full Conjugation
+
+The UI and the actual exercise-generation configuration must remain synchronized.
+
+There must not be a situation where:
+
+Top-left: Mistakes Review
+Actual exercise: Full Conjugation
+
+or the opposite.
+
+5. Important edge cases
+
+Please test at least these cases:
+
+Case A — One mistake
+Mistakes Review
+↓
+1 mistake
+↓
+Skip
+↓
+Full Conjugation
+Case B — Multiple mistakes
+Mistakes Review
+↓
+Mistake 1
+↓ Skip
+Mistake 2
+↓ Skip
+Mistake 3
+↓ Skip
+Full Conjugation
+Case C — Answering a mistake correctly
+
+If the user answers a mistake correctly, preserve the existing Mistakes Review behavior.
+
+Do NOT treat a correct answer and a skipped mistake as the same event.
+
+Case D — Mixing Skip and answers
+
+For example:
+
+Mistake 1 → answer correctly
+Mistake 2 → Skip
+Mistake 3 → answer incorrectly
+Mistake 4 → Skip
+...
+
+The transition to Full Conjugation should happen only when the Mistakes Review queue/session has genuinely reached its end.
+
+Case E — No mistakes
+
+If the user enters Mistakes Review when there are no mistakes available, there should be no broken/empty training state. Follow the application's existing intended fallback behavior, preferably transitioning to Full Conjugation rather than leaving the user on an unusable screen.
+
+6. Do not break existing behavior
+
+Please inspect the existing implementation before changing it.
+
+In particular, verify how:
+
+Mistakes Review mode is initialized;
+the mistake queue is created;
+Skip currently advances an exercise in normal Training Mode;
+the current exercise is replaced;
+Mistakes are stored/removed;
+Training Mode is represented in the UI;
+Full Conjugation is initialized.
+
+Do not rewrite the general Training Mode architecture unnecessarily.
+
+The goal is to fix the Mistakes Review state transition and make it use the existing Training Mode mechanisms correctly.
+
+Acceptance criteria
+ Skip works inside Mistakes Review.
+ Each Skip advances to another available mistake.
+ Skip does not count as a correct answer.
+ Skip does not create an additional mistake.
+ The user can skip every mistake in the queue.
+ After skipping the final mistake, the app automatically switches to Full Conjugation.
+ The top-left indicator changes from Mistakes Review to Full Conjugation immediately.
+ The first Full Conjugation exercise appears without requiring any additional user action.
+ Correctly answered mistakes continue to behave according to the existing Mistakes Review logic.
+ No regressions in normal Training Mode, Context Mode, or Letter Builder.
+ No regressions in mistake recording, daily statistics, or SRS.
+
+Please first reproduce the reported bug, identify why Skip currently fails specifically in Mistakes Review, then implement the smallest robust fix and test the complete flow end-to-end.

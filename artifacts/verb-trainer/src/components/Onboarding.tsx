@@ -3,6 +3,7 @@
 
 import { useRef, useState } from "react";
 import { ChevronLeft, Dumbbell } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface OnboardingProps {
   onComplete: (dailyGoal: number) => void;
@@ -67,6 +68,76 @@ function Pagination({
   );
 }
 
+function BottomAction({
+  activeIndex,
+  totalDots = 4,
+  onBack,
+  onClick,
+  label,
+}: {
+  activeIndex: number;
+  totalDots?: number;
+  onBack?: () => void;
+  onClick: () => void;
+  label: string;
+}) {
+  return (
+    <div style={{
+      flex: "0 0 auto",
+      width: "100%",
+      height: "calc(164px + env(safe-area-inset-bottom, 0px))",
+      padding: "16px 24px calc(48px + env(safe-area-inset-bottom, 0px))",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "flex-end",
+       // Keep the visual dots-to-button distance identical whether the
+       // pagination includes the 24px back-chevron or not. The chevron
+       // increases Pagination's line box by 16px, so reduce the flex gap by
+       // the 8px of vertical centering it adds below the dots.
+       gap: onBack ? 12 : 20,
+      boxSizing: "border-box",
+    }}>
+      <Pagination activeIndex={activeIndex} totalDots={totalDots} onBack={onBack} />
+      <Button
+        type="button"
+        size="hero"
+        className="w-full shrink-0"
+        onClick={onClick}
+      >
+        {label}
+      </Button>
+    </div>
+  );
+}
+
+function PageTitle({
+  children,
+  fontSize = 22,
+  lineHeight = 1.25,
+  marginBottom = 0,
+}: {
+  children: React.ReactNode;
+  fontSize?: number;
+  lineHeight?: number;
+  marginBottom?: number;
+}) {
+  return (
+    <h2 style={{
+      color: FG,
+      fontSize,
+      fontWeight: 700,
+      margin: `0 0 ${marginBottom}px`,
+      letterSpacing: "-0.3px",
+      lineHeight,
+      textAlign: "left",
+      alignSelf: "stretch",
+    }}>
+      {children}
+    </h2>
+  );
+}
+
 // ─── Screen 1 ─────────────────────────────────────────────────────────────────
 
 function Screen1({ onNext }: { onNext: () => void }) {
@@ -74,35 +145,28 @@ function Screen1({ onNext }: { onNext: () => void }) {
     <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", overflow: "hidden" }}>
       <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "0 32px" }}>
         <div style={{
-          width: 120, height: 120, borderRadius: 28, overflow: "hidden", marginBottom: 40,
-          boxShadow: `0 0 0 1px ${BORDER}, 0 16px 48px rgba(108,71,255,0.3)`,
-          background: "#0B1A3A",
+          width: 120, height: 120, marginBottom: 40,
+          display: "flex", alignItems: "center", justifyContent: "center",
         }}>
           <img
-            src="/verbflow-icon.png"
+            src="/verbflow-onboarding-icon.png"
             alt="VerbFlow"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
             sizes="120px"
           />
         </div>
-        <h1 style={{ color: FG, fontSize: 32, fontWeight: 700, textAlign: "center", margin: "0 0 20px", lineHeight: 1.2, letterSpacing: "-0.5px" }}>
+        <h1 style={{ color: FG, fontSize: 28, fontWeight: 700, textAlign: "center", margin: "0 0 20px", lineHeight: 1.2, letterSpacing: "-0.4px" }}>
           Добро пожаловать!
         </h1>
         <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.65, textAlign: "center", margin: 0, maxWidth: 300 }}>
           VerbFlow поможет освоить правильные и неправильные глаголы и разобраться во временах английского языка.
         </p>
       </div>
-      <div style={{ width: "100%", padding: "0 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <Dot active={true} /><Dot active={false} /><Dot active={false} /><Dot active={false} />
-        </div>
-        <button onClick={onNext} style={{
-          width: "100%", height: 56, background: PRIMARY, border: "none",
-          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
-          cursor: "pointer", letterSpacing: "0.1px",
-          boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
-        }}>Далее</button>
-      </div>
+      <BottomAction
+        activeIndex={0}
+        onClick={onNext}
+        label="Далее"
+      />
     </div>
   );
 }
@@ -111,14 +175,14 @@ function Screen1({ onNext }: { onNext: () => void }) {
 
 function Callout2({ n, label, text }: { n: number; label: string; text: string }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 10, alignItems: "start" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start" }}>
       <div style={{
-        width: 22, height: 22, borderRadius: 11, background: PRIMARY, color: "#fff",
+        width: 26, height: 26, borderRadius: 13, background: PRIMARY, color: "#fff",
         fontSize: 12, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
       }}>{n}</div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <div style={{ color: FG, fontSize: 12, fontWeight: 600, lineHeight: "18px" }}>{label}</div>
-        <div style={{ color: MUTED, fontSize: 11, lineHeight: "16px" }}>{text}</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        <div style={{ color: FG, fontSize: 14, fontWeight: 600, lineHeight: "20px" }}>{label}</div>
+        <div style={{ color: MUTED, fontSize: 14, lineHeight: "21px" }}>{text}</div>
       </div>
     </div>
   );
@@ -181,29 +245,26 @@ function Screen2({
 }) {
   return (
     <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <div style={{ padding: "4px 24px 8px" }}>
-        <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: 0, letterSpacing: "-0.3px" }}>Экран тренировки</h2>
+      <div style={{ flex: "0 0 auto" }}>
+        <div style={{ padding: "4px 24px 8px" }}>
+          <PageTitle>Экран тренировки</PageTitle>
+        </div>
+        <div style={{ padding: "0 20px" }}>
+          <PracticePreview />
+        </div>
       </div>
-      <div style={{ padding: "0 20px" }}>
-        <PracticePreview />
+      <div className="scrollbar-hidden" style={{ flex: "1 1 auto", minHeight: 0, padding: "10px 24px 12px", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+        <Callout2 n={1} label="Training Mode" text="Выберите формы глаголов и времена, которые хотите тренировать. Используйте режим Context sentences, чтобы практиковать глаголы в предложениях. Повысьте сложность заданий, отключив Letter Builder." />
+        <Callout2 n={2} label="English Tenses" text="Если немного запутались во временах английского языка, посмотрите нашу удобную шпаргалку." />
+        <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола или нажмите Skip, чтобы пропустить задание." />
       </div>
-      <div style={{ flex: 1, minHeight: 0, padding: "10px 24px 0", display: "flex", flexDirection: "column", gap: 8, overflow: "hidden" }}>
-        <Callout2 n={1} label="Training Mode" text="Настройте обучение под себя: выберите формы глаголов и времена, которые хотите тренировать. Используйте режим Context sentences, чтобы практиковать глаголы в предложениях. Повысьте сложность заданий, отключив Letter Builder." />
-        <Callout2 n={2} label="English Tenses" text="Наглядная схема времён английского языка, если захотите освежить знания." />
-        <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола и нажмите Check, чтобы проверить результат." />
-      </div>
-      <div style={{ width: "100%", padding: "10px 24px 30px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, boxSizing: "border-box" }}>
-        <Pagination
-          activeIndex={repeatGuide ? 0 : 1}
-          totalDots={repeatGuide ? 2 : 4}
-          onBack={repeatGuide ? undefined : onBack}
-        />
-        <button onClick={onNext} style={{
-          width: "100%", height: 48, background: PRIMARY, border: "none",
-          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
-          cursor: "pointer", boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
-        }}>Далее</button>
-      </div>
+      <BottomAction
+        activeIndex={repeatGuide ? 0 : 1}
+        totalDots={repeatGuide ? 2 : 4}
+        onBack={repeatGuide ? undefined : onBack}
+        onClick={onNext}
+        label="Далее"
+      />
     </div>
   );
 }
@@ -235,11 +296,11 @@ const navIcons = {
 };
 
 const tabs = [
-  { key: "Home", label: "Home", icon: navIcons.Home, desc: "Наблюдаем за статистикой ответов и ежедневным прогрессом." },
-  { key: "Practice", label: "Practice", icon: navIcons.Practice, desc: "Совершенствуем язык." },
-  { key: "Mistakes", label: "Mistakes", icon: navIcons.Mistakes, desc: "Изучаем список ошибок, допущенных в течение дня." },
-  { key: "Dictionary", label: "Dictionary", icon: navIcons.Dictionary, desc: "При клике на глагол можно увидеть его перевод, транскрипцию и основные формы." },
-  { key: "Settings", label: "Settings", icon: navIcons.Settings, desc: "Выбираем цель ежедневной тренировки." },
+  { key: "Home", label: "Home", icon: navIcons.Home, desc: "Наблюдайте за статистикой ответов и ежедневным прогрессом." },
+  { key: "Practice", label: "Practice", icon: navIcons.Practice, desc: "Совершенствуйте язык." },
+  { key: "Mistakes", label: "Mistakes", icon: navIcons.Mistakes, desc: "Вернитесь к допущенным ошибкам и отработайте их." },
+  { key: "Dictionary", label: "Dictionary", icon: navIcons.Dictionary, desc: "Кликните на глагол, чтобы узнать о его формах больше." },
+  { key: "Settings", label: "Settings", icon: navIcons.Settings, desc: "Выберите цель тренировки и ещё раз пройдите гайд." },
 ];
 
 function Screen3({
@@ -252,16 +313,17 @@ function Screen3({
   repeatGuide?: boolean;
 }) {
   return (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <div style={{ padding: "8px 24px 0" }}>
-        <h2 style={{ color: FG, fontSize: 22, fontWeight: 700, margin: "0 0 4px", letterSpacing: "-0.3px" }}>
-          Всё необходимое —{" "}<br />под рукой
-        </h2>
-      </div>
+    <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      <div style={{ flex: "0 0 auto" }}>
+        <div style={{ padding: "8px 24px 0" }}>
+          <PageTitle>
+            Всё необходимое —{" "}<br />под рукой
+          </PageTitle>
+        </div>
 
-      {/* Nav bar visual */}
-      <div style={{ padding: "20px 16px 0" }}>
-        <div style={{ background: CARD, border: `1px solid ${BORDER}`, borderRadius: 20, overflow: "hidden" }}>
+        {/* Nav bar visual */}
+        <div style={{ padding: "20px 16px 0" }}>
+          <div style={{ background: CARD, border: `1px solid ${BORDER}`, borderRadius: 20, overflow: "hidden" }}>
           {/* Arrow indicators */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", padding: "10px 4px 0" }}>
             {tabs.map((t, i) => (
@@ -289,37 +351,33 @@ function Screen3({
               );
             })}
           </div>
+          </div>
         </div>
       </div>
 
       {/* Descriptions */}
-      <div style={{ flex: 1, padding: "20px 24px 0", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+      <div className="scrollbar-hidden" style={{ flex: "1 1 auto", minHeight: 0, padding: "20px 24px 12px", display: "flex", flexDirection: "column", gap: 14, overflowY: "auto" }}>
         {tabs.map((t, i) => (
           <div key={t.key} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start" }}>
             <div style={{
-              width: 24, height: 24, borderRadius: 12, background: PRIMARY, color: "#fff",
+              width: 26, height: 26, borderRadius: 13, background: PRIMARY, color: "#fff",
               fontSize: 12, fontWeight: 700, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
             }}>{i + 1}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <div style={{ color: FG, fontSize: 13, fontWeight: 600, lineHeight: "20px" }}>{t.label}</div>
-              <div style={{ color: MUTED, fontSize: 12, lineHeight: "18px" }}>{t.desc}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              <div style={{ color: FG, fontSize: 14, fontWeight: 600, lineHeight: "20px" }}>{t.label}</div>
+              <div style={{ color: MUTED, fontSize: 14, lineHeight: "21px" }}>{t.desc}</div>
             </div>
           </div>
         ))}
       </div>
 
-      <div style={{ padding: "16px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-        <Pagination
-          activeIndex={repeatGuide ? 1 : 2}
-          totalDots={repeatGuide ? 2 : 4}
-          onBack={onBack}
-        />
-        <button onClick={onNext} style={{
-          width: "100%", height: 52, background: PRIMARY, border: "none",
-          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
-          cursor: "pointer", boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
-        }}>{repeatGuide ? "Вернуться к обучению" : "Далее"}</button>
-      </div>
+      <BottomAction
+        activeIndex={repeatGuide ? 1 : 2}
+        totalDots={repeatGuide ? 2 : 4}
+        onBack={onBack}
+        onClick={onNext}
+        label={repeatGuide ? "Вернуться к обучению" : "Далее"}
+      />
     </div>
   );
 }
@@ -347,9 +405,9 @@ function Screen4({
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
       <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "8px 24px 0" }}>
-        <h2 style={{ color: FG, fontSize: 26, fontWeight: 700, margin: "0 0 12px", paddingLeft: 30, letterSpacing: "-0.3px", lineHeight: 1.25 }}>
+        <PageTitle marginBottom={10}>
           Остался последний шаг
-        </h2>
+        </PageTitle>
         <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.6, margin: "0 0 32px" }}>
           Выберите количество слов, которое хотите тренировать каждый день. Это можно изменить позже в настройках приложения.
         </p>
@@ -388,15 +446,12 @@ function Screen4({
           })}
         </div>
       </div>
-      <div style={{ padding: "20px 24px 48px", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-        <Pagination activeIndex={3} onBack={onBack} />
-        <button onClick={() => onComplete(selected)} style={{
-          width: "100%", height: 56, background: PRIMARY, border: "none",
-          borderRadius: 16, color: "#fff", fontSize: 17, fontWeight: 600,
-          cursor: "pointer", letterSpacing: "0.1px",
-          boxShadow: `0 8px 24px rgba(108,71,255,0.4)`,
-        }}>Начать обучение</button>
-      </div>
+      <BottomAction
+        activeIndex={3}
+        onBack={onBack}
+        onClick={() => onComplete(selected)}
+        label="Начать обучение"
+      />
     </div>
   );
 }

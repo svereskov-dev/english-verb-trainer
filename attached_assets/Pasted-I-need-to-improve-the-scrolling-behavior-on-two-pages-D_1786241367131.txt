@@ -1,0 +1,70 @@
+I need to improve the scrolling behavior on two pages: Dictionary and Review Mistakes.
+
+CURRENT PROBLEM:
+At the moment, the entire page scrolls vertically. When the user scrolls down, the page header, search/filter controls, and the list all move up together.
+
+I want to change this behavior so that the header area stays fixed and ONLY the list of items is vertically scrollable.
+
+1. DICTIONARY PAGE
+
+The following elements must remain fixed and visible at the top of the screen:
+
+- "Dictionary" title
+- Number of verbs (e.g. "335 verbs")
+- Filter tabs: "All / Regular / Irregular"
+- Search field: "Search verbs..."
+
+Only the list of verbs below the search field should scroll vertically.
+
+Expected behavior:
+
+┌─────────────────────────┐
+│ Dictionary              │  ← fixed
+│ 335 verbs               │  ← fixed
+│ All Regular Irregular   │  ← fixed
+│ Search verbs...         │  ← fixed
+├─────────────────────────┤
+│ accept    принимать      │
+│ achieve   достигать      │
+│ add       добавлять      │  ← ONLY THIS AREA SCROLLS
+│ agree     соглашаться    │
+│ allow     позволять      │
+│ ...                     │
+└─────────────────────────┘
+
+When the user scrolls down:
+- "Dictionary" must stay in place
+- "335 verbs" must stay in place
+- the filter tabs must stay in place
+- the search field must stay in place
+- only the verb list should move
+
+2. REVIEW MISTAKES PAGE
+
+Apply exactly the same scrolling behavior to the Review Mistakes page.
+
+The header/control section should remain fixed, while ONLY the list of mistakes should be vertically scrollable.
+
+Do not change the existing design, colors, typography, spacing, or functionality unless necessary to implement the scrolling behavior.
+
+IMPORTANT IMPLEMENTATION REQUIREMENTS:
+
+- Prefer a proper layout with a fixed/non-scrolling header and a dedicated scrollable list container using flexbox and `overflow-y-auto`.
+- Do NOT simply make the header `position: sticky` if the entire page/container will still scroll underneath it.
+- The intended behavior is that the page itself does NOT vertically scroll. The list container is the only element that should have vertical scrolling.
+- Make sure the scrollable list correctly fills the remaining available viewport height.
+- Avoid creating a second/double vertical scrollbar anywhere on the page.
+- Make sure the solution works correctly on Android/Capacitor as well as in the browser.
+- Pay particular attention to `min-height: 0`, `flex: 1`, and the parent container's height, since these can affect scrolling inside flex layouts.
+- Do not break the existing bottom navigation.
+- The content must remain within the visible screen area and must not be hidden behind the bottom navigation or system UI.
+- Preserve all existing search, filtering, and list functionality.
+
+Please inspect the existing page/layout structure first and implement the cleanest solution within the current architecture rather than adding unnecessary new components or changing unrelated code.
+
+After making the changes, verify both pages and make sure that:
+1. The header remains fixed.
+2. Only the list scrolls.
+3. There is no double scrollbar.
+4. The bottom navigation still works correctly.
+5. The layout works correctly on Android and desktop/mobile browsers.

@@ -11,9 +11,9 @@
   <!--
     EDIT THIS VALUE to change every system bar and splash screen color.
     The value must match your web app's background color.
-    Current value: #1565C0 (royal blue matching the VerbFlow icon)
+    Current value: #060C18 (same near-black background as onboarding)
   -->
-  <color name="appBackground">#1565C0</color>
+  <color name="appBackground">#060C18</color>
 
   <!-- These three reference appBackground automatically — do not edit them -->
   <color name="colorPrimary">@color/appBackground</color>

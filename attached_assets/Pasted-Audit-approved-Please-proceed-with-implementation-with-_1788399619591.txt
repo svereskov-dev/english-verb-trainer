@@ -1,0 +1,354 @@
+Audit approved. Please proceed with implementation, with the following clarifications and final requirements.
+
+1. Free content
+
+The only tense content that is guaranteed to be free is:
+
+Present Simple
+Past Simple
+Future Simple
+
+These three tenses must remain fully usable with all free training mechanics.
+
+Also remain free:
+
+regular Practice mode
+Context sentences
+Letter Builder
+Mistakes Review
+statistics
+progress
+SRS
+guides and other currently free educational content
+
+We are monetizing additional grammar content, not training mechanics.
+
+2. Premium content
+
+Full Access unlocks:
+
+Present Continuous
+Past Continuous
+Future Continuous
+Present Perfect
+Past Perfect
+Future Perfect
+Present Perfect Continuous
+Past Perfect Continuous
+Future Perfect Continuous
+Irregular Verb Forms: Past Simple (V2)
+Irregular Verb Forms: Past Participle (V3)
+Irregular Verb Forms: Mixed
+Full Conjugation / All Tenses
+
+Any normal-training preset or manually composed configuration containing at least one premium tense/form must require Full Access.
+
+Do not classify access based only on display labels or translated strings.
+
+3. Important free default behavior
+
+The free default training configuration must be:
+
+Present Simple only
+
+This applies when:
+
+the app starts without a valid existing free configuration;
+an old saved configuration points to premium content but the current user does not own Full Access;
+the previous default Full Conjugation → All Tenses is no longer accessible to a free user;
+a persisted premium normal-training session must be rejected.
+
+Do NOT automatically create a mixed Present Simple + Past Simple + Future Simple session.
+
+Do NOT automatically select all three free Simple tenses.
+
+The user may manually choose Past Simple, Future Simple, or other available free presets from Training Mode.
+
+The purpose of the fallback is only to provide a safe free default, not to redesign the user's training session.
+
+4. Preset access must be semantic
+
+Do not assume that a preset such as ps-all is free based on its ID or current name.
+
+Inspect the actual configuration represented by each preset.
+
+Access logic should be centralized through semantic helpers such as:
+
+isPremiumPreset(...)
+
+isPremiumSessionConfig(...)
+
+canAccessTrainingPreset(...)
+
+or equivalent.
+
+No access decision may depend on:
+
+visible labels;
+translations;
+UI text;
+modal state;
+button names.
+5. Stable entitlement
+
+Introduce a centralized semantic entitlement:
+
+hasFullAccess
+
+Keep purchase state, entitlement state, grammar access rules, and paywall UI separated.
+
+Do not use a locally writable boolean as the authoritative proof of purchase.
+
+A local cache may be used for UI/performance, but Play ownership must remain authoritative when available.
+
+6. Google Play product
+
+Use:
+
+full_access
+
+as the stable product ID.
+
+This is:
+
+one-time purchase;
+non-consumable;
+permanent Full Access;
+not a subscription.
+
+Never consume the product.
+
+7. Purchase states
+
+Support:
+
+successful purchase;
+pending purchase;
+cancelled purchase;
+failed purchase;
+already-owned purchase;
+restored purchase;
+purchase completed after previously being pending.
+
+A PENDING purchase must never grant Full Access.
+
+During pending:
+
+hasFullAccess remains false;
+show an appropriate payment-processing state;
+do not treat the purchase as completed;
+do not acknowledge it as a completed entitlement yet.
+
+Only grant Full Access after the store reports the purchase as successfully completed/purchased.
+
+Then acknowledge the non-consumable purchase as required.
+
+8. Purchase restoration
+
+On native app launch:
+
+initialize billing;
+load full_access;
+query/reconcile existing ownership;
+update hasFullAccess;
+listen for purchase-state changes.
+
+Reconcile ownership again when the Android app returns to foreground.
+
+The Restore action must trigger another explicit store refresh/query.
+
+It must support:
+
+app restart;
+reinstall;
+same Google account on another supported device;
+purchase made before the current installation.
+9. Training Mode UI
+
+Premium presets must remain visible.
+
+Add a clear lock indicator to premium items.
+
+When a free user taps locked content:
+
+do not change the active training configuration;
+do not generate a premium exercise;
+open the Full Access paywall.
+
+Free Present Simple, Past Simple, and Future Simple remain selectable normally.
+
+10. Mistakes Review exception
+
+Mistakes Review remains free.
+
+This includes an existing saved mistake whose original exercise used a premium tense or premium verb form.
+
+A user must not be blocked from reviewing an already saved mistake merely because its original grammar content is now premium.
+
+Preserve all:
+
+mistakes;
+progress;
+statistics;
+SRS data.
+11. Persisted sessions
+
+Validate restored practice_config and exercise_session before generating or restoring an exercise.
+
+For a free user with a saved premium normal-training configuration:
+
+do not restore or generate the premium exercise;
+do not automatically open the sales paywall merely because the old saved state exists;
+clear/ignore only the incompatible transient premium session state where necessary;
+preserve statistics, progress, mistakes, SRS and other learning data;
+switch the active normal-training configuration to Present Simple only.
+
+Keep old persisted formats readable where reasonably possible for backward compatibility.
+
+12. Settings
+
+Add a prominent branded button using the app's existing primary blue/purple color.
+
+Free state:
+
+Открыть полный доступ
+
+Owned state:
+
+✓ Полный доступ открыт
+
+The owned state should be green and non-promotional.
+
+Tapping the owned state must not open the sales paywall.
+
+13. Reusable paywall
+
+Create one reusable Full Access paywall/modal.
+
+Russian copy:
+
+Полный доступ навсегда
+
+Открой все времена английского языка, формы неправильных глаголов и режим полной тренировки.
+
+[localized Google Play price] · один платёж
+
+Primary button:
+
+Открыть полный доступ — [localized price]
+
+Secondary action:
+
+Восстановить покупку
+
+Include a normal close action.
+
+Do not hardcode $4.99 in user-facing UI.
+
+Use the localized price returned by Google Play Billing.
+
+14. Automatic promotional paywall
+
+Store scheduling data separately from purchase state.
+
+Suggested persistent values:
+
+full_access_first_use_at
+
+full_access_last_auto_paywall_at
+
+Runtime-only:
+
+autoPaywallShownThisLaunch
+
+Eligibility requires all of:
+
+entitlement restoration has completed;
+hasFullAccess === false;
+onboarding is complete;
+at least 48 hours have elapsed since first use;
+at least 72 hours have elapsed since the last automatic promotional display;
+it has not already been shown in the current app launch;
+no paywall is already open.
+
+On first use:
+
+record first-use timestamp;
+do not automatically show the paywall.
+
+Therefore the promotional paywall must never appear on the user's first day.
+
+Manual actions remain independent:
+
+tapping locked premium content may always open the paywall;
+tapping the Settings Full Access button may always open the paywall;
+these manual opens do not need to obey the automatic promotional cooldown.
+15. Browser/PWA
+
+The browser/PWA version must handle unavailable native billing gracefully.
+
+It must never grant production Full Access through:
+
+a browser mock;
+a local toggle;
+manually edited storage.
+
+Development mocks, if used, must be clearly separated from production entitlement logic.
+
+16. Tests
+
+Add focused coverage for at least:
+
+Present Simple free;
+Past Simple free;
+Future Simple free;
+every premium tense classified correctly;
+V2/V3/Mixed irregular forms premium;
+Full Conjugation premium;
+mixed configurations containing premium content blocked;
+Context sentences not affecting entitlement;
+Letter Builder not affecting entitlement;
+Mistakes Review free;
+premium-origin mistake still reviewable;
+locked tap opens paywall without changing current config;
+new free fallback is Present Simple only;
+persisted premium config falls back to Present Simple;
+localized price rendering;
+successful purchase;
+pending purchase;
+cancelled purchase;
+failed purchase;
+restored purchase;
+already-owned purchase;
+automatic paywall timing;
+first-day suppression;
+once-per-launch behavior.
+17. Scope
+
+Implement only the monetization/access changes described above.
+
+Do not make unrelated:
+
+visual redesigns;
+training-logic changes;
+data-model refactors;
+localization changes beyond what is necessary for this feature.
+18. Final implementation report
+
+When finished, provide:
+
+all changed/new files;
+exact purchase package and installed version;
+all Capacitor/Android native changes;
+exact Google Play Console steps required for full_access;
+how to test successful purchase;
+how to test cancelled purchase;
+how to test pending purchase;
+how to test restored purchase;
+how to test already-owned purchase;
+resulting Free and Full Access UI behavior;
+test results;
+build results;
+remaining manual Play Console steps or limitations.
+
+Proceed with implementation.

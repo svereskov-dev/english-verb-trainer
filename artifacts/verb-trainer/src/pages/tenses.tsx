@@ -2,12 +2,13 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "../lib/utils";
+import { wrapIndex } from "../lib/circularNavigation";
+import { getTenseLabel, Tense } from "../data/grammar";
 
 // ─── Tense data ───────────────────────────────────────────────────────────────
 
 interface TenseDef {
-  id: string;
-  name: string;
+  id: Tense;
   russian: string;
   structure: string;
   example: string;
@@ -34,7 +35,6 @@ const PERIODS: Period[] = [
     ringClass: "ring-sky-400/50",
     standaloneCard: {
       id: "pastSimple",
-      name: "Past Simple",
       russian: "Что произошло?",
       structure: "Subject + V2",
       example: "I worked.",
@@ -43,21 +43,18 @@ const PERIODS: Period[] = [
       // Chronological order: earliest (left) → latest (right)
       {
         id: "pastPerfectContinuous",
-        name: "Past Perfect Continuous",
         russian: "Что происходило до другого события?",
         structure: "Subject + had been + V-ing",
         example: "I had been working.",
       },
       {
         id: "pastPerfect",
-        name: "Past Perfect",
         russian: "Что произошло раньше другого события?",
         structure: "Subject + had + V3",
         example: "I had worked.",
       },
       {
         id: "pastContinuous",
-        name: "Past Continuous",
         russian: "Что происходило в определённый момент?",
         structure: "Subject + was/were + V-ing",
         example: "I was working.",
@@ -73,7 +70,6 @@ const PERIODS: Period[] = [
     ringClass: "ring-primary/50",
     standaloneCard: {
       id: "presentSimple",
-      name: "Present Simple",
       russian: "Что происходит обычно?",
       structure: "Subject + V1",
       example: "I work.",
@@ -82,21 +78,18 @@ const PERIODS: Period[] = [
       // Logical flow: longest continuing action → completed present result → happening right now
       {
         id: "presentPerfectContinuous",
-        name: "Present Perfect Continuous",
         russian: "Что продолжается до настоящего момента?",
         structure: "Subject + have/has been + V-ing",
         example: "I have been working.",
       },
       {
         id: "presentPerfect",
-        name: "Present Perfect",
         russian: "Какой результат есть сейчас?",
         structure: "Subject + have/has + V3",
         example: "I have worked.",
       },
       {
         id: "presentContinuous",
-        name: "Present Continuous",
         russian: "Что происходит прямо сейчас?",
         structure: "Subject + am/is/are + V-ing",
         example: "I am working.",
@@ -112,7 +105,6 @@ const PERIODS: Period[] = [
     ringClass: "ring-amber-400/50",
     standaloneCard: {
       id: "futureSimple",
-      name: "Future Simple",
       russian: "Что произойдёт?",
       structure: "Subject + will + V1",
       example: "I will work.",
@@ -121,21 +113,18 @@ const PERIODS: Period[] = [
       // Logical flow: continuing up to future moment → completed by future moment → in progress at future moment
       {
         id: "futurePerfectContinuous",
-        name: "Future Perfect Continuous",
         russian: "Что будет продолжаться к определённому моменту?",
         structure: "Subject + will have been + V-ing",
         example: "I will have been working.",
       },
       {
         id: "futurePerfect",
-        name: "Future Perfect",
         russian: "Что завершится к определённому моменту?",
         structure: "Subject + will have + V3",
         example: "I will have worked.",
       },
       {
         id: "futureContinuous",
-        name: "Future Continuous",
         russian: "Что будет происходить в определённый момент?",
         structure: "Subject + will be + V-ing",
         example: "I will be working.",
@@ -197,7 +186,7 @@ function TimelineSection({
               "text-base font-semibold mb-2 leading-tight",
               cardHighlighted ? period.accentClass : "text-foreground",
             )}>
-              {card.name}
+              {getTenseLabel(card.id)}
             </p>
             <p className={cn(
               "text-sm leading-tight mb-2",
@@ -366,7 +355,7 @@ function TimelineSection({
                     "text-sm font-semibold mb-2 leading-tight",
                     isHighlighted ? period.accentClass : "text-foreground",
                   )}>
-                    {tense.name}
+                    {getTenseLabel(tense.id)}
                   </p>
                   <p className="text-xs text-muted-foreground font-mono leading-tight mb-2">
                     {tense.structure}
@@ -413,8 +402,7 @@ export default function Tenses() {
   });
 
   const goTo = useCallback((idx: number) => {
-    if (idx < 0 || idx > 2) return;
-    setCurrentPeriod(idx);
+    setCurrentPeriod(wrapIndex(idx, PERIODS.length));
   }, []);
 
   // Enable pinch-to-zoom on this page; restore on unmount
@@ -477,8 +465,7 @@ export default function Tenses() {
         <div className="flex items-center justify-between px-6 pt-2 pb-1">
           <button
             onClick={() => goTo(currentPeriod - 1)}
-            disabled={currentPeriod === 0}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors disabled:opacity-30 disabled:pointer-events-none"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           >
             <ChevronLeft size={18} />
           </button>
@@ -492,8 +479,7 @@ export default function Tenses() {
           </div>
           <button
             onClick={() => goTo(currentPeriod + 1)}
-            disabled={currentPeriod === 2}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors disabled:opacity-30 disabled:pointer-events-none"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           >
             <ChevronRight size={18} />
           </button>

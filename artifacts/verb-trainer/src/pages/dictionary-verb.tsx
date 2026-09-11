@@ -2,6 +2,7 @@ import { useParams } from "wouter";
 import { BottomNav } from "../components/BottomNav";
 import { verbs } from "../data/verbs";
 import { ChevronLeft } from "lucide-react";
+import { getTenseLabel } from "../data/grammar";
 
 export default function DictionaryVerb() {
   const { verb: infinitive } = useParams<{ verb: string }>();
@@ -78,7 +79,9 @@ export default function DictionaryVerb() {
                 </div>
               </div>
               <div className="flex justify-between items-start">
-                <span className="text-sm text-muted-foreground pt-0.5">Past Simple (V2)</span>
+                <span className="text-sm text-muted-foreground pt-0.5">
+                  {getTenseLabel("pastSimple")} (V2)
+                </span>
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-semibold">{verb.past}</span>
                   {verb.pastIPA && (

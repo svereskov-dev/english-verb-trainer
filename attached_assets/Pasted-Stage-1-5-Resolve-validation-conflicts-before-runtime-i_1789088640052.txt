@@ -1,0 +1,146 @@
+Stage 1.5 — Resolve validation conflicts before runtime integration
+
+Stage 1 is approved, but resolve the 10 reported subject/form conflicts before starting Stage 2.
+
+Do not integrate the curated Context dataset into runtime yet.
+
+1. Fix the single curated dataset metadata inconsistency
+
+Record:
+
+flee_presentSimple_01
+
+Current:
+
+stored subject: the rabbit
+sentence subject: Rabbits
+expectedAnswer: flee
+
+The sentence and expected answer are correct.
+
+Change only:
+
+subject: "the rabbit" → subject: "rabbits"
+
+Preserve the sentence, expected answer, ID, tense, and practice targets.
+
+Apply the correction both to the merged production dataset and, if necessary, to the corresponding imported source representation so validation remains internally consistent.
+
+2. Fix conjugation-engine spelling rules
+
+The curated answers below are correct American English and must not be changed.
+
+Update the conjugation engine so it produces them correctly.
+
+quit
+
+Current incorrect engine form:
+
+quiting
+
+Correct:
+
+quitting
+
+Ensure all Continuous forms derive from quitting:
+
+was/were quitting
+is/are quitting
+has/have been quitting
+will be quitting
+will have been quitting
+travel
+
+The app uses American English.
+
+Current engine:
+
+travelling
+
+Required:
+
+traveling
+
+Ensure all relevant Continuous forms use:
+
+traveling
+
+not:
+
+travelling
+
+Do not change the curated dataset.
+
+disagree
+
+Current incorrect engine form:
+
+disagreing
+
+Correct:
+
+disagreeing
+
+Ensure all Continuous forms use:
+
+disagreeing
+
+3. Check the underlying -ing generation logic
+
+Do not fix these three verbs only with scattered hardcoded string replacements unless the current architecture requires explicit exceptions.
+
+Inspect the existing -ing formation logic and correct it safely so:
+
+final silent e is normally removed: make → making
+but ee is preserved: see → seeing
+agree → agreeing
+disagree → disagreeing
+consonant doubling remains correct where required: quit → quitting
+American spelling remains correct for travel → traveling
+
+Preserve existing correct behavior for other verbs.
+
+4. Add regression tests
+
+Add tests covering at least:
+
+quit → quitting
+travel → traveling
+disagree → disagreeing
+agree → agreeing
+see → seeing
+one normal silent-e verb such as make → making
+
+Also test at least one full tense form for each corrected verb, not only the bare -ing form.
+
+5. Re-run validation
+
+After the fixes, run:
+
+curated Context dataset validation
+typecheck
+existing training test suite
+new conjugation regression tests
+
+Expected result:
+
+subject/agreement/form inconsistencies: 0
+duplicate IDs: 0
+unknown verbs: 0
+invalid tense IDs: 0
+invalid practice targets: 0
+V2/V3 inconsistencies: 0
+
+Do not silently modify any other curated sentence or expected answer.
+
+6. Report and stop
+
+Report:
+
+exact files modified;
+how the -ing rules were changed;
+tests added;
+final validation totals;
+whether any other conjugation discrepancies were discovered.
+
+Do not begin Stage 2 until I explicitly approve this report.

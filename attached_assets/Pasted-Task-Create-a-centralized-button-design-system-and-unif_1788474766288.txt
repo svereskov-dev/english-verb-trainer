@@ -1,0 +1,212 @@
+Task: Create a centralized button design system and unify all app buttons
+
+We need to standardize button styling across the entire app and make the styling reusable so future screens do not introduce inconsistent borders, sizes, or states.
+
+1. Visual direction
+
+Use one consistent structural style for all major buttons:
+
+same border width;
+same border radius;
+same button height where the button is a standard full-size action;
+same typography;
+same horizontal/vertical padding;
+same icon/text alignment;
+same border contrast philosophy.
+
+For the dark theme, use a soft but clearly visible light border, not a bright pure-white outline.
+
+The border should:
+
+be more visible than the faint dividers/cards;
+remain subtler than button text;
+not compete visually with purple/red/green fills.
+
+Do not use different border opacity values screen by screen.
+
+2. Semantic button variants
+
+Create shared semantic variants for:
+
+primary
+secondary
+destructive
+success
+disabled
+compact / small CTA where necessary
+
+Suggested roles:
+
+primary — purple fill
+secondary — dark neutral fill
+destructive — red fill
+success — green fill
+
+All of them should share the same structural design language.
+
+3. Centralize the implementation
+
+Do not keep button styling scattered across individual pages.
+
+Create or use a dedicated shared UI location, for example:
+
+src/components/ui/button/
+
+or, if more appropriate for the existing project structure:
+
+src/styles/components/
+
+The exact folder name may follow the project's current conventions, but there must be one clearly identifiable shared location for button styling.
+
+Ideally keep:
+
+reusable Button component / variants;
+shared class definitions;
+semantic style tokens;
+shared size variants;
+icon alignment rules;
+disabled-state rules
+
+in that centralized location.
+
+Individual screens should request a semantic variant rather than manually defining border opacity, radius, padding, etc.
+
+Example intent:
+
+variant="primary"
+
+variant="secondary"
+
+variant="destructive"
+
+variant="success"
+
+rather than screen-specific class combinations.
+
+4. Prevent future inconsistency
+
+After the refactor, remove or minimize duplicated per-screen button styles.
+
+New buttons should inherit the shared system by default.
+
+Do not leave multiple competing definitions for:
+
+border color;
+border opacity;
+border width;
+radius;
+standard height;
+text weight;
+icon gap/alignment.
+
+If a specific button genuinely needs a special exception, keep the exception minimal and document why.
+
+5. Screens/components to audit
+
+Review and unify at least:
+
+Settings
+Practice
+Mistakes
+Training Mode actions
+result/action screens
+paywall buttons
+any other screen using standard action buttons
+
+Existing examples include:
+
+Practice
+Choose Training Mode
+Next
+Repeat Guide
+Clear All Data
+Clear Mistakes
+Unlock Full Access
+Full Access Unlocked
+small Practice → CTA
+6. Important distinction
+
+Only standardize actual action buttons.
+
+Do not automatically convert these into the same component/style:
+
+grammar chips/pills;
+select fields;
+cards;
+input fields;
+containers;
+passive status badges.
+
+They may have their own design tokens.
+
+7. Compact buttons
+
+Small CTA buttons such as Practice → may use a compact size variant, but they should still feel like part of the same button family:
+
+same radius language;
+same border philosophy;
+same font family/weight logic;
+consistent pressed/disabled behavior.
+8. States
+
+Define shared states for:
+
+default;
+pressed / active;
+disabled;
+loading, if currently used.
+
+Disabled state should look intentionally disabled while still visually belonging to the same component family.
+
+Do not use opacity differences inconsistently across pages.
+
+9. Icons
+
+Buttons containing icons must use shared alignment rules:
+
+icon vertically aligned with text;
+consistent icon-to-text gap;
+consistent icon sizing for standard buttons.
+
+This includes the lock/unlock icons used for Full Access.
+
+10. Preserve hierarchy
+
+Do not make every button visually identical.
+
+Semantic hierarchy must remain:
+
+primary = strongest normal action;
+secondary = quieter action;
+destructive = clearly destructive;
+success = confirmed/owned state.
+
+The structure should be consistent while color communicates meaning.
+
+11. Scope
+
+This is a UI/design-system refactor only.
+
+Do not change:
+
+navigation;
+training logic;
+purchase logic;
+entitlement rules;
+SRS behavior;
+button actions.
+12. Final report
+
+When finished, report:
+
+the shared folder/component/tokens created or updated;
+the final semantic button variants;
+which screens/files were migrated;
+any remaining inline/custom button styling and why it is still necessary;
+whether all tests/typecheck/build still pass.
+Done looks like
+Standard app buttons clearly belong to one visual system.
+Borders no longer vary randomly between screens.
+New buttons can reuse the same shared variants.
+Future UI work should not require manually recreating button styling.
+No behavior has changed.

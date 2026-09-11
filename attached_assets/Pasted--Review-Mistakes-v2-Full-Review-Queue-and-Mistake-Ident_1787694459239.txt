@@ -1,0 +1,499 @@
+# Review Mistakes v2 — Full Review Queue and Mistake Identity Audit
+
+We need to perform a full audit and correction of the existing **Review Mistakes** mechanism.
+
+There are currently two related problems:
+
+1. A correctly answered mistake sometimes remains in the Review Mistakes queue and is presented multiple times — sometimes 4–5 times — instead of disappearing after one correct answer.
+2. A mistake currently identifies only the verb, rather than the exact verb form/exercise in which the user made the mistake.
+
+Both issues need to be addressed systematically.
+
+Do NOT simply patch the visible symptoms. Please inspect the complete Mistakes → Review Mistakes data flow and make sure the underlying state model is correct.
+
+---
+
+# PART 1 — Review Mistakes must remove a correctly answered mistake immediately
+
+## Expected behavior
+
+When a user enters Review Mistakes and receives a mistake:
+
+```text
+Mistake A
+
+and answers it correctly:
+
+Correct
+
+that mistake must be considered resolved immediately.
+
+It must:
+
+disappear from the current Review Mistakes queue;
+disappear from the Mistakes screen immediately;
+never be presented again during the same Review Mistakes session;
+not require pressing Next multiple times;
+not require answering the same mistake several times.
+
+A mistake should require exactly one correct resolution.
+
+Example
+
+Suppose the Mistakes list contains:
+
+1. go
+2. write
+3. take
+
+The user enters Review Mistakes.
+
+Exercise 1
+go
+
+User answers correctly.
+
+Expected queue:
+
+write
+take
+
+The application must NEVER show go again during this review session.
+
+Exercise 2
+write
+
+User answers correctly.
+
+Expected queue:
+
+take
+Exercise 3
+take
+
+User answers correctly.
+
+Expected:
+
+queue = empty
+
+Then Review Mistakes must finish and the existing automatic transition to Full Conjugation must occur.
+
+PART 2 — Audit BOTH entry points into Review Mistakes
+
+This behavior must work identically regardless of how Review Mistakes was started.
+
+Entry point A
+Mistakes
+→ Practice
+→ Review Mistakes
+Entry point B
+Training Mode
+→ Review Mistakes
+
+Both paths must use the same underlying mistake queue and resolution logic.
+
+Do NOT maintain two separate implementations of Review Mistakes.
+
+PART 3 — Correct answer vs Skip
+
+Preserve the existing distinction between resolving and skipping a mistake.
+
+Correct answer
+
+A correct answer:
+
+Mistake → RESOLVED
+
+The mistake is removed immediately.
+
+It must not return later in the same review session.
+
+Skip
+
+A skipped mistake:
+
+Mistake → NOT RESOLVED
+
+It remains eligible for review according to the existing Skip behavior.
+
+The user should be able to skip a mistake without resolving it.
+
+However, the existing anti-infinite-loop behavior must remain intact:
+
+If the user skips all remaining mistakes, Review Mistakes must eventually transition automatically to:
+
+Full Conjugation
+
+The user must never get trapped endlessly reviewing the same skipped mistakes.
+
+PART 4 — Review Mistakes must identify the EXACT mistake
+
+This is the second major requirement.
+
+Currently, when a user makes a mistake, the system effectively records:
+
+verb = "go"
+
+This is insufficient.
+
+A mistake must identify the specific exercise/form in which the error occurred.
+
+For example:
+
+verb: go
+tense: pastSimple
+subject: he/she/it
+exercise type: verbform
+
+or whatever exact fields are already represented by the current exercise model.
+
+The goal is:
+
+Review the exact thing the user got wrong, not merely the same verb.
+
+PART 5 — Example of required behavior
+
+Suppose the user receives:
+
+Past Simple
+she
+go
+
+and makes a mistake.
+
+The Mistakes system should store the identity of this specific exercise.
+
+Later, Review Mistakes must reconstruct:
+
+Past Simple
+she
+go
+
+and expect:
+
+went
+
+It must NOT randomly generate:
+
+Present Perfect
+they
+go
+
+or:
+
+Past Participle
+go
+
+simply because the verb is go.
+
+PART 6 — Reuse the existing exact exercise identity system
+
+Please inspect the existing implementation first.
+
+There is already an exercise identity mechanism in the project, including IDs similar to:
+
+verbform:walk:pastSimple:he/she/it
+
+and an existing exerciseFromMistakeId() mechanism was previously introduced.
+
+Reuse and extend this architecture where appropriate.
+
+Do NOT create a second unrelated mistake-ID format if the existing format can represent the required information.
+
+The important thing is that the stored mistake must be sufficient to reconstruct the exact original exercise.
+
+PART 7 — Different forms of the same verb must be different mistakes
+
+This is critical.
+
+If the user makes mistakes in multiple forms of the same verb, these must be stored as separate mistake records.
+
+For example:
+
+go + Past Simple + he/she/it
+go + Past Participle
+go + Present Perfect
+
+must NOT collapse into one generic:
+
+go
+
+mistake.
+
+Each distinct exercise/form must have its own identity.
+
+The user should therefore be able to resolve one form without automatically resolving another form of the same verb.
+
+PART 8 — Context Mode
+
+Please pay particular attention to Context Mode.
+
+If the user makes an error in a contextual exercise, Review Mistakes should preserve enough information to reproduce the intended grammatical target.
+
+For example, if the original exercise was:
+
+She ____ to work yesterday.
+
+and the target was Past Simple of go, Review Mistakes must not turn this into an unrelated go exercise.
+
+Preserve the relevant tense/form information.
+
+If the exact original context sentence can safely be reconstructed from the existing exercise identity/data model, preserve it as well.
+
+Do not unnecessarily duplicate sentence data if the existing database can deterministically reconstruct it.
+
+PART 9 — Letter Builder
+
+Review Mistakes must work correctly with Letter Builder as well.
+
+If the user makes a mistake while solving an exercise in Letter Builder:
+
+the mistake must be recorded;
+the exact underlying exercise/form must be recorded;
+Review Mistakes must know which grammatical form was originally being tested;
+Letter Builder should continue to work according to the user's current Letter Builder setting.
+
+The mistake identity must NOT depend on whether the user happened to answer using Letter Builder or keyboard input.
+
+The mistake represents the underlying grammatical exercise, not the UI input method.
+
+PART 10 — Mistakes screen
+
+The Mistakes screen must update immediately when a mistake is correctly resolved.
+
+Example:
+
+Before review:
+
+Mistakes (3)
+
+go — Past Simple
+write — Past Simple
+take — Past Participle
+
+User correctly resolves:
+
+go — Past Simple
+
+Expected immediately:
+
+Mistakes (2)
+
+write — Past Simple
+take — Past Participle
+
+Do not require:
+
+navigation away and back;
+application restart;
+another answer;
+pressing a separate refresh button.
+
+Reuse the existing reactive update mechanism if one already exists.
+
+PART 11 — Persistence and session state
+
+Please audit the interaction between:
+
+Mistakes database records;
+Review Mistakes pending queue;
+sessionStorage;
+current exercise state;
+exercise_session;
+Review Mistakes configuration;
+reviewComplete;
+reviewExhausted.
+
+The current behavior strongly suggests that more than one piece of state may be maintaining the same mistake.
+
+A correctly resolved mistake must be removed consistently from all relevant Review Mistakes state.
+
+There must be ONE authoritative definition of whether a mistake is still pending.
+
+Avoid situations where:
+
+DB says resolved
+
+but:
+
+Review queue still contains the ID
+
+or vice versa.
+
+PART 12 — SRS and statistics
+
+Do NOT break existing SRS/statistics behavior.
+
+Resolving a mistake must continue to preserve the existing SRS history according to the current design.
+
+Do not:
+
+reset the user's SRS history;
+create duplicate progress records;
+artificially increase Daily Progress;
+create a second Correct answer statistic for the same mistake;
+modify unrelated statistics simply because a mistake was resolved.
+
+Please inspect the current implementation and preserve its intended behavior.
+
+PART 13 — Important edge cases
+
+Please explicitly test these cases.
+
+Case A — One mistake
+Mistakes = [A]
+
+User answers A correctly.
+
+Expected:
+
+Mistakes = []
+Review queue = []
+→ Full Conjugation
+
+A must never appear again.
+
+Case B — Three mistakes
+A, B, C
+
+User answers:
+
+A → correct
+B → correct
+C → correct
+
+Expected:
+
+A → removed immediately
+B → removed immediately
+C → removed immediately
+queue → empty
+→ Full Conjugation
+
+No repeated exercises.
+
+Case C — Correct + Skip
+A, B, C
+
+User:
+
+A → correct
+B → skip
+C → correct
+
+Expected:
+
+A → removed
+C → removed
+B → remains unresolved
+
+Then the existing Skip/queue logic determines whether B is shown again or Review transitions to Full Conjugation.
+
+Case D — Same verb, different forms
+go + Past Simple
+go + Past Participle
+
+User resolves Past Simple.
+
+Expected:
+
+go + Past Simple → removed
+go + Past Participle → remains
+Case E — Review started from Mistakes screen
+Mistakes → Practice
+
+Correct answer removes the exact mistake immediately.
+
+Case F — Review started from Training Mode
+Training Mode → Review Mistakes
+
+Same behavior.
+
+Case G — Leave Practice and return
+
+If the user leaves Practice during an unfinished Review Mistakes exercise and returns:
+
+preserve the unfinished exercise;
+preserve the current answer state;
+do not duplicate the mistake;
+do not prematurely resolve it.
+
+This must remain compatible with the existing navigation-state persistence fix.
+
+PART 14 — Add automated regression tests
+
+Please add or extend automated tests for the Review Mistakes system.
+
+At minimum, test:
+
+Correct answer removes a mistake from the queue immediately.
+Correct answer removes it from the persisted Mistakes state.
+Correctly resolved mistake cannot appear again in the same review session.
+Skipped mistakes remain unresolved.
+Exhausting/skipping the queue transitions to Full Conjugation.
+Same verb + different tense creates distinct mistake identities.
+Same verb + different subject creates distinct mistake identities where relevant.
+Review Mistakes started from Mistakes screen works.
+Review Mistakes started from Training Mode works.
+Context Mode preserves the intended tense/form.
+Letter Builder and keyboard input produce the same underlying mistake identity.
+Completing one mistake does not resolve another mistake involving the same verb.
+Mistakes screen updates immediately after resolution.
+
+The tests should verify the actual state/queue behavior, not merely whether a UI element is visible.
+
+Acceptance criteria
+
+The implementation is complete only when all of the following are true:
+
+ A correctly answered mistake disappears immediately from the Mistakes list.
+ A correctly answered mistake is removed from the Review queue immediately.
+ A correctly answered mistake is never shown again during that Review session.
+ A mistake requires exactly one correct resolution.
+ Review behavior is identical whether entered through Mistakes → Practice or Training Mode → Review Mistakes.
+ Skip does not incorrectly resolve a mistake.
+ Existing anti-infinite-loop Skip behavior remains intact.
+ Exhausted Review Mistakes automatically transitions to Full Conjugation.
+ Mistakes are identified by the exact underlying exercise/form, not merely by verb.
+ Different tenses/forms of the same verb can exist as separate mistakes.
+ Different relevant subjects can exist as separate mistakes.
+ Review reconstructs the exact grammatical target that caused the original mistake.
+ Context Mode does not lose the original grammatical target.
+ Letter Builder does not create a different type of mistake from keyboard input.
+ Existing SRS/statistics behavior is preserved.
+ No duplicate mistake records are created.
+ Existing navigation/session persistence continues to work.
+ Automated regression tests cover the critical Review Mistakes flows.
+Final principle
+
+The Review Mistakes system should work according to this model:
+
+USER MAKES MISTAKE
+        ↓
+STORE EXACT EXERCISE IDENTITY
+        ↓
+MISTAKE ENTERS REVIEW QUEUE
+        ↓
+REVIEW EXACT SAME FORM
+        ↓
+   ┌───────────────┐
+   │               │
+CORRECT          SKIP
+   │               │
+   ↓               ↓
+REMOVE          KEEP UNRESOLVED
+FROM QUEUE      ACCORDING TO
+                SKIP LOGIC
+   │
+   ↓
+NO REPEAT
+   │
+   ↓
+QUEUE EMPTY?
+   │
+  YES
+   ↓
+FULL CONJUGATION
+
+Please start by auditing the current Mistakes/Review implementation and identifying the root cause of the repeated-mistake behavior before making changes. Avoid introducing parallel state systems or duplicate mistake representations.
