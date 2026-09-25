@@ -1,5 +1,9 @@
 import { Capacitor } from "@capacitor/core";
 import { FULL_ACCESS_PRODUCT_ID } from "./access";
+import {
+  offlineEntitlementStore,
+  OfflineEntitlementStore,
+} from "./offlineEntitlementStore";
 
 export type PurchaseStatus =
   | "loading"
@@ -22,6 +26,19 @@ export interface PurchaseSnapshot {
 }
 
 type Listener = (snapshot: PurchaseSnapshot) => void;
+
+export interface PurchaseDependencies {
+  isNativeAndroid: () => boolean;
+  getCdvPurchase: () => any;
+  offlineEntitlements: OfflineEntitlementStore;
+}
+
+const DEFAULT_DEPENDENCIES: PurchaseDependencies = {
+  isNativeAndroid: () =>
+    Capacitor.isNativePlatform() && Capacitor.getPlatform() === "android",
+  getCdvPurchase: () => (globalThis as any).CdvPurchase,
+  offlineEntitlements: offlineEntitlementStore,
+};
 
 const INITIAL_SNAPSHOT: PurchaseSnapshot = {
   entitlementReady: false,
@@ -85,6 +102,12 @@ export class GooglePlayPurchases {
   private store: any = null;
   private cdv: any = null;
   private initializePromise: Promise<void> | null = null;
+  private revocationPersistencePending = false;
+  private readonly dependencies: PurchaseDependencies;
+
+  constructor(dependencies: PurchaseDependencies = DEFAULT_DEPENDENCIES) {
+    this.dependencies = dependencies;
+  }
 
   subscribe(listener: Listener): () => void {
     this.listeners.add(listener);
@@ -97,21 +120,92 @@ export class GooglePlayPurchases {
     this.listeners.forEach(listener => listener(this.snapshot));
   }
 
-  private reconcileOwnership(status: PurchaseStatus = "ready"): void {
+  private async refreshPersistedEntitlement(): Promise<boolean | null> {
+    try {
+      return await this.dependencies.offlineEntitlements.refresh();
+    } catch {
+      // A transient native Billing failure is not evidence of revocation.
+      return null;
+    }
+  }
+
+  private async clearPersistedEntitlement(): Promise<boolean> {
+    try {
+      await this.dependencies.offlineEntitlements.clear();
+      this.revocationPersistencePending = false;
+      return true;
+    } catch {
+      this.revocationPersistencePending = true;
+      return false;
+    }
+  }
+
+  private async grantConfirmedOwnership(
+    status: PurchaseStatus = "purchased",
+  ): Promise<boolean> {
+    const persistedOwnership = await this.refreshPersistedEntitlement();
+    if (persistedOwnership === null) {
+      throw new Error("Google Play ownership could not be persisted.");
+    }
+    if (!persistedOwnership) {
+      this.update({
+        entitlementReady: true,
+        billingAvailable: true,
+        hasFullAccess: false,
+        status: "ready",
+        message: "Google Play не подтвердил покупку.",
+      });
+      return false;
+    }
+
+    const product = this.store?.get?.(FULL_ACCESS_PRODUCT_ID);
+    const localizedPrice = product?.pricing?.price ?? this.snapshot.localizedPrice;
+    this.update(applyPurchaseOutcome({
+      ...this.snapshot,
+      entitlementReady: true,
+      billingAvailable: true,
+      localizedPrice: localizedPrice ?? null,
+      status,
+      message: null,
+    }, "already-owned"));
+    return true;
+  }
+
+  private async reconcileAuthoritativeOwnership(
+    status: PurchaseStatus = "ready",
+  ): Promise<void> {
     const hasFullAccess = Boolean(this.store?.owned?.(FULL_ACCESS_PRODUCT_ID));
     const product = this.store?.get?.(FULL_ACCESS_PRODUCT_ID);
     const localizedPrice = product?.pricing?.price ?? this.snapshot.localizedPrice;
-    const next = {
+
+    if (hasFullAccess) {
+      await this.grantConfirmedOwnership("purchased");
+      return;
+    }
+
+    await this.clearPersistedEntitlement();
+    this.update({
       entitlementReady: true,
       billingAvailable: true,
-      hasFullAccess,
+      hasFullAccess: false,
       localizedPrice: localizedPrice ?? null,
-      status: hasFullAccess ? "purchased" : status,
+      status,
       message: null,
-    } satisfies PurchaseSnapshot;
-    this.update(hasFullAccess
-      ? applyPurchaseOutcome(next, "already-owned")
-      : next);
+    });
+  }
+
+  private async reconcileWithNativeBilling(): Promise<boolean> {
+    const hasFullAccess = await this.refreshPersistedEntitlement();
+    if (hasFullAccess === null) return false;
+
+    this.revocationPersistencePending = false;
+    this.update({
+      entitlementReady: true,
+      hasFullAccess,
+      status: hasFullAccess ? "purchased" : "ready",
+      message: null,
+    });
+    return true;
   }
 
   initialize(): Promise<void> {
@@ -121,7 +215,7 @@ export class GooglePlayPurchases {
   }
 
   private async initializeInternal(): Promise<void> {
-    if (!Capacitor.isNativePlatform() || Capacitor.getPlatform() !== "android") {
+    if (!this.dependencies.isNativeAndroid()) {
       this.update({
         entitlementReady: true,
         billingAvailable: false,
@@ -132,13 +226,29 @@ export class GooglePlayPurchases {
       return;
     }
 
-    this.cdv = (globalThis as any).CdvPurchase;
+    let persistedOwnership = false;
+    try {
+      persistedOwnership = await this.dependencies.offlineEntitlements.load();
+    } catch {
+      // Treat unreadable or unavailable secure storage as no cached purchase.
+    }
+
+    this.update({
+      entitlementReady: true,
+      billingAvailable: false,
+      hasFullAccess: persistedOwnership,
+      status: persistedOwnership ? "purchased" : "loading",
+      message: null,
+    });
+
+    this.cdv = this.dependencies.getCdvPurchase();
     if (!this.cdv?.store) {
+      if (await this.reconcileWithNativeBilling()) return;
       this.update({
         entitlementReady: true,
         billingAvailable: false,
-        status: "error",
-        message: "Google Play Billing не удалось загрузить.",
+        status: persistedOwnership ? "purchased" : "error",
+        message: persistedOwnership ? null : "Google Play Billing не удалось загрузить.",
       });
       return;
     }
@@ -157,41 +267,58 @@ export class GooglePlayPurchases {
       }, "verbflow-product-updated")
       .pending((transaction: any) => {
         if (!transactionContainsProduct(transaction)) return;
-        this.update(applyPurchaseOutcome(this.snapshot, "pending"));
+        this.update({
+          entitlementReady: true,
+          status: "pending",
+          message: "Платёж обрабатывается Google Play.",
+        });
       }, "verbflow-pending")
       .approved(async (transaction: any) => {
         if (!transactionContainsProduct(transaction)) return;
         this.update({ status: "purchasing", message: "Завершаем покупку…" });
         try {
           await transaction.finish();
-          this.reconcileOwnership("purchased");
+          await this.grantConfirmedOwnership("purchased");
         } catch {
           this.update({
             entitlementReady: true,
-            hasFullAccess: false,
             status: "error",
             message: "Не удалось подтвердить покупку. Попробуйте восстановление.",
           });
         }
       }, "verbflow-approved")
       .finished((transaction: any) => {
-        if (transactionContainsProduct(transaction)) this.reconcileOwnership("purchased");
+        if (transactionContainsProduct(transaction)) {
+          void this.grantConfirmedOwnership("purchased").catch(() => {
+            // The approved handler reports persistence failures to the UI.
+          });
+        }
       }, "verbflow-finished")
-      .receiptsReady(() => this.reconcileOwnership(), "verbflow-receipts-ready");
+      .receiptsReady(() => {
+        if (this.store?.owned?.(FULL_ACCESS_PRODUCT_ID)) {
+          void this.grantConfirmedOwnership("purchased").catch(() => {
+            // Startup reconciliation below retries and preserves cached access.
+          });
+        }
+      }, "verbflow-receipts-ready");
 
     try {
       const errors = await this.store.initialize([this.cdv.Platform.GOOGLE_PLAY]);
       const error = errors?.[0];
       if (error) throw new Error(error.message);
       await this.store.update();
-      this.reconcileOwnership();
+      await this.reconcileAuthoritativeOwnership();
     } catch (error) {
+      if (await this.reconcileWithNativeBilling()) return;
       this.update({
         entitlementReady: true,
         billingAvailable: false,
-        hasFullAccess: false,
-        status: "error",
-        message: error instanceof Error ? error.message : "Google Play Billing недоступен.",
+        status: this.snapshot.hasFullAccess ? "purchased" : "error",
+        message: this.snapshot.hasFullAccess
+          ? null
+          : error instanceof Error
+            ? error.message
+            : "Google Play Billing недоступен.",
       });
     }
   }
@@ -211,26 +338,36 @@ export class GooglePlayPurchases {
     const error = await offer.order();
     if (!error) return;
 
-    this.reconcileOwnership();
-    if (this.snapshot.hasFullAccess) return;
-
     const cancelled = error.code === this.cdv.ErrorCode.PAYMENT_CANCELLED;
-    this.update(applyPurchaseOutcome(
-      this.snapshot,
-      cancelled ? "cancelled" : "failed",
-      cancelled ? "Покупка отменена." : (error.message ?? "Покупка не удалась."),
-    ));
+    this.update({
+      entitlementReady: true,
+      status: cancelled ? "cancelled" : "error",
+      message: cancelled ? "Покупка отменена." : (error.message ?? "Покупка не удалась."),
+    });
   }
 
   async restore(): Promise<void> {
     await this.initialize();
-    if (!this.store || !this.snapshot.billingAvailable) return;
+    if (!this.store || !this.snapshot.billingAvailable) {
+      this.update({ status: "restoring", message: null });
+      if (await this.reconcileWithNativeBilling()) {
+        if (!this.snapshot.hasFullAccess) {
+          this.update({ status: "ready", message: "Покупка не найдена." });
+        }
+      } else {
+        this.update({
+          status: this.snapshot.hasFullAccess ? "purchased" : "error",
+          message: this.snapshot.hasFullAccess ? null : "Не удалось восстановить покупку.",
+        });
+      }
+      return;
+    }
     this.update({ status: "restoring", message: null });
     try {
       const error = await this.store.restorePurchases();
       if (error) throw new Error(error.message);
       await this.store.update();
-      this.reconcileOwnership();
+      await this.reconcileAuthoritativeOwnership();
       if (!this.snapshot.hasFullAccess) {
         this.update({ status: "ready", message: "Покупка не найдена." });
       }
@@ -244,12 +381,14 @@ export class GooglePlayPurchases {
 
   async reconcile(): Promise<void> {
     await this.initialize();
-    if (!this.store || !this.snapshot.billingAvailable) return;
+    if (!this.store) return;
     try {
       await this.store.update();
-      this.reconcileOwnership();
+      await this.reconcileAuthoritativeOwnership();
     } catch {
-      // Keep the last authoritative store result while temporarily offline.
+      // The plugin Store cannot be initialized twice. Use a fresh native
+      // BillingClient ownership query to recover after failed initialization.
+      await this.reconcileWithNativeBilling();
     }
   }
 }

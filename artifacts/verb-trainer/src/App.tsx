@@ -20,6 +20,7 @@ import Home from "@/pages/home";
 import Practice from "@/pages/practice";
 import Mistakes from "@/pages/mistakes";
 import Settings from "@/pages/settings";
+import ThirdPartyLicenses from "@/pages/third-party-licenses";
 import Dictionary from "@/pages/dictionary";
 import DictionaryVerb from "@/pages/dictionary-verb";
 import Tenses from "@/pages/tenses";
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/practice" component={Practice} />
       <Route path="/mistakes" component={Mistakes} />
       <Route path="/settings" component={Settings} />
+      <Route path="/settings/licenses" component={ThirdPartyLicenses} />
       <Route path="/dictionary" component={Dictionary} />
       <Route path="/dictionary/:verb" component={DictionaryVerb} />
       <Route path="/tenses" component={Tenses} />

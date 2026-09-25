@@ -1,7 +1,7 @@
 // Onboarding — direct port of the approved Canvas mockups (Screen1–4)
 // Uses inline styles verbatim from the mockup source to guarantee visual fidelity.
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, Dumbbell } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -14,6 +14,7 @@ interface OnboardingProps {
 const BG = "#060C18";
 const CARD = "#0D1425";
 const PRIMARY = "#6C47FF";
+const POSITIVE = "#4ADE80";
 const FG = "#E2E8F0";
 const MUTED = "#7A8DAA";
 const BORDER = "#1A2A44";
@@ -107,6 +108,71 @@ function BottomAction({
       >
         {label}
       </Button>
+    </div>
+  );
+}
+
+function ScrollCue({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style: React.CSSProperties;
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showCue, setShowCue] = useState(false);
+
+  useEffect(() => {
+    const element = scrollRef.current;
+    if (!element) return;
+
+    const updateCue = () => {
+      setShowCue(
+        element.scrollTop < 4 &&
+          element.scrollHeight > element.clientHeight + 4,
+      );
+    };
+
+    updateCue();
+    element.addEventListener("scroll", updateCue, { passive: true });
+    const resizeObserver = new ResizeObserver(updateCue);
+    resizeObserver.observe(element);
+
+    return () => {
+      element.removeEventListener("scroll", updateCue);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  return (
+    <div style={{ flex: "1 1 auto", minHeight: 0, position: "relative", overflow: "hidden" }}>
+      <div
+        ref={scrollRef}
+        className="scrollbar-hidden"
+        style={{
+          ...style,
+          width: "100%",
+          height: "100%",
+          boxSizing: "border-box",
+          overflowY: "auto",
+        }}
+      >
+        {children}
+      </div>
+      {showCue && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            right: 0,
+            bottom: 0,
+            left: 0,
+            height: 48,
+            background: `linear-gradient(to bottom, rgba(6, 12, 24, 0), ${BG})`,
+            pointerEvents: "none",
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -253,11 +319,11 @@ function Screen2({
           <PracticePreview />
         </div>
       </div>
-      <div className="scrollbar-hidden" style={{ flex: "1 1 auto", minHeight: 0, padding: "10px 24px 12px", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+      <ScrollCue style={{ padding: "10px 24px 12px", display: "flex", flexDirection: "column", gap: 12 }}>
         <Callout2 n={1} label="Training Mode" text="Выберите формы глаголов и времена, которые хотите тренировать. Используйте режим Context sentences, чтобы практиковать глаголы в предложениях. Повысьте сложность заданий, отключив Letter Builder." />
-        <Callout2 n={2} label="English Tenses" text="Если немного запутались во временах английского языка, посмотрите нашу удобную шпаргалку." />
-        <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола или нажмите Skip, чтобы пропустить задание." />
-      </div>
+        <Callout2 n={2} label="English Tenses" text="Если немного запутались во временах английского языка, посмотрите удобную шпаргалку." />
+        <Callout2 n={3} label="Поле с заданием" text="Введите правильную форму глагола или нажмите Skip, чтобы перейти к следующему слову." />
+      </ScrollCue>
       <BottomAction
         activeIndex={repeatGuide ? 0 : 1}
         totalDots={repeatGuide ? 2 : 4}
@@ -300,7 +366,7 @@ const tabs = [
   { key: "Practice", label: "Practice", icon: navIcons.Practice, desc: "Совершенствуйте язык." },
   { key: "Mistakes", label: "Mistakes", icon: navIcons.Mistakes, desc: "Вернитесь к допущенным ошибкам и отработайте их." },
   { key: "Dictionary", label: "Dictionary", icon: navIcons.Dictionary, desc: "Кликните на глагол, чтобы узнать о его формах больше." },
-  { key: "Settings", label: "Settings", icon: navIcons.Settings, desc: "Выберите цель тренировки и ещё раз пройдите гайд." },
+  { key: "Settings", label: "Settings", icon: navIcons.Settings, desc: "Выберите цель тренировки, ещё раз пройдите гайд по использованию приложения, получите полный доступ к VerbFlow." },
 ];
 
 function Screen3({
@@ -356,7 +422,7 @@ function Screen3({
       </div>
 
       {/* Descriptions */}
-      <div className="scrollbar-hidden" style={{ flex: "1 1 auto", minHeight: 0, padding: "20px 24px 12px", display: "flex", flexDirection: "column", gap: 14, overflowY: "auto" }}>
+      <ScrollCue style={{ padding: "20px 24px 12px", display: "flex", flexDirection: "column", gap: 14 }}>
         {tabs.map((t, i) => (
           <div key={t.key} style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 12, alignItems: "start" }}>
             <div style={{
@@ -365,11 +431,18 @@ function Screen3({
             }}>{i + 1}</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               <div style={{ color: FG, fontSize: 14, fontWeight: 600, lineHeight: "20px" }}>{t.label}</div>
-              <div style={{ color: MUTED, fontSize: 14, lineHeight: "21px" }}>{t.desc}</div>
+              {t.key === "Settings" ? (
+                <div style={{ color: MUTED, fontSize: 14, lineHeight: "21px" }}>
+                  Выберите цель тренировки, ещё раз пройдите гайд по использованию приложения,{" "}
+                  <span style={{ color: POSITIVE }}>получите полный доступ к VerbFlow</span>.
+                </div>
+              ) : (
+                <div style={{ color: MUTED, fontSize: 14, lineHeight: "21px" }}>{t.desc}</div>
+              )}
             </div>
           </div>
         ))}
-      </div>
+      </ScrollCue>
 
       <BottomAction
         activeIndex={repeatGuide ? 1 : 2}

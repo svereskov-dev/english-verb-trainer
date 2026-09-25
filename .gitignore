@@ -1,49 +1,43 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
-# compiled output
-dist
-tmp
-out-tsc
+# Dependencies, generated web assets and test output
+**/node_modules/
+**/dist/
+**/dev-dist/
+**/.vite/
+**/coverage/
 *.tsbuildinfo
-.expo
-.expo-shared
+*.log
+npm-debug.log*
+pnpm-debug.log*
 
-# dependencies
-node_modules
+# Android build products and machine-local state
+**/.gradle/
+**/.cxx/
+**/.externalNativeBuild/
+artifacts/verb-trainer/android/**/build/
+**/local.properties
+**/signing.properties
+*.apk
+*.aab
+*.apks
+*.iml
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Never commit signing material or local credentials
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-
-# System Files
+# Editor and operating-system files
+.idea/
+.vscode/
 .DS_Store
 Thumbs.db
-
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
-
-# Replit
-.cache/
-.local/
+*.swp
+*.swo

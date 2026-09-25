@@ -48,7 +48,7 @@ export function FullAccessPaywall() {
           </div>
           <DialogTitle className="text-2xl">Полный доступ к VerbFlow</DialogTitle>
           <DialogDescription className="text-center text-base leading-relaxed">
-            Практикуй все времена и формы глаголов английского языка — без ограничений.
+            Практикуйте все времена и формы глаголов английского языка — без ограничений.
           </DialogDescription>
           <p className="text-center text-sm font-semibold leading-relaxed text-foreground/80">
             Без подписки и автопродления — один платёж навсегда.

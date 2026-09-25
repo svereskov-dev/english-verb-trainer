@@ -1,6 +1,6 @@
-# Android APK Build Guide — English Verb Trainer
+# Android Build Guide — English Verb Trainer
 
-Packaging: **Capacitor 8** · App ID: `com.verbtrainer.app`
+Packaging: **Capacitor 8** · App ID: `com.verbflow.app` · Google Play release: **AAB**
 
 ---
 
@@ -8,13 +8,13 @@ Packaging: **Capacitor 8** · App ID: `com.verbtrainer.app`
 
 | Tool | Version | Link |
 |------|---------|------|
-| Node.js | 20 LTS+ | https://nodejs.org |
-| pnpm | 9+ | `npm i -g pnpm` |
+| Node.js | 22.12.0 or later (required by Capacitor CLI 8) | https://nodejs.org |
+| pnpm | 10.26.1 | `npm i -g pnpm@10.26.1` |
 | Java JDK | 21 | https://adoptium.net |
 | Android Studio | Ladybug 2024.2+ | https://developer.android.com/studio |
 
 After installing Android Studio:
-1. **SDK Manager** → install **Android SDK Platform 35** + **Build-Tools 35**
+1. **SDK Manager** → install **Android SDK Platform 36** + **Android SDK Build-Tools 36.0.0**
 2. Set `ANDROID_HOME`:
    - **macOS/Linux** (`~/.zshrc` or `~/.bashrc`):
      ```
@@ -88,8 +88,8 @@ do it manually, these are the source and destination paths:
 | `capacitor-android-templates/styles.xml` | `android/app/src/main/res/values/styles.xml` |
 | `capacitor-android-templates/splash.xml` | `android/app/src/main/res/drawable/splash.xml` |
 | `capacitor-android-templates/values-v35/styles.xml` | `android/app/src/main/res/values-v35/styles.xml` |
-| `capacitor-android-templates/MainActivity.java` | `android/app/src/main/java/com/verbtrainer/app/MainActivity.java` |
-| `capacitor-android-templates/NoNumberRowWebView.java` | `android/app/src/main/java/com/verbtrainer/app/NoNumberRowWebView.java` |
+| `capacitor-android-templates/MainActivity.java` | `android/app/src/main/java/com/verbflow/app/MainActivity.java` |
+| `capacitor-android-templates/NoNumberRowWebView.java` | `android/app/src/main/java/com/verbflow/app/NoNumberRowWebView.java` |
 | `capacitor-android-templates/capacitor_bridge_layout_main.xml` | `android/app/src/main/res/layout/capacitor_bridge_layout_main.xml` |
 
 What this configures:
@@ -103,16 +103,11 @@ What this configures:
 
 ---
 
-## Step 3c — Set keyboard resize mode (recommended)
+## Step 3c — Keyboard resize mode
 
-In `android/app/src/main/AndroidManifest.xml`, find `<activity android:name=".MainActivity"` and add:
-
-```xml
-android:windowSoftInputMode="adjustResize"
-```
-
-This makes the viewport shrink when the keyboard opens (instead of the whole
-page panning up), so the Practice screen's adaptive layout works smoothly.
+The current Android configuration does **not** set `adjustResize`. Do not add
+`android:windowSoftInputMode="adjustResize"` as part of this build setup; the
+app uses Capacitor 8's edge-to-edge window behavior.
 
 ---
 
@@ -153,7 +148,88 @@ is local-only and must not be committed or copied between computers.
 
 ---
 
-## Step 6 — Build the APK
+## Step 6 — Restore Google Play upload signing
+
+Google Play release bundles must be signed with your existing private upload
+key. Restore your existing upload keystore and `signing.properties` from your
+secure backup; do not generate a replacement key. Never commit the keystore,
+passwords, alias, or `signing.properties`.
+
+### 6.1 Restore your existing upload keystore
+
+On the new computer, restore your existing `.jks`/`.keystore` file to its
+original private location, or another private location you control. If restoring
+to a different location, update the local `storeFile` path in
+`signing.properties` accordingly. Keep the keystore and its backup private.
+
+### 6.2 Restore the local signing properties file
+
+Restore your existing, untracked file:
+
+```text
+artifacts/verb-trainer/android/signing.properties
+```
+
+The file must point to the restored keystore and contain the same credentials
+used for the existing upload key. Do not create a new key or replace these
+credentials.
+
+`signing.properties`, `*.jks`, and `*.keystore` are ignored by Git. Do not put
+real signing values in any committed file, screenshot, chat, or build archive.
+
+As an alternative for command-line or CI builds, omit `signing.properties` and
+set all four environment variables:
+
+```powershell
+$env:VERBFLOW_UPLOAD_STORE_FILE="C:\Users\YOUR_WINDOWS_USER\.android\keys\verbflow-upload.jks"
+$env:VERBFLOW_UPLOAD_STORE_PASSWORD="YOUR_KEYSTORE_PASSWORD"
+$env:VERBFLOW_UPLOAD_KEY_ALIAS="verbflow-upload"
+$env:VERBFLOW_UPLOAD_KEY_PASSWORD="YOUR_KEY_PASSWORD"
+```
+
+The Gradle configuration rejects partial signing credentials. Either provide
+all four values or none.
+
+### 6.3 Build the signed release AAB
+
+From the extracted project root:
+
+```powershell
+pnpm install
+pnpm run build:android
+Set-Location artifacts\verb-trainer\android
+.\gradlew.bat bundleRelease
+```
+
+Expected output:
+
+```text
+artifacts\verb-trainer\android\app\build\outputs\bundle\release\app-release.aab
+```
+
+### 6.4 Verify the AAB signature
+
+From the project root:
+
+```powershell
+jarsigner -verify -verbose -certs `
+  artifacts\verb-trainer\android\app\build\outputs\bundle\release\app-release.aab
+```
+
+The command must finish with `jar verified`. You can also inspect the signing
+certificate:
+
+```powershell
+keytool -printcert -jarfile `
+  artifacts\verb-trainer\android\app\build\outputs\bundle\release\app-release.aab
+```
+
+Do not upload the bundle to Google Play until its application ID, version,
+certificate, and release contents have been reviewed.
+
+---
+
+## Step 7 — Build an APK for local testing
 
 In Android Studio:
 
@@ -166,9 +242,9 @@ Debug APK location:
 android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-### Release APK (for distribution)
+### Release APK (for local distribution)
 1. **Build → Generate Signed Bundle / APK → APK**
-2. Create or reuse a keystore
+2. Select the existing VerbFlow upload keystore
 3. Select **release** build variant
 
 Release APK:
@@ -176,11 +252,11 @@ Release APK:
 android/app/build/outputs/apk/release/app-release.apk
 ```
 
-> **Back up your keystore.** You need the same file for every future update.
+> **Back up your keystore and credentials.** You need them for future updates.
 
 ---
 
-## Step 7 — Install on device
+## Step 8 — Install on device
 
 Enable USB debugging on the phone:
 - Settings → About Phone → tap **Build Number** 7 times
@@ -212,14 +288,14 @@ pnpm run cap:open                     # open Android Studio → Build APK
 
 | Setting | Value |
 |---------|-------|
-| App ID | `com.verbtrainer.app` |
+| App ID | `com.verbflow.app` |
 | Capacitor | 8.x |
-| Min SDK | 22 (Android 5.1) |
-| Target SDK | 35 (Android 15) |
+| Min SDK | 24 (Android 7.0) |
+| Target SDK | 36 (Android 16) |
 | Web dir | `dist/public` |
 | Routing | Hash-based (`#/practice`, `#/dictionary`, …) |
 | Status Bar | Transparent — app background visible |
-| Navigation Bar | Transparent — app background visible, no white scrim |
+| Navigation Bar | Opaque dark `#070B17` |
 | Splash Screen | `#070B17` background, auto-hides on mount |
 
 ---
@@ -234,9 +310,12 @@ again. The native project uses Java 21 source compatibility.
 
 **Blank white screen** — Run `cap:build` then `cap:sync`; web assets are missing.
 
-**White navigation bar** — You skipped Step 3b. Copy the template files and rebuild.
+**Navigation bar color is wrong** — Re-run `pnpm run cap:copy-templates` and
+`pnpm run cap:sync`, then rebuild. The configured navigation bar is opaque dark
+`#070B17`.
 
-**Page shifts up when keyboard opens** — You skipped Step 3c. Add `adjustResize` to AndroidManifest.
+**Keyboard behavior differs from expectation** — This configuration intentionally
+does not set `adjustResize`; do not add it as a build workaround.
 
 **Routing 404** — Make sure you ran `pnpm run cap:build` (not the regular `build`).
 

@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { deleteDB } from "idb";
+import { useState, type MouseEvent } from "react";
+import { Browser } from "@capacitor/browser";
+import { Capacitor } from "@capacitor/core";
 import { useSettings } from "../hooks/useSettings";
 import { Onboarding } from "../components/Onboarding";
 import { BottomNav } from "../components/BottomNav";
@@ -11,18 +12,33 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../components/ui/alert-dialog";
-import { closeDB } from "../db";
+import { clearLearningData } from "../db";
+import { clearLearningBrowserStorage } from "../storage/clearAllData";
 import { useFullAccess } from "../purchases/FullAccessContext";
-import { Lock, Unlock } from "lucide-react";
+import { ChevronRight, FileText, Lock, Mail, Shield, Unlock } from "lucide-react";
+import { useLocation } from "wouter";
 import { Separator } from "../components/ui/separator";
 
+const PRIVACY_POLICY_URL = "https://sites.google.com/view/verbflow-privacy/";
+const SUPPORT_EMAIL = "verbflowapp@gmail.com";
+
+function handlePrivacyPolicyClick(event: MouseEvent<HTMLAnchorElement>): void {
+  if (!Capacitor.isNativePlatform()) return;
+
+  event.preventDefault();
+  void Browser.open({ url: PRIVACY_POLICY_URL }).catch(error => {
+    console.error("[PrivacyPolicy] failed to open native browser:", error);
+    window.open(PRIVACY_POLICY_URL, "_blank", "noopener,noreferrer");
+  });
+}
+
 export default function Settings() {
+  const [, navigate] = useLocation();
   const { settings, updateSettings } = useSettings();
   const [clearing, setClearing] = useState(false);
   const [clearError, setClearError] = useState<string | null>(null);
@@ -42,60 +58,30 @@ export default function Settings() {
   }
 
   /**
-   * Execute the full data-wipe sequence.
+   * Reset learning data without touching settings or access state.
    *
    * Called only after the user confirms via the AlertDialog (never via
    * window.confirm, which is silently suppressed on Samsung WebView and some
    * Capacitor Android configurations).
    *
-   * Sequence:
-   *  1. Close the idb singleton connection — prevents a "blocked" state when
-   *     deleteDB fires on Samsung / Capacitor WebView.
-   *  2. Delete the entire IndexedDB database.
-   *  3. Clear localStorage completely.
-   *  4. Clear sessionStorage completely.
-   *  5. Reload to a clean app state.
-   *
-   * Every step is wrapped in try/catch.  If anything fails the error is shown
-   * in the UI instead of being swallowed silently.
+   * The database is not deleted, browser storage is not cleared wholesale, and
+   * the native entitlement plugin is never called. This preserves settings,
+   * Review Access, paywall scheduling, and purchased Full Access.
    */
   const executeClear = async () => {
     setClearing(true);
     setClearError(null);
 
     try {
-      // ── Step 1: close the open DB connection ───────────────────────────────
-      console.log("[ClearData] closing DB connection…");
-      await closeDB();
-      console.log("[ClearData] DB connection closed");
+      console.log("[ClearData] clearing learning IndexedDB stores…");
+      await clearLearningData();
+      console.log("[ClearData] progress and stats cleared");
 
-      // ── Step 2: delete the IndexedDB database ──────────────────────────────
-      console.log("[ClearData] deleting IndexedDB 'verb-trainer-db'…");
-      await deleteDB("verb-trainer-db", {
-        // `blocked` fires when another tab / frame still holds a connection.
-        // Log it so it shows up in device logs; deletion will still proceed
-        // once those connections close.
-        blocked(currentVersion, event) {
-          console.warn(
-            `[ClearData] deleteDB blocked (currentVersion=${currentVersion})`,
-            event,
-          );
-        },
-      });
-      console.log("[ClearData] IndexedDB deleted");
+      console.log("[ClearData] clearing learning browser storage…");
+      clearLearningBrowserStorage(localStorage, sessionStorage);
+      console.log("[ClearData] learning browser storage cleared");
 
-      // ── Step 3: clear localStorage ─────────────────────────────────────────
-      console.log("[ClearData] clearing localStorage…");
-      localStorage.clear();
-      console.log("[ClearData] localStorage cleared");
-
-      // ── Step 4: clear sessionStorage ──────────────────────────────────────
-      console.log("[ClearData] clearing sessionStorage…");
-      sessionStorage.clear();
-      console.log("[ClearData] sessionStorage cleared");
-
-      // ── Step 5: reload ────────────────────────────────────────────────────
-      console.log("[ClearData] all storage cleared — reloading app…");
+      console.log("[ClearData] learning data cleared — reloading app…");
       window.location.reload();
 
     } catch (err) {
@@ -107,8 +93,8 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe">
-      <div className="w-full max-w-md mx-auto p-6 space-y-6">
+    <div className="min-h-[100dvh] bg-background nav-safe-pad pt-safe flex flex-col">
+      <div className="w-full max-w-md mx-auto p-6 space-y-6 flex-1">
         <h1 className="text-3xl font-bold">Settings</h1>
 
         <div>
@@ -131,29 +117,7 @@ export default function Settings() {
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <Label>Theme</Label>
-            <Select
-              value={settings.theme}
-              onValueChange={(val: string) => {
-                if (val === "dark") {
-                  updateSettings({ theme: "dark" });
-                }
-              }}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select theme" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="dark">Dark Mode</SelectItem>
-                <SelectItem value="light" disabled>
-                  Light Mode (Coming Soon)
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Clear Data — uses AlertDialog instead of window.confirm() so it
+          {/* Clear Progress — uses AlertDialog instead of window.confirm() so it
               works reliably on Samsung WebView and all Capacitor environments. */}
           <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -162,27 +126,24 @@ export default function Settings() {
                 variant="destructive"
                 disabled={clearing}
               >
-                {clearing ? "Clearing…" : "Clear All Data"}
+                {clearing ? "Clearing…" : "Clear Progress"}
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border-border/80 bg-card p-7 text-center shadow-2xl sm:max-w-sm">
               <AlertDialogHeader className="space-y-3 !text-center">
                 <AlertDialogTitle className="text-center text-xl font-bold tracking-tight">
-                  Clear all data?
+                  Clear progress?
                 </AlertDialogTitle>
               </AlertDialogHeader>
-              <AlertDialogDescription className="sr-only">
-                Confirm whether to permanently clear all saved data.
-              </AlertDialogDescription>
               <AlertDialogFooter className="!flex-row !justify-center !space-x-0 gap-3">
                 <AlertDialogCancel className="mt-0">
-                  No
+                  Cancel
                 </AlertDialogCancel>
                 <AlertDialogAction
                   variant="destructive"
                   onClick={executeClear}
                 >
-                  Yes
+                  Clear
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -227,6 +188,47 @@ export default function Settings() {
               )}
               {hasFullAccess ? "Full Access Unlocked" : "Unlock Full Access"}
             </Button>
+
+            <section className="mt-8" aria-labelledby="support-legal-heading">
+              <h2
+                id="support-legal-heading"
+                className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+              >
+                Support &amp; Legal
+              </h2>
+              <div className="divide-y divide-border border-y border-border">
+                <button
+                  type="button"
+                  onClick={() => navigate("/settings/licenses")}
+                  className="flex min-h-12 w-full items-center gap-3 px-3 py-2 text-left text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <FileText className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+                  <span className="min-w-0 flex-1">Third-Party Licenses</span>
+                  <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                </button>
+                <a
+                  href={PRIVACY_POLICY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handlePrivacyPolicyClick}
+                  className="flex min-h-12 items-center gap-3 px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <Shield className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+                  <span className="min-w-0 flex-1">Privacy Policy</span>
+                  <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                </a>
+                <div className="flex min-h-[60px] items-center gap-3 px-3 py-2 text-sm text-muted-foreground">
+                  <Mail className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+                  <div className="flex min-w-0 flex-col gap-0.5">
+                    <span className="leading-5">Contact Support</span>
+                    <span className="select-text text-xs leading-4 text-muted-foreground">
+                      {SUPPORT_EMAIL}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
           </div>
         </div>
       </div>

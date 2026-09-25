@@ -149,13 +149,13 @@ export default function Mistakes() {
                   </AlertDialogDescription>
                   <AlertDialogFooter className="!flex-row !justify-center !space-x-0 gap-3">
                     <AlertDialogCancel className="mt-0">
-                      No
+                      Cancel
                     </AlertDialogCancel>
                     <AlertDialogAction
                       variant="destructive"
                       onClick={handleClearMistakes}
                     >
-                      Yes
+                      Clear
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

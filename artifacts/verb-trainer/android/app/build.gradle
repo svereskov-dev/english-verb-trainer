@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+
+def releaseSigningProperties = new Properties()
+def releaseSigningPropertiesFile = rootProject.file('signing.properties')
+
+if (releaseSigningPropertiesFile.exists()) {
+    releaseSigningPropertiesFile.withInputStream { stream ->
+        releaseSigningProperties.load(stream)
+    }
+}
+
+def signingValue = { String propertyName, String environmentName ->
+    def propertyValue = releaseSigningProperties.getProperty(propertyName)?.trim()
+    if (propertyValue) {
+        return propertyValue
+    }
+
+    def environmentValue = System.getenv(environmentName)?.trim()
+    return environmentValue ?: null
+}
+
+def releaseStoreFile = signingValue('storeFile', 'VERBFLOW_UPLOAD_STORE_FILE')
+def releaseStorePassword = signingValue('storePassword', 'VERBFLOW_UPLOAD_STORE_PASSWORD')
+def releaseKeyAlias = signingValue('keyAlias', 'VERBFLOW_UPLOAD_KEY_ALIAS')
+def releaseKeyPassword = signingValue('keyPassword', 'VERBFLOW_UPLOAD_KEY_PASSWORD')
+def releaseSigningValues = [
+    releaseStoreFile,
+    releaseStorePassword,
+    releaseKeyAlias,
+    releaseKeyPassword,
+]
+def providedReleaseSigningValueCount = releaseSigningValues.count { it != null }
+def releaseSigningConfigured = providedReleaseSigningValueCount == releaseSigningValues.size()
+
+if (providedReleaseSigningValueCount > 0 && !releaseSigningConfigured) {
+    throw new GradleException(
+        'Incomplete VerbFlow release signing configuration. Provide storeFile, storePassword, ' +
+        'keyAlias, and keyPassword in android/signing.properties, or provide all four ' +
+        'VERBFLOW_UPLOAD_* environment variables.'
+    )
+}
+
+android {
+    namespace = "com.verbflow.app"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.verbflow.app"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    signingConfigs {
+        if (releaseSigningConfigured) {
+            release {
+                storeFile rootProject.file(releaseStoreFile)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (releaseSigningConfigured) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

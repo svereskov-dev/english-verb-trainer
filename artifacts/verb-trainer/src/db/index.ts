@@ -23,6 +23,8 @@ interface VerbTrainerDB extends DBSchema {
 
 let dbPromise: Promise<IDBPDatabase<VerbTrainerDB>> | null = null;
 
+export const LEARNING_DATA_STORES = ['progress', 'stats'] as const;
+
 /**
  * Close the current DB connection and reset the module-level singleton so the
  * next getDB() call opens a fresh connection.  Must be called before
@@ -65,4 +67,19 @@ export function getDB() {
     });
   }
   return dbPromise;
+}
+
+/**
+ * Remove learning history without deleting settings or the database itself.
+ * The database remains open so this cannot be blocked by another WebView
+ * connection, and non-learning stores remain available immediately.
+ */
+export async function clearLearningData(): Promise<void> {
+  const db = await getDB();
+  const tx = db.transaction(LEARNING_DATA_STORES, 'readwrite');
+  await Promise.all([
+    tx.objectStore('progress').clear(),
+    tx.objectStore('stats').clear(),
+  ]);
+  await tx.done;
 }

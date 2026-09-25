@@ -43,14 +43,14 @@ cp capacitor-android-templates/values-v35/styles.xml \
 
 ```bash
 cp capacitor-android-templates/MainActivity.java \
-   android/app/src/main/java/com/verbtrainer/app/MainActivity.java
+   android/app/src/main/java/com/verbflow/app/MainActivity.java
 ```
 
 ### Compact keyboard layout (NoNumberRowWebView)
 
 ```bash
 cp capacitor-android-templates/NoNumberRowWebView.java \
-   android/app/src/main/java/com/verbtrainer/app/NoNumberRowWebView.java
+   android/app/src/main/java/com/verbflow/app/NoNumberRowWebView.java
 
 cp capacitor-android-templates/capacitor_bridge_layout_main.xml \
    android/app/src/main/res/layout/capacitor_bridge_layout_main.xml
@@ -129,7 +129,7 @@ digits. Native apps like ConjuGato receive `TYPE_TEXT_VARIATION_NORMAL`
 ```bash
 # 1. Java class: subclasses CapacitorWebView and strips WEB_EDIT_TEXT
 cp capacitor-android-templates/NoNumberRowWebView.java \
-   android/app/src/main/java/com/verbtrainer/app/NoNumberRowWebView.java
+   android/app/src/main/java/com/verbflow/app/NoNumberRowWebView.java
 
 # 2. Layout override: tells Android to inflate NoNumberRowWebView instead of
 #    CapacitorWebView (app resources override library resources by same name)

@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useStats } from "../hooks/useStats";
 import { useSettings } from "../hooks/useSettings";
@@ -6,17 +7,30 @@ import { Card, CardContent } from "../components/ui/card";
 import { Check, X, Target, SlidersHorizontal } from "lucide-react";
 import { BottomNav } from "../components/BottomNav";
 import { isDailyGoalReached } from "../lib/dailyProgress";
+import { ReviewAccessDialog } from "../components/ReviewAccessDialog";
+import {
+  EMPTY_REVIEW_ACCESS_TAP_STATE,
+  registerReviewAccessTap,
+} from "../purchases/reviewAccess";
 
 export default function Home() {
   const [, navigate] = useLocation();
   const { stats } = useStats();
   const { settings } = useSettings();
+  const [reviewAccessOpen, setReviewAccessOpen] = useState(false);
+  const reviewAccessTaps = useRef(EMPTY_REVIEW_ACCESS_TAP_STATE);
 
   if (!stats || !settings) return null;
 
   const handleChooseMode = () => {
     sessionStorage.setItem("openTrainingMenu", "true");
     navigate("/practice");
+  };
+
+  const handleHeadingTap = () => {
+    const result = registerReviewAccessTap(reviewAccessTaps.current, Date.now());
+    reviewAccessTaps.current = result.state;
+    if (result.shouldOpen) setReviewAccessOpen(true);
   };
 
   const progress = Math.min(100, Math.round((stats.sessionAnswers / settings.dailyGoal) * 100));
@@ -27,7 +41,12 @@ export default function Home() {
       <div className="w-full max-w-md p-6 space-y-8 mt-4">
         
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">English Verb Trainer</h1>
+          <h1
+            className="text-3xl font-bold tracking-tight text-foreground"
+            onClick={handleHeadingTap}
+          >
+            English Verb Trainer
+          </h1>
           <p className="text-muted-foreground">Go get your goal</p>
         </div>
 
@@ -99,6 +118,10 @@ export default function Home() {
 
       </div>
       <BottomNav />
+      <ReviewAccessDialog
+        open={reviewAccessOpen}
+        onOpenChange={setReviewAccessOpen}
+      />
     </div>
   );
 }

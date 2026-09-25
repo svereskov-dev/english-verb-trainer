@@ -1,6 +1,12 @@
 dist/
+dev-dist/
 node_modules/
+*.tsbuildinfo
 
-# Capacitor — generated locally, never commit
-android/
+# iOS is not part of this Android source export
 ios/
+
+# Android release signing credentials and private keys
+**/signing.properties
+**/*.jks
+**/*.keystore

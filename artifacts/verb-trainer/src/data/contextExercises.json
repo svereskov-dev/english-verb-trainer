@@ -6567,7 +6567,7 @@
     "verb": "eat",
     "tense": "pastPerfectContinuous",
     "subject": "she",
-    "sentence": "Before changing jobs, she _____ lunch at her desk for years.",
+    "sentence": "Before the café closed, she _____ lunch there every day for years.",
     "expectedAnswer": "had been eating",
     "practiceTargets": [
       "pastPerfectContinuous"
@@ -7496,7 +7496,7 @@
     "verb": "catch",
     "tense": "pastContinuous",
     "subject": "she",
-    "sentence": "Last week, she _____ the early bus every morning.",
+    "sentence": "At noon yesterday, she _____ fish by the river.",
     "expectedAnswer": "was catching",
     "practiceTargets": [
       "pastContinuous"
@@ -12528,8 +12528,8 @@
     "verb": "forbid",
     "tense": "pastContinuous",
     "subject": "the school",
-    "sentence": "During last term, the school _____ phones at more events.",
-    "expectedAnswer": "was forbidding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
     "practiceTargets": [
       "pastContinuous"
     ]
@@ -12573,8 +12573,8 @@
     "verb": "forbid",
     "tense": "presentContinuous",
     "subject": "the school",
-    "sentence": "This term, the school _____ phones at more events.",
-    "expectedAnswer": "is forbidding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
     "practiceTargets": [
       "presentContinuous"
     ]
@@ -12618,8 +12618,8 @@
     "verb": "forbid",
     "tense": "futureContinuous",
     "subject": "the school",
-    "sentence": "Next term, the school _____ phones at more events.",
-    "expectedAnswer": "will be forbidding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected.",
     "practiceTargets": [
       "futureContinuous"
     ]
@@ -12664,8 +12664,8 @@
     "verb": "forgive",
     "tense": "pastContinuous",
     "subject": "she",
-    "sentence": "During last month's project, she _____ small mistakes more easily.",
-    "expectedAnswer": "was forgiving",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "pastContinuous"
     ]
@@ -12687,8 +12687,8 @@
     "verb": "forgive",
     "tense": "pastPerfectContinuous",
     "subject": "she",
-    "sentence": "Before the project ended, she _____ small mistakes for weeks.",
-    "expectedAnswer": "had been forgiving",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "pastPerfectContinuous"
     ]
@@ -12709,8 +12709,8 @@
     "verb": "forgive",
     "tense": "presentContinuous",
     "subject": "she",
-    "sentence": "These days, she _____ small mistakes more easily.",
-    "expectedAnswer": "is forgiving",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "presentContinuous"
     ]
@@ -12732,8 +12732,8 @@
     "verb": "forgive",
     "tense": "presentPerfectContinuous",
     "subject": "she",
-    "sentence": "She _____ small mistakes more easily lately.",
-    "expectedAnswer": "has been forgiving",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "presentPerfectContinuous"
     ]
@@ -12754,8 +12754,8 @@
     "verb": "forgive",
     "tense": "futureContinuous",
     "subject": "she",
-    "sentence": "During next month's project, she _____ small mistakes more easily.",
-    "expectedAnswer": "will be forgiving",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "futureContinuous"
     ]
@@ -12936,8 +12936,8 @@
     "verb": "withstand",
     "tense": "pastContinuous",
     "subject": "the fabric",
-    "sentence": "During last year's test, the fabric _____ heavy daily use.",
-    "expectedAnswer": "was withstanding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "pastContinuous"
     ]
@@ -12959,8 +12959,8 @@
     "verb": "withstand",
     "tense": "pastPerfectContinuous",
     "subject": "the fabric",
-    "sentence": "By the time it was replaced, the fabric _____ heavy use for a full year.",
-    "expectedAnswer": "had been withstanding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "pastPerfectContinuous"
     ]
@@ -12981,8 +12981,8 @@
     "verb": "withstand",
     "tense": "presentContinuous",
     "subject": "the fabric",
-    "sentence": "The fabric _____ heavy use well during this month's test.",
-    "expectedAnswer": "is withstanding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "presentContinuous"
     ]
@@ -13004,8 +13004,8 @@
     "verb": "withstand",
     "tense": "presentPerfectContinuous",
     "subject": "the fabric",
-    "sentence": "The fabric _____ heavy daily use for the past six months.",
-    "expectedAnswer": "has been withstanding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "presentPerfectContinuous"
     ]
@@ -13026,8 +13026,8 @@
     "verb": "withstand",
     "tense": "futureContinuous",
     "subject": "the fabric",
-    "sentence": "Throughout next month, the fabric _____ heavy daily use.",
-    "expectedAnswer": "will be withstanding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "futureContinuous"
     ]
@@ -13049,8 +13049,8 @@
     "verb": "withstand",
     "tense": "futurePerfectContinuous",
     "subject": "the fabric",
-    "sentence": "By next December, the fabric _____ heavy use for a full year.",
-    "expectedAnswer": "will have been withstanding",
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints.",
     "practiceTargets": [
       "futurePerfectContinuous"
     ]
@@ -13467,8 +13467,8 @@
     "id": "upset_pastSimple_01",
     "verb": "upset",
     "tense": "pastSimple",
-    "subject": "the construction noise",
-    "sentence": "The construction noise _____ the office schedule last Monday.",
+    "subject": "the news",
+    "sentence": "The news _____ her last night.",
     "expectedAnswer": "upset",
     "practiceTargets": [
       "pastSimple",
@@ -13479,8 +13479,8 @@
     "id": "upset_pastContinuous_01",
     "verb": "upset",
     "tense": "pastContinuous",
-    "subject": "the construction noise",
-    "sentence": "During last week's work, the noise _____ the office schedule.",
+    "subject": "the loud music",
+    "sentence": "The loud music _____ the baby when they turned it down.",
     "expectedAnswer": "was upsetting",
     "practiceTargets": [
       "pastContinuous"
@@ -13490,8 +13490,8 @@
     "id": "upset_pastPerfect_01",
     "verb": "upset",
     "tense": "pastPerfect",
-    "subject": "the construction noise",
-    "sentence": "Before work paused, the noise _____ the schedule several times.",
+    "subject": "his comment",
+    "sentence": "By the time he apologized, his comment _____ her.",
     "expectedAnswer": "had upset",
     "practiceTargets": [
       "pastPerfect",
@@ -13503,7 +13503,7 @@
     "verb": "upset",
     "tense": "pastPerfectContinuous",
     "subject": "the construction noise",
-    "sentence": "Before work paused, the noise _____ the schedule for weeks.",
+    "sentence": "Before construction stopped, the noise _____ nearby residents for weeks.",
     "expectedAnswer": "had been upsetting",
     "practiceTargets": [
       "pastPerfectContinuous"
@@ -13513,9 +13513,9 @@
     "id": "upset_presentSimple_01",
     "verb": "upset",
     "tense": "presentSimple",
-    "subject": "the construction noise",
-    "sentence": "Construction noise often _____ the office schedule.",
-    "expectedAnswer": "upsets",
+    "subject": "loud arguments",
+    "sentence": "Loud arguments often _____ the children.",
+    "expectedAnswer": "upset",
     "practiceTargets": [
       "presentSimple"
     ]
@@ -13524,8 +13524,8 @@
     "id": "upset_presentContinuous_01",
     "verb": "upset",
     "tense": "presentContinuous",
-    "subject": "the construction noise",
-    "sentence": "The construction noise _____ the office schedule this week.",
+    "subject": "the constant noise",
+    "sentence": "The constant noise _____ the baby today.",
     "expectedAnswer": "is upsetting",
     "practiceTargets": [
       "presentContinuous"
@@ -13535,9 +13535,9 @@
     "id": "upset_presentPerfect_01",
     "verb": "upset",
     "tense": "presentPerfect",
-    "subject": "the construction noise",
-    "sentence": "The noise _____ the schedule several times this month.",
-    "expectedAnswer": "has upset",
+    "subject": "the delays",
+    "sentence": "The delays _____ several customers this week.",
+    "expectedAnswer": "have upset",
     "practiceTargets": [
       "presentPerfect",
       "v3"
@@ -13547,9 +13547,9 @@
     "id": "upset_presentPerfectContinuous_01",
     "verb": "upset",
     "tense": "presentPerfectContinuous",
-    "subject": "the construction noise",
-    "sentence": "The noise _____ the office schedule for the past few weeks.",
-    "expectedAnswer": "has been upsetting",
+    "subject": "the delays",
+    "sentence": "The delays _____ customers for the past few weeks.",
+    "expectedAnswer": "have been upsetting",
     "practiceTargets": [
       "presentPerfectContinuous"
     ]
@@ -13558,8 +13558,8 @@
     "id": "upset_futureSimple_01",
     "verb": "upset",
     "tense": "futureSimple",
-    "subject": "the construction noise",
-    "sentence": "The construction noise _____ the schedule again tomorrow.",
+    "subject": "the news",
+    "sentence": "The news _____ her when she hears it tomorrow.",
     "expectedAnswer": "will upset",
     "practiceTargets": [
       "futureSimple"
@@ -13569,8 +13569,8 @@
     "id": "upset_futureContinuous_01",
     "verb": "upset",
     "tense": "futureContinuous",
-    "subject": "the construction noise",
-    "sentence": "During next week's work, the noise _____ the office schedule.",
+    "subject": "you",
+    "sentence": "If you keep shouting, you _____ everyone all evening.",
     "expectedAnswer": "will be upsetting",
     "practiceTargets": [
       "futureContinuous"
@@ -13580,8 +13580,8 @@
     "id": "upset_futurePerfect_01",
     "verb": "upset",
     "tense": "futurePerfect",
-    "subject": "the construction noise",
-    "sentence": "By next Friday, the noise _____ the schedule several times.",
+    "subject": "the news",
+    "sentence": "By the time she gets home, the news _____ the whole family.",
     "expectedAnswer": "will have upset",
     "practiceTargets": [
       "futurePerfect",
@@ -13592,8 +13592,8 @@
     "id": "upset_futurePerfectContinuous_01",
     "verb": "upset",
     "tense": "futurePerfectContinuous",
-    "subject": "the construction noise",
-    "sentence": "By next Friday, the noise _____ the office schedule for a month.",
+    "subject": "the delays",
+    "sentence": "By Friday, the delays _____ customers for a month.",
     "expectedAnswer": "will have been upsetting",
     "practiceTargets": [
       "futurePerfectContinuous"
@@ -24366,7 +24366,7 @@
     "practiceTargets": [
       "futureContinuous"
     ],
-    "sentence": "Next week, the delay _____ problems throughout the schedule.",
+    "sentence": "Next week, the delay _____ problems for the whole team.",
     "expectedAnswer": "will be causing"
   },
   {
@@ -27468,7 +27468,7 @@
     "practiceTargets": [
       "pastPerfectContinuous"
     ],
-    "sentence": "Before launch, she _____ the layout for several weeks.",
+    "sentence": "Before the site launched, she _____ the homepage layout for several weeks.",
     "expectedAnswer": "had been improving"
   },
   {
@@ -28942,7 +28942,7 @@
     "practiceTargets": [
       "presentContinuous"
     ],
-    "sentence": "Right now, she _____ teaching the class from yesterday.",
+    "sentence": "This week, she _____ to teach the class while the teacher is away.",
     "expectedAnswer": "is continuing"
   },
   {
@@ -30086,8 +30086,8 @@
     "practiceTargets": [
       "pastContinuous"
     ],
-    "sentence": "Before the schedule changed, he _____ to stay for another week.",
-    "expectedAnswer": "was intending"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "intend_pastPerfect_01",
@@ -30108,8 +30108,8 @@
     "practiceTargets": [
       "pastPerfectContinuous"
     ],
-    "sentence": "Before his plans changed, he _____ to stay for several weeks.",
-    "expectedAnswer": "had been intending"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "intend_presentSimple_01",
@@ -30152,8 +30152,8 @@
     "practiceTargets": [
       "presentPerfectContinuous"
     ],
-    "sentence": "He _____ to visit the museum for the past few months.",
-    "expectedAnswer": "has been intending"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "intend_futureSimple_01",
@@ -30614,8 +30614,8 @@
     "practiceTargets": [
       "pastContinuous"
     ],
-    "sentence": "Throughout last year, she _____ better results each month.",
-    "expectedAnswer": "was achieving"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "achieve_pastPerfect_01",
@@ -30658,8 +30658,8 @@
     "practiceTargets": [
       "presentContinuous"
     ],
-    "sentence": "This year, she _____ better results than before.",
-    "expectedAnswer": "is achieving"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "achieve_presentPerfect_01",
@@ -30702,8 +30702,8 @@
     "practiceTargets": [
       "futureContinuous"
     ],
-    "sentence": "Next year, she _____ better results with the new system.",
-    "expectedAnswer": "will be achieving"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "achieve_futurePerfect_01",
@@ -32594,8 +32594,8 @@
     "practiceTargets": [
       "pastContinuous"
     ],
-    "sentence": "Throughout last year, she _____ in more projects than before.",
-    "expectedAnswer": "was succeeding"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "succeed_pastPerfect_01",
@@ -32638,8 +32638,8 @@
     "practiceTargets": [
       "presentContinuous"
     ],
-    "sentence": "This year, she _____ in more projects than before.",
-    "expectedAnswer": "is succeeding"
+    "notRecommended": true,
+    "reason": "No sufficiently natural, common modern-English use for this verb in this tense was selected under the dataset’s semantic and content constraints."
   },
   {
     "id": "succeed_presentPerfect_01",
@@ -37166,11 +37166,11 @@
     "id": "impact_futureContinuous_01",
     "verb": "impact",
     "tense": "futureContinuous",
-    "subject": "the delay",
+    "subject": "the storm",
     "practiceTargets": [
       "futureContinuous"
     ],
-    "sentence": "At 1:30 p.m. tomorrow, the delay _____ the afternoon schedule.",
+    "sentence": "At this time tomorrow, the storm _____ flights across the region.",
     "expectedAnswer": "will be impacting"
   },
   {

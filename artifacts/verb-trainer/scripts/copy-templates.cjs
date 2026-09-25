@@ -29,8 +29,9 @@ const mappings = [
   ['mipmap-anydpi-v26/ic_launcher.xml', 'app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml'],
   ['mipmap-anydpi-v26/ic_launcher_round.xml', 'app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml'],
   ['values-v35/styles.xml', 'app/src/main/res/values-v35/styles.xml'],
-  ['MainActivity.java', 'app/src/main/java/com/verbtrainer/app/MainActivity.java'],
-  ['NoNumberRowWebView.java', 'app/src/main/java/com/verbtrainer/app/NoNumberRowWebView.java'],
+  ['MainActivity.java', 'app/src/main/java/com/verbflow/app/MainActivity.java'],
+  ['NoNumberRowWebView.java', 'app/src/main/java/com/verbflow/app/NoNumberRowWebView.java'],
+  ['OfflineFullAccessPlugin.java', 'app/src/main/java/com/verbflow/app/OfflineFullAccessPlugin.java'],
   ['capacitor_bridge_layout_main.xml', 'app/src/main/res/layout/capacitor_bridge_layout_main.xml'],
 ];
 

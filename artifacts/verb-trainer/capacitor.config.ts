@@ -1,7 +1,7 @@
 import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "com.verbtrainer.app",
+  appId: "com.verbflow.app",
   appName: "VerbFlow",
   webDir: "dist/public",
   server: {
